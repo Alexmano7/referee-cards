@@ -1,0 +1,28 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Secrets: NEVER commit the real token
+.env
+.env.*
+!.env.example
+
+# Downloaded raw data (can always be downloaded again)
+data/raw/
+
+# Tool caches
+.pytest_cache/
+.ruff_cache/
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
