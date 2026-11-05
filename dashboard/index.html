@@ -1,0 +1,546 @@
+<meta name="dash-one-writer">
+<style>
+  /* Layout: header and takeaway, league tabs + filters, headline tiles, chart + fixtures side by side, referee table, notes. */
+  .rc { display: flex; flex-direction: column; gap: var(--cds-gap-lg); font-family: var(--font-anthropic-sans); min-width: 0; }
+  .rc-head h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; }
+  .rc-take { margin: var(--cds-gap-xs) 0 0; color: var(--color-fg-muted); max-width: 70ch; }
+  .rc .rc-take b { color: var(--color-fg); font-weight: 600; }
+  .rc-controls { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md); align-items: end; justify-content: space-between; }
+  .rc-tabs { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs); }
+  .rc-tab { font: inherit; font-size: var(--cds-font-size-body); padding: var(--cds-pad-xs) var(--cds-pad-md); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-panel); color: var(--color-fg); cursor: pointer; }
+  .rc-tab:hover { border-color: var(--color-fg-muted); }
+  .rc-tab.is-on { background: var(--color-fg); color: var(--color-bg); border-color: var(--color-fg); }
+  .rc-tab:focus-visible, .rc-table th button:focus-visible, .rc-close:focus-visible, .rc-refs tbody tr:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
+  .rc-filters { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md); align-items: end; }
+  .rc-filters label { display: flex; flex-direction: column; gap: var(--cds-gap-xs); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .rc-search { font: inherit; font-size: var(--cds-font-size-body); padding: var(--cds-pad-xs) var(--cds-pad-sm); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background-color: var(--color-panel); color: var(--color-fg); width: 13rem; max-width: 100%; }
+  .rc-caveat { margin: 0; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); border-left: 2px solid var(--color-warn); padding-left: var(--cds-pad-sm); max-width: 80ch; }
+  .rc-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 10.5rem), 1fr)); gap: var(--cds-gap-md); }
+  .rc-tile, .rc-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); min-width: 0; }
+  .rc-tile { display: flex; flex-direction: column; gap: var(--cds-gap-xs); }
+  .rc-tile-label { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .rc-tile-value { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); font-variant-numeric: tabular-nums; line-height: 1.15; min-height: 1.15em; }
+  .rc-tile-sub { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .rc-card { container-type: inline-size; }
+  .rc-card h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+  .rc-note { margin: var(--cds-gap-xs) 0 var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .rc .rc-note b { font-weight: 600; color: var(--color-fg); }
+  .rc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: var(--cds-gap-md); }
+  .rc-scroll { overflow: auto; max-height: 36rem; }
+  .rc-scroll-sm { max-height: 22rem; }
+  .rc-table { border-collapse: collapse; width: 100%; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+  .rc-table th { position: sticky; top: 0; z-index: 1; background: var(--color-panel); text-align: right; font-weight: var(--cds-font-weight-medium); color: var(--color-fg-muted); border-bottom: 1px solid var(--color-border-line); padding: var(--cds-pad-xs) var(--cds-pad-sm); white-space: nowrap; vertical-align: bottom; }
+  .rc-table th:has(button) { padding: 0; }
+  .rc-table th button { font: inherit; color: inherit; background: none; border: 0; padding: var(--cds-pad-xs) var(--cds-pad-sm); cursor: pointer; width: 100%; text-align: inherit; white-space: nowrap; }
+  .rc-table th[aria-sort] button { color: var(--color-fg); }
+  .rc-table th[aria-sort="descending"] button::after { content: " ↓"; }
+  .rc-table th[aria-sort="ascending"] button::after { content: " ↑"; }
+  .rc-table td { padding: var(--cds-pad-xs) var(--cds-pad-sm); text-align: right; border-bottom: 1px solid var(--color-border-line); white-space: nowrap; }
+  .rc-table :is(th, td).l, .rc-left :is(th, td):nth-child(-n+2), .rc-fx :is(th, td):nth-child(-n+5), .rc-checks :is(th, td):first-child { text-align: left; }
+  .rc-refs :is(th, td):first-child { position: sticky; left: 0; background: var(--color-panel); }
+  .rc-refs th:first-child { z-index: 2; }
+  .rc-refs tbody tr { cursor: pointer; }
+  .rc-refs tbody tr:hover td, .rc-refs tbody tr.is-picked td { background: var(--color-bg); }
+  .rc-refs tbody tr.is-picked td:first-child { font-weight: 600; }
+  .rc-refs.no-adj :is(th, td):is(:nth-child(7), :nth-child(9)) { display: none; }
+  .rc-checks td { white-space: normal; }
+  @container (max-width: 44rem) {
+    .rc-refs :is(th, td):is(:nth-child(2), :nth-child(4), :nth-child(5), :nth-child(8), :nth-child(9), :nth-child(10), :nth-child(12), :nth-child(13)) { display: none; }
+    .rc-fx :is(th, td):is(:nth-child(2), :nth-child(7)) { display: none; }
+  }
+  .rc-detail-head { display: flex; justify-content: space-between; align-items: center; gap: var(--cds-gap-md); }
+  .rc-close { font: inherit; font-size: var(--cds-font-size-caption); padding: var(--cds-pad-xs) var(--cds-pad-sm); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-panel); color: var(--color-fg); cursor: pointer; }
+  .rc-bars { position: relative; min-height: 10rem; }
+  .rc-bars svg { display: block; overflow: visible; }
+  .rc-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); white-space: nowrap; }
+  .rc-tip span { color: var(--cds-text-secondary); display: block; }
+  .rc-fail { display: flex; align-items: center; justify-content: center; gap: var(--cds-gap-xs); min-height: inherit; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+  .rc-fail::before { content: ""; width: .375rem; height: .375rem; border-radius: 50%; background: var(--color-bad); }
+  .rc-notes summary { cursor: pointer; font-weight: var(--cds-font-weight-medium); }
+  .rc-notes dl { display: grid; grid-template-columns: minmax(8rem, max-content) 1fr; gap: var(--cds-gap-xs) var(--cds-gap-md); margin: var(--cds-gap-md) 0; font-size: var(--cds-font-size-caption); }
+  .rc-notes dt { font-weight: var(--cds-font-weight-medium); }
+  .rc-notes dd { margin: 0; color: var(--color-fg-muted); max-width: 70ch; }
+  .rc-notes h3 { font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); margin: var(--cds-gap-md) 0 var(--cds-gap-xs); }
+  @container (max-width: 30rem) { .rc-notes dl { grid-template-columns: 1fr; } }
+  [data-dash-source-state=empty] { color: transparent; }
+  [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+</style>
+
+<div class="rc">
+  <header class="rc-head" id="top">
+    <h1>Referee cards</h1>
+    <p class="rc-take rc-take-adj">In <span data-draw="scope-name" data-source="league_summary" data-field="league_name">—</span>, <b data-draw="top-ref" data-source="referee_stats" data-field="referee">—</b> shows the most cards once recent seasons count more and small samples are evened out: <b data-draw="top-rate" data-source="referee_stats" data-field="adjusted_cards_per_match">—</b> per match (referees with at least <span data-draw="minm">—</span> matches).</p>
+    <p class="rc-take rc-take-raw" hidden>In <span data-draw="scope-name" data-source="league_summary" data-field="league_name">—</span> during <span data-draw="season-name">—</span>, <b data-draw="top-ref-raw" data-source="referee_stats" data-field="referee">—</b> showed the most cards: <b data-draw="top-rate-raw" data-source="referee_stats" data-field="cards_per_match">—</b> per match (referees with at least <span data-draw="minm">—</span> matches).</p>
+  </header>
+
+  <div class="rc-controls">
+    <nav class="rc-tabs" aria-label="League" id="leagues">
+      <button class="rc-tab" type="button" data-league="ALL">All leagues</button>
+      <button class="rc-tab" type="button" data-league="PL">Premier League</button>
+      <button class="rc-tab" type="button" data-league="PD">La Liga</button>
+      <button class="rc-tab" type="button" data-league="BL1">Bundesliga</button>
+      <button class="rc-tab" type="button" data-league="FL1">Ligue 1</button>
+    </nav>
+    <div class="rc-filters">
+      <label for="rc-season">Season
+        <select class="dash-select" id="rc-season" data-draw="season-opts" data-source="league_summary"></select>
+      </label>
+      <label for="rc-minm">Minimum matches
+        <select class="dash-select" id="rc-minm">
+          <option value="0">Any</option>
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="30">30</option>
+        </select>
+      </label>
+      <label for="rc-search">Find a referee
+        <input class="rc-search" id="rc-search" type="search" placeholder="Name" autocomplete="off">
+      </label>
+    </div>
+  </div>
+
+  <p class="rc-caveat" data-show="ALL PL">Premier League data counts a sending-off for two yellows as one red only. The other leagues count it as a yellow plus a red, so Premier League yellow counts run slightly low.</p>
+  <p class="rc-caveat" data-show="PD" hidden>Some La Liga matches have no referee name in the data. They count in the league figures but are not credited to any referee.</p>
+
+  <section class="rc-tiles" id="headline" aria-label="Headline figures">
+    <div class="rc-tile">
+      <span class="rc-tile-label">Cards per match</span>
+      <span class="rc-tile-value dash-skeleton" data-draw="t-cpm" data-source="league_summary" data-field="cards_per_match">—</span>
+      <span class="rc-tile-sub">Yellows plus reds, both teams</span>
+    </div>
+    <div class="rc-tile">
+      <span class="rc-tile-label">Booking points per match</span>
+      <span class="rc-tile-value dash-skeleton" data-draw="t-bpm" data-source="league_summary" data-field="booking_points_per_match">—</span>
+      <span class="rc-tile-sub">10 per yellow, 25 per red</span>
+    </div>
+    <div class="rc-tile">
+      <span class="rc-tile-label">Matches over 4.5 cards</span>
+      <span class="rc-tile-value dash-skeleton" data-draw="t-over" data-source="league_summary" data-field="pct_over_4_5">—</span>
+      <span class="rc-tile-sub">Share with 5 or more cards</span>
+    </div>
+    <div class="rc-tile">
+      <span class="rc-tile-label">Matches</span>
+      <span class="rc-tile-value dash-skeleton" data-draw="t-matches" data-source="league_summary" data-field="matches">—</span>
+      <span class="rc-tile-sub">With card data</span>
+    </div>
+    <div class="rc-tile">
+      <span class="rc-tile-label">Referees</span>
+      <span class="rc-tile-value dash-skeleton" data-draw="t-refs" data-source="league_summary" data-field="referees">—</span>
+      <span class="rc-tile-sub">With at least one match</span>
+    </div>
+  </section>
+
+  <section class="rc-grid">
+    <div class="rc-card" id="league-compare">
+      <h2>Cards per match by league</h2>
+      <p class="rc-note">Same season filter as above. The selected league is highlighted.</p>
+      <div class="rc-bars" data-draw="bars" data-source="league_bars"></div>
+    </div>
+    <div class="rc-card" id="fixtures">
+      <h2>Upcoming fixtures</h2>
+      <p class="rc-note">Next 14 days, kick-off in Athens time. <b data-draw="fx-appointed" data-source="fx_counts" data-field="appointed">—</b> of <b data-draw="fx-total" data-source="fx_counts" data-field="fixtures">—</b> have a referee appointed. Without one, the projection uses the league average adjusted for both teams.</p>
+      <div class="rc-scroll rc-scroll-sm">
+        <table class="rc-table rc-fx" data-source="fixtures" data-row-key="key">
+          <thead><tr>
+            <th data-field="kickoff">Kick-off</th>
+            <th data-field="league">League</th>
+            <th data-field="home">Home</th>
+            <th data-field="away">Away</th>
+            <th data-field="referee">Referee</th>
+            <th data-field="projected_cards">Proj. cards</th>
+            <th data-field="projected_booking_points">Proj. points</th>
+          </tr></thead>
+          <tbody data-draw="fx-rows"></tbody>
+        </table>
+      </div>
+      <p class="rc-note rc-fx-empty" hidden>No fixtures in the next 14 days.</p>
+    </div>
+  </section>
+
+  <section class="rc-card" id="referee-detail" hidden>
+    <div class="rc-detail-head">
+      <h2 data-draw="ref-name" data-source="referee_stats" data-field="referee">—</h2>
+      <button class="rc-close" type="button">Close</button>
+    </div>
+    <p class="rc-note">Season by season in the selected league. The first row covers all seasons.</p>
+    <div class="rc-scroll rc-scroll-sm">
+      <table class="rc-table rc-detail" data-source="referee_stats" data-row-key="key">
+        <thead><tr>
+          <th data-field="season" class="l">Season</th>
+          <th data-field="matches">Matches</th>
+          <th data-field="yellows">Yellows</th>
+          <th data-field="reds">Reds</th>
+          <th data-field="cards_per_match">Cards / match</th>
+          <th data-field="booking_points_per_match">Points / match</th>
+          <th data-field="pct_over_3_5">Over 3.5</th>
+          <th data-field="pct_over_4_5">Over 4.5</th>
+          <th data-field="pct_over_5_5">Over 5.5</th>
+        </tr></thead>
+        <tbody data-draw="detail-rows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="rc-card" id="referees">
+    <h2>Referees</h2>
+    <p class="rc-note">Click a column to sort and a referee to see their record by season. <span class="rc-adj-note">"Adjusted" counts recent seasons more and pulls referees with few matches toward their league's average.</span><span class="rc-raw-note" hidden>For a single season the table shows that season's figures; adjusted figures cover all seasons.</span></p>
+    <div class="rc-scroll">
+      <table class="rc-table rc-refs rc-left" data-source="referee_stats" data-row-key="key">
+        <thead><tr>
+          <th data-field="referee"><button type="button" data-sort="referee">Referee</button></th>
+          <th data-field="leagues"><button type="button" data-sort="leagues">Leagues</button></th>
+          <th data-field="matches"><button type="button" data-sort="matches">Matches</button></th>
+          <th data-field="yellows_per_match"><button type="button" data-sort="yellows_per_match">Yellows / match</button></th>
+          <th data-field="reds_per_match"><button type="button" data-sort="reds_per_match">Reds / match</button></th>
+          <th data-field="cards_per_match"><button type="button" data-sort="cards_per_match">Cards / match</button></th>
+          <th data-field="adjusted_cards_per_match"><button type="button" data-sort="adjusted_cards_per_match">Adjusted cards</button></th>
+          <th data-field="booking_points_per_match"><button type="button" data-sort="booking_points_per_match">Points / match</button></th>
+          <th data-field="adjusted_booking_points_per_match"><button type="button" data-sort="adjusted_booking_points_per_match">Adjusted points</button></th>
+          <th data-field="pct_over_3_5"><button type="button" data-sort="pct_over_3_5">Over 3.5</button></th>
+          <th data-field="pct_over_4_5"><button type="button" data-sort="pct_over_4_5">Over 4.5</button></th>
+          <th data-field="pct_over_5_5"><button type="button" data-sort="pct_over_5_5">Over 5.5</button></th>
+          <th data-field="next_fixture" class="l"><button type="button" data-sort="next_fixture">Next fixture</button></th>
+        </tr></thead>
+        <tbody data-draw="ref-rows"></tbody>
+      </table>
+    </div>
+    <p class="rc-note rc-refs-empty" hidden>No referees match these filters. Try a lower minimum or clear the search.</p>
+  </section>
+
+  <details class="rc-card rc-notes" id="notes">
+    <summary>How the numbers work, and data checks</summary>
+    <dl>
+      <dt>Cards</dt><dd>Yellow plus red cards shown in a match, both teams together.</dd>
+      <dt>Booking points</dt><dd>10 per yellow and 25 per red, the usual bookmaker convention.</dd>
+      <dt>Over 3.5 / 4.5 / 5.5</dt><dd>Share of a referee's matches with more cards than that line: over 4.5 means 5 or more.</dd>
+      <dt>Adjusted</dt><dd>Each match counts by its season: this season fully, last season 0.6, the one before 0.36. The result is then pulled toward the league average as if the referee had 8 extra average matches, so a few wild games can't top the table.</dd>
+      <dt>Projected cards</dt><dd>The referee's adjusted rate (or the league average if none is appointed), scaled by how card-heavy both teams' matches usually are.</dd>
+      <dt>Sources</dt><dd>Cards per match from football-data.co.uk, referees and fixtures from football-data.org. The two are matched by league, date and teams. The current season plus the two before it.</dd>
+      <dt>Left out</dt><dd>Matches with no card data (an abandoned match that was awarded) and, for referee figures, matches with no referee name.</dd>
+    </dl>
+    <h3>Data checks</h3>
+    <table class="rc-table rc-checks" data-source="data_checks" data-row-key="check">
+      <thead><tr><th data-field="check">Check</th><th data-field="value">Count</th></tr></thead>
+      <tbody data-draw="checks"></tbody>
+    </table>
+  </details>
+</div>
+
+<script>
+  // Shared helpers and page state (sorting and search live in the page, filters in dash params).
+  const enc = (s) => String(s).replace(/%/g, '%25').replace(/&/g, '%26').replace(/=/g, '%3D');
+  window.rc = {
+    enc,
+    sortKey: 'adjusted_cards_per_match',
+    sortDir: -1,
+    search: '',
+    p() {
+      const p = dash.params();
+      return { league: p.league || 'ALL', season: p.season || 'All seasons', minm: Number(p.minm ?? 5), ref: p.ref ? String(p.ref) : null };
+    },
+    where: (key) => 'key=' + enc(key),
+    f2: (v) => (v == null ? '' : Number(v).toFixed(2)),
+    f1: (v) => (v == null ? '' : Number(v).toFixed(1)),
+    pct: (v) => (v == null ? '' : Number(v).toFixed(1) + '%'),
+    int: d3.format(','),
+    allSeasons: (p) => p.season === 'All seasons',
+    // Referee rows in the current league/season scope that pass the minimum-matches filter.
+    scopeRows(rows, p) {
+      return rows.filter((r) => r.league === p.league && r.season === p.season && r.matches >= p.minm);
+    },
+    cell(tr, text) {
+      const td = document.createElement('td');
+      td.textContent = text;
+      tr.append(td);
+    },
+  };
+
+  dash.calc('fx_counts', {
+    title: 'Fixtures with a referee',
+    description: 'Upcoming fixtures in the next 14 days, and how many have a referee appointed, per league and in total.',
+    inputs: ['fixtures'],
+    fn: (fixtures) => {
+      const by = {};
+      for (const k of ['ALL', 'PL', 'PD', 'BL1', 'FL1']) by[k] = { league: k, fixtures: 0, appointed: 0 };
+      for (const f of fixtures) {
+        for (const k of ['ALL', f.league]) {
+          by[k].fixtures += 1;
+          if (f.referee !== 'TBD') by[k].appointed += 1;
+        }
+      }
+      return Object.values(by);
+    },
+  });
+</script>
+
+<script>
+  // Controls: tabs, season, minimum matches, search, sort, row clicks.
+  for (const b of document.querySelectorAll('.rc-tab')) {
+    b.addEventListener('click', () => dash.setParams({ league: b.dataset.league }));
+  }
+  for (const s of document.querySelectorAll('#rc-minm')) {
+    s.addEventListener('change', () => dash.setParams({ minm: Number(s.value) }));
+  }
+  for (const i of document.querySelectorAll('#rc-search')) {
+    i.addEventListener('input', () => { rc.search = i.value; dash.draw('ref-rows'); });
+  }
+  const showSort = () => {
+    for (const th of document.querySelectorAll('.rc-refs th')) {
+      const btn = th.querySelector('button');
+      if (btn && btn.dataset.sort === rc.sortKey) th.setAttribute('aria-sort', rc.sortDir < 0 ? 'descending' : 'ascending');
+      else th.removeAttribute('aria-sort');
+    }
+  };
+  for (const btn of document.querySelectorAll('.rc-refs th button')) {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.sort;
+      const text = ['referee', 'leagues', 'next_fixture'].includes(key);
+      rc.sortDir = rc.sortKey === key ? -rc.sortDir : (text ? 1 : -1);
+      rc.sortKey = key;
+      showSort();
+      dash.draw('ref-rows');
+    });
+  }
+  showSort();
+  const pick = (tr) => {
+    if (!tr) return;
+    dash.setParams({ ref: tr.dataset.key.split('|')[0] });
+    requestAnimationFrame(() => {
+      for (const d of document.querySelectorAll('#referee-detail')) d.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    });
+  };
+  for (const t of document.querySelectorAll('.rc-refs tbody')) {
+    t.addEventListener('click', (e) => pick(e.target.closest('tr[data-key]')));
+    t.addEventListener('keydown', (e) => { if (e.key === 'Enter') pick(e.target.closest('tr[data-key]')); });
+  }
+  for (const c of document.querySelectorAll('.rc-close')) {
+    c.addEventListener('click', () => dash.setParams({ ref: null }));
+  }
+
+  // Show and hide parts of the page for the current filters.
+  dash.onData(() => {
+    const p = rc.p();
+    const all = rc.allSeasons(p);
+    for (const b of document.querySelectorAll('.rc-tab')) {
+      const on = b.dataset.league === p.league;
+      b.classList.toggle('is-on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    }
+    for (const s of document.querySelectorAll('#rc-minm')) s.value = String(p.minm);
+    for (const el of document.querySelectorAll('.rc-take-adj, .rc-adj-note')) el.hidden = !all;
+    for (const el of document.querySelectorAll('.rc-take-raw, .rc-raw-note')) el.hidden = all;
+    for (const t of document.querySelectorAll('.rc-refs')) t.classList.toggle('no-adj', !all);
+    for (const el of document.querySelectorAll('[data-show]')) el.hidden = !el.dataset.show.split(' ').includes(p.league);
+    for (const d of document.querySelectorAll('#referee-detail')) d.hidden = !p.ref;
+    const fx = dash.data('fixtures');
+    if (fx.status === 'ok') {
+      const n = fx.data.filter((f) => p.league === 'ALL' || f.league === p.league).length;
+      for (const el of document.querySelectorAll('.rc-fx-empty')) el.hidden = n > 0;
+    }
+    const st = dash.data('referee_stats');
+    if (st.status === 'ok') {
+      const n = rc.scopeRows(st.data, p).length;
+      for (const el of document.querySelectorAll('.rc-refs-empty')) el.hidden = n > 0;
+    }
+  });
+</script>
+
+<script>
+  // Header sentence, tiles and season choices.
+  const summaryRow = (p) => {
+    const d = dash.data('league_summary');
+    if (d.status !== 'ok') return null;
+    return d.data.find((r) => r.key === `${p.league}|${p.season}`) || null;
+  };
+  const fillTile = (field, fmt) => (el) => {
+    const row = summaryRow(rc.p());
+    el.classList.toggle('dash-skeleton', !row && dash.data('league_summary').status === 'loading');
+    if (!row) { el.textContent = '—'; return; }
+    el.dataset.where = rc.where(row.key);
+    el.textContent = fmt(row[field]);
+  };
+  dash.draw('t-cpm', fillTile('cards_per_match', rc.f2));
+  dash.draw('t-bpm', fillTile('booking_points_per_match', rc.f1));
+  dash.draw('t-over', fillTile('pct_over_4_5', rc.pct));
+  dash.draw('t-matches', fillTile('matches', rc.int));
+  dash.draw('t-refs', fillTile('referees', rc.int));
+  dash.draw('scope-name', (el) => {
+    const row = summaryRow(rc.p());
+    if (!row) { el.textContent = '—'; return; }
+    el.dataset.where = rc.where(row.key);
+    el.textContent = row.league_name;
+  });
+  dash.draw('season-name', (el) => { el.textContent = rc.p().season; });
+  dash.draw('minm', (el) => { el.textContent = String(rc.p().minm); });
+
+  const topRow = (field) => {
+    const d = dash.data('referee_stats');
+    if (d.status !== 'ok') return null;
+    const rows = rc.scopeRows(d.data, rc.p()).filter((r) => r[field] != null);
+    return rows.length ? rows.reduce((a, b) => (b[field] > a[field] ? b : a)) : null;
+  };
+  const fillTop = (field, show) => (el) => {
+    const row = topRow(field);
+    if (!row) { el.textContent = '—'; return; }
+    el.dataset.where = rc.where(row.key);
+    el.textContent = show(row);
+  };
+  dash.draw('top-ref', fillTop('adjusted_cards_per_match', (r) => r.referee));
+  dash.draw('top-rate', fillTop('adjusted_cards_per_match', (r) => rc.f2(r.adjusted_cards_per_match)));
+  dash.draw('top-ref-raw', fillTop('cards_per_match', (r) => r.referee));
+  dash.draw('top-rate-raw', fillTop('cards_per_match', (r) => rc.f2(r.cards_per_match)));
+
+  dash.draw('season-opts', (sel) => {
+    const d = dash.data('league_summary');
+    const seasons = d.status === 'ok'
+      ? [...new Set(d.data.filter((r) => r.league === 'ALL').map((r) => r.season))]
+          .sort((a, b) => (a === 'All seasons' ? -1 : b === 'All seasons' ? 1 : b.localeCompare(a)))
+      : ['All seasons'];
+    sel.replaceChildren(...seasons.map((s) => new Option(s, s)));
+    sel.value = rc.p().season;
+    sel.onchange = () => dash.setParams({ season: sel.value });
+  });
+</script>
+
+<script>
+  // Tables: referees, the picked referee's seasons, fixtures, data checks.
+  dash.draw('ref-rows', (tbody) => {
+    const d = dash.data('referee_stats');
+    if (d.status !== 'ok') { tbody.replaceChildren(); return; }
+    const p = rc.p();
+    let key = rc.sortKey;
+    if (!rc.allSeasons(p) && key.startsWith('adjusted_')) key = key.replace('adjusted_', '');
+    const q = rc.search.trim().toLowerCase();
+    const rows = rc.scopeRows(d.data, p).filter((r) => !q || r.referee.toLowerCase().includes(q));
+    rows.sort((a, b) => {
+      const x = a[key], y = b[key];
+      if (typeof x === 'string' || typeof y === 'string') return rc.sortDir * String(x ?? '').localeCompare(String(y ?? ''));
+      return rc.sortDir * ((x ?? -Infinity) - (y ?? -Infinity));
+    });
+    tbody.replaceChildren(...rows.map((r) => {
+      const tr = document.createElement('tr');
+      tr.dataset.key = r.key;
+      tr.tabIndex = 0;
+      if (String(r.referee_id) === p.ref) tr.classList.add('is-picked');
+      for (const v of [r.referee, r.leagues, rc.int(r.matches), rc.f2(r.yellows_per_match), rc.f2(r.reds_per_match),
+        rc.f2(r.cards_per_match), rc.f2(r.adjusted_cards_per_match), rc.f1(r.booking_points_per_match),
+        rc.f1(r.adjusted_booking_points_per_match), rc.pct(r.pct_over_3_5), rc.pct(r.pct_over_4_5),
+        rc.pct(r.pct_over_5_5), r.next_fixture]) rc.cell(tr, v);
+      return tr;
+    }));
+  });
+
+  const detailRows = () => {
+    const d = dash.data('referee_stats');
+    const p = rc.p();
+    if (d.status !== 'ok' || !p.ref) return [];
+    const mine = d.data.filter((r) => String(r.referee_id) === p.ref);
+    let rows = mine.filter((r) => r.league === p.league);
+    if (!rows.length) rows = mine.filter((r) => r.league === 'ALL');
+    return rows.sort((a, b) => (a.season === 'All seasons' ? -1 : b.season === 'All seasons' ? 1 : b.season.localeCompare(a.season)));
+  };
+  dash.draw('ref-name', (el) => {
+    const rows = detailRows();
+    if (!rows.length) { el.textContent = '—'; return; }
+    el.dataset.where = rc.where(rows[0].key);
+    el.textContent = rows[0].referee;
+  });
+  dash.draw('detail-rows', (tbody) => {
+    tbody.replaceChildren(...detailRows().map((r) => {
+      const tr = document.createElement('tr');
+      tr.dataset.key = r.key;
+      for (const v of [r.season, rc.int(r.matches), rc.int(r.yellows), rc.int(r.reds), rc.f2(r.cards_per_match),
+        rc.f1(r.booking_points_per_match), rc.pct(r.pct_over_3_5), rc.pct(r.pct_over_4_5), rc.pct(r.pct_over_5_5)]) rc.cell(tr, v);
+      return tr;
+    }));
+  });
+
+  dash.draw('fx-rows', (tbody) => {
+    const d = dash.data('fixtures');
+    if (d.status !== 'ok') { tbody.replaceChildren(); return; }
+    const p = rc.p();
+    tbody.replaceChildren(...d.data.filter((f) => p.league === 'ALL' || f.league === p.league).map((f) => {
+      const tr = document.createElement('tr');
+      tr.dataset.key = f.key;
+      for (const v of [f.kickoff, f.league, f.home, f.away, f.referee, rc.f2(f.projected_cards), rc.f1(f.projected_booking_points)]) rc.cell(tr, v);
+      return tr;
+    }));
+  });
+  const fxCount = (field) => (el) => {
+    const d = dash.data('fx_counts');
+    const row = d.status === 'ok' ? d.data.find((r) => r.league === rc.p().league) : null;
+    if (!row) { el.textContent = '—'; return; }
+    el.dataset.where = 'league=' + rc.enc(row.league);
+    el.textContent = rc.int(row[field]);
+  };
+  dash.draw('fx-appointed', fxCount('appointed'));
+  dash.draw('fx-total', fxCount('fixtures'));
+
+  dash.draw('checks', (tbody) => {
+    const d = dash.data('data_checks');
+    tbody.replaceChildren(...(d.status === 'ok' ? d.data : []).map((r) => {
+      const tr = document.createElement('tr');
+      tr.dataset.key = r.check;
+      rc.cell(tr, r.check);
+      rc.cell(tr, rc.int(r.value));
+      return tr;
+    }));
+  });
+</script>
+
+<script>
+  // Chart: cards per match by league, horizontal bars, one shared scale.
+  dash.draw('bars', (el) => {
+    const d = dash.data('league_bars');
+    el.replaceChildren();
+    if (d.status === 'error' || d.status === 'connect') {
+      const f = document.createElement('div');
+      f.className = 'rc-fail';
+      f.textContent = 'Failed to load';
+      el.append(f);
+      return;
+    }
+    if (d.status !== 'ok') return;
+    const p = rc.p();
+    const rows = d.data.filter((r) => r.season === p.season).sort((a, b) => b.cards_per_match - a.cards_per_match);
+    if (!rows.length) return;
+    const width = Math.max(240, el.clientWidth);
+    const barH = 26, gap = 12;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('role', 'img')
+      .attr('aria-label', 'Cards per match by league');
+    // Measure the widest league name and value label so nothing is cut off.
+    const probe = svg.append('text').attr('font-size', 12);
+    const labelW = d3.max(rows, (r) => probe.text(r.league_name).node().getComputedTextLength()) + 12;
+    const valueW = probe.text('0.00').node().getComputedTextLength() + 10;
+    probe.remove();
+    const height = rows.length * (barH + gap) - gap;
+    svg.attr('viewBox', `0 0 ${width} ${height}`).attr('height', height);
+    const x = d3.scaleLinear([0, d3.max(rows, (r) => r.cards_per_match)], [0, Math.max(40, width - labelW - valueW)]);
+    const y = (i) => i * (barH + gap);
+    const colorOf = (r) => (p.league === 'ALL' || r.league === p.league ? dash.colors[0] : 'var(--cds-chart-muted)');
+    const g = svg.selectAll('g').data(rows).join('g').attr('transform', (r, i) => `translate(0,${y(i)})`);
+    g.append('text').attr('x', 0).attr('y', barH / 2).attr('dy', '0.35em').attr('font-size', 12)
+      .style('fill', 'var(--color-fg)').text((r) => r.league_name);
+    g.append('rect').attr('x', labelW).attr('y', 0).attr('height', barH).attr('rx', 3)
+      .attr('width', (r) => x(r.cards_per_match)).style('fill', colorOf);
+    g.append('text').attr('x', (r) => labelW + x(r.cards_per_match) + 6).attr('y', barH / 2).attr('dy', '0.35em')
+      .attr('font-size', 12).style('fill', 'var(--color-fg-muted)').style('font-variant-numeric', 'tabular-nums')
+      .text((r) => rc.f2(r.cards_per_match));
+    const tip = document.createElement('div');
+    tip.className = 'rc-tip';
+    tip.hidden = true;
+    el.append(tip);
+    g.on('mousemove', (event, r) => {
+      tip.replaceChildren();
+      const s = document.createElement('span');
+      s.textContent = `${r.league_name} · ${r.season}`;
+      tip.append(s, document.createTextNode(`${rc.f2(r.cards_per_match)} cards per match`));
+      tip.hidden = false;
+      const box = el.getBoundingClientRect();
+      const left = Math.min(event.clientX - box.left + 12, box.width - tip.offsetWidth);
+      tip.style.left = `${Math.max(0, left)}px`;
+      tip.style.top = `${event.clientY - box.top + 12}px`;
+    }).on('mouseleave', () => { tip.hidden = true; });
+  });
+</script>

@@ -6,6 +6,8 @@ Commands:
   check            join the data, show 10 joined matches and list failed joins
   build            write data/matches.csv, data/unmatched.csv and data/referees.json
   update           fetch + build
+  export-dashboard turn data/matches.csv + data/referees.json into the dashboard's
+                   tables in data/dashboard/ (no downloads; run `git pull` first)
 """
 
 from __future__ import annotations
@@ -16,6 +18,7 @@ import sys
 
 from referees import fetch_api, fetch_csv
 from referees.config import (
+    DATA_DIR,
     MATCHES_FILE,
     REFEREES_JSON,
     UNMATCHED_FILE,
@@ -118,6 +121,17 @@ def cmd_build() -> None:
     )
 
 
+def cmd_export_dashboard() -> None:
+    from referees.dashboard_export import build_tables, load_matches_csv, write_tables
+
+    report = json.loads(REFEREES_JSON.read_text(encoding="utf-8"))
+    tables = build_tables(load_matches_csv(MATCHES_FILE), report)
+    for path in write_tables(tables, DATA_DIR / "dashboard"):
+        rows = len(json.loads(path.read_text(encoding="utf-8")))
+        print(f"  {path.name}: {rows} rows, {path.stat().st_size / 1024:.0f} KB")
+    print(f"Data generated at {report['generated_at']}")
+
+
 def main() -> None:
     # Show accents (Atlético, Köln) correctly even in older Windows terminals.
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -127,7 +141,15 @@ def main() -> None:
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument(
-        "command", choices=["fetch", "suggest-mapping", "check", "build", "update"]
+        "command",
+        choices=[
+            "fetch",
+            "suggest-mapping",
+            "check",
+            "build",
+            "update",
+            "export-dashboard",
+        ],
     )
     args = parser.parse_args()
     if args.command == "fetch":
@@ -138,6 +160,8 @@ def main() -> None:
         cmd_check()
     elif args.command == "build":
         cmd_build()
+    elif args.command == "export-dashboard":
+        cmd_export_dashboard()
     else:
         cmd_fetch()
         cmd_build()

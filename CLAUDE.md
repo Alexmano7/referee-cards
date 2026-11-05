@@ -139,6 +139,27 @@ Referees/
   locally built `data/*` files (it causes merge conflicts).
 - GitHub's scheduler uses UTC, so `date.today()` in CI is the UTC date (same day at 04:00–05:00 UTC).
 
+## Dashboard (claude.ai Artifact, built 2026-11-06)
+- **URL:** https://claude.ai/artifact/AAbaGSrga4xFAG6SG47hMZ (type "Dashboard", private to the user).
+  The user chose this over GitHub Pages. It does not update by itself.
+- Page source: `dashboard/index.html` (committed). It is stored in the dashboard as `files/index.html`
+  (document `{text, edit}`). Written to the type's one-writer rules: text in the HTML, data in
+  `data-draw` drawings, and every number marked with `data-source`. Each `<script>` has its own
+  scope, so share helpers via `window.rc`.
+- Data: `uv run referees export-dashboard` writes 5 row tables to `data/dashboard/` (git-ignored):
+  `referee_stats` (key `referee_id|league|season`, league `ALL` or a code, season `All seasons` or
+  `2026/27`), `league_summary`, `league_bars`, `fixtures`, `data_checks`. Each is an uploaded asset
+  referenced by `datasets/<same id>`. The page also defines a calc `fx_counts`.
+- Filters are dash params (`league`, `season`, `minm`, `ref`); no query uses them.
+- **"Refresh my referee dashboard" procedure:**
+  1. `git pull` (gets the bot's latest `data/`), then `uv run referees export-dashboard`.
+  2. Upload each of the 5 JSON files as an asset (`Artifact` publish, `url` above, `asset: true`,
+     one call each, since they're JSON).
+  3. `ArtifactData` batch `update` of each `datasets/<id>`: `source.url` (new `/_blob/…`),
+     `updated: {at: <generated_at from referees.json>, by: …}` and `edit`, pinned with `if_version`.
+  4. Delete the old assets, then read `data/users/me/check` until it passes or is gone.
+  5. If the page changed, `set` `files/index.html` from `dashboard/index.html`.
+
 ## Next steps (from the user's plan)
 - Phase 2 leftover: the user hand-checks 3 joined matches against match reports and marks the
   mapping rows `checked=yes`.

@@ -246,3 +246,36 @@ def _empty_api():
             "referee_nationality",
         ]
     )
+
+
+# --- dashboard export -------------------------------------------------------------------
+
+
+def test_dashboard_tables_cover_every_scope():
+    from referees.dashboard_export import build_tables
+
+    rows = [
+        _match(2026, 1, 2, 2),
+        _match(2025, 1, 1, 0),
+        _match(2026, 2, 3, 3, league="PD"),
+    ]
+    matches = pd.DataFrame(rows).astype({c: "Int64" for c in stats.CARD_COUNT_COLUMNS})
+    report = stats.build_report(
+        matches, _empty_api(), pd.DataFrame(), today=date(2026, 11, 6)
+    )
+    t = build_tables(matches, report, today=date(2026, 11, 6))
+    keys = {r["key"] for r in t["referee_stats"]}
+    assert {"1|ALL|All seasons", "1|PL|All seasons", "1|PL|2025/26", "1|PL|2026/27", "2|PD|All seasons"} <= keys
+    by_key = {r["key"]: r for r in t["referee_stats"]}
+    assert by_key["1|PL|All seasons"]["matches"] == 2
+    assert (
+        by_key["1|PL|2026/27"]["adjusted_cards_per_match"] is None
+    )  # only for all seasons
+    overall = {r["id"]: r["overall"] for r in report["referees"]}
+    assert (
+        by_key["1|ALL|All seasons"]["adjusted_cards_per_match"]
+        == overall[1]["adjusted_cards_per_match"]
+    )
+    summary = {r["key"]: r for r in t["league_summary"]}
+    assert summary["ALL|All seasons"]["matches"] == 3
+    assert summary["PD|All seasons"]["cards_per_match"] == 6

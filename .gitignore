@@ -26,3 +26,6 @@ data/raw/
 Thumbs.db
 .vscode/
 .idea/
+
+# Dashboard tables (rebuilt by `referees export-dashboard`, uploaded to claude.ai)
+data/dashboard/

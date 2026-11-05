@@ -56,6 +56,19 @@ GitHub runs the update every day at **07:00 Athens time** and saves the new
 - **Working on your PC:** the daily job saves new data every morning, so run `git pull` first
   to get the latest version before changing anything.
 
+## Dashboard
+A private dashboard on claude.ai: <https://claude.ai/artifact/AAbaGSrga4xFAG6SG47hMZ>
+- **League tabs** and filters for season and minimum matches, plus a search box.
+- **Headline figures:** cards and booking points per match, and the share of matches over 4.5 cards.
+- **Charts and tables:** a chart comparing the leagues, upcoming fixtures with projections, and a
+  sortable referee table (click a referee for their season-by-season record).
+- **It does not update by itself.** To get the latest numbers, open this project in Claude Code
+  and say **"refresh my referee dashboard"**.
+- The page's source is `dashboard/index.html`. Its data tables come from:
+  ```bash
+  uv run referees export-dashboard
+  ```
+
 ## Testing
 ```bash
 uv run pytest
