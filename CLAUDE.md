@@ -1,97 +1,121 @@
 # Referees: card tracker (project guide for Claude)
 
-> **Status:** planning. This file describes what we intend to build. Nothing is set up yet,
-> so the commands below won't work until the scaffold step is done. Keep this file
-> up to date as decisions change.
+> **Status (2026-11-06):** code, tests and CSV download work. The football-data.org part has
+> **not yet been run with a real token**. The team-name mapping file doesn't exist yet (it's
+> created by `suggest-mapping` after the first API fetch). Keep this file up to date.
 
 ## What this project does
-A local Python tool that counts **yellow and red cards per referee** in four leagues and lists
-the **upcoming fixtures**, with the referee shown once one is appointed.
+A local Python tool that counts **yellow and red cards per referee** in four leagues, works out
+adjusted per-referee rates, and projects cards for **upcoming fixtures**. Everything is written
+to `data/referees.json`, which a dashboard will read later (plan phase 5).
 
-| League          | football-data.org code | football-data.co.uk file |
-|-----------------|------------------------|--------------------------|
-| Premier League  | `PL`                   | `E0`                     |
-| La Liga         | `PD`                   | `SP1`                    |
-| Bundesliga      | `BL1`                  | `D1`                     |
-| Ligue 1         | `FL1`                  | `F1`                     |
+| League          | football-data.org code | football-data.co.uk file | Timezone       |
+|-----------------|------------------------|--------------------------|----------------|
+| Premier League  | `PL`                   | `E0`                     | Europe/London  |
+| La Liga         | `PD`                   | `SP1`                    | Europe/Madrid  |
+| Bundesliga      | `BL1`                  | `D1`                     | Europe/Berlin  |
+| Ligue 1         | `FL1`                  | `F1`                     | Europe/Paris   |
 
 The user is a **beginner**. Explain each step in simple terms *before* running anything, define
 jargon the first time it appears, and wait for an OK before installs, deletions or anything
-that leaves the machine.
+that leaves the machine (pushing to GitHub especially).
 
 ## Data sources
-1. **football-data.org API v4** (free tier): gives referee names (for finished matches) and upcoming fixtures.
-   - Base URL `https://api.football-data.org/v4`, auth header `X-Auth-Token: <token>`.
-   - Main endpoint: `GET /competitions/{code}/matches?season=<start year>`. Each match has
-     `utcDate`, `status`, `homeTeam.name`, `awayTeam.name` and `referees[]`. Use the entry whose
-     `type == "REFEREE"` (the others are assistants and VAR).
-   - Free tier allows **10 requests per minute**. We need about 4 calls per run (one per league).
-     Cache raw responses to `data/raw/api/` and don't call the API more often than needed.
-   - Unverified: whether the free tier returns `referees` for all four leagues. Check this
-     on the first real fetch. Upcoming fixtures often have no referee until shortly before kick-off.
+1. **football-data.org API v4** (free tier): gives referee names for finished matches, plus upcoming fixtures.
+   - `GET https://api.football-data.org/v4/competitions/{code}/matches?season=<start year>`,
+     header `X-Auth-Token`. We use the `referees[]` entry with `type == "REFEREE"` (others are
+     assistants and VAR).
+   - Free tier: **10 requests/minute**. A run makes up to 12 calls (4 leagues × 3 seasons), spaced
+     6.5 s apart. Finished seasons are cached in `data/raw/api/<season>/<code>.json` and only
+     re-fetched for the current season. A 429 response waits for `X-RequestCounter-Reset`.
+   - **Unverified:** whether the free tier returns referees for all four leagues and for past
+     seasons. `uv run referees check` prints referee coverage per league.
 2. **football-data.co.uk CSVs**: give the cards for each match.
-   - URL pattern `https://www.football-data.co.uk/mmz4281/<season>/<file>.csv`, where season is
-     e.g. `2627` for 2026/27.
-   - Columns used: `Div`, `Date` (dd/mm/yyyy), `HomeTeam`, `AwayTeam`, `HY`, `AY` (yellow cards),
-     `HR`, `AR` (red cards). Only `E0` (England) has a `Referee` column. Use it as a cross-check,
-     not as the main source.
-   - Save downloads to `data/raw/csv/`.
+   - `https://football-data.co.uk/mmz4281/<2627>/<E0>.csv`. Use the host without `www`, because `www`
+     answers with a 302 redirect. Files start with a UTF-8 BOM.
+   - Columns used: `Date` (dd/mm/yyyy), `HomeTeam`, `AwayTeam`, `HY`, `AY`, `HR`, `AR`. Only `E0`
+     has `Referee` (used as a cross-check: `csv_referee_agrees` in `data/matches.csv`).
+   - **Second yellows (from notes.txt):** in English files a second-yellow dismissal is counted
+     as a red only. In Spanish, German and French files it is a yellow plus a red. So PL yellow counts
+     run slightly low. This can't be corrected from these files, and it's noted in `referees.json`.
+   - Known gap: Union Berlin v Bochum, 14/12/2024 (abandoned, awarded) has blank card columns.
+     Card columns are `Int64` (they allow blanks). Such matches are left out of the stats and listed in
+     `data_quality.matches_without_card_data`.
 
-## How the join works
-The two sources spell team names differently (e.g. "Manchester United FC" vs "Man United"), so:
-- `config/team_name_mapping.csv` maps names, with columns `league, api_name, csv_name`. It is
-  committed to git and edited by hand.
-- A match from the API is linked to a CSV row on **league + date + home team + away team**
-  (after mapping). Convert the API's UTC kick-off time to the league's local date first.
-- **Never drop rows silently.** Any match that can't be linked, and any team name missing from
-  the mapping, is written to a "problems" report so the mapping can be fixed.
+## How the join works (`join.py`)
+- `config/team_name_mapping.csv` (`league, api_name, csv_name, checked`) is committed and
+  hand-reviewed. `uv run referees suggest-mapping` *adds* suggestions (checked=no) for unknown
+  teams by voting on which CSV match was played the same day. It never changes existing rows.
+- Primary key: **league + season + local date + mapped home + mapped away**. The API's UTC time
+  is converted to the league's timezone first.
+- Fallback: same league, season and teams with the date off by ±1 day (`date_diff_days`). This is safe
+  because each home/away pairing happens once per league season.
+- Nothing is dropped silently. Rows that fail go to `data/unmatched.csv` with a reason.
+
+## Stats engine (`stats.py`)
+- Per match: cards = yellows + reds. Booking points = 10 × yellow + 25 × red.
+- Per referee, per season and league, plus overall: matches, yellows, reds, cards, booking points,
+  per-match rates, and % of matches over 3.5 / 4.5 / 5.5 cards.
+- Adjusted rates: recency weight `0.6^(seasons ago)`. Then shrinkage toward the referee's league
+  average, as if they had `PRIOR_MATCHES = 8` extra average matches.
+- Projection for upcoming fixtures: referee's adjusted rate × the average of the two teams'
+  card factors (a team's adjusted cards per match ÷ league average). If no referee is appointed, the
+  league average is used instead. The panel covers the next 14 days. `next_fixture` is the referee's
+  next appointed match on any date.
 
 ## Stack and why
-- **Python 3.13**, managed with **uv** (installs Python, creates the virtual environment and
-  manages dependencies with one tool). Python was not installed on this PC when the project started.
-- `requests`: HTTP calls. `python-dotenv`: reads `.env`. `pandas`: tables and joins.
-- `pytest`: tests. `ruff`: linting and formatting.
-- Output is CSV files in `data/processed/`, which are easy to open in Excel. Add a database or
-  dashboard later only if it's needed.
+- **Python 3.13** via **uv** (one tool for Python, the virtual environment and dependencies).
+- `requests`, `python-dotenv`, `pandas`. Dev: `pytest`, `ruff`.
+- **Machine quirk:** the Claude desktop app redirects writes to `AppData\Roaming`, which broke
+  uv's default Python location. Python is installed in `C:\Users\worsh\.local\share\uv\python`.
+  In Claude sessions, set `UV_PYTHON_INSTALL_DIR` to that path and add
+  `C:\Users\worsh\.local\bin` to `PATH` before running `uv`.
 
-## Planned folder structure
+## Folder structure
 ```
 Referees/
-├─ pyproject.toml            # project + dependencies (managed by uv)
-├─ .env.example              # template: FOOTBALL_DATA_API_TOKEN=
-├─ .env                      # real token. NEVER committed
-├─ config/team_name_mapping.csv
+├─ pyproject.toml / uv.lock     # project + pinned dependencies
+├─ .env.example                 # template: FOOTBALL_DATA_API_TOKEN=
+├─ .env                         # real token. NEVER committed (in .gitignore)
+├─ config/team_name_mapping.csv # created by suggest-mapping, then reviewed by hand
 ├─ src/referees/
-│  ├─ config.py              # loads .env, league table above
-│  ├─ fetch_api.py           # football-data.org client (+ caching)
-│  ├─ fetch_csv.py           # football-data.co.uk downloads
-│  ├─ team_names.py          # apply mapping, list unknown names
-│  ├─ join.py                # link API matches to CSV rows
-│  ├─ stats.py               # cards per referee
-│  └─ cli.py                 # entry point
-├─ data/raw/{api,csv}/       # downloads (git-ignored)
-├─ data/processed/           # outputs (git-ignored)
-└─ tests/                    # pytest, using small saved sample files and no network
+│  ├─ config.py      # leagues, seasons, paths, token
+│  ├─ fetch_csv.py   # football-data.co.uk download + read
+│  ├─ fetch_api.py   # football-data.org download (rate-limited, cached) + parse
+│  ├─ team_names.py  # mapping file, suggestions
+│  ├─ join.py        # link API matches to CSV rows, unmatched report
+│  ├─ stats.py       # referee stats, adjustments, projections, referees.json content
+│  └─ cli.py         # `referees` command
+├─ data/raw/{api,csv}/          # downloads (git-ignored)
+├─ data/matches.csv             # joined match history (committed)
+├─ data/unmatched.csv           # failed joins with reasons (committed)
+├─ data/referees.json           # final output (committed; the dashboard reads it)
+└─ tests/                       # pytest, offline, fixtures in tests/fixtures/
 ```
 
-## Commands (planned)
+## Commands
 - Install deps: `uv sync`
-- Fetch + build everything: `uv run referees update`
-- Tests: `uv run pytest`
-- Lint / format: `uv run ruff check .` and `uv run ruff format .`
+- Download everything: `uv run referees fetch`
+- Suggest team-name mappings: `uv run referees suggest-mapping`
+- Show 10 joined matches, failed joins and referee coverage: `uv run referees check`
+- Build outputs: `uv run referees build` (or `update` = fetch + build)
+- Tests: `uv run pytest`. Lint and format: `uv run ruff check .` / `uv run ruff format .`
 
 ## Conventions
-- **Secrets:** the token lives only in `.env`, which is listed in `.gitignore` before the first
-  commit. Never print the token, log it, or ask the user to paste it in chat.
-- Tests never call the network. They use small fixture files in `tests/fixtures/`.
-- Small commits with imperative messages (e.g. "Add football-data.co.uk downloader").
-- Dates are stored as ISO `YYYY-MM-DD`.
+- **Secrets:** the token lives only in `.env`. Never print or log it, and never ask the user to paste it in chat.
+- Tests never call the network.
+- Small commits, imperative messages. Git identity is set for this repo only.
+- Dates are ISO `YYYY-MM-DD`. Seasons are stored as start year (2026) and shown as `2026/27`.
 
 ## Decisions log
-- 2026-11-05: Python + uv chosen (user request). Output as CSV files first. Join on league, date
-  and teams through a hand-edited mapping file.
+- 2026-11-05: Python + uv (user request). Join on league, date and teams via a mapping file.
+- 2026-11-06: Following the user's Word plan: three seasons, outputs in `data/referees.json`
+  (+ matches.csv / unmatched.csv), booking points 10/25, recency weighting and shrinkage,
+  over-line percentages, projections.
+- 2026-11-06: Matches with blank card data are excluded from stats but listed. They're never counted as 0.
 
-## Open questions
-- Which seasons? Default: current season 2026/27 only.
-- Do red cards from a second yellow count as both a yellow and a red? Check
-  football-data.co.uk's `notes.txt` and record the answer here.
+## Next steps (from the user's plan)
+- Phase 2: the user adds the token to `.env`, then run `fetch` → `suggest-mapping` → review → `check`.
+  The user hand-checks 3 of the 10 joined matches against match reports.
+- Phase 4: push to a **public** GitHub repo, with a GitHub Actions workflow daily at 07:00 Athens time
+  and the token as a repository secret. **Ask before pushing.**

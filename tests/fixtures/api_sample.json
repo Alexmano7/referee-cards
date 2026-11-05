@@ -1,0 +1,15 @@
+{
+ "matches": [
+  {"id": 1, "utcDate": "2026-08-21T19:00:00Z", "status": "FINISHED", "matchday": 1,
+   "homeTeam": {"name": "Arsenal FC"}, "awayTeam": {"name": "Coventry City FC"},
+   "referees": [
+    {"id": 99, "name": "Some Var", "type": "VIDEO_ASSISANT_REFEREE", "nationality": "England"},
+    {"id": 11, "name": "Thomas Bramall", "type": "REFEREE", "nationality": "England"}]},
+  {"id": 2, "utcDate": "2026-08-22T23:30:00Z", "status": "FINISHED", "matchday": 1,
+   "homeTeam": {"name": "Hull City AFC"}, "awayTeam": {"name": "Manchester United FC"},
+   "referees": []},
+  {"id": 3, "utcDate": "2026-12-01T20:00:00Z", "status": "TIMED", "matchday": 14,
+   "homeTeam": {"name": "Arsenal FC"}, "awayTeam": {"name": "Hull City AFC"},
+   "referees": []}
+ ]
+}
