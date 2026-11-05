@@ -1,0 +1,98 @@
+league,api_name,csv_name,checked
+BL1,1. FC Heidenheim 1846,Heidenheim,no
+BL1,1. FC Köln,FC Koln,no
+BL1,1. FC Union Berlin,Union Berlin,no
+BL1,1. FSV Mainz 05,Mainz,no
+BL1,Bayer 04 Leverkusen,Leverkusen,no
+BL1,Borussia Dortmund,Dortmund,no
+BL1,Borussia Mönchengladbach,M'gladbach,no
+BL1,Eintracht Frankfurt,Ein Frankfurt,no
+BL1,FC Augsburg,Augsburg,no
+BL1,FC Bayern München,Bayern Munich,no
+BL1,FC Schalke 04,Schalke 04,no
+BL1,FC St. Pauli 1910,St Pauli,no
+BL1,Hamburger SV,Hamburg,no
+BL1,Holstein Kiel,Holstein Kiel,no
+BL1,RB Leipzig,RB Leipzig,no
+BL1,SC Freiburg,Freiburg,no
+BL1,SC Paderborn 07,Paderborn,no
+BL1,SV 07 Elversberg,Elversberg,no
+BL1,SV Werder Bremen,Werder Bremen,no
+BL1,TSG 1899 Hoffenheim,Hoffenheim,no
+BL1,VfB Stuttgart,Stuttgart,no
+BL1,VfL Bochum 1848,Bochum,no
+BL1,VfL Wolfsburg,Wolfsburg,no
+FL1,AJ Auxerre,Auxerre,no
+FL1,AS Monaco FC,Monaco,no
+FL1,AS Saint-Étienne,St Etienne,no
+FL1,Angers SCO,Angers,no
+FL1,ES Troyes AC,Troyes,no
+FL1,FC Lorient,Lorient,no
+FL1,FC Metz,Metz,no
+FL1,FC Nantes,Nantes,no
+FL1,Le Havre AC,Le Havre,no
+FL1,Le Mans FC,Le Mans,no
+FL1,Lille OSC,Lille,no
+FL1,Montpellier HSC,Montpellier,no
+FL1,OGC Nice,Nice,no
+FL1,Olympique Lyonnais,Lyon,no
+FL1,Olympique de Marseille,Marseille,no
+FL1,Paris FC,Paris FC,no
+FL1,Paris Saint-Germain FC,Paris SG,no
+FL1,RC Strasbourg Alsace,Strasbourg,no
+FL1,Racing Club de Lens,Lens,no
+FL1,Stade Brestois 29,Brest,no
+FL1,Stade Rennais FC 1901,Rennes,no
+FL1,Stade de Reims,Reims,no
+FL1,Toulouse FC,Toulouse,no
+PD,Athletic Club,Ath Bilbao,no
+PD,CA Osasuna,Osasuna,no
+PD,CD Leganés,Leganes,no
+PD,Club Atlético de Madrid,Ath Madrid,no
+PD,Deportivo Alavés,Alaves,no
+PD,Elche CF,Elche,no
+PD,FC Barcelona,Barcelona,no
+PD,Getafe CF,Getafe,no
+PD,Girona FC,Girona,no
+PD,Levante UD,Levante,no
+PD,Málaga CF,Malaga,no
+PD,RC Celta de Vigo,Celta,no
+PD,RC Deportivo La Coruña,La Coruna,no
+PD,RCD Espanyol de Barcelona,Espanol,no
+PD,RCD Mallorca,Mallorca,no
+PD,Rayo Vallecano de Madrid,Vallecano,no
+PD,Real Betis Balompié,Betis,no
+PD,Real Madrid CF,Real Madrid,no
+PD,Real Oviedo,Oviedo,no
+PD,Real Racing Club de Santander,Santander,no
+PD,Real Sociedad de Fútbol,Sociedad,no
+PD,Real Valladolid CF,Valladolid,no
+PD,Sevilla FC,Sevilla,no
+PD,UD Las Palmas,Las Palmas,no
+PD,Valencia CF,Valencia,no
+PD,Villarreal CF,Villarreal,no
+PL,AFC Bournemouth,Bournemouth,no
+PL,Arsenal FC,Arsenal,no
+PL,Aston Villa FC,Aston Villa,no
+PL,Brentford FC,Brentford,no
+PL,Brighton & Hove Albion FC,Brighton,no
+PL,Burnley FC,Burnley,no
+PL,Chelsea FC,Chelsea,no
+PL,Coventry City FC,Coventry,no
+PL,Crystal Palace FC,Crystal Palace,no
+PL,Everton FC,Everton,no
+PL,Fulham FC,Fulham,no
+PL,Hull City AFC,Hull,no
+PL,Ipswich Town FC,Ipswich,no
+PL,Leeds United FC,Leeds,no
+PL,Leicester City FC,Leicester,no
+PL,Liverpool FC,Liverpool,no
+PL,Manchester City FC,Man City,no
+PL,Manchester United FC,Man United,no
+PL,Newcastle United FC,Newcastle,no
+PL,Nottingham Forest FC,Nott'm Forest,no
+PL,Southampton FC,Southampton,no
+PL,Sunderland AFC,Sunderland,no
+PL,Tottenham Hotspur FC,Tottenham,no
+PL,West Ham United FC,West Ham,no
+PL,Wolverhampton Wanderers FC,Wolves,no

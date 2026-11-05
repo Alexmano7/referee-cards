@@ -7,6 +7,8 @@ import pandas as pd
 from referees.team_names import apply_mapping
 
 KEY = ["league", "season", "date", "csv_home", "csv_away"]
+# Matches that were played (or decided) and so should have a CSV row.
+PLAYED_STATUSES = ["FINISHED", "AWARDED"]
 
 
 def _surname_agrees(api_name, csv_name):
@@ -20,7 +22,7 @@ def join_matches(
     api: pd.DataFrame, csv: pd.DataFrame, mapping: pd.DataFrame
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Return (joined matches, unmatched rows with a reason)."""
-    finished = apply_mapping(api[api["status"] == "FINISHED"], mapping)
+    finished = apply_mapping(api[api["status"].isin(PLAYED_STATUSES)], mapping)
     # Only join seasons we have CSVs for (and vice versa).
     finished = finished[finished["season"].isin(csv["season"].unique())]
     csv = csv[csv["season"].isin(finished["season"].unique())]

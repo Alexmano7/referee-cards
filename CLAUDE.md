@@ -1,8 +1,19 @@
 # Referees: card tracker (project guide for Claude)
 
-> **Status (2026-11-06):** code, tests and CSV download work. The football-data.org part has
-> **not yet been run with a real token**. The team-name mapping file doesn't exist yet (it's
-> created by `suggest-mapping` after the first API fetch). Keep this file up to date.
+> **Status (2026-11-06):** the full pipeline runs with the user's token. Results: 3,096 matches
+> joined, 0 unmatched, 111 referees, `data/referees.json` built. The mapping file has 97 rows
+> (reviewed by Claude, still `checked=no` until the user confirms). Phase 2 hand-checks by the
+> user are pending. Keep this file up to date.
+
+## Verified data facts (first real run, 2026-11-06)
+- The free tier returns all three seasons (2024–2026) for all four leagues.
+- Referee coverage of finished matches: PL 100%, BL1 100%, FL1 689/691, **PD 820/869**
+  (La Liga gaps: 92% in 2025/26, 84% in 2026/27). Those matches count in league averages only.
+- **No upcoming fixture had a referee** (0 of 1,019), even for the next weekend. The free tier may
+  not fill in appointments before kick-off. Until that changes, projections use the league average.
+- The API uses status `AWARDED` for 3 decided-at-the-table matches. These are joined like `FINISHED`.
+- PL cross-check: the CSV and API referee agree on 844/850 matches. The 6 disagreements are listed
+  in `data_quality.referee_disagreements`; which source is right is unknown.
 
 ## What this project does
 A local Python tool that counts **yellow and red cards per referee** in four leagues, works out

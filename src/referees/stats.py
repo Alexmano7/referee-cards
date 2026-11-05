@@ -304,6 +304,13 @@ def build_report(
                 f"{r.league} {r.date} {r.api_home} v {r.api_away}"
                 for r in no_cards.itertuples()
             ],
+            # England only: football-data.co.uk names a different referee than the API
+            "referee_disagreements": [
+                f"{r.league} {r.date} {r.api_home} v {r.api_away}: "
+                f"API '{r.referee}', CSV '{r.csv_referee}'"
+                for r in joined.itertuples()
+                if getattr(r, "csv_referee_agrees", pd.NA) is False
+            ],
             "finished_api_matches_without_referee": {
                 lg: int(g["referee_id"].isna().sum())
                 for lg, g in finished.groupby("league")

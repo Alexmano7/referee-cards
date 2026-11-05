@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 
 from referees import fetch_api, fetch_csv
 from referees.config import (
@@ -117,6 +118,8 @@ def cmd_build() -> None:
 
 
 def main() -> None:
+    # Show accents (Atlético, Köln) correctly even in older Windows terminals.
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     parser = argparse.ArgumentParser(
         prog="referees",
         description=__doc__,
