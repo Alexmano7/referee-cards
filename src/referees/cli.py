@@ -48,7 +48,8 @@ def cmd_fetch() -> None:
     )
     problems = fetch_api.download_all(seasons)
     if problems:
-        print("Some API downloads failed:\n  " + "\n  ".join(problems))
+        # Stop here so an incomplete download never overwrites good output files.
+        raise SystemExit("Some API downloads failed:\n  " + "\n  ".join(problems))
 
 
 def cmd_suggest_mapping() -> None:

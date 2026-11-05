@@ -1,0 +1,73 @@
+# Daily referee data update.
+# Runs every day at 07:00 Athens time, and on demand from the Actions tab ("Run workflow").
+name: Daily update
+
+on:
+  schedule:
+    # GitHub uses UTC. Athens is UTC+3 in summer and UTC+2 in winter, so we schedule both
+    # and the "Check Athens time" step lets only the right one continue.
+    - cron: "0 4 * * *"  # 07:00 Athens in summer
+    - cron: "0 5 * * *"  # 07:00 Athens in winter
+  workflow_dispatch: {}
+
+permissions:
+  contents: write  # needed to commit the updated data files
+
+concurrency:
+  group: daily-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check Athens time
+        id: gate
+        run: |
+          offset=$(TZ=Europe/Athens date +%z)   # +0300 in summer, +0200 in winter
+          schedule="${{ github.event.schedule }}"
+          run=true
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            if [ "$offset" = "+0300" ] && [ "$schedule" != "0 4 * * *" ]; then run=false; fi
+            if [ "$offset" = "+0200" ] && [ "$schedule" != "0 5 * * *" ]; then run=false; fi
+          fi
+          echo "Athens offset $offset, trigger '${schedule:-manual}', run=$run"
+          echo "run=$run" >> "$GITHUB_OUTPUT"
+
+      - name: Check out the code
+        if: steps.gate.outputs.run == 'true'
+        uses: actions/checkout@v5
+
+      - name: Install uv
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          curl -LsSf https://astral.sh/uv/0.13.7/install.sh | sh
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+      - name: Install Python and libraries
+        if: steps.gate.outputs.run == 'true'
+        run: uv sync --locked
+
+      - name: Run tests
+        if: steps.gate.outputs.run == 'true'
+        run: uv run pytest -q
+
+      - name: Download data and build referees.json
+        if: steps.gate.outputs.run == 'true'
+        env:
+          FOOTBALL_DATA_API_TOKEN: ${{ secrets.FOOTBALL_DATA_API_TOKEN }}
+        run: uv run referees update
+
+      - name: Commit updated data
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/referees.json data/matches.csv data/unmatched.csv
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update referee data ($(TZ=Europe/Athens date +%F))"
+            git push
+          fi
