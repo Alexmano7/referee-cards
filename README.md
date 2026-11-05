@@ -45,6 +45,17 @@ belong together.
 - ⚠️ **Premier League caveat:** football-data.co.uk counts a second-yellow sending-off as *just a red*
   in English files, but as *a yellow plus a red* in the other three leagues.
 
+## Automatic daily update
+GitHub runs the update every day at **07:00 Athens time** and saves the new
+`data/referees.json` to the repository (see the **Actions** tab).
+- **Run it now:** Actions → **Daily update** → **Run workflow**.
+- **The token** is stored as the repository secret `FOOTBALL_DATA_API_TOKEN`
+  (Settings → Secrets and variables → Actions). If you get a new token, update it there and in `.env`.
+- **If a run fails** (red cross), click it to read the error. A failed run never overwrites
+  the last good data.
+- **Working on your PC:** the daily job saves new data every morning, so run `git pull` first
+  to get the latest version before changing anything.
+
 ## Testing
 ```bash
 uv run pytest

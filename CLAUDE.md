@@ -3,7 +3,8 @@
 > **Status (2026-11-06):** the full pipeline runs with the user's token. Results: 3,096 matches
 > joined, 0 unmatched, 111 referees, `data/referees.json` built. The mapping file has 97 rows
 > (reviewed by Claude, still `checked=no` until the user confirms). Phase 2 hand-checks by the
-> user are pending. Keep this file up to date.
+> user are pending. Since 2026-11-06 it is on GitHub and updates itself daily (see "GitHub and
+> automation"). Keep this file up to date.
 
 ## Verified data facts (first real run, 2026-11-06)
 - The free tier returns all three seasons (2024–2026) for all four leagues.
@@ -125,8 +126,23 @@ Referees/
   over-line percentages, projections.
 - 2026-11-06: Matches with blank card data are excluded from stats but listed. They're never counted as 0.
 
+## GitHub and automation (Phase 4, done 2026-11-06)
+- Public repo: https://github.com/Alexmano7/referee-cards (branch `main`, remote `origin`).
+  Pushing uses Git Credential Manager (browser sign-in). `gh` CLI is not installed.
+- `.github/workflows/daily-update.yml` runs at 04:00 and 05:00 UTC. A gate step lets only the run
+  at 07:00 Athens time continue (it checks the `+0300`/`+0200` offset against `github.event.schedule`).
+  It can also be started manually (`workflow_dispatch`). Steps: install uv 0.13.7 → `uv sync --locked`
+  → pytest → `referees update` → commit the `data/*` outputs as github-actions[bot].
+- The token is the repository secret `FOOTBALL_DATA_API_TOKEN`.
+- The first manual run (#1) succeeded and committed `cfbc65a` with complete data.
+- **The bot commits `data/` every day.** Always `git pull` before working locally, and don't commit
+  locally built `data/*` files (it causes merge conflicts).
+- GitHub's scheduler uses UTC, so `date.today()` in CI is the UTC date (same day at 04:00–05:00 UTC).
+
 ## Next steps (from the user's plan)
-- Phase 2: the user adds the token to `.env`, then run `fetch` → `suggest-mapping` → review → `check`.
-  The user hand-checks 3 of the 10 joined matches against match reports.
-- Phase 4: push to a **public** GitHub repo, with a GitHub Actions workflow daily at 07:00 Athens time
-  and the token as a repository secret. **Ask before pushing.**
+- Phase 2 leftover: the user hand-checks 3 joined matches against match reports and marks the
+  mapping rows `checked=yes`.
+- Phase 5 happens in another chat: a dashboard on claude.ai reading `data/referees.json` from this repo.
+- Watch whether football-data.org fills in referees for upcoming fixtures. If it never does,
+  projections stay at the league average.
+- Every season: run `suggest-mapping` to add promoted teams.
