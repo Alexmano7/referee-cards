@@ -30,15 +30,6 @@ ATHENS = ZoneInfo("Europe/Athens")
 DASHBOARD_DIR_NAME = "dashboard"
 
 
-def load_matches_csv(path: Path) -> pd.DataFrame:
-    df = pd.read_csv(path)
-    df["date"] = pd.to_datetime(df["date"]).dt.date
-    df["referee_id"] = df["referee_id"].astype("Int64")
-    for c in CARD_COUNT_COLUMNS:
-        df[c] = df[c].astype("Int64")
-    return df
-
-
 def _scopes(df: pd.DataFrame):
     """Yield (league scope, season scope, rows) for every combination with data."""
     leagues = [ALL_LEAGUES] + sorted(df["league"].unique())
@@ -158,6 +149,7 @@ def build_tables(
                 "home": fx["home"],
                 "away": fx["away"],
                 "referee": fx["referee"] or "TBD",
+                "referee_source": fx.get("referee_source") or "",
                 "projected_cards": fx["projected_cards"],
                 "projected_booking_points": fx["projected_booking_points"],
                 "basis": fx["basis"],
@@ -177,6 +169,14 @@ def build_tables(
         {
             "check": "Premier League matches where the two sources name different referees",
             "value": len(dq.get("referee_disagreements", [])),
+        },
+        {
+            "check": "Upcoming referees found by web lookup",
+            "value": dq.get("appointments_used", 0),
+        },
+        {
+            "check": "Looked-up referees that could not be placed or matched",
+            "value": len(dq.get("appointment_problems", [])),
         },
     ] + [
         {

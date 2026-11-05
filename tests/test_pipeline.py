@@ -265,7 +265,13 @@ def test_dashboard_tables_cover_every_scope():
     )
     t = build_tables(matches, report, today=date(2026, 11, 6))
     keys = {r["key"] for r in t["referee_stats"]}
-    assert {"1|ALL|All seasons", "1|PL|All seasons", "1|PL|2025/26", "1|PL|2026/27", "2|PD|All seasons"} <= keys
+    assert {
+        "1|ALL|All seasons",
+        "1|PL|All seasons",
+        "1|PL|2025/26",
+        "1|PL|2026/27",
+        "2|PD|All seasons",
+    } <= keys
     by_key = {r["key"]: r for r in t["referee_stats"]}
     assert by_key["1|PL|All seasons"]["matches"] == 2
     assert (
@@ -279,3 +285,125 @@ def test_dashboard_tables_cover_every_scope():
     summary = {r["key"]: r for r in t["league_summary"]}
     assert summary["ALL|All seasons"]["matches"] == 3
     assert summary["PD|All seasons"]["cards_per_match"] == 6
+
+
+# --- referee appointments (web lookup) ------------------------------------------------
+
+
+def test_match_referee_names():
+    from referees.appointments import match_referee
+
+    known = [
+        (1, "Sven Jablonski"),
+        (2, "Alejandro Hernández Hernández"),
+        (3, "Daniel Siebert"),
+        (4, "Daniel Schlager"),
+    ]
+    assert match_referee("Sven Jablonski", known) == 1
+    assert match_referee("S. Jablonski", known) == 1
+    assert match_referee("Hernández Hernández", known) == 2  # Spanish surnames only
+    assert (
+        match_referee("hernandez hernandez", known) == 2
+    )  # accents and case don't matter
+    assert match_referee("Daniel", known) is None  # two Daniels: never guess
+    assert match_referee("Felix Zwayer", known) is None  # unknown referee
+
+
+def _fixture(home="A", away="B", day=date(2026, 11, 8), referee=None, referee_id=None):
+    return {
+        "league": "PL",
+        "season": 2026,
+        "api_match_id": 5,
+        "utc_kickoff": f"{day}T15:00:00+00:00",
+        "date": day,
+        "status": "TIMED",
+        "matchday": 11,
+        "api_home": home,
+        "api_away": away,
+        "referee_id": referee_id,
+        "referee": referee,
+        "referee_nationality": None,
+    }
+
+
+def _appointment(
+    referee,
+    home="A",
+    away="B",
+    day="2026-11-08",
+    url="https://www.example.org/appointments",
+):
+    return {
+        "league": "PL",
+        "date": day,
+        "home": home,
+        "away": away,
+        "referee": referee,
+        "source_url": url,
+        "found_at": "2026-11-06",
+    }
+
+
+def test_looked_up_referee_drives_projection():
+    rows = [_match(2026, 7, 4, 4) for _ in range(10)] + [
+        _match(2026, 8, 1, 1) for _ in range(10)
+    ]
+    api = pd.DataFrame([_fixture()])
+    appts = pd.DataFrame(
+        [_appointment("R. 8")]
+    )  # "Ref 8" in the history, written as an initial
+    report = stats.build_report(
+        pd.DataFrame(rows),
+        api,
+        pd.DataFrame(),
+        today=date(2026, 11, 6),
+        appointments=appts,
+    )
+    fx = report["upcoming_fixtures"][0]
+    assert fx["referee_id"] == 8 and fx["referee"] == "Ref 8"
+    assert fx["basis"] == "referee"
+    assert fx["referee_source"] == "example.org"
+    assert (
+        fx["projected_cards"] < 5
+    )  # the low-card referee, not the league average of 5
+    assert report["data_quality"]["appointments_used"] == 1
+    assert (
+        next(r for r in report["referees"] if r["id"] == 8)["next_fixture"]["home"]
+        == "A"
+    )
+
+
+def test_api_referee_wins_and_bad_rows_are_reported():
+    rows = [_match(2026, 7, 2, 2) for _ in range(5)]
+    api = pd.DataFrame(
+        [_fixture(referee="Ref 7", referee_id=7), _fixture(home="C", away="D")]
+    )
+    appts = pd.DataFrame(
+        [
+            _appointment(
+                "Someone Else"
+            ),  # A v B already has the API's referee: ignored
+            _appointment("Ref 7", home="X", away="Y"),  # no such fixture
+            _appointment(
+                "Nobody Known", home="C", away="D"
+            ),  # unknown name: shown, flagged
+        ]
+    )
+    report = stats.build_report(
+        pd.DataFrame(rows),
+        api,
+        pd.DataFrame(),
+        today=date(2026, 11, 6),
+        appointments=appts,
+    )
+    by_home = {f["home"]: f for f in report["upcoming_fixtures"]}
+    assert (
+        by_home["A"]["referee"] == "Ref 7"
+        and by_home["A"]["referee_source"] == "football-data.org"
+    )
+    assert by_home["C"]["referee"] == "Nobody Known"
+    assert by_home["C"]["basis"] == "league average (referee has no history)"
+    problems = report["data_quality"]["appointment_problems"]
+    assert len(problems) == 2
+    assert any("no upcoming fixture" in p for p in problems)
+    assert any("does not match exactly one" in p for p in problems)

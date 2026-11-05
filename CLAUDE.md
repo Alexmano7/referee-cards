@@ -152,13 +152,33 @@ Referees/
   referenced by `datasets/<same id>`. The page also defines a calc `fx_counts`.
 - Filters are dash params (`league`, `season`, `minm`, `ref`); no query uses them.
 - **"Refresh my referee dashboard" procedure:**
-  1. `git pull` (gets the bot's latest `data/`), then `uv run referees export-dashboard`.
-  2. Upload each of the 5 JSON files as an asset (`Artifact` publish, `url` above, `asset: true`,
+  1. `git pull`, then `uv run referees fetch` (~1.5 min; downloads to the git-ignored `data/raw/`).
+  2. **Referee lookup** (the user chose this, option 2): `uv run referees upcoming` lists the next
+     14 days' fixtures, marking each MISSING, "lookup file" or football-data.org. For the MISSING ones,
+     search the official appointment pages:
+     - Bundesliga: DFB Datencenter, https://datencenter.dfb.de/global_referee_schedule (WebFetch
+       works and lists every match).
+     - Premier League: premierleague.com "referee appointments: Matchweek N". The page lists
+       referees without fixtures, so pair them only from a source naming the match (club or news sites).
+     - La Liga: rfef.es designaciones (the lists are PDFs, often unreadable) and news sites.
+     - Ligue 1: ligue1.com / club and news sites.
+     Only use a pairing a source states for that exact match, and never infer one from list order.
+     **Show the user the found list with sources and wait for OK**, then append rows to
+     `config/referee_appointments.csv` using the exact team names from `upcoming`. Keep old rows:
+     they're history, and the API's own referee wins once it appears.
+  3. `uv run referees export-dashboard`. It builds in memory from `data/raw` and never touches the
+     bot's `data/*` files. It prints "Referees from web lookup used" and any PROBLEM lines: fix them.
+  4. Upload each of the 5 JSON files as an asset (`Artifact` publish, `url` above, `asset: true`,
      one call each, since they're JSON).
-  3. `ArtifactData` batch `update` of each `datasets/<id>`: `source.url` (new `/_blob/…`),
-     `updated: {at: <generated_at from referees.json>, by: …}` and `edit`, pinned with `if_version`.
-  4. Delete the old assets, then read `data/users/me/check` until it passes or is gone.
-  5. If the page changed, `set` `files/index.html` from `dashboard/index.html`.
+  5. `ArtifactData` batch `update` of each `datasets/<id>`: `source.url` (new `/_blob/…`),
+     `updated: {at: <"Data generated at" time>, by: …}` and `edit`, pinned with `if_version`.
+     If the page changed, `set` `files/index.html` from `dashboard/index.html` in the same batch.
+  6. Delete the old assets. Read `data/users/me/check` (it only runs while the dashboard is open;
+     no document can also mean it is closed), then commit the appointments file.
+- Referee lookup details: `appointments.py`. Names match a known referee when every word of the
+  announced name is in the full name (single letters count as initials, so "S. Jablonski" works and
+  so do Spanish surname-only names). Two possible matches count as none. Unmatched names are still
+  shown, with the league-average projection, and listed in `data_quality.appointment_problems`.
 
 ## Next steps (from the user's plan)
 - Phase 2 leftover: the user hand-checks 3 joined matches against match reports and marks the

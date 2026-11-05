@@ -64,6 +64,15 @@ A private dashboard on claude.ai: <https://claude.ai/artifact/AAbaGSrga4xFAG6SG4
   sortable referee table (click a referee for their season-by-season record).
 - **It does not update by itself.** To get the latest numbers, open this project in Claude Code
   and say **"refresh my referee dashboard"**.
+- **Referees for upcoming matches:** the free football-data.org data names a referee only after
+  the match. When you refresh, Claude also looks up announced referees on the leagues' official
+  appointment pages, shows you what it found with sources, and saves them in
+  `config/referee_appointments.csv`. Projections then use that referee's record, and the
+  fixtures table shows where each name came from.
+- To see which upcoming matches still lack a referee:
+  ```bash
+  uv run referees upcoming
+  ```
 - The page's source is `dashboard/index.html`. Its data tables come from:
   ```bash
   uv run referees export-dashboard

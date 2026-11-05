@@ -17,6 +17,7 @@ from datetime import UTC, date, datetime, timedelta
 
 import pandas as pd
 
+from referees.appointments import apply_appointments
 from referees.config import LEAGUES_BY_KEY, current_season_start_year, season_label
 
 CARD_COUNT_COLUMNS = ["home_yellows", "away_yellows", "home_reds", "away_reds"]
@@ -169,6 +170,7 @@ def project_fixtures(
         hf = factors.get((r.league, r.api_home), {"cards": 1.0, "booking_points": 1.0})
         af = factors.get((r.league, r.api_away), {"cards": 1.0, "booking_points": 1.0})
         ref_id = None if pd.isna(r.referee_id) else int(r.referee_id)
+        named = isinstance(r.referee, str)
         rates = referee_rates.get(ref_id)
         if rates:
             base_c, base_bp, basis = (
@@ -182,10 +184,12 @@ def project_fixtures(
                 league_avg[r.league]["booking_points"],
             )
             basis = (
-                "league average (referee not appointed yet)"
-                if ref_id is None
-                else "league average (referee has no history)"
+                "league average (referee has no history)"
+                if named
+                else "league average (referee not appointed yet)"
             )
+        source = getattr(r, "referee_source", None)
+        url = getattr(r, "source_url", None)
         fixtures.append(
             {
                 "league": r.league,
@@ -195,7 +199,11 @@ def project_fixtures(
                 "home": r.api_home,
                 "away": r.api_away,
                 "referee_id": ref_id,
-                "referee": r.referee if isinstance(r.referee, str) else None,
+                "referee": r.referee if named else None,
+                "referee_source": source
+                if isinstance(source, str) and source
+                else None,
+                "source_url": url if isinstance(url, str) and url else None,
                 "projected_cards": round(base_c * (hf["cards"] + af["cards"]) / 2, 2),
                 "projected_booking_points": round(
                     base_bp * (hf["booking_points"] + af["booking_points"]) / 2, 1
@@ -211,8 +219,13 @@ def build_report(
     api: pd.DataFrame,
     unmatched: pd.DataFrame,
     today: date | None = None,
+    appointments: pd.DataFrame | None = None,
 ) -> dict:
-    """Everything that goes into data/referees.json."""
+    """Everything that goes into data/referees.json.
+
+    `appointments`: referees for upcoming fixtures found by a web lookup
+    (see appointments.py); the API's own referee always wins.
+    """
     today = today or date.today()
     current = current_season_start_year(today)
     # Matches with no card data (e.g. abandoned and awarded) are left out of the stats,
@@ -258,6 +271,11 @@ def build_report(
         & (pd.to_datetime(api["date"]) >= pd.Timestamp(today))
     ]
     future = future.sort_values("utc_kickoff")
+    known = with_ref[["referee_id", "referee", "league"]].drop_duplicates()
+    known = known.assign(referee_id=known["referee_id"].astype(int))
+    future, appointment_problems, appointments_used = apply_appointments(
+        future, appointments if appointments is not None else pd.DataFrame(), known
+    )
     factors = team_factors(df, league_avg)
     all_projected = project_fixtures(future, rates, league_avg, factors)
     horizon = str(today + timedelta(days=UPCOMING_DAYS))
@@ -300,6 +318,8 @@ def build_report(
         "data_quality": {
             "joined_matches": len(joined),
             "unmatched_rows": len(unmatched),
+            "appointments_used": appointments_used,
+            "appointment_problems": appointment_problems,
             "matches_without_card_data": [
                 f"{r.league} {r.date} {r.api_home} v {r.api_away}"
                 for r in no_cards.itertuples()

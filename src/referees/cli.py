@@ -6,8 +6,9 @@ Commands:
   check            join the data, show 10 joined matches and list failed joins
   build            write data/matches.csv, data/unmatched.csv and data/referees.json
   update           fetch + build
-  export-dashboard turn data/matches.csv + data/referees.json into the dashboard's
-                   tables in data/dashboard/ (no downloads; run `git pull` first)
+  upcoming         list fixtures in the next 14 days and which still lack a referee
+  export-dashboard build the dashboard tables (with looked-up referees) into
+                   data/dashboard/ (run `fetch` first)
 """
 
 from __future__ import annotations
@@ -16,7 +17,10 @@ import argparse
 import json
 import sys
 
+import pandas as pd
+
 from referees import fetch_api, fetch_csv
+from referees.appointments import load_appointments
 from referees.config import (
     DATA_DIR,
     MATCHES_FILE,
@@ -112,7 +116,7 @@ def cmd_build() -> None:
     MATCHES_FILE.parent.mkdir(parents=True, exist_ok=True)
     joined.to_csv(MATCHES_FILE, index=False, lineterminator="\n")
     unmatched.to_csv(UNMATCHED_FILE, index=False, lineterminator="\n")
-    report = build_report(joined, api, unmatched)
+    report = build_report(joined, api, unmatched, appointments=load_appointments())
     REFEREES_JSON.write_text(
         json.dumps(report, ensure_ascii=False, indent=1, default=str), encoding="utf-8"
     )
@@ -122,14 +126,68 @@ def cmd_build() -> None:
 
 
 def cmd_export_dashboard() -> None:
-    from referees.dashboard_export import build_tables, load_matches_csv, write_tables
+    """Build the dashboard tables from the downloaded data (run `fetch` first).
 
-    report = json.loads(REFEREES_JSON.read_text(encoding="utf-8"))
-    tables = build_tables(load_matches_csv(MATCHES_FILE), report)
+    Works in memory: data/matches.csv and data/referees.json (updated daily by the
+    GitHub job) are left untouched, so `git pull` never conflicts.
+    """
+    from referees.dashboard_export import build_tables, write_tables
+
+    api, csv = _load()
+    if api.empty or csv.empty:
+        raise SystemExit("No downloaded data found. Run `uv run referees fetch` first.")
+    joined, unmatched = join_matches(api, csv, load_mapping())
+    report = build_report(joined, api, unmatched, appointments=load_appointments())
+    tables = build_tables(joined, report)
     for path in write_tables(tables, DATA_DIR / "dashboard"):
         rows = len(json.loads(path.read_text(encoding="utf-8")))
         print(f"  {path.name}: {rows} rows, {path.stat().st_size / 1024:.0f} KB")
+    dq = report["data_quality"]
     print(f"Data generated at {report['generated_at']}")
+    print(f"Referees from web lookup used: {dq['appointments_used']}")
+    for problem in dq["appointment_problems"]:
+        print(f"  PROBLEM: {problem}")
+
+
+def cmd_upcoming() -> None:
+    """Upcoming fixtures (next 14 days) and where each referee comes from."""
+    from zoneinfo import ZoneInfo
+
+    from referees.stats import UPCOMING_DAYS
+
+    api, _ = _load()
+    if api.empty:
+        raise SystemExit("No downloaded data found. Run `uv run referees fetch` first.")
+    today = pd.Timestamp.now(tz="Europe/Athens").date()
+    horizon = today + pd.Timedelta(days=UPCOMING_DAYS)
+    up = api[api["status"].isin(["SCHEDULED", "TIMED"])]
+    up = up[(up["date"] >= today) & (up["date"] <= horizon)].sort_values("utc_kickoff")
+    appts = {
+        (a.league, a.date, a.home, a.away): a.referee
+        for a in load_appointments().itertuples()
+    }
+    athens = ZoneInfo("Europe/Athens")
+    missing = 0
+    print("league,date,home,away,kickoff_athens,referee,source")
+    for r in up.itertuples():
+        kickoff = (
+            pd.Timestamp(r.utc_kickoff).tz_convert(athens).strftime("%a %d %b %H:%M")
+        )
+        if isinstance(r.referee, str):
+            ref, src = r.referee, "football-data.org"
+        elif (r.league, str(r.date), r.api_home, r.api_away) in appts:
+            ref, src = (
+                appts[(r.league, str(r.date), r.api_home, r.api_away)],
+                "lookup file",
+            )
+        else:
+            ref, src = "", "MISSING"
+            missing += 1
+        print(f"{r.league},{r.date},{r.api_home},{r.api_away},{kickoff},{ref},{src}")
+    print()
+    print(
+        f"{len(up)} fixtures in the next {UPCOMING_DAYS} days, {missing} without a referee."
+    )
 
 
 def main() -> None:
@@ -149,6 +207,7 @@ def main() -> None:
             "build",
             "update",
             "export-dashboard",
+            "upcoming",
         ],
     )
     args = parser.parse_args()
@@ -162,6 +221,8 @@ def main() -> None:
         cmd_build()
     elif args.command == "export-dashboard":
         cmd_export_dashboard()
+    elif args.command == "upcoming":
+        cmd_upcoming()
     else:
         cmd_fetch()
         cmd_build()
