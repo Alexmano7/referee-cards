@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-05T22:42:25+00:00",
+ "generated_at": "2026-11-05T23:01:19+00:00",
  "seasons": [
   "2024/25",
   "2025/26",
@@ -8534,45 +8534,6 @@
    "referee": null,
    "projected_cards": 4.16,
    "projected_booking_points": 44.5,
-   "basis": "league average (referee not appointed yet)"
-  },
-  {
-   "league": "BL1",
-   "date": "2026-11-20",
-   "utc_kickoff": "2026-11-20T19:30:00+00:00",
-   "matchday": 10,
-   "home": "FC Bayern München",
-   "away": "1. FC Köln",
-   "referee_id": null,
-   "referee": null,
-   "projected_cards": 3.83,
-   "projected_booking_points": 40.5,
-   "basis": "league average (referee not appointed yet)"
-  },
-  {
-   "league": "FL1",
-   "date": "2026-11-20",
-   "utc_kickoff": "2026-11-20T19:45:00+00:00",
-   "matchday": 11,
-   "home": "ES Troyes AC",
-   "away": "Le Havre AC",
-   "referee_id": null,
-   "referee": null,
-   "projected_cards": 3.88,
-   "projected_booking_points": 41.4,
-   "basis": "league average (referee not appointed yet)"
-  },
-  {
-   "league": "PD",
-   "date": "2026-11-20",
-   "utc_kickoff": "2026-11-20T20:00:00+00:00",
-   "matchday": 13,
-   "home": "Athletic Club",
-   "away": "RCD Espanyol de Barcelona",
-   "referee_id": null,
-   "referee": null,
-   "projected_cards": 4.66,
-   "projected_booking_points": 49.7,
    "basis": "league average (referee not appointed yet)"
   }
  ],
