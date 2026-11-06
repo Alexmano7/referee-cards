@@ -361,7 +361,10 @@ def build_report(
     known = with_ref[["referee_id", "referee", "league"]].drop_duplicates()
     known = known.assign(referee_id=known["referee_id"].astype(int))
     future, appointment_problems, appointments_used = apply_appointments(
-        future, appointments if appointments is not None else pd.DataFrame(), known
+        future,
+        appointments if appointments is not None else pd.DataFrame(),
+        known,
+        today=str(today),
     )
     factors = team_factors(df, league_avg)
     all_projected = project_fixtures(future, rates, league_avg, factors)

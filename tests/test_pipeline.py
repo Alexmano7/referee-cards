@@ -536,3 +536,73 @@ def test_model_recovers_strict_referee_and_card_prone_team():
         "expected_away_cards"
     ] == pytest.approx(strict["expected_cards"])
     assert sum(strict["distribution"]) == pytest.approx(1.0)
+
+
+# --- bet log -------------------------------------------------------------------------
+
+
+def test_bets_are_settled_from_card_data():
+    from referees.bets import COLUMNS, settle
+
+    joined = pd.DataFrame(
+        [
+            {
+                **_match(2026, 1, 3, 2, 0, 1),
+                "date": "2026-11-01",
+                "api_home": "A",
+                "api_away": "B",
+            }
+        ]
+    )
+    base = {
+        "placed_at": "2026-10-30",
+        "league": "PL",
+        "date": "2026-11-01",
+        "home": "A",
+        "away": "B",
+        "odds": "2.0",
+        "stake": "10",
+        "model_prob": "55",
+        "note": "",
+    }
+    bets = pd.DataFrame(
+        [
+            {
+                **base,
+                "market": "match_cards",
+                "selection": "over",
+                "line": "4.5",
+            },  # 6 cards: won
+            {
+                **base,
+                "market": "home_cards",
+                "selection": "over",
+                "line": "3.5",
+            },  # 3: lost
+            {
+                **base,
+                "market": "match_booking_points",
+                "selection": "under",
+                "line": "70.5",
+            },  # 75: lost
+            {
+                **base,
+                "market": "match_cards",
+                "selection": "over",
+                "line": "4.5",
+                "date": "2026-12-01",
+            },  # pending
+            {
+                **base,
+                "market": "match_cards",
+                "selection": "over",
+                "line": "4",
+            },  # whole line: invalid
+        ]
+    )[COLUMNS]
+    rows = settle(bets, joined)
+    assert [r["status"] for r in rows] == ["won", "lost", "lost", "pending", "invalid"]
+    assert rows[0]["actual"] == 6 and rows[0]["profit"] == 10.0
+    assert rows[1]["profit"] == -10.0
+    assert rows[2]["actual"] == 75
+    assert rows[0]["implied_prob"] == 50.0

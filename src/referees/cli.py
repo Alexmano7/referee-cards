@@ -139,7 +139,17 @@ def cmd_export_dashboard() -> None:
         raise SystemExit("No downloaded data found. Run `uv run referees fetch` first.")
     joined, unmatched = join_matches(api, csv, load_mapping())
     report = build_report(joined, api, unmatched, appointments=load_appointments())
-    tables = build_tables(joined, report)
+    from referees.backtest import RESULTS_FILE
+    from referees.bets import load_bets, settle
+
+    backtest = (
+        json.loads(RESULTS_FILE.read_text(encoding="utf-8"))
+        if RESULTS_FILE.exists()
+        else None
+    )
+    tables = build_tables(
+        joined, report, bets=settle(load_bets(), joined), backtest=backtest
+    )
     for path in write_tables(tables, DATA_DIR / "dashboard"):
         rows = len(json.loads(path.read_text(encoding="utf-8")))
         print(f"  {path.name}: {rows} rows, {path.stat().st_size / 1024:.0f} KB")

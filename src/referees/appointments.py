@@ -75,7 +75,10 @@ def match_referee(name: str, candidates: list[tuple[int, str]]) -> int | None:
 
 
 def apply_appointments(
-    future: pd.DataFrame, appointments: pd.DataFrame, known: pd.DataFrame
+    future: pd.DataFrame,
+    appointments: pd.DataFrame,
+    known: pd.DataFrame,
+    today: str | None = None,
 ) -> tuple[pd.DataFrame, list[str], int]:
     """Fill in referees for upcoming fixtures from the appointments file.
 
@@ -97,6 +100,8 @@ def apply_appointments(
         for i, r in zip(out.index, out.itertuples())
     }
     for a in appointments.itertuples():
+        if today and a.date < today:
+            continue  # the match has been played: the row is history, not a problem
         label = f"{a.league} {a.date} {a.home} v {a.away}"
         i = index.get((a.league, a.date, a.home, a.away))
         if i is None:

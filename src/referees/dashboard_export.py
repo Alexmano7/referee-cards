@@ -50,7 +50,11 @@ def _fixture_text(fx: dict | None) -> str:
 
 
 def build_tables(
-    matches: pd.DataFrame, report: dict, today: date | None = None
+    matches: pd.DataFrame,
+    report: dict,
+    today: date | None = None,
+    bets: list[dict] | None = None,
+    backtest: dict | None = None,
 ) -> dict[str, list[dict]]:
     today = today or date.today()
     played = matches[~matches[CARD_COUNT_COLUMNS].isna().any(axis=1)].astype(
@@ -143,6 +147,7 @@ def build_tables(
 
     # --- fixtures ---------------------------------------------------------------------
     fixture_rows = []
+    dist_rows = []
     for fx in report["upcoming_fixtures"]:
         ko = pd.Timestamp(fx["utc_kickoff"]).tz_convert(ATHENS)
         fixture_rows.append(
@@ -166,8 +171,42 @@ def build_tables(
                 "referee_home_cards_per_match": fx.get("referee_home_cards_per_match"),
                 "referee_away_matches": fx.get("referee_away_matches", 0),
                 "referee_away_cards_per_match": fx.get("referee_away_cards_per_match"),
+                **{
+                    k: fx.get(k)
+                    for k in (
+                        "prob_over_3_5",
+                        "prob_over_4_5",
+                        "prob_over_5_5",
+                        "fair_over_3_5",
+                        "fair_under_3_5",
+                        "fair_over_4_5",
+                        "fair_under_4_5",
+                        "fair_over_5_5",
+                        "fair_under_5_5",
+                        "home_prob_over_1_5",
+                        "home_prob_over_2_5",
+                        "away_prob_over_1_5",
+                        "away_prob_over_2_5",
+                        "referee_factor",
+                        "home_receives_factor",
+                        "away_receives_factor",
+                        "home_draws_factor",
+                        "away_draws_factor",
+                    )
+                },
             }
         )
+        # Chance of 0, 1, ... 10 and 11+ cards, for the match card's chart
+        for i, prob in enumerate(fx.get("distribution") or []):
+            dist_rows.append(
+                {
+                    "key": f"{fixture_rows[-1]['key']}|{i}",
+                    "fixture": fixture_rows[-1]["key"],
+                    "cards": str(i) if i < 11 else "11+",
+                    "order": i,
+                    "prob_pct": round(100 * prob, 1),
+                }
+            )
 
     # --- data_checks ------------------------------------------------------------------
     dq = report["data_quality"]
@@ -223,7 +262,29 @@ def build_tables(
                 }
             )
 
+    # --- model quality (from docs/backtest.json, written by `referees backtest`) ---------
+    quality_rows, calibration_rows = [], []
+    if backtest:
+        for method, sc in backtest.get("holdout", {}).items():
+            quality_rows.append(
+                {
+                    "method": method,
+                    "matches": sc.get("matches"),
+                    "log_score": sc.get("log_score"),
+                    "brier_over_3_5": sc.get("brier_over_3_5"),
+                    "brier_over_4_5": sc.get("brier_over_4_5"),
+                    "brier_over_5_5": sc.get("brier_over_5_5"),
+                    "mae": sc.get("mae"),
+                }
+            )
+        for c in backtest.get("calibration_over_4_5", []):
+            calibration_rows.append({"key": c["bin"], **c})
+
     return {
+        "fixture_distribution": dist_rows,
+        "model_quality": quality_rows,
+        "calibration": calibration_rows,
+        "bets": bets or [],
         "team_stats": team_rows,
         "referee_stats": stats_rows,
         "league_summary": summary_rows,
