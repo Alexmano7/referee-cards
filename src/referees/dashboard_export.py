@@ -99,6 +99,11 @@ def build_tables(
                     "pct_over_3_5": base["pct_over_3_5"],
                     "pct_over_4_5": base["pct_over_4_5"],
                     "pct_over_5_5": base["pct_over_5_5"],
+                    "home_cards_per_match": base.get("home_cards_per_match"),
+                    "away_cards_per_match": base.get("away_cards_per_match"),
+                    "away_share_pct": base.get("away_share_pct"),
+                    "fouls_per_match": base.get("fouls_per_match"),
+                    "cards_per_10_fouls": base.get("cards_per_10_fouls"),
                     "next_fixture": _fixture_text(next_by_ref.get(ref_id)),
                 }
             )

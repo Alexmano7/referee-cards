@@ -23,6 +23,12 @@ API_BASE_URL = "https://api.football-data.org/v4"
 CSV_BASE_URL = "https://football-data.co.uk/mmz4281"
 USER_AGENT = "referees-card-tracker/0.1"
 
+# --- Bookmaker settlement --------------------------------------------------------------
+# How many "cards" a red card counts as in card markets. The user bets with Stoiximan/Betano;
+# their exact rule is not confirmed yet, so the data's own count (1) is the default.
+# Set to 2 if the bookmaker counts a red as two cards. Booking points stay 10 / 25.
+RED_CARD_COUNTS_AS = 1
+
 # How many seasons to keep: the current one plus the two before it.
 SEASONS_TO_FETCH = 3
 

@@ -78,6 +78,9 @@ def read_csv_matches(path: Path, league: League, season: int) -> pd.DataFrame:
             "away_yellows": df["AY"].astype("Int64"),
             "home_reds": df["HR"].astype("Int64"),
             "away_reds": df["AR"].astype("Int64"),
+            # Fouls committed by each side (blank in a few rows, e.g. abandoned matches)
+            "home_fouls": df["HF"].astype("Int64") if "HF" in df.columns else pd.NA,
+            "away_fouls": df["AF"].astype("Int64") if "AF" in df.columns else pd.NA,
             "csv_referee": df["Referee"].str.strip()
             if "Referee" in df.columns
             else None,

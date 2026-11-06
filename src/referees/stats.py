@@ -18,7 +18,12 @@ from datetime import UTC, date, datetime, timedelta
 import pandas as pd
 
 from referees.appointments import apply_appointments
-from referees.config import LEAGUES_BY_KEY, current_season_start_year, season_label
+from referees.config import (
+    LEAGUES_BY_KEY,
+    RED_CARD_COUNTS_AS,
+    current_season_start_year,
+    season_label,
+)
 
 CARD_COUNT_COLUMNS = ["home_yellows", "away_yellows", "home_reds", "away_reds"]
 YELLOW_POINTS = 10
@@ -55,8 +60,16 @@ def add_match_metrics(
     df = matches.copy()
     df["yellows"] = df["home_yellows"] + df["away_yellows"]
     df["reds"] = df["home_reds"] + df["away_reds"]
-    df["cards"] = df["yellows"] + df["reds"]
+    df["cards"] = df["yellows"] + RED_CARD_COUNTS_AS * df["reds"]
+    df["home_cards"] = df["home_yellows"] + RED_CARD_COUNTS_AS * df["home_reds"]
+    df["away_cards"] = df["away_yellows"] + RED_CARD_COUNTS_AS * df["away_reds"]
     df["booking_points"] = YELLOW_POINTS * df["yellows"] + RED_POINTS * df["reds"]
+    if "home_fouls" in df.columns:
+        df["fouls"] = pd.to_numeric(df["home_fouls"], errors="coerce") + pd.to_numeric(
+            df["away_fouls"], errors="coerce"
+        )
+    else:
+        df["fouls"] = float("nan")
     df["weight"] = SEASON_DECAY ** (current_season - df["season"])
     return df
 
@@ -84,6 +97,22 @@ def _basic(group: pd.DataFrame) -> dict:
     }
     for line in CARD_LINES:
         out[_line_key(line)] = round(100 * (group["cards"] > line).mean(), 1)
+    # Home/away split: does this referee (or league) book away teams more?
+    if "home_cards" in group.columns:
+        hc, ac = group["home_cards"].sum(), group["away_cards"].sum()
+        out["home_cards_per_match"] = round(group["home_cards"].mean(), 2)
+        out["away_cards_per_match"] = round(group["away_cards"].mean(), 2)
+        out["away_share_pct"] = round(100 * ac / (hc + ac), 1) if (hc + ac) else None
+    # Fouls: how many are whistled, and how often a foul becomes a card (strictness)
+    if "fouls" in group.columns:
+        with_fouls = group[group["fouls"].notna()]
+        fouls = with_fouls["fouls"].sum()
+        out["fouls_per_match"] = (
+            round(with_fouls["fouls"].mean(), 1) if len(with_fouls) else None
+        )
+        out["cards_per_10_fouls"] = (
+            round(10 * with_fouls["cards"].sum() / fouls, 2) if fouls else None
+        )
     return out
 
 

@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import pandas as pd
 
-from referees.config import season_label
+from referees.config import RED_CARD_COUNTS_AS, season_label
 from referees.stats import PRIOR_MATCHES, RED_POINTS, YELLOW_POINTS, _shrink, _wmean
 
 TEAM_LINES = [1.5, 2.5]
@@ -36,11 +36,16 @@ def team_long(df: pd.DataFrame) -> pd.DataFrame:
                 "venue": venue,
                 "yellows": df[f"{me}_yellows"],
                 "reds": df[f"{me}_reds"],
-                "opp_cards": df[f"{them}_yellows"] + df[f"{them}_reds"],
+                "opp_cards": df[f"{them}_yellows"]
+                + RED_CARD_COUNTS_AS * df[f"{them}_reds"],
                 "match_cards": df["cards"],
+                "fouls": pd.to_numeric(df.get(f"{me}_fouls"), errors="coerce"),
+                "fouls_suffered": pd.to_numeric(
+                    df.get(f"{them}_fouls"), errors="coerce"
+                ),
             }
         )
-        out["cards"] = out["yellows"] + out["reds"]
+        out["cards"] = out["yellows"] + RED_CARD_COUNTS_AS * out["reds"]
         out["booking_points"] = (
             YELLOW_POINTS * out["yellows"] + RED_POINTS * out["reds"]
         )
@@ -78,6 +83,16 @@ def basic(g: pd.DataFrame) -> dict:
         )
     out[_line_key("pct_match_over_", MATCH_LINE)] = _round(
         100 * (g["match_cards"] > MATCH_LINE).mean(), 1
+    )
+    # Fouls committed and suffered, and how often the team's fouls become cards
+    f = g[g["fouls"].notna()]
+    fouls = f["fouls"].sum() if len(f) else 0
+    out["fouls_per_match"] = _round(f["fouls"].mean(), 1) if len(f) else None
+    out["fouls_suffered_per_match"] = (
+        _round(f["fouls_suffered"].mean(), 1) if len(f) else None
+    )
+    out["cards_per_10_fouls"] = (
+        _round(10 * f["cards"].sum() / fouls, 2) if fouls else None
     )
     return out
 

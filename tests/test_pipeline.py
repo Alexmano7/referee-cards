@@ -449,3 +449,22 @@ def test_team_stats_and_fixture_split():
     )
     keys = {r["key"] for r in t["team_stats"]}
     assert {"PL|A|All seasons", "PL|A|2026/27", "PL|B|All seasons"} <= keys
+
+
+# --- fouls and home/away split -----------------------------------------------------
+
+
+def test_fouls_and_home_away_split():
+    rows = [dict(_match(2026, 1, 1, 3), home_fouls=10, away_fouls=15) for _ in range(4)]
+    df = stats.add_match_metrics(pd.DataFrame(rows), 2026)
+    b = stats._basic(df)
+    assert b["home_cards_per_match"] == 1 and b["away_cards_per_match"] == 3
+    assert b["away_share_pct"] == 75.0
+    assert b["fouls_per_match"] == 25.0
+    assert b["cards_per_10_fouls"] == 1.6  # 16 cards from 100 fouls
+    report = stats.build_report(
+        pd.DataFrame(rows), _empty_api(), pd.DataFrame(), today=date(2026, 11, 6)
+    )
+    away = next(t for t in report["teams"] if t["team"] == "B")["overall"]
+    assert away["fouls_per_match"] == 15.0 and away["fouls_suffered_per_match"] == 10.0
+    assert away["cards_per_10_fouls"] == 2.0  # 12 cards from 60 fouls
