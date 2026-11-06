@@ -153,6 +153,14 @@ def build_tables(
                 "projected_cards": fx["projected_cards"],
                 "projected_booking_points": fx["projected_booking_points"],
                 "basis": fx["basis"],
+                "projected_home_cards": fx.get("projected_home_cards"),
+                "projected_away_cards": fx.get("projected_away_cards"),
+                "home_cards_received": fx.get("home_cards_received"),
+                "away_cards_received": fx.get("away_cards_received"),
+                "referee_home_matches": fx.get("referee_home_matches", 0),
+                "referee_home_cards_per_match": fx.get("referee_home_cards_per_match"),
+                "referee_away_matches": fx.get("referee_away_matches", 0),
+                "referee_away_cards_per_match": fx.get("referee_away_cards_per_match"),
             }
         )
 
@@ -186,7 +194,32 @@ def build_tables(
         for k in [lg.key for lg in LEAGUES]
     ]
 
+    # --- team_stats (one row per team, league and season scope) ----------------------
+    team_rows = []
+    for t in report.get("teams", []):
+        scopes = [(ALL_SEASONS, t["overall"])] + [
+            (s["season"], s) for s in t["seasons"]
+        ]
+        for season, b in scopes:
+            team_rows.append(
+                {
+                    "key": f"{t['league']}|{t['team']}|{season}",
+                    "team": t["team"],
+                    "league": t["league"],
+                    "season": season,
+                    **{k: v for k, v in b.items() if k != "season"},
+                    "adjusted_cards_per_match": b.get("adjusted_cards_per_match"),
+                    "adjusted_home_cards_per_match": b.get(
+                        "adjusted_home_cards_per_match"
+                    ),
+                    "adjusted_away_cards_per_match": b.get(
+                        "adjusted_away_cards_per_match"
+                    ),
+                }
+            )
+
     return {
+        "team_stats": team_rows,
         "referee_stats": stats_rows,
         "league_summary": summary_rows,
         "league_bars": bars,

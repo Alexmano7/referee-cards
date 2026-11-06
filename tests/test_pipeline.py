@@ -407,3 +407,45 @@ def test_api_referee_wins_and_bad_rows_are_reported():
     assert len(problems) == 2
     assert any("no upcoming fixture" in p for p in problems)
     assert any("does not match exactly one" in p for p in problems)
+
+
+# --- team card statistics -----------------------------------------------------------
+
+
+def test_team_stats_and_fixture_split():
+    from referees.dashboard_export import build_tables
+
+    # Team A (home) always gets 3 cards, team B (away) 1. Referee 7 in every match.
+    rows = [_match(2026, 7, 3, 1, home="A", away="B") for _ in range(10)]
+    api = pd.DataFrame([_fixture(home="A", away="B", referee="Ref 7", referee_id=7)])
+    report = stats.build_report(
+        pd.DataFrame(rows), api, pd.DataFrame(), today=date(2026, 11, 6)
+    )
+    teams = {t["team"]: t["overall"] for t in report["teams"]}
+    assert (
+        teams["A"]["cards_per_match"] == 3
+        and teams["A"]["opponent_cards_per_match"] == 1
+    )
+    assert (
+        teams["B"]["away_cards_per_match"] == 1
+        and teams["B"]["home_cards_per_match"] is None
+    )
+    assert (
+        teams["A"]["pct_team_over_2_5"] == 100.0
+        and teams["B"]["pct_team_over_1_5"] == 0.0
+    )
+    fx = report["upcoming_fixtures"][0]
+    assert fx["projected_home_cards"] + fx["projected_away_cards"] == pytest.approx(
+        fx["projected_cards"], abs=0.011
+    )
+    assert (
+        fx["projected_home_cards"] > fx["projected_away_cards"]
+    )  # A gets more cards at home
+    assert fx["referee_home_matches"] == 10 and fx["referee_home_cards_per_match"] == 3
+    t = build_tables(
+        pd.DataFrame(rows).astype({c: "Int64" for c in stats.CARD_COUNT_COLUMNS}),
+        report,
+        today=date(2026, 11, 6),
+    )
+    keys = {r["key"] for r in t["team_stats"]}
+    assert {"PL|A|All seasons", "PL|A|2026/27", "PL|B|All seasons"} <= keys

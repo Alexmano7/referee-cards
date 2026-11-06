@@ -278,6 +278,18 @@ def build_report(
     )
     factors = team_factors(df, league_avg)
     all_projected = project_fixtures(future, rates, league_avg, factors)
+    # Team card statistics, and each fixture's projection split between the two teams.
+    from referees.team_stats import (
+        enrich_fixtures,
+        league_team_averages,
+        team_long,
+        team_report,
+    )
+
+    long = team_long(df)
+    team_avgs = league_team_averages(long)
+    enrich_fixtures(all_projected, long, team_avgs)
+    teams = team_report(long, team_avgs)
     horizon = str(today + timedelta(days=UPCOMING_DAYS))
     upcoming = [f for f in all_projected if f["date"] <= horizon]
 
@@ -314,6 +326,7 @@ def build_report(
         "method": METHOD_NOTES,
         "leagues": leagues,
         "referees": referees,
+        "teams": teams,
         "upcoming_fixtures": upcoming,
         "data_quality": {
             "joined_matches": len(joined),
