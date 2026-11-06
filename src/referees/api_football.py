@@ -92,7 +92,7 @@ def probe(season: int) -> list[str]:
         cards = [
             f"{b['id']}: {b['name']}"
             for b in bets
-            if any(w in b["name"].lower() for w in CARD_WORDS)
+            if any(w in (b.get("name") or "").lower() for w in CARD_WORDS)
         ]
         lines.append(
             f"Bet types: {len(bets)} in total; card markets: "
