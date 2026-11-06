@@ -26,6 +26,10 @@
   .rc-note { margin: var(--cds-gap-xs) 0 var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
   .rc .rc-note b { font-weight: 600; color: var(--color-fg); }
   .rc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: var(--cds-gap-md); }
+  /* League chart narrow, fixtures wide; stacked when the page is narrow. */
+  .rc { container: rc / inline-size; }
+  .rc-grid-fx { grid-template-columns: minmax(15rem, 1fr) minmax(0, 2.6fr); align-items: start; }
+  @container rc (max-width: 52rem) { .rc-grid-fx { grid-template-columns: minmax(0, 1fr); } }
   .rc-scroll { overflow: auto; max-height: 36rem; }
   .rc-scroll-sm { max-height: 22rem; }
   .rc-table { border-collapse: collapse; width: 100%; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
@@ -140,7 +144,7 @@
     </div>
   </section>
 
-  <section class="rc-grid">
+  <section class="rc-grid rc-grid-fx">
     <div class="rc-card" id="league-compare">
       <h2>Cards per match by league</h2>
       <p class="rc-note">Same season filter as above. The selected league is highlighted.</p>
