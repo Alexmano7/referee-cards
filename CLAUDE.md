@@ -128,12 +128,16 @@ that leaves the machine (pushing to GitHub especially).
 - `settle()` marks bets won/lost once the match is in the joined data. The dashboard shows them with totals
   (calc `bets_summary`).
 
-## API-Football (pending the user's free key)
-- `api_football.py` and **`uv run referees api-football-probe`** (about 8 of the 100 daily requests) report
-  the plan, seasons and coverage per league, the referee field on upcoming fixtures, and card bet types.
-- The key goes in `.env` as `API_FOOTBALL_KEY` (template in `.env.example`). The user registers themselves.
-  Next step once it's there: run the probe, then decide what to integrate (card events for exact
-  settlement, early referees, card odds).
+## API-Football: free key added, staying on the free plan (decided 2026-11-07)
+- `api_football.py` and **`uv run referees api-football-probe`** (a few of the 100 daily requests)
+  report the plan, seasons and coverage per league, the referee field on upcoming fixtures, and card
+  bet types. The key is in `.env` as `API_FOOTBALL_KEY` (never print it).
+- Probe result: **the free plan has no access to the current season** ("try from 2022 to 2024"), so it
+  gives no upcoming fixtures, referees, card events or odds for now. Paid plans offer 21 card markets
+  (e.g. 80 Cards Over/Under, 82/83 Home/Away Team Total Cards, 252 Both Teams to Receive a Card).
+- **Decision:** stay free. Odds are entered by hand in the dashboard's odds check, and bets go in the
+  bet log. Revisit a one-month paid test only if the logged bets suggest the model finds value. Don't
+  integrate API-Football data unless the user asks again.
 
 ## Sofascore / datafc: tried and rejected (2026-11-06)
 - The user asked for Sofascore via the `datafc` package as a referee source. A throwaway trial
