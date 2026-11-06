@@ -39,8 +39,8 @@ METHOD_NOTES = {
     "season_decay": SEASON_DECAY,
     "prior_matches": PRIOR_MATCHES,
     "card_lines": CARD_LINES,
-    "projection": "referee adjusted rate x average of the two teams' card factors "
-    "(team factor = team's adjusted cards-per-match / league average)",
+    "projection": "probability model (model.py): league x referee x team x opponent factors "
+    "fitted together, negative binomial probabilities; settings tuned by `referees backtest`",
     "england_second_yellow": "football-data.co.uk: in English files a second-yellow dismissal "
     "counts as 1 red only; in Spain/Germany/France it counts as 1 yellow "
     "+ 1 red. Compare Premier League numbers with care across leagues.",
@@ -243,6 +243,64 @@ def project_fixtures(
     return fixtures
 
 
+def apply_model(fixtures: list[dict], df: pd.DataFrame, today: date, league_avg: dict):
+    """Replace each fixture's projection with the probability model's (in place).
+
+    The model (model.py) estimates referee, team and opponent effects together and gives
+    probabilities for the card lines. Settings come from config/model_params.json (tuned by
+    `referees backtest`).
+    """
+    from referees.model import TEAM_LINES, fit, load_params, side_observations
+
+    model = fit(side_observations(df), as_of=today + timedelta(days=1), **load_params())
+    for f in fixtures:
+        p = model.predict(f["league"], f["home"], f["away"], f.get("referee_id"))
+        mu = p["expected_cards"]
+        avg = league_avg.get(f["league"], {"cards": 1.0, "booking_points": 10.0})
+        f["projected_cards"] = round(mu, 2)
+        f["projected_home_cards"] = round(p["expected_home_cards"], 2)
+        f["projected_away_cards"] = round(p["expected_away_cards"], 2)
+        f["projected_booking_points"] = round(
+            mu * avg["booking_points"] / avg["cards"], 1
+        )
+        for line in CARD_LINES:
+            k = str(line).replace(".", "_")
+            prob = p[f"prob_over_{k}"]
+            f[f"prob_over_{k}"] = round(100 * prob, 1)
+            f[f"fair_over_{k}"] = round(1 / prob, 2) if prob > 0.001 else None
+            f[f"fair_under_{k}"] = round(1 / (1 - prob), 2) if prob < 0.999 else None
+        for side in ("home", "away"):
+            for line in TEAM_LINES:
+                k = str(line).replace(".", "_")
+                f[f"{side}_prob_over_{k}"] = round(100 * p[f"{side}_prob_over_{k}"], 1)
+        f["distribution"] = [round(x, 4) for x in p["distribution"][:11]] + [
+            round(sum(p["distribution"][11:]), 4)
+        ]
+        ref_id = f.get("referee_id")
+        f["referee_factor"] = (
+            round(model.referee.get(int(ref_id), 1.0), 3) if ref_id else None
+        )
+        f["home_receives_factor"] = round(
+            model.receives.get((f["league"], f["home"]), 1.0), 3
+        )
+        f["away_receives_factor"] = round(
+            model.receives.get((f["league"], f["away"]), 1.0), 3
+        )
+        f["home_draws_factor"] = round(
+            model.draws.get((f["league"], f["home"]), 1.0), 3
+        )
+        f["away_draws_factor"] = round(
+            model.draws.get((f["league"], f["away"]), 1.0), 3
+        )
+        if f["basis"] == "referee":
+            f["basis"] = "model: referee, both teams and league"
+        elif f.get("referee"):
+            f["basis"] = "model: both teams and league (referee has no history)"
+        else:
+            f["basis"] = "model: both teams and league (referee not appointed yet)"
+    return model
+
+
 def build_report(
     joined: pd.DataFrame,
     api: pd.DataFrame,
@@ -319,6 +377,16 @@ def build_report(
     team_avgs = league_team_averages(long)
     enrich_fixtures(all_projected, long, team_avgs)
     teams = team_report(long, team_avgs)
+    model = apply_model(all_projected, df, today, league_avg)
+    for r in referees:
+        r["overall"]["model_factor"] = round(model.referee.get(r["id"], 1.0), 3)
+    for t in teams:
+        t["overall"]["model_receives_factor"] = round(
+            model.receives.get((t["league"], t["team"]), 1.0), 3
+        )
+        t["overall"]["model_draws_factor"] = round(
+            model.draws.get((t["league"], t["team"]), 1.0), 3
+        )
     horizon = str(today + timedelta(days=UPCOMING_DAYS))
     upcoming = [f for f in all_projected if f["date"] <= horizon]
 

@@ -6,6 +6,7 @@ Commands:
   check            join the data, show 10 joined matches and list failed joins
   build            write data/matches.csv, data/unmatched.csv and data/referees.json
   update           fetch + build
+  backtest         test the card model on past weeks, tune its settings (docs/backtest.md)
   upcoming         list fixtures in the next 14 days and which still lack a referee
   export-dashboard build the dashboard tables (with looked-up referees) into
                    data/dashboard/ (run `fetch` first)
@@ -190,6 +191,20 @@ def cmd_upcoming() -> None:
     )
 
 
+def cmd_backtest() -> None:
+    """Walk-forward backtest, tune the model settings, write docs/backtest.md."""
+    from referees import backtest
+
+    api, csv = _load()
+    if api.empty or csv.empty:
+        raise SystemExit("No downloaded data found. Run `uv run referees fetch` first.")
+    joined, _ = join_matches(api, csv, load_mapping())
+    results = backtest.run(joined)
+    backtest.save(results)
+    print()
+    print(backtest.render_markdown(results))
+
+
 def main() -> None:
     # Show accents (Atlético, Köln) correctly even in older Windows terminals.
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -208,6 +223,7 @@ def main() -> None:
             "update",
             "export-dashboard",
             "upcoming",
+            "backtest",
         ],
     )
     args = parser.parse_args()
@@ -223,6 +239,8 @@ def main() -> None:
         cmd_export_dashboard()
     elif args.command == "upcoming":
         cmd_upcoming()
+    elif args.command == "backtest":
+        cmd_backtest()
     else:
         cmd_fetch()
         cmd_build()

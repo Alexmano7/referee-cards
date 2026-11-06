@@ -225,7 +225,7 @@ def test_projection_for_upcoming_fixture():
     assert fixture["projected_cards"] == pytest.approx(
         4.0
     )  # everything is exactly average here
-    assert fixture["basis"] == "referee"
+    assert fixture["basis"] == "model: referee, both teams and league"
     assert report["referees"][0]["next_fixture"]["home"] == "A"
 
 
@@ -361,7 +361,7 @@ def test_looked_up_referee_drives_projection():
     )
     fx = report["upcoming_fixtures"][0]
     assert fx["referee_id"] == 8 and fx["referee"] == "Ref 8"
-    assert fx["basis"] == "referee"
+    assert fx["basis"] == "model: referee, both teams and league"
     assert fx["referee_source"] == "example.org"
     assert (
         fx["projected_cards"] < 5
@@ -402,7 +402,9 @@ def test_api_referee_wins_and_bad_rows_are_reported():
         and by_home["A"]["referee_source"] == "football-data.org"
     )
     assert by_home["C"]["referee"] == "Nobody Known"
-    assert by_home["C"]["basis"] == "league average (referee has no history)"
+    assert (
+        by_home["C"]["basis"] == "model: both teams and league (referee has no history)"
+    )
     problems = report["data_quality"]["appointment_problems"]
     assert len(problems) == 2
     assert any("no upcoming fixture" in p for p in problems)
@@ -468,3 +470,69 @@ def test_fouls_and_home_away_split():
     away = next(t for t in report["teams"] if t["team"] == "B")["overall"]
     assert away["fouls_per_match"] == 15.0 and away["fouls_suffered_per_match"] == 10.0
     assert away["cards_per_10_fouls"] == 2.0  # 12 cards from 60 fouls
+
+
+# --- probability model ---------------------------------------------------------------
+
+
+def test_negative_binomial_distribution():
+    from referees.model import nb_pmf_array, prob_over
+
+    for phi in (0.0, 0.1):
+        d = nb_pmf_array(4.0, phi, 30)
+        assert sum(d) == pytest.approx(1.0, abs=1e-9)
+        mean = sum(k * p for k, p in enumerate(d[:-1]))
+        assert mean == pytest.approx(4.0, abs=0.01)
+    poisson, wider = nb_pmf_array(4.0, 0.0, 30), nb_pmf_array(4.0, 0.2, 30)
+    assert prob_over(wider, 7.5) > prob_over(
+        poisson, 7.5
+    )  # over-dispersion fattens the tail
+    assert prob_over([0.5, 0.5, 0.0], 0.5) == pytest.approx(0.5)
+
+
+def test_model_recovers_strict_referee_and_card_prone_team():
+    import numpy as np
+
+    from referees.model import fit, side_observations
+
+    rng = np.random.default_rng(1)
+    teams = ["A", "B", "C", "D", "E", "F"]
+    true_recv = {"A": 1.6, "B": 1.0, "C": 1.0, "D": 1.0, "E": 1.0, "F": 0.7}
+    true_ref = {1: 1.5, 2: 1.0, 3: 0.7}
+    rows = []
+    for i in range(1500):
+        h, a = rng.choice(teams, 2, replace=False)
+        ref = int(rng.choice([1, 2, 3]))
+        hc = rng.poisson(1.9 * true_ref[ref] * true_recv[h])
+        ac = rng.poisson(2.1 * true_ref[ref] * true_recv[a])
+        rows.append(
+            {
+                "league": "PL",
+                "date": date(2025, 1, 1) + pd.Timedelta(days=i % 300),
+                "referee_id": ref,
+                "api_home": h,
+                "api_away": a,
+                "home_cards": hc,
+                "away_cards": ac,
+            }
+        )
+    df = pd.DataFrame(rows)
+    m = fit(
+        side_observations(df),
+        as_of=date(2026, 1, 1),
+        half_life_days=10_000,
+        k_referee=5,
+        k_team=5,
+    )
+    assert m.referee[1] / m.referee[3] == pytest.approx(1.5 / 0.7, rel=0.08)
+    assert m.receives[("PL", "A")] / m.receives[("PL", "F")] == pytest.approx(
+        1.6 / 0.7, rel=0.08
+    )
+    strict = m.predict("PL", "A", "B", referee_id=1)
+    lenient = m.predict("PL", "F", "B", referee_id=3)
+    assert strict["expected_cards"] > lenient["expected_cards"]
+    assert strict["prob_over_4_5"] > lenient["prob_over_4_5"]
+    assert strict["expected_home_cards"] + strict[
+        "expected_away_cards"
+    ] == pytest.approx(strict["expected_cards"])
+    assert sum(strict["distribution"]) == pytest.approx(1.0)
