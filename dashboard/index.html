@@ -39,14 +39,23 @@
   .rc-table :is(th, td).l, .rc-left :is(th, td):nth-child(-n+2), .rc-fx :is(th, td):nth-child(-n+6), .rc-checks :is(th, td):first-child { text-align: left; }
   .rc-refs :is(th, td):first-child { position: sticky; left: 0; background: var(--color-panel); }
   .rc-refs th:first-child { z-index: 2; }
-  .rc-refs tbody tr { cursor: pointer; }
-  .rc-refs tbody tr:hover td, .rc-refs tbody tr.is-picked td { background: var(--color-bg); }
-  .rc-refs tbody tr.is-picked td:first-child { font-weight: 600; }
+  .rc-refs tbody tr, .rc-fx tbody tr { cursor: pointer; }
+  :is(.rc-refs, .rc-fx) tbody tr:is(:hover, .is-picked) td { background: var(--color-bg); }
+  .rc-refs tbody tr.is-picked td:first-child, .rc-fx tbody tr.is-picked td:nth-child(3) { font-weight: 600; }
+  .rc-fx tbody tr:focus-visible { outline: 2px solid var(--color-fg); outline-offset: -2px; }
   .rc-refs.no-adj :is(th, td):is(:nth-child(7), :nth-child(9)) { display: none; }
+  .rc-teams :is(th, td):first-child { position: sticky; left: 0; background: var(--color-panel); text-align: left; }
+  .rc-teams th:first-child { z-index: 2; }
+  .rc-teams :is(th, td):nth-child(2), .rc-compare :is(th, td):first-child { text-align: left; }
+  .rc-teams.no-adj :is(th, td):nth-child(7) { display: none; }
+  .rc-card-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: var(--cds-gap-md); }
+  .rc-card-head .rc-search { width: 11rem; }
   .rc-checks td { white-space: normal; }
   @container (max-width: 44rem) {
     .rc-refs :is(th, td):is(:nth-child(2), :nth-child(4), :nth-child(5), :nth-child(8), :nth-child(9), :nth-child(10), :nth-child(12), :nth-child(13)) { display: none; }
-    .rc-fx :is(th, td):is(:nth-child(2), :nth-child(6), :nth-child(8)) { display: none; }
+    .rc-fx :is(th, td):is(:nth-child(2), :nth-child(6), :nth-child(8), :nth-child(9), :nth-child(10)) { display: none; }
+    .rc-teams :is(th, td):is(:nth-child(2), :nth-child(4), :nth-child(5), :nth-child(8), :nth-child(9), :nth-child(10), :nth-child(11), :nth-child(13), :nth-child(14), :nth-child(15)) { display: none; }
+    .rc-compare :is(th, td):is(:nth-child(5), :nth-child(6), :nth-child(7)) { display: none; }
   }
   .rc-detail-head { display: flex; justify-content: space-between; align-items: center; gap: var(--cds-gap-md); }
   .rc-close { font: inherit; font-size: var(--cds-font-size-caption); padding: var(--cds-pad-xs) var(--cds-pad-sm); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-panel); color: var(--color-fg); cursor: pointer; }
@@ -150,12 +159,39 @@
             <th data-field="referee">Referee</th>
             <th data-field="referee_source">Source</th>
             <th data-field="projected_cards">Proj. cards</th>
+            <th data-field="projected_home_cards">Home side</th>
+            <th data-field="projected_away_cards">Away side</th>
             <th data-field="projected_booking_points">Proj. points</th>
           </tr></thead>
           <tbody data-draw="fx-rows"></tbody>
         </table>
       </div>
       <p class="rc-note rc-fx-empty" hidden>No fixtures in the next 14 days.</p>
+    </div>
+  </section>
+
+  <section class="rc-card" id="fixture-detail" hidden>
+    <div class="rc-detail-head">
+      <h2><span data-draw="fd-home" data-source="fixtures" data-field="home">—</span> v <span data-draw="fd-away" data-source="fixtures" data-field="away">—</span></h2>
+      <button class="rc-close rc-fd-close" type="button">Close</button>
+    </div>
+    <p class="rc-note">Kick-off <span data-draw="fd-kickoff" data-source="fixtures" data-field="kickoff">—</span> (Athens time). Referee: <b data-draw="fd-ref" data-source="fixtures" data-field="referee">—</b>. Projected cards: <b data-draw="fd-proj" data-source="fixtures" data-field="projected_cards">—</b> in total, <b data-draw="fd-proj-home" data-source="fixtures" data-field="projected_home_cards">—</b> for the home side and <b data-draw="fd-proj-away" data-source="fixtures" data-field="projected_away_cards">—</b> for the away side.</p>
+    <p class="rc-note rc-fd-hist">With this referee, the home side has played <b data-draw="fd-rh-n" data-source="fixtures" data-field="referee_home_matches">—</b> matches (<b data-draw="fd-rh-c" data-source="fixtures" data-field="referee_home_cards_per_match">—</b> cards per match for them) and the away side <b data-draw="fd-ra-n" data-source="fixtures" data-field="referee_away_matches">—</b> (<b data-draw="fd-ra-c" data-source="fixtures" data-field="referee_away_cards_per_match">—</b>). Small samples: read with care.</p>
+    <div class="rc-scroll rc-scroll-sm">
+      <table class="rc-table rc-compare" data-source="team_stats" data-row-key="key">
+        <thead><tr>
+          <th data-field="team">Team (all seasons)</th>
+          <th data-field="matches">Matches</th>
+          <th data-field="cards_per_match">Cards received / match</th>
+          <th data-field="adjusted_cards_per_match">Adjusted</th>
+          <th data-field="home_cards_per_match">At home</th>
+          <th data-field="away_cards_per_match">Away</th>
+          <th data-field="opponent_cards_per_match">Opponents' cards</th>
+          <th data-field="pct_team_over_1_5">Over 1.5</th>
+          <th data-field="pct_team_over_2_5">Over 2.5</th>
+        </tr></thead>
+        <tbody data-draw="fd-compare"></tbody>
+      </table>
     </div>
   </section>
 
@@ -209,6 +245,39 @@
     <p class="rc-note rc-refs-empty" hidden>No referees match these filters. Try a lower minimum or clear the search.</p>
   </section>
 
+  <section class="rc-card" id="teams">
+    <div class="rc-card-head">
+      <h2>Teams</h2>
+      <label class="rc-tile-label" for="rc-team-search">Find a team
+        <input class="rc-search" id="rc-team-search" type="search" placeholder="Name" autocomplete="off">
+      </label>
+    </div>
+    <p class="rc-note">Cards each team receives per match, with the same league, season and minimum-match filters as above. "Opponents' cards" are the cards their opponents receive; "Over 1.5 / 2.5" is the share of matches where the team itself got 2+ / 3+ cards. <span class="rc-adj-note">"Adjusted" counts recent seasons more and evens out small samples.</span></p>
+    <div class="rc-scroll">
+      <table class="rc-table rc-teams" data-source="team_stats" data-row-key="key">
+        <thead><tr>
+          <th data-field="team"><button type="button" data-tsort="team">Team</button></th>
+          <th data-field="league"><button type="button" data-tsort="league">League</button></th>
+          <th data-field="matches"><button type="button" data-tsort="matches">Matches</button></th>
+          <th data-field="yellows_per_match"><button type="button" data-tsort="yellows_per_match">Yellows / match</button></th>
+          <th data-field="reds_per_match"><button type="button" data-tsort="reds_per_match">Reds / match</button></th>
+          <th data-field="cards_per_match"><button type="button" data-tsort="cards_per_match">Cards / match</button></th>
+          <th data-field="adjusted_cards_per_match"><button type="button" data-tsort="adjusted_cards_per_match">Adjusted</button></th>
+          <th data-field="home_cards_per_match"><button type="button" data-tsort="home_cards_per_match">At home</button></th>
+          <th data-field="away_cards_per_match"><button type="button" data-tsort="away_cards_per_match">Away</button></th>
+          <th data-field="opponent_cards_per_match"><button type="button" data-tsort="opponent_cards_per_match">Opponents' cards</button></th>
+          <th data-field="match_cards_per_match"><button type="button" data-tsort="match_cards_per_match">Match total</button></th>
+          <th data-field="pct_team_over_1_5"><button type="button" data-tsort="pct_team_over_1_5">Over 1.5</button></th>
+          <th data-field="pct_team_over_2_5"><button type="button" data-tsort="pct_team_over_2_5">Over 2.5</button></th>
+          <th data-field="pct_match_over_4_5"><button type="button" data-tsort="pct_match_over_4_5">Match over 4.5</button></th>
+          <th data-field="booking_points_per_match"><button type="button" data-tsort="booking_points_per_match">Points / match</button></th>
+        </tr></thead>
+        <tbody data-draw="team-rows"></tbody>
+      </table>
+    </div>
+    <p class="rc-note rc-teams-empty" hidden>No teams match these filters.</p>
+  </section>
+
   <details class="rc-card rc-notes" id="notes">
     <summary>How the numbers work, and data checks</summary>
     <dl>
@@ -236,9 +305,23 @@
     sortKey: 'adjusted_cards_per_match',
     sortDir: -1,
     search: '',
+    tSortKey: 'adjusted_cards_per_match',
+    tSortDir: -1,
+    tSearch: '',
+    // Sort rows by a column: text alphabetically, numbers with blanks last.
+    sortRows(rows, key, dir) {
+      return rows.sort((a, b) => {
+        const x = a[key], y = b[key];
+        if (typeof x === 'string' || typeof y === 'string') return dir * String(x ?? '').localeCompare(String(y ?? ''));
+        return dir * ((x ?? -Infinity) - (y ?? -Infinity));
+      });
+    },
+    teamRows(rows, p) {
+      return rows.filter((r) => (p.league === 'ALL' || r.league === p.league) && r.season === p.season && r.matches >= p.minm);
+    },
     p() {
       const p = dash.params();
-      return { league: p.league || 'ALL', season: p.season || 'All seasons', minm: Number(p.minm ?? 5), ref: p.ref ? String(p.ref) : null };
+      return { league: p.league || 'ALL', season: p.season || 'All seasons', minm: Number(p.minm ?? 5), ref: p.ref ? String(p.ref) : null, fx: p.fx ? String(p.fx) : null };
     },
     where: (key) => 'key=' + enc(key),
     f2: (v) => (v == null ? '' : Number(v).toFixed(2)),
@@ -315,9 +398,44 @@
     t.addEventListener('click', (e) => pick(e.target.closest('tr[data-key]')));
     t.addEventListener('keydown', (e) => { if (e.key === 'Enter') pick(e.target.closest('tr[data-key]')); });
   }
-  for (const c of document.querySelectorAll('.rc-close')) {
+  for (const c of document.querySelectorAll('#referee-detail .rc-close')) {
     c.addEventListener('click', () => dash.setParams({ ref: null }));
   }
+  for (const c of document.querySelectorAll('.rc-fd-close')) {
+    c.addEventListener('click', () => dash.setParams({ fx: null }));
+  }
+  const pickFx = (tr) => {
+    if (!tr) return;
+    dash.setParams({ fx: tr.dataset.key });
+    requestAnimationFrame(() => {
+      for (const d of document.querySelectorAll('#fixture-detail')) d.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    });
+  };
+  for (const t of document.querySelectorAll('.rc-fx tbody')) {
+    t.addEventListener('click', (e) => pickFx(e.target.closest('tr[data-key]')));
+    t.addEventListener('keydown', (e) => { if (e.key === 'Enter') pickFx(e.target.closest('tr[data-key]')); });
+  }
+  for (const i of document.querySelectorAll('#rc-team-search')) {
+    i.addEventListener('input', () => { rc.tSearch = i.value; dash.draw('team-rows'); });
+  }
+  const showTSort = () => {
+    for (const th of document.querySelectorAll('.rc-teams th')) {
+      const btn = th.querySelector('button');
+      if (btn && btn.dataset.tsort === rc.tSortKey) th.setAttribute('aria-sort', rc.tSortDir < 0 ? 'descending' : 'ascending');
+      else th.removeAttribute('aria-sort');
+    }
+  };
+  for (const btn of document.querySelectorAll('.rc-teams th button')) {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.tsort;
+      const text = ['team', 'league'].includes(key);
+      rc.tSortDir = rc.tSortKey === key ? -rc.tSortDir : (text ? 1 : -1);
+      rc.tSortKey = key;
+      showTSort();
+      dash.draw('team-rows');
+    });
+  }
+  showTSort();
 
   // Show and hide parts of the page for the current filters.
   dash.onData(() => {
@@ -334,6 +452,18 @@
     for (const t of document.querySelectorAll('.rc-refs')) t.classList.toggle('no-adj', !all);
     for (const el of document.querySelectorAll('[data-show]')) el.hidden = !el.dataset.show.split(' ').includes(p.league);
     for (const d of document.querySelectorAll('#referee-detail')) d.hidden = !p.ref;
+    for (const d of document.querySelectorAll('#fixture-detail')) d.hidden = !p.fx;
+    for (const t of document.querySelectorAll('.rc-teams')) t.classList.toggle('no-adj', !all);
+    const fxAll = dash.data('fixtures');
+    if (fxAll.status === 'ok' && p.fx) {
+      const f = fxAll.data.find((x) => x.key === p.fx);
+      for (const el of document.querySelectorAll('.rc-fd-hist')) el.hidden = !f || f.referee === 'TBD';
+    }
+    const ts = dash.data('team_stats');
+    if (ts.status === 'ok') {
+      const n = rc.teamRows(ts.data, p).length;
+      for (const el of document.querySelectorAll('.rc-teams-empty')) el.hidden = n > 0;
+    }
     const fx = dash.data('fixtures');
     if (fx.status === 'ok') {
       const n = fx.data.filter((f) => p.league === 'ALL' || f.league === p.league).length;
@@ -464,7 +594,10 @@
     tbody.replaceChildren(...d.data.filter((f) => p.league === 'ALL' || f.league === p.league).map((f) => {
       const tr = document.createElement('tr');
       tr.dataset.key = f.key;
-      for (const v of [f.kickoff, f.league, f.home, f.away, f.referee, f.referee_source, rc.f2(f.projected_cards), rc.f1(f.projected_booking_points)]) rc.cell(tr, v);
+      tr.tabIndex = 0;
+      if (f.key === rc.p().fx) tr.classList.add('is-picked');
+      for (const v of [f.kickoff, f.league, f.home, f.away, f.referee, f.referee_source, rc.f2(f.projected_cards),
+        rc.f2(f.projected_home_cards), rc.f2(f.projected_away_cards), rc.f1(f.projected_booking_points)]) rc.cell(tr, v);
       return tr;
     }));
   });
@@ -485,6 +618,68 @@
       tr.dataset.key = r.check;
       rc.cell(tr, r.check);
       rc.cell(tr, rc.int(r.value));
+      return tr;
+    }));
+  });
+</script>
+
+<script>
+  // Teams table and the picked fixture's match card.
+  dash.draw('team-rows', (tbody) => {
+    const d = dash.data('team_stats');
+    if (d.status !== 'ok') { tbody.replaceChildren(); return; }
+    const p = rc.p();
+    let key = rc.tSortKey;
+    if (!rc.allSeasons(p) && key === 'adjusted_cards_per_match') key = 'cards_per_match';
+    const q = rc.tSearch.trim().toLowerCase();
+    const rows = rc.sortRows(rc.teamRows(d.data, p).filter((r) => !q || r.team.toLowerCase().includes(q)), key, rc.tSortDir);
+    tbody.replaceChildren(...rows.map((r) => {
+      const tr = document.createElement('tr');
+      tr.dataset.key = r.key;
+      for (const v of [r.team, r.league, rc.int(r.matches), rc.f2(r.yellows_per_match), rc.f2(r.reds_per_match),
+        rc.f2(r.cards_per_match), rc.f2(r.adjusted_cards_per_match), rc.f2(r.home_cards_per_match),
+        rc.f2(r.away_cards_per_match), rc.f2(r.opponent_cards_per_match), rc.f2(r.match_cards_per_match),
+        rc.pct(r.pct_team_over_1_5), rc.pct(r.pct_team_over_2_5), rc.pct(r.pct_match_over_4_5),
+        rc.f1(r.booking_points_per_match)]) rc.cell(tr, v);
+      return tr;
+    }));
+  });
+
+  const pickedFixture = () => {
+    const d = dash.data('fixtures');
+    const p = rc.p();
+    return d.status === 'ok' && p.fx ? d.data.find((f) => f.key === p.fx) || null : null;
+  };
+  const fdText = (field, fmt) => (el) => {
+    const f = pickedFixture();
+    if (!f) { el.textContent = '—'; return; }
+    el.dataset.where = rc.where(f.key);
+    el.textContent = fmt ? fmt(f[field]) : f[field];
+  };
+  dash.draw('fd-home', fdText('home'));
+  dash.draw('fd-away', fdText('away'));
+  dash.draw('fd-kickoff', fdText('kickoff'));
+  dash.draw('fd-ref', fdText('referee'));
+  dash.draw('fd-proj', fdText('projected_cards', rc.f2));
+  dash.draw('fd-proj-home', fdText('projected_home_cards', rc.f2));
+  dash.draw('fd-proj-away', fdText('projected_away_cards', rc.f2));
+  dash.draw('fd-rh-n', fdText('referee_home_matches', rc.int));
+  dash.draw('fd-rh-c', fdText('referee_home_cards_per_match', rc.f2));
+  dash.draw('fd-ra-n', fdText('referee_away_matches', rc.int));
+  dash.draw('fd-ra-c', fdText('referee_away_cards_per_match', rc.f2));
+  dash.draw('fd-compare', (tbody) => {
+    const f = pickedFixture();
+    const d = dash.data('team_stats');
+    if (!f || d.status !== 'ok') { tbody.replaceChildren(); return; }
+    const rows = [f.home, f.away]
+      .map((team) => d.data.find((r) => r.key === `${f.league}|${team}|All seasons`))
+      .filter(Boolean);
+    tbody.replaceChildren(...rows.map((r) => {
+      const tr = document.createElement('tr');
+      tr.dataset.key = r.key;
+      for (const v of [r.team, rc.int(r.matches), rc.f2(r.cards_per_match), rc.f2(r.adjusted_cards_per_match),
+        rc.f2(r.home_cards_per_match), rc.f2(r.away_cards_per_match), rc.f2(r.opponent_cards_per_match),
+        rc.pct(r.pct_team_over_1_5), rc.pct(r.pct_team_over_2_5)]) rc.cell(tr, v);
       return tr;
     }));
   });

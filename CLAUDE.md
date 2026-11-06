@@ -76,6 +76,28 @@ that leaves the machine (pushing to GitHub especially).
   league average is used instead. The panel covers the next 14 days. `next_fixture` is the referee's
   next appointed match on any date.
 
+## Team stats (`team_stats.py`, added 2026-11-06)
+- `team_long`: two rows per match (one per side) with the team's own yellows/reds/cards/booking
+  points, the opponent's cards and the match total. All teams' cards add up to all match cards
+  (checked: 12,952).
+- Per team, league and season: cards received, yellows, reds, booking points, opponents' cards and
+  match total per match, home/away cards per match, % of matches where the team got over 1.5 / 2.5,
+  and % of its matches over 4.5 in total. Adjusted rates use the same recency + shrinkage as referees,
+  toward the league's average cards per team (overall, at home, away).
+- Fixture split: the match projection is shared in proportion to the home team's adjusted home rate
+  and the away team's adjusted away rate, so `projected_home_cards + projected_away_cards =
+  projected_cards`. Fixtures also carry `referee_home/away_matches` and `..._cards_per_match`
+  (the referee's history with each team, which is often a small sample).
+- `referees.json` has a `teams` section, and the dashboard has a `team_stats` table (key
+  `league|team|season`).
+
+## Sofascore / datafc: tried and rejected (2026-11-06)
+- The user asked for Sofascore via the `datafc` package as a referee source. A throwaway trial
+  (`uv run --no-project --with datafc`, not added to the project) got **HTTP 403 for every
+  Sofascore URL, including the home page**. Sofascore blocks automated access, and opening it in the
+  browser was refused as bot-check circumvention. **Do not retry or work around it.** Official
+  appointment pages (see the refresh procedure) remain the referee source.
+
 ## Stack and why
 - **Python 3.13** via **uv** (one tool for Python, the virtual environment and dependencies).
 - `requests`, `python-dotenv`, `pandas`. Dev: `pytest`, `ruff`.
@@ -101,6 +123,7 @@ Referees/
 │  ├─ join.py        # link API matches to CSV rows, unmatched report
 │  ├─ stats.py       # referee stats, adjustments, projections, referees.json content
 │  ├─ appointments.py    # looked-up referees: load, match names, apply to fixtures
+│  ├─ team_stats.py      # card statistics per team, fixture split between teams
 │  ├─ dashboard_export.py # flat row tables for the dashboard
 │  └─ cli.py         # `referees` command
 ├─ data/raw/{api,csv}/          # downloads (git-ignored)
@@ -153,11 +176,12 @@ Referees/
   (document `{text, edit}`). Written to the type's one-writer rules: text in the HTML, data in
   `data-draw` drawings, and every number marked with `data-source`. Each `<script>` has its own
   scope, so share helpers via `window.rc`.
-- Data: `uv run referees export-dashboard` writes 5 row tables to `data/dashboard/` (git-ignored):
+- Data: `uv run referees export-dashboard` writes 6 row tables to `data/dashboard/` (git-ignored):
+  `team_stats` (key `league|team|season`; a Teams section and the match card read it),
   `referee_stats` (key `referee_id|league|season`, league `ALL` or a code, season `All seasons` or
   `2026/27`), `league_summary`, `league_bars`, `fixtures`, `data_checks`. Each is an uploaded asset
   referenced by `datasets/<same id>`. The page also defines a calc `fx_counts`.
-- Filters are dash params (`league`, `season`, `minm`, `ref`); no query uses them.
+- Filters are dash params (`league`, `season`, `minm`, `ref`, `fx` = the picked fixture); no query uses them.
 - **"Refresh my referee dashboard" procedure:**
   1. `git pull`, then `uv run referees fetch` (~1.5 min; downloads to the git-ignored `data/raw/`).
   2. **Referee lookup** (the user chose this, option 2): `uv run referees upcoming` lists the next
@@ -175,7 +199,7 @@ Referees/
      they're history, and the API's own referee wins once it appears.
   3. `uv run referees export-dashboard`. It builds in memory from `data/raw` and never touches the
      bot's `data/*` files. It prints "Referees from web lookup used" and any PROBLEM lines: fix them.
-  4. Upload each of the 5 JSON files as an asset (`Artifact` publish, `url` above, `asset: true`,
+  4. Upload each of the 6 JSON files as an asset (`Artifact` publish, `url` above, `asset: true`,
      one call each, since they're JSON).
   5. `ArtifactData` batch `update` of each `datasets/<id>`: `source.url` (new `/_blob/…`),
      `updated: {at: <"Data generated at" time>, by: …}` and `edit`, pinned with `if_version`.

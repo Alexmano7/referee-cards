@@ -69,6 +69,10 @@ A private dashboard on claude.ai: <https://claude.ai/artifact/AAbaGSrga4xFAG6SG4
   appointment pages, shows you what it found with sources, and saves them in
   `config/referee_appointments.csv`. Projections then use that referee's record, and the
   fixtures table shows where each name came from.
+- **Teams:** a sortable table of cards each team receives (per match, home and away,
+  over 1.5 / 2.5 cards), its opponents' cards and its matches' totals.
+- **Match card:** click a fixture to see the projection split between the two sides, the
+  referee's history with each team, and both teams' card records side by side.
 - To see which upcoming matches still lack a referee:
   ```bash
   uv run referees upcoming
