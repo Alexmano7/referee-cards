@@ -10,8 +10,9 @@
 - The free tier returns all three seasons (2024–2026) for all four leagues.
 - Referee coverage of finished matches: PL 100%, BL1 100%, FL1 689/691, **PD 820/869**
   (La Liga gaps: 92% in 2025/26, 84% in 2026/27). Those matches count in league averages only.
-- **No upcoming fixture had a referee** (0 of 1,019), even for the next weekend. The free tier may
-  not fill in appointments before kick-off. Until that changes, projections use the league average.
+- **No upcoming fixture had a referee** (0 of 1,019), even for the next weekend. Re-checked on
+  2026-11-06: still none, with `lastUpdated` the day before. Upcoming referees therefore come from the
+  web lookup (see Dashboard).
 - The API uses status `AWARDED` for 3 decided-at-the-table matches. These are joined like `FINISHED`.
 - PL cross-check: the CSV and API referee agree on 844/850 matches. The 6 disagreements are listed
   in `data_quality.referee_disagreements`; which source is right is unknown.
@@ -90,6 +91,8 @@ Referees/
 ├─ .env.example                 # template: FOOTBALL_DATA_API_TOKEN=
 ├─ .env                         # real token. NEVER committed (in .gitignore)
 ├─ config/team_name_mapping.csv # created by suggest-mapping, then reviewed by hand
+├─ config/referee_appointments.csv # upcoming referees found by Claude's web lookup, with sources
+├─ dashboard/index.html         # the claude.ai dashboard page (stored there as files/index.html)
 ├─ src/referees/
 │  ├─ config.py      # leagues, seasons, paths, token
 │  ├─ fetch_csv.py   # football-data.co.uk download + read
@@ -97,6 +100,8 @@ Referees/
 │  ├─ team_names.py  # mapping file, suggestions
 │  ├─ join.py        # link API matches to CSV rows, unmatched report
 │  ├─ stats.py       # referee stats, adjustments, projections, referees.json content
+│  ├─ appointments.py    # looked-up referees: load, match names, apply to fixtures
+│  ├─ dashboard_export.py # flat row tables for the dashboard
 │  └─ cli.py         # `referees` command
 ├─ data/raw/{api,csv}/          # downloads (git-ignored)
 ├─ data/matches.csv             # joined match history (committed)
@@ -111,6 +116,8 @@ Referees/
 - Suggest team-name mappings: `uv run referees suggest-mapping`
 - Show 10 joined matches, failed joins and referee coverage: `uv run referees check`
 - Build outputs: `uv run referees build` (or `update` = fetch + build)
+- Upcoming fixtures and which lack a referee: `uv run referees upcoming`
+- Dashboard tables: `uv run referees export-dashboard` (after `fetch`)
 - Tests: `uv run pytest`. Lint and format: `uv run ruff check .` / `uv run ruff format .`
 
 ## Conventions
@@ -183,7 +190,7 @@ Referees/
 ## Next steps (from the user's plan)
 - Phase 2 leftover: the user hand-checks 3 joined matches against match reports and marks the
   mapping rows `checked=yes`.
-- Phase 5 happens in another chat: a dashboard on claude.ai reading `data/referees.json` from this repo.
-- Watch whether football-data.org fills in referees for upcoming fixtures. If it never does,
-  projections stay at the league average.
+- Phase 5 was done here instead (the user decided everything is built in this project): see Dashboard.
+- Watch whether football-data.org ever fills in upcoming referees. If it does, the API's referee
+  automatically wins over the looked-up one.
 - Every season: run `suggest-mapping` to add promoted teams.
