@@ -34,3 +34,10 @@ Generated 2026-11-07 by `uv run referees backtest`. Walk-forward: each week is p
 |---|---|---|---|---|---|---|
 | 2026/27 so far | 33 | 22 | 66.7% | 64.4% | 51.5% | 1.5 |
 | 2025/26 | 111 | 82 | 73.9% | 66.3% | 49.6% | 1.35 |
+
+## Safe treble (3 legs, combined fair odds about 2.00, one per week)
+
+| Period | Trebles | Won | Win rate | Legs won | Model said | Typical match | Break-even odds |
+|---|---|---|---|---|---|---|---|
+| 2026/27 so far | 9 | 4 | 44.4% | 74.1% | 47.8% | 28.9% | 2.25 |
+| 2025/26 | 37 | 18 | 48.6% | 80.2% | 48.0% | 25.6% | 2.06 |

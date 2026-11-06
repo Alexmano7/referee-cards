@@ -76,6 +76,8 @@ A private dashboard on claude.ai: <https://claude.ai/artifact/AAbaGSrga4xFAG6SG4
 - **Hot Prediction:** the 2–3 card bets this week where the model differs most from a typical match,
   each with the minimum odds worth taking and the reasons. They're updated every time you type
   **refresh** in Claude Code, and their past track record is shown underneath.
+  Below them is a **safe treble**: 3 safe bets from 3 matches with combined odds of about 2.00. It
+  won about half the time in testing, so it only pays at the minimum combined odds shown.
 - **Chances and fair odds:** every upcoming match shows the card model's expected cards, the
   chance of over 3.5 / 4.5 / 5.5 cards and fair odds (1 ÷ chance, no bookmaker margin). Click a match
   for each side's chances, the chance of every card count, the reasons ("why"), and an **odds check**

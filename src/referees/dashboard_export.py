@@ -297,7 +297,25 @@ def build_tables(
         for period, rec in ((backtest or {}).get("hot_picks") or {}).items()
     ]
 
+    treble_rows = []
+    for t in report.get("hot_treble", []):
+        ko = pd.Timestamp(t["utc_kickoff"]).tz_convert(ATHENS)
+        treble_rows.append(
+            {
+                "key": str(t["leg"]),
+                **{k: v for k, v in t.items() if k != "utc_kickoff"},
+                "kickoff": ko.strftime("%a %d %b, %H:%M"),
+                "match": f"{t['home']} v {t['away']}",
+            }
+        )
+    treble_record_rows = [
+        {"key": period, "period": period, **rec}
+        for period, rec in ((backtest or {}).get("treble") or {}).items()
+    ]
+
     return {
+        "hot_treble": treble_rows,
+        "treble_record": treble_record_rows,
         "hot_picks": hot_rows,
         "hot_picks_record": record_rows,
         "fixture_distribution": dist_rows,

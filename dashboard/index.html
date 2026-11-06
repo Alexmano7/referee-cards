@@ -82,6 +82,10 @@
   .rc-hot-open { align-self: flex-start; font: inherit; font-size: var(--cds-font-size-caption); padding: var(--cds-pad-xs) var(--cds-pad-sm); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-panel); color: var(--color-fg); cursor: pointer; margin-top: auto; }
   .rc-hot-open:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
   .rc .rc-hot-record b { font-weight: 600; color: var(--color-fg); }
+  .rc-treble { border-top: 1px solid var(--color-border-line); padding-top: var(--cds-pad-md); margin-top: var(--cds-gap-md); display: flex; flex-direction: column; gap: var(--cds-gap-xs); }
+  .rc-treble-legs :is(th, td):nth-child(-n+5) { text-align: left; }
+  .rc .rc-treble b { font-weight: 600; color: var(--color-fg); }
+  @container rc (max-width: 40rem) { .rc-treble-legs :is(th, td):is(:nth-child(2), :nth-child(5), :nth-child(7)) { display: none; } }
   .rc-detail-head { display: flex; justify-content: space-between; align-items: center; gap: var(--cds-gap-md); }
   .rc-close { font: inherit; font-size: var(--cds-font-size-caption); padding: var(--cds-pad-xs) var(--cds-pad-sm); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-panel); color: var(--color-fg); cursor: pointer; }
   .rc-bars { position: relative; min-height: 10rem; }
@@ -170,6 +174,37 @@
     <p class="rc-note">The card bets in the next 7 days where the model differs most from a typical match in that league, from the referee and both teams. Each pick has at least a 55% model chance. <b>Bet only if your bookmaker offers at least the minimum odds shown</b>; below that the price is not worth it. These are estimates, not certainties.</p>
     <div class="rc-hot-list" data-draw="hot-list" data-source="hot_picks"></div>
     <p class="rc-note rc-hot-empty" hidden>No match in the next 7 days passes the rule yet. Refresh again closer to the weekend, when more referees are announced.</p>
+    <div class="rc-treble" id="safe-treble">
+      <h3 class="rc-h3">Safe treble: 3 matches, combined odds about 2.00</h3>
+      <p class="rc-note">One bet per match, all three must win. Each leg is at least 60% likely and more likely than in a typical match. Combined: model chance <b data-draw="tr-p" data-source="treble_combined" data-field="model_pct">—</b> (typical match <b data-draw="tr-t" data-source="treble_combined" data-field="typical_pct">—</b>), fair odds <b data-draw="tr-fair" data-source="treble_combined" data-field="fair_odds">—</b>. <b>Take it only at combined odds of <span data-draw="tr-min" data-source="treble_combined" data-field="min_odds">—</span> or more</b>; at 2.00 it is about break-even at best.</p>
+      <div class="rc-scroll">
+        <table class="rc-table rc-treble-legs" data-source="hot_treble" data-row-key="key">
+          <thead><tr>
+            <th data-field="leg">Leg</th>
+            <th data-field="kickoff">Kick-off</th>
+            <th data-field="match">Match</th>
+            <th data-field="bet">Bet</th>
+            <th data-field="referee">Referee</th>
+            <th data-field="model_prob">Model chance</th>
+            <th data-field="typical_prob">Typical match</th>
+            <th data-field="fair_odds">Fair odds</th>
+          </tr></thead>
+          <tbody data-draw="treble-rows"></tbody>
+        </table>
+      </div>
+      <p class="rc-note rc-treble-empty" hidden>No treble near 2.00 can be built from this week's safe bets yet. Refresh again when more referees are announced.</p>
+      <table class="rc-table rc-checks rc-treble-record" data-source="treble_record" data-row-key="key">
+        <thead><tr>
+          <th data-field="period">Track record (one treble per past week)</th>
+          <th data-field="trebles">Trebles</th>
+          <th data-field="won">All 3 won</th>
+          <th data-field="win_rate_pct">Win rate</th>
+          <th data-field="avg_model_pct">Model said</th>
+          <th data-field="break_even_odds">Break-even odds</th>
+        </tr></thead>
+        <tbody data-draw="treble-record-rows"></tbody>
+      </table>
+    </div>
     <p class="rc-note rc-hot-record">Track record of this rule on past weeks (each week picked from earlier data only): this season so far it won <b data-draw="hr-hits" data-source="hot_picks_record" data-field="hits">—</b> of <b data-draw="hr-picks" data-source="hot_picks_record" data-field="picks">—</b> picks (<b data-draw="hr-rate" data-source="hot_picks_record" data-field="hit_rate_pct">—</b>), against <b data-draw="hr-model" data-source="hot_picks_record" data-field="avg_model_pct">—</b> the model expected and <b data-draw="hr-typical" data-source="hot_picks_record" data-field="avg_typical_pct">—</b> for a typical match. Small sample: treat as a guide.</p>
   </section>
 
@@ -480,6 +515,18 @@
     },
   });
 
+  dash.calc('treble_combined', {
+    title: 'Safe treble combined',
+    description: 'The treble legs combined: model chance and typical-match chance multiplied, fair odds (1 / chance) and minimum odds worth taking (fair odds + 5%).',
+    inputs: ['hot_treble'],
+    fn: (hot_treble) => {
+      if (hot_treble.length !== 3) return [];
+      const p = hot_treble.reduce((a, l) => a * (l.model_prob / 100), 1);
+      const t = hot_treble.reduce((a, l) => a * (l.typical_prob / 100), 1);
+      return [{ key: 'treble', model_pct: 100 * p, typical_pct: 100 * t, fair_odds: 1 / p, min_odds: Math.ceil(105 / p) / 100 }];
+    },
+  });
+
   dash.calc('fx_counts', {
     title: 'Fixtures with a referee',
     description: 'Upcoming fixtures in the next 14 days, and how many have a referee appointed, per league and in total.',
@@ -610,6 +657,11 @@
     if (fxAll.status === 'ok' && p.fx) {
       const f = fxAll.data.find((x) => x.key === p.fx);
       for (const el of document.querySelectorAll('.rc-fd-hist')) el.hidden = !f || f.referee === 'TBD';
+    }
+    const ht = dash.data('hot_treble');
+    if (ht.status === 'ok') {
+      for (const el of document.querySelectorAll('.rc-treble-empty')) el.hidden = ht.data.length > 0;
+      for (const el of document.querySelectorAll('.rc-treble-legs')) el.hidden = ht.data.length === 0;
     }
     const hp = dash.data('hot_picks');
     if (hp.status === 'ok') {
@@ -995,6 +1047,41 @@
   dash.draw('hr-rate', hotRecord('hit_rate_pct', rc.pct));
   dash.draw('hr-model', hotRecord('avg_model_pct', rc.pct));
   dash.draw('hr-typical', hotRecord('avg_typical_pct', rc.pct));
+
+
+  // Safe treble: legs table, combined figures and track record.
+  dash.draw('treble-rows', (tbody) => {
+    const d = dash.data('hot_treble');
+    tbody.replaceChildren(...(d.status === 'ok' ? [...d.data].sort((a, b) => a.leg - b.leg) : []).map((l) => {
+      const tr = document.createElement('tr');
+      tr.dataset.key = l.key;
+      tr.tabIndex = 0;
+      tr.style.cursor = 'pointer';
+      tr.addEventListener('click', () => dash.setParams({ fx: l.fixture }));
+      for (const v of [String(l.leg), l.kickoff, l.match, l.bet, l.referee, rc.pct(l.model_prob), rc.pct(l.typical_prob), rc.f2(l.fair_odds)]) rc.cell(tr, v);
+      return tr;
+    }));
+  });
+  const trebleTotal = (field, fmt) => (el) => {
+    const d = dash.data('treble_combined');
+    const row = d.status === 'ok' ? d.data[0] : null;
+    if (!row) { el.textContent = '—'; return; }
+    el.dataset.where = 'key=treble';
+    el.textContent = fmt(row[field]);
+  };
+  dash.draw('tr-p', trebleTotal('model_pct', rc.pct));
+  dash.draw('tr-t', trebleTotal('typical_pct', rc.pct));
+  dash.draw('tr-fair', trebleTotal('fair_odds', rc.f2));
+  dash.draw('tr-min', trebleTotal('min_odds', rc.f2));
+  dash.draw('treble-record-rows', (tbody) => {
+    const d = dash.data('treble_record');
+    tbody.replaceChildren(...(d.status === 'ok' ? d.data : []).map((r) => {
+      const tr = document.createElement('tr');
+      tr.dataset.key = r.key;
+      for (const v of [r.period, rc.int(r.trebles), rc.int(r.won), rc.pct(r.win_rate_pct), rc.pct(r.avg_model_pct), rc.f2(r.break_even_odds)]) rc.cell(tr, v);
+      return tr;
+    }));
+  });
 
   dash.draw('fd-compare', (tbody) => {
     const f = pickedFixture();

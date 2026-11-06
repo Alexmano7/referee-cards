@@ -130,6 +130,15 @@ that leaves the machine (pushing to GitHub especially).
   won (66.7%) against 64.4% predicted and 51.5% for a typical match; 2025/26, 82/111 (73.9%) against
   66.3% and 49.6%. The sample is small and bookmakers price better than "typical", so present it as a guide.
 
+- **Safe treble** (user request, 2026-11-07: "safest, combined odds around 2.00"): `best_treble` picks
+  3 legs from 3 different matches. Each leg is at least 60% likely and above a typical match (top 3 legs
+  per match by shift); combined fair odds must be 1.85-2.15; the choice maximises (combined model
+  chance) / (combined typical chance); known referees first. The dashboard calc `treble_combined`
+  gives the combined chance, fair odds and minimum odds (ceil(105/p)/100).
+- Treble backtest (one per week): 2025/26 18/37 won (48.6%, model said 48.0%, break-even 2.06);
+  2026/27 so far 4/9. **At 2.00 it is about break-even at best**: always say so and point to the
+  minimum odds. Single legs won 74-80%.
+
 ## Bet log (`bets.py`, added 2026-11-07)
 - `config/bets.csv`: placed_at, league, date, home, away (football-data.org names, as in `upcoming`),
   market (`match_cards` | `home_cards` | `away_cards` | `match_booking_points`), selection (over/under),

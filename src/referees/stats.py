@@ -303,15 +303,18 @@ def apply_model(fixtures: list[dict], df: pd.DataFrame, today: date, league_avg:
 
 def hot_picks(
     fixtures: list[dict], df: pd.DataFrame, model, today: date, referees: list[dict]
-) -> list[dict]:
-    """The 2-3 card bets where the model differs most from a typical match (see picks.py)."""
+) -> tuple[list[dict], list[dict]]:
+    """The 2-3 card bets where the model differs most from a typical match, and a safe
+    treble (3 legs, combined fair odds of about 2.00). See picks.py."""
     from referees.model import fit, load_params, side_observations
     from referees.picks import (
         N_PICKS,
         WINDOW_DAYS,
         best_candidate,
+        best_treble,
         bet_label,
         min_odds,
+        treble_legs,
     )
 
     params = {
@@ -323,14 +326,17 @@ def hot_picks(
     n_matches = {r["id"]: r["overall"]["matches"] for r in referees}
     horizon = str(today + timedelta(days=WINDOW_DAYS))
     scored = []
-    for f in fixtures:
+    treble_pool = []
+    for i, f in enumerate(fixtures):
         if f["date"] > horizon:
             continue
         ref_id = f.get("referee_id")
-        pick = best_candidate(
-            model.predict(f["league"], f["home"], f["away"], ref_id),
-            typical.predict(f["league"], f["home"], f["away"], None),
+        mp = model.predict(f["league"], f["home"], f["away"], ref_id)
+        tp = typical.predict(f["league"], f["home"], f["away"], None)
+        treble_pool.append(
+            (i, ref_id is not None and ref_id in n_matches, treble_legs(mp, tp))
         )
+        pick = best_candidate(mp, tp)
         if pick:
             scored.append(
                 (ref_id is not None and ref_id in n_matches, pick["score"], f, pick)
@@ -372,7 +378,29 @@ def hot_picks(
                 ),
             }
         )
-    return out
+    treble = []
+    for leg_no, (i, leg) in enumerate(best_treble(treble_pool) or [], start=1):
+        f = fixtures[i]
+        treble.append(
+            {
+                "leg": leg_no,
+                "fixture": f"{f['league']}|{f['date']}|{f['home']}",
+                "league": f["league"],
+                "date": f["date"],
+                "utc_kickoff": f["utc_kickoff"],
+                "home": f["home"],
+                "away": f["away"],
+                "referee": f.get("referee") or "TBD",
+                "bet": bet_label(leg, f["home"], f["away"]),
+                "market": leg["market"],
+                "selection": leg["selection"],
+                "line": leg["line"],
+                "model_prob": round(100 * leg["p"], 1),
+                "typical_prob": round(100 * leg["base"], 1),
+                "fair_odds": round(1 / leg["p"], 2),
+            }
+        )
+    return out, treble
 
 
 def build_report(
@@ -467,7 +495,7 @@ def build_report(
     horizon = str(today + timedelta(days=UPCOMING_DAYS))
     upcoming = [f for f in all_projected if f["date"] <= horizon]
 
-    picks = hot_picks(all_projected, df, model, today, referees)
+    picks, treble = hot_picks(all_projected, df, model, today, referees)
     by_ref = {r["id"]: r for r in referees}
     for (
         f
@@ -503,6 +531,7 @@ def build_report(
         "referees": referees,
         "teams": teams,
         "hot_picks": picks,
+        "hot_treble": treble,
         "upcoming_fixtures": upcoming,
         "data_quality": {
             "joined_matches": len(joined),

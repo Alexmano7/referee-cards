@@ -162,6 +162,54 @@ def hot_pick_record(df, obs, start, end, params, n_picks: int = 3) -> dict:
     }
 
 
+def treble_record(df, obs, start, end, params) -> dict:
+    """Backtest of the safe treble (picks.best_treble): one treble per week from earlier
+    data only; it wins when all three legs win."""
+    from referees.picks import best_treble, is_hit, treble_legs
+
+    results = []
+    typical_params = {**params, "k_referee": 1e9, "k_team": 1e9}
+    for wk, g in _weeks(df, start, end):
+        m = fit(obs, as_of=wk, **params)
+        typical = fit(obs, as_of=wk, **typical_params)
+        pool, rows = [], {}
+        for r in g.itertuples():
+            ref = r.referee_id if pd.notna(r.referee_id) else None
+            legs = treble_legs(
+                m.predict(r.league, r.api_home, r.api_away, ref),
+                typical.predict(r.league, r.api_home, r.api_away, None),
+            )
+            pool.append((r.Index, ref is not None and int(ref) in m.referee, legs))
+            rows[r.Index] = r
+        chosen = best_treble(pool)
+        if not chosen:
+            continue
+        p = float(np.prod([leg["p"] for _, leg in chosen]))
+        base = float(np.prod([leg["base"] for _, leg in chosen]))
+        won = all(
+            is_hit(leg, rows[i].home_cards, rows[i].away_cards) for i, leg in chosen
+        )
+        legs_won = sum(
+            is_hit(leg, rows[i].home_cards, rows[i].away_cards) for i, leg in chosen
+        )
+        results.append({"p": p, "base": base, "won": won, "legs_won": legs_won})
+    if not results:
+        return {"trebles": 0}
+    wins = sum(r["won"] for r in results)
+    rate = wins / len(results)
+    return {
+        "trebles": len(results),
+        "won": int(wins),
+        "win_rate_pct": round(100 * rate, 1),
+        "legs_won_pct": round(
+            100 * sum(r["legs_won"] for r in results) / (3 * len(results)), 1
+        ),
+        "avg_model_pct": round(100 * float(np.mean([r["p"] for r in results])), 1),
+        "avg_typical_pct": round(100 * float(np.mean([r["base"] for r in results])), 1),
+        "break_even_odds": round(1 / rate, 2) if rate else None,
+    }
+
+
 def score(preds: list[dict]) -> dict:
     if not preds:
         return {"matches": 0}
@@ -238,6 +286,10 @@ def run(joined: pd.DataFrame, today: date | None = None, progress=print) -> dict
         },
         "tuning_season": {"Model (tuned)": score(model_tune)},
         "calibration_over_4_5": calibration(model_tune + model_hold),
+        "treble": {
+            "2026/27 so far": treble_record(df, obs, *holdout, best_params),
+            "2025/26": treble_record(df, obs, *TUNE_PERIOD, best_params),
+        },
         "hot_picks": {
             "2026/27 so far": hot_pick_record(df, obs, *holdout, best_params),
             "2025/26": hot_pick_record(df, obs, *TUNE_PERIOD, best_params),
@@ -290,5 +342,13 @@ def render_markdown(r: dict) -> str:
             f"| {k} | {v.get('picks')} | {v.get('hits')} | {v.get('hit_rate_pct')}% "
             f"| {v.get('avg_model_pct')}% | {v.get('avg_typical_pct')}% | {v.get('break_even_odds')} |\n"
             for k, v in r.get("hot_picks", {}).items()
+        )
+        + "\n## Safe treble (3 legs, combined fair odds about 2.00, one per week)\n\n"
+        + "| Period | Trebles | Won | Win rate | Legs won | Model said | Typical match | Break-even odds |\n"
+        + "|---|---|---|---|---|---|---|---|\n"
+        + "".join(
+            f"| {k} | {v.get('trebles')} | {v.get('won')} | {v.get('win_rate_pct')}% | {v.get('legs_won_pct')}% "
+            f"| {v.get('avg_model_pct')}% | {v.get('avg_typical_pct')}% | {v.get('break_even_odds')} |\n"
+            for k, v in r.get("treble", {}).items()
         )
     )

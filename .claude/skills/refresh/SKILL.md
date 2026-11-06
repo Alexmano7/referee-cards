@@ -35,11 +35,11 @@ Project facts and rules are in `CLAUDE.md`; this is the routine.
 ## 3. Rebuild and publish the dashboard
 1. `uv run referees export-dashboard`. It must print no `PROBLEM:` lines. Fix any: usually a
    team-name typo in the appointments file.
-2. Upload these 9 files from `data/dashboard/` as assets (Artifact publish, `url`
+2. Upload these 10 files from `data/dashboard/` as assets (Artifact publish, `url`
    https://claude.ai/artifact/AAbaGSrga4xFAG6SG47hMZ, `asset: true`, one call each):
-   `hot_picks`, `fixtures`, `fixture_distribution`, `referee_stats`, `team_stats`, `league_summary`,
-   `league_bars`, `data_checks`, `bets`. Re-upload `model_quality`, `calibration` and
-   `hot_picks_record` only after a new `referees backtest`.
+   `hot_picks`, `hot_treble`, `fixtures`, `fixture_distribution`, `referee_stats`, `team_stats`,
+   `league_summary`, `league_bars`, `data_checks`, `bets`. Re-upload `model_quality`, `calibration`,
+   `hot_picks_record` and `treble_record` only after a new `referees backtest`.
 3. `ArtifactData` `list` collection `datasets` to get each document's current `version`. Then one
    `batch` of `update`s, each pinned with `if_version`, setting `source.url` (the new `/_blob/…`),
    `updated: {at: <"Data generated at" time>, by: "Claude Code refresh"}` and `edit: {via: "claude", at: <now>}`.
@@ -53,5 +53,7 @@ Project facts and rules are in `CLAUDE.md`; this is the routine.
 2. Commit `config/referee_appointments.csv` (and anything else changed) locally with an imperative
    message. **Don't push** unless the user says so (global rule: ask before pushing).
 3. Summary for the user: **the Hot Prediction picks first** (bet, match, kick-off, model chance,
-   "bet only at odds of" minimum, referee; from `data/dashboard/hot_picks.json`), then when the data is from, referees found (match, referee, source), what's still
+   "bet only at odds of" minimum, referee; from `data/dashboard/hot_picks.json`), **then the safe
+   treble** (3 legs from `hot_treble.json`, combined model chance, fair odds and minimum combined odds =
+   ceil(105 / chance) / 100; remind that at 2.00 it is about break-even), then when the data is from, referees found (match, referee, source), what's still
    missing, any problems, the check result, and that the commit isn't pushed.

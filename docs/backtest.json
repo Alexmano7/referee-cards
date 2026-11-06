@@ -963,6 +963,26 @@
    "observed_pct": 42.9
   }
  ],
+ "treble": {
+  "2026/27 so far": {
+   "trebles": 9,
+   "won": 4,
+   "win_rate_pct": 44.4,
+   "legs_won_pct": 74.1,
+   "avg_model_pct": 47.8,
+   "avg_typical_pct": 28.9,
+   "break_even_odds": 2.25
+  },
+  "2025/26": {
+   "trebles": 37,
+   "won": 18,
+   "win_rate_pct": 48.6,
+   "legs_won_pct": 80.2,
+   "avg_model_pct": 48.0,
+   "avg_typical_pct": 25.6,
+   "break_even_odds": 2.06
+  }
+ },
  "hot_picks": {
   "2026/27 so far": {
    "picks": 33,

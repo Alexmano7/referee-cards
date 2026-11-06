@@ -646,3 +646,32 @@ def test_hot_pick_prefers_the_biggest_shift_from_a_typical_match():
     )  # nothing likely enough
     assert is_hit(pick, 2, 2) and not is_hit(pick, 1, 2)
     assert min_odds(0.625) == 1.68  # fair 1.60 + 5%
+
+
+def test_safe_treble_targets_about_two_and_prefers_known_referees():
+    from referees.picks import best_treble
+
+    def leg(p, base):
+        return {
+            "market": "match_cards",
+            "selection": "under",
+            "line": 4.5,
+            "p": p,
+            "base": base,
+            "score": p - base,
+        }
+
+    # Three known-referee matches whose legs multiply to ~2.00, plus a tempting unknown-referee one.
+    pool = [
+        ("A", True, [leg(0.80, 0.70)]),
+        ("B", True, [leg(0.79, 0.65), leg(0.95, 0.94)]),
+        ("C", True, [leg(0.79, 0.60)]),
+        ("D", False, [leg(0.80, 0.30)]),
+    ]
+    chosen = best_treble(pool)
+    assert [m for m, _ in chosen] == ["A", "B", "C"]  # known referees first
+    odds = 1 / (chosen[0][1]["p"] * chosen[1][1]["p"] * chosen[2][1]["p"])
+    assert 1.85 <= odds <= 2.15
+    assert (
+        best_treble([("A", True, [leg(0.99, 0.5)])] * 2) is None
+    )  # fewer than 3 matches

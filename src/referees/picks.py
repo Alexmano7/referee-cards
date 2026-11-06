@@ -115,3 +115,53 @@ def bet_label(pick: dict, home: str, away: str) -> str:
 def min_odds(p: float, margin: float = MARGIN) -> float:
     """Smallest decimal odds worth taking: fair odds (1/p) plus the margin, rounded up."""
     return math.ceil(100 * (1 + margin) / p) / 100
+
+
+# --- safe treble: 3 legs from 3 matches, combined fair odds of about 2.00 ---------------
+
+TREBLE_TARGET = 2.0
+TREBLE_BAND = (1.85, 2.15)
+TREBLE_MIN_LEG_PROB = 0.60
+TREBLE_LEGS_PER_MATCH = 3
+
+
+def treble_legs(model_p: dict, base_p: dict) -> list[dict]:
+    """A match's best few safe legs: model chance >= 60% and above a typical match."""
+    legs = [
+        {**c, "score": c["p"] - c["base"]}
+        for c in candidates(model_p, base_p)
+        if c["p"] >= TREBLE_MIN_LEG_PROB and c["p"] > c["base"]
+    ]
+    legs.sort(key=lambda c: c["score"], reverse=True)
+    return legs[:TREBLE_LEGS_PER_MATCH]
+
+
+def best_treble(
+    matches: list[tuple[object, bool, list[dict]]],
+) -> list[tuple[object, dict]] | None:
+    """Choose 3 legs from 3 different matches with combined fair odds in TREBLE_BAND.
+
+    `matches` holds (match id, referee known, legs). At a fixed total of about 2.00 every
+    treble has about a 50% model chance, so the choice is the one the model rates most above
+    a typical match: the highest product of p / typical chance (closest to 2.00 on a tie).
+    Matches with a known referee are used first; others only if that finds nothing.
+    """
+    from itertools import combinations, product
+
+    def search(pool):
+        best, best_key = None, None
+        for trio in combinations(pool, 3):
+            for legs in product(*(m[2] for m in trio)):
+                p = legs[0]["p"] * legs[1]["p"] * legs[2]["p"]
+                odds = 1 / p
+                if not (TREBLE_BAND[0] <= odds <= TREBLE_BAND[1]):
+                    continue
+                ratio = p / (legs[0]["base"] * legs[1]["base"] * legs[2]["base"])
+                key = (ratio, -abs(odds - TREBLE_TARGET))
+                if best_key is None or key > best_key:
+                    best, best_key = list(zip((m[0] for m in trio), legs)), key
+        return best
+
+    with_legs = [m for m in matches if m[2]]
+    known = [m for m in with_legs if m[1]]
+    return (search(known) if len(known) >= 3 else None) or search(with_legs)
