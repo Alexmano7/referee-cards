@@ -6,6 +6,7 @@ Commands:
   check            join the data, show 10 joined matches and list failed joins
   build            write data/matches.csv, data/unmatched.csv and data/referees.json
   update           fetch + build
+  api-football-probe  show what the free API-Football plan offers (needs API_FOOTBALL_KEY)
   backtest         test the card model on past weeks, tune its settings (docs/backtest.md)
   upcoming         list fixtures in the next 14 days and which still lack a referee
   export-dashboard build the dashboard tables (with looked-up referees) into
@@ -215,6 +216,15 @@ def cmd_backtest() -> None:
     print(backtest.render_markdown(results))
 
 
+def cmd_api_football_probe() -> None:
+    """Show what the free API-Football plan offers (about 8 of the 100 daily requests)."""
+    from referees.api_football import probe
+    from referees.config import current_season_start_year
+
+    for line in probe(current_season_start_year()):
+        print(line)
+
+
 def main() -> None:
     # Show accents (Atlético, Köln) correctly even in older Windows terminals.
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -234,6 +244,7 @@ def main() -> None:
             "export-dashboard",
             "upcoming",
             "backtest",
+            "api-football-probe",
         ],
     )
     args = parser.parse_args()
@@ -251,6 +262,8 @@ def main() -> None:
         cmd_upcoming()
     elif args.command == "backtest":
         cmd_backtest()
+    elif args.command == "api-football-probe":
+        cmd_api_football_probe()
     else:
         cmd_fetch()
         cmd_build()

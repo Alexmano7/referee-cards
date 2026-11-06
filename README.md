@@ -73,6 +73,14 @@ A private dashboard on claude.ai: <https://claude.ai/artifact/AAbaGSrga4xFAG6SG4
   over 1.5 / 2.5 cards), its opponents' cards and its matches' totals.
 - **Match card:** click a fixture to see the projection split between the two sides, the
   referee's history with each team, and both teams' card records side by side.
+- **Chances and fair odds:** every upcoming match shows the card model's expected cards, the
+  chance of over 3.5 / 4.5 / 5.5 cards and fair odds (1 ÷ chance, no bookmaker margin). Click a match
+  for each side's chances, the chance of every card count, the reasons ("why"), and an **odds check**
+  that compares your bookmaker's odds with the model.
+- **Bet log:** tell Claude "log a bet: … over 4.5 cards at 2.05, stake 10"; bets are settled
+  automatically from the card data and totalled on the dashboard.
+- **Model quality:** how well the model predicted matches it had not seen (from `uv run referees
+  backtest`), compared with simpler methods. The edge is real but small; card counts are very random.
 - To see which upcoming matches still lack a referee:
   ```bash
   uv run referees upcoming

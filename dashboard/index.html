@@ -56,11 +56,20 @@
   .rc-card-head .rc-search { width: 11rem; }
   .rc-checks td { white-space: normal; }
   @container (max-width: 44rem) {
-    .rc-refs :is(th, td):is(:nth-child(2), :nth-child(4), :nth-child(5), :nth-child(8), :nth-child(9), :nth-child(10), :nth-child(12), :nth-child(13)) { display: none; }
-    .rc-fx :is(th, td):is(:nth-child(2), :nth-child(6), :nth-child(8), :nth-child(9), :nth-child(10)) { display: none; }
-    .rc-teams :is(th, td):is(:nth-child(2), :nth-child(4), :nth-child(5), :nth-child(8), :nth-child(9), :nth-child(10), :nth-child(11), :nth-child(13), :nth-child(14), :nth-child(15)) { display: none; }
+    .rc-refs :is(th, td):is(:nth-child(2), :nth-child(4), :nth-child(5), :nth-child(8), :nth-child(9), :nth-child(10), :nth-child(12), :nth-child(13), :nth-child(14), :nth-child(15)) { display: none; }
+    .rc-fx :is(th, td):is(:nth-child(2), :nth-child(6), :nth-child(8), :nth-child(10), :nth-child(12), :nth-child(13), :nth-child(14)) { display: none; }
+    .rc-teams :is(th, td):is(:nth-child(2), :nth-child(4), :nth-child(5), :nth-child(8), :nth-child(9), :nth-child(10), :nth-child(11), :nth-child(13), :nth-child(14), :nth-child(15), :nth-child(16), :nth-child(17), :nth-child(18)) { display: none; }
     .rc-compare :is(th, td):is(:nth-child(5), :nth-child(6), :nth-child(7)) { display: none; }
   }
+  .rc-fd-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: var(--cds-gap-lg); margin-bottom: var(--cds-gap-md); }
+  .rc-h3 { font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); margin: 0 0 var(--cds-gap-xs); }
+  .rc-lines { line-height: 1.7; }
+  .rc-dist { position: relative; min-height: 9rem; }
+  .rc-dist svg { display: block; overflow: visible; }
+  .rc-calc { border-top: 1px solid var(--color-border-line); padding-top: var(--cds-pad-md); margin-bottom: var(--cds-gap-md); }
+  .rc-calc input[type=number] { width: 8rem; }
+  .rc-bets td:nth-child(8) { font-weight: var(--cds-font-weight-medium); }
+  .rc-bets :is(th, td):nth-child(-n+3) { text-align: left; }
   .rc-detail-head { display: flex; justify-content: space-between; align-items: center; gap: var(--cds-gap-md); }
   .rc-close { font: inherit; font-size: var(--cds-font-size-caption); padding: var(--cds-pad-xs) var(--cds-pad-sm); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-panel); color: var(--color-fg); cursor: pointer; }
   .rc-bars { position: relative; min-height: 10rem; }
@@ -152,7 +161,7 @@
     </div>
     <div class="rc-card" id="fixtures">
       <h2>Upcoming fixtures</h2>
-      <p class="rc-note">Next 14 days, kick-off in Athens time. <b data-draw="fx-appointed" data-source="fx_counts" data-field="appointed">—</b> of <b data-draw="fx-total" data-source="fx_counts" data-field="fixtures">—</b> have a referee. Names come from football-data.org or, before it lists them, from the official appointment pages Claude checks when you refresh (shown under Source). Without a referee, the projection uses the league average adjusted for both teams.</p>
+      <p class="rc-note">Next 14 days, kick-off in Athens time. <b data-draw="fx-appointed" data-source="fx_counts" data-field="appointed">—</b> of <b data-draw="fx-total" data-source="fx_counts" data-field="fixtures">—</b> have a referee. "Exp. cards" and the chances come from the card model (see Model quality below); fair odds are 1 ÷ chance, with no bookmaker margin. Names come from football-data.org or, before it lists them, from the official appointment pages Claude checks when you refresh (shown under Source). Without a referee, the projection uses the league average adjusted for both teams.</p>
       <div class="rc-scroll rc-scroll-sm">
         <table class="rc-table rc-fx" data-source="fixtures" data-row-key="key">
           <thead><tr>
@@ -162,10 +171,14 @@
             <th data-field="away">Away</th>
             <th data-field="referee">Referee</th>
             <th data-field="referee_source">Source</th>
-            <th data-field="projected_cards">Proj. cards</th>
+            <th data-field="projected_cards">Exp. cards</th>
+            <th data-field="prob_over_3_5">Over 3.5</th>
+            <th data-field="prob_over_4_5">Over 4.5</th>
+            <th data-field="prob_over_5_5">Over 5.5</th>
+            <th data-field="fair_over_4_5">Fair odds O4.5</th>
+            <th data-field="fair_under_4_5">Fair odds U4.5</th>
             <th data-field="projected_home_cards">Home side</th>
             <th data-field="projected_away_cards">Away side</th>
-            <th data-field="projected_booking_points">Proj. points</th>
           </tr></thead>
           <tbody data-draw="fx-rows"></tbody>
         </table>
@@ -181,6 +194,39 @@
     </div>
     <p class="rc-note">Kick-off <span data-draw="fd-kickoff" data-source="fixtures" data-field="kickoff">—</span> (Athens time). Referee: <b data-draw="fd-ref" data-source="fixtures" data-field="referee">—</b>. Projected cards: <b data-draw="fd-proj" data-source="fixtures" data-field="projected_cards">—</b> in total, <b data-draw="fd-proj-home" data-source="fixtures" data-field="projected_home_cards">—</b> for the home side and <b data-draw="fd-proj-away" data-source="fixtures" data-field="projected_away_cards">—</b> for the away side.</p>
     <p class="rc-note rc-fd-hist">With this referee, the home side has played <b data-draw="fd-rh-n" data-source="fixtures" data-field="referee_home_matches">—</b> matches (<b data-draw="fd-rh-c" data-source="fixtures" data-field="referee_home_cards_per_match">—</b> cards per match for them) and the away side <b data-draw="fd-ra-n" data-source="fixtures" data-field="referee_away_matches">—</b> (<b data-draw="fd-ra-c" data-source="fixtures" data-field="referee_away_cards_per_match">—</b>). Small samples: read with care.</p>
+    <div class="rc-fd-grid">
+      <div>
+        <h3 class="rc-h3">Chances by line</h3>
+        <p class="rc-note rc-lines">Over 3.5 cards: <b data-draw="fd-p35" data-source="fixtures" data-field="prob_over_3_5">—</b> (fair odds over <b data-draw="fd-fo35" data-source="fixtures" data-field="fair_over_3_5">—</b>, under <b data-draw="fd-fu35" data-source="fixtures" data-field="fair_under_3_5">—</b>)<br>
+          Over 4.5 cards: <b data-draw="fd-p45" data-source="fixtures" data-field="prob_over_4_5">—</b> (fair odds over <b data-draw="fd-fo45" data-source="fixtures" data-field="fair_over_4_5">—</b>, under <b data-draw="fd-fu45" data-source="fixtures" data-field="fair_under_4_5">—</b>)<br>
+          Over 5.5 cards: <b data-draw="fd-p55" data-source="fixtures" data-field="prob_over_5_5">—</b> (fair odds over <b data-draw="fd-fo55" data-source="fixtures" data-field="fair_over_5_5">—</b>, under <b data-draw="fd-fu55" data-source="fixtures" data-field="fair_under_5_5">—</b>)</p>
+        <p class="rc-note">Home side 2+ cards: <b data-draw="fd-h15" data-source="fixtures" data-field="home_prob_over_1_5">—</b>, 3+ cards: <b data-draw="fd-h25" data-source="fixtures" data-field="home_prob_over_2_5">—</b>. Away side 2+ cards: <b data-draw="fd-a15" data-source="fixtures" data-field="away_prob_over_1_5">—</b>, 3+ cards: <b data-draw="fd-a25" data-source="fixtures" data-field="away_prob_over_2_5">—</b>.</p>
+        <p class="rc-note">Why: the referee shows <b data-draw="fd-rf" data-source="fixtures" data-field="referee_factor">—</b>&times; the cards of an average referee; the home side gets <b data-draw="fd-hr" data-source="fixtures" data-field="home_receives_factor">—</b>&times; and the away side <b data-draw="fd-ar" data-source="fixtures" data-field="away_receives_factor">—</b>&times; the usual cards in their league, all allowing for the opponents each has faced (1.00 = average).</p>
+      </div>
+      <div>
+        <h3 class="rc-h3">Chance of each number of cards</h3>
+        <div class="rc-dist" data-draw="fd-dist" data-source="fixture_distribution"></div>
+      </div>
+    </div>
+    <div class="rc-calc">
+      <h3 class="rc-h3">Odds check</h3>
+      <div class="rc-filters">
+        <label for="rc-calc-bet">Bet
+          <select class="dash-select" id="rc-calc-bet">
+            <option value="over|3_5">Over 3.5 cards</option>
+            <option value="under|3_5">Under 3.5 cards</option>
+            <option value="over|4_5" selected>Over 4.5 cards</option>
+            <option value="under|4_5">Under 4.5 cards</option>
+            <option value="over|5_5">Over 5.5 cards</option>
+            <option value="under|5_5">Under 5.5 cards</option>
+          </select>
+        </label>
+        <label for="rc-calc-odds">Bookmaker odds
+          <input class="rc-search" id="rc-calc-odds" type="number" min="1.01" max="100" step="0.01" placeholder="e.g. 1.85" inputmode="decimal">
+        </label>
+      </div>
+      <p class="rc-note rc-calc-out" hidden>Model chance <b data-draw="calc-p">—</b>; the bookmaker's odds imply <b data-draw="calc-i">—</b>. Expected return: <b data-draw="calc-ev">—</b> per 1 staked. A positive number means the odds are better than the model's fair odds; it is an estimate, not a guarantee.</p>
+    </div>
     <div class="rc-scroll rc-scroll-sm">
       <table class="rc-table rc-compare" data-source="team_stats" data-row-key="key">
         <thead><tr>
@@ -225,7 +271,7 @@
 
   <section class="rc-card" id="referees">
     <h2>Referees</h2>
-    <p class="rc-note">Click a column to sort and a referee to see their record by season. <span class="rc-adj-note">"Adjusted" counts recent seasons more and pulls referees with few matches toward their league's average.</span><span class="rc-raw-note" hidden>For a single season the table shows that season's figures; adjusted figures cover all seasons.</span></p>
+    <p class="rc-note">Click a column to sort and a referee to see their record by season. <span class="rc-adj-note">"Adjusted" counts recent seasons more and pulls referees with few matches toward their league's average.</span> "Away share" is the share of their cards given to away teams; "Cards / 10 fouls" shows how often a foul becomes a card.<span class="rc-raw-note" hidden>For a single season the table shows that season's figures; adjusted figures cover all seasons.</span></p>
     <div class="rc-scroll">
       <table class="rc-table rc-refs rc-left" data-source="referee_stats" data-row-key="key">
         <thead><tr>
@@ -241,6 +287,8 @@
           <th data-field="pct_over_3_5"><button type="button" data-sort="pct_over_3_5">Over 3.5</button></th>
           <th data-field="pct_over_4_5"><button type="button" data-sort="pct_over_4_5">Over 4.5</button></th>
           <th data-field="pct_over_5_5"><button type="button" data-sort="pct_over_5_5">Over 5.5</button></th>
+          <th data-field="away_share_pct"><button type="button" data-sort="away_share_pct">Away share</button></th>
+          <th data-field="cards_per_10_fouls"><button type="button" data-sort="cards_per_10_fouls">Cards / 10 fouls</button></th>
           <th data-field="next_fixture" class="l"><button type="button" data-sort="next_fixture">Next fixture</button></th>
         </tr></thead>
         <tbody data-draw="ref-rows"></tbody>
@@ -275,11 +323,67 @@
           <th data-field="pct_team_over_2_5"><button type="button" data-tsort="pct_team_over_2_5">Over 2.5</button></th>
           <th data-field="pct_match_over_4_5"><button type="button" data-tsort="pct_match_over_4_5">Match over 4.5</button></th>
           <th data-field="booking_points_per_match"><button type="button" data-tsort="booking_points_per_match">Points / match</button></th>
+          <th data-field="fouls_per_match"><button type="button" data-tsort="fouls_per_match">Fouls</button></th>
+          <th data-field="fouls_suffered_per_match"><button type="button" data-tsort="fouls_suffered_per_match">Fouls suffered</button></th>
+          <th data-field="cards_per_10_fouls"><button type="button" data-tsort="cards_per_10_fouls">Cards / 10 fouls</button></th>
         </tr></thead>
         <tbody data-draw="team-rows"></tbody>
       </table>
     </div>
     <p class="rc-note rc-teams-empty" hidden>No teams match these filters.</p>
+  </section>
+
+  <section class="rc-card" id="bets">
+    <h2>Bet log</h2>
+    <p class="rc-note rc-bets-sum">Bets you asked Claude to log, settled from the card data after each match. Settled <b data-draw="bs-settled" data-source="bets_summary" data-field="settled">—</b> of <b data-draw="bs-total" data-source="bets_summary" data-field="bets">—</b>; staked <b data-draw="bs-staked" data-source="bets_summary" data-field="staked">—</b>, profit <b data-draw="bs-profit" data-source="bets_summary" data-field="profit">—</b>, return on stakes <b data-draw="bs-roi" data-source="bets_summary" data-field="roi_pct">—</b>.</p>
+    <p class="rc-note rc-bets-empty" hidden>No bets logged yet. To log one, tell Claude in this project, for example: "log a bet: Leeds v Tottenham over 4.5 cards at 2.05, stake 10".</p>
+    <div class="rc-scroll rc-scroll-sm">
+      <table class="rc-table rc-bets" data-source="bets" data-row-key="key">
+        <thead><tr>
+          <th data-field="placed_at">Placed</th>
+          <th data-field="match">Match</th>
+          <th data-field="bet">Bet</th>
+          <th data-field="odds">Odds</th>
+          <th data-field="stake">Stake</th>
+          <th data-field="model_prob">Model chance</th>
+          <th data-field="implied_prob">Odds imply</th>
+          <th data-field="status">Result</th>
+          <th data-field="actual">Actual</th>
+          <th data-field="profit">Profit</th>
+        </tr></thead>
+        <tbody data-draw="bet-rows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="rc-card" id="model-quality">
+    <h2>Model quality</h2>
+    <p class="rc-note">How well each method predicted matches it had not seen: each week is predicted using only earlier matches (2026/27 season so far, not used to tune the model). Log score: higher is better. Brier: the error of the over-line chances, lower is better. Average miss: in cards.</p>
+    <div class="rc-scroll rc-scroll-sm">
+      <table class="rc-table rc-checks" data-source="model_quality" data-row-key="method">
+        <thead><tr>
+          <th data-field="method">Method</th>
+          <th data-field="matches">Matches</th>
+          <th data-field="log_score">Log score</th>
+          <th data-field="brier_over_3_5">Brier 3.5</th>
+          <th data-field="brier_over_4_5">Brier 4.5</th>
+          <th data-field="brier_over_5_5">Brier 5.5</th>
+          <th data-field="mae">Average miss</th>
+        </tr></thead>
+        <tbody data-draw="quality-rows"></tbody>
+      </table>
+    </div>
+    <h3 class="rc-h3">Is the "over 4.5" chance honest?</h3>
+    <p class="rc-note">When the model gave a chance in each band, how often did the match actually go over 4.5 cards?</p>
+    <table class="rc-table rc-checks" data-source="calibration" data-row-key="key">
+      <thead><tr>
+        <th data-field="bin">Model chance</th>
+        <th data-field="matches">Matches</th>
+        <th data-field="predicted_pct">Predicted</th>
+        <th data-field="observed_pct">Happened</th>
+      </tr></thead>
+      <tbody data-draw="calibration-rows"></tbody>
+    </table>
   </section>
 
   <details class="rc-card rc-notes" id="notes">
@@ -343,6 +447,18 @@
       tr.append(td);
     },
   };
+
+  dash.calc('bets_summary', {
+    title: 'Bet log totals',
+    description: 'Number of bets, how many are settled, total staked and profit on settled bets, and return on stakes.',
+    inputs: ['bets'],
+    fn: (bets) => {
+      const settled = bets.filter((b) => b.status === 'won' || b.status === 'lost');
+      const staked = settled.reduce((s, b) => s + b.stake, 0);
+      const profit = settled.reduce((s, b) => s + b.profit, 0);
+      return [{ key: 'all', bets: bets.length, settled: settled.length, staked, profit, roi_pct: staked ? (100 * profit) / staked : null }];
+    },
+  });
 
   dash.calc('fx_counts', {
     title: 'Fixtures with a referee',
@@ -419,6 +535,18 @@
     t.addEventListener('click', (e) => pickFx(e.target.closest('tr[data-key]')));
     t.addEventListener('keydown', (e) => { if (e.key === 'Enter') pickFx(e.target.closest('tr[data-key]')); });
   }
+  rc.calcBet = 'over|4_5';
+  rc.calcOdds = null;
+  const redrawCalc = () => {
+    for (const n of ['calc-p', 'calc-i', 'calc-ev']) dash.draw(n);
+    for (const el of document.querySelectorAll('.rc-calc-out')) el.hidden = !rc.calcOdds;
+  };
+  for (const sel of document.querySelectorAll('#rc-calc-bet')) sel.addEventListener('change', () => { rc.calcBet = sel.value; redrawCalc(); });
+  for (const inp of document.querySelectorAll('#rc-calc-odds')) inp.addEventListener('input', () => {
+    const v = Number(inp.value);
+    rc.calcOdds = inp.value && v > 1 ? v : null;
+    redrawCalc();
+  });
   for (const i of document.querySelectorAll('#rc-team-search')) {
     i.addEventListener('input', () => { rc.tSearch = i.value; dash.draw('team-rows'); });
   }
@@ -462,6 +590,11 @@
     if (fxAll.status === 'ok' && p.fx) {
       const f = fxAll.data.find((x) => x.key === p.fx);
       for (const el of document.querySelectorAll('.rc-fd-hist')) el.hidden = !f || f.referee === 'TBD';
+    }
+    const bs = dash.data('bets');
+    if (bs.status === 'ok') {
+      for (const el of document.querySelectorAll('.rc-bets-empty')) el.hidden = bs.data.length > 0;
+      for (const el of document.querySelectorAll('.rc-bets-sum, .rc-bets')) el.hidden = bs.data.length === 0;
     }
     const ts = dash.data('team_stats');
     if (ts.status === 'ok') {
@@ -561,7 +694,7 @@
       for (const v of [r.referee, r.leagues, rc.int(r.matches), rc.f2(r.yellows_per_match), rc.f2(r.reds_per_match),
         rc.f2(r.cards_per_match), rc.f2(r.adjusted_cards_per_match), rc.f1(r.booking_points_per_match),
         rc.f1(r.adjusted_booking_points_per_match), rc.pct(r.pct_over_3_5), rc.pct(r.pct_over_4_5),
-        rc.pct(r.pct_over_5_5), r.next_fixture]) rc.cell(tr, v);
+        rc.pct(r.pct_over_5_5), rc.pct(r.away_share_pct), rc.f2(r.cards_per_10_fouls), r.next_fixture]) rc.cell(tr, v);
       return tr;
     }));
   });
@@ -601,7 +734,8 @@
       tr.tabIndex = 0;
       if (f.key === rc.p().fx) tr.classList.add('is-picked');
       for (const v of [f.kickoff, f.league, f.home, f.away, f.referee, f.referee_source, rc.f2(f.projected_cards),
-        rc.f2(f.projected_home_cards), rc.f2(f.projected_away_cards), rc.f1(f.projected_booking_points)]) rc.cell(tr, v);
+        rc.pct(f.prob_over_3_5), rc.pct(f.prob_over_4_5), rc.pct(f.prob_over_5_5), rc.f2(f.fair_over_4_5),
+        rc.f2(f.fair_under_4_5), rc.f2(f.projected_home_cards), rc.f2(f.projected_away_cards)]) rc.cell(tr, v);
       return tr;
     }));
   });
@@ -644,7 +778,8 @@
         rc.f2(r.cards_per_match), rc.f2(r.adjusted_cards_per_match), rc.f2(r.home_cards_per_match),
         rc.f2(r.away_cards_per_match), rc.f2(r.opponent_cards_per_match), rc.f2(r.match_cards_per_match),
         rc.pct(r.pct_team_over_1_5), rc.pct(r.pct_team_over_2_5), rc.pct(r.pct_match_over_4_5),
-        rc.f1(r.booking_points_per_match)]) rc.cell(tr, v);
+        rc.f1(r.booking_points_per_match), rc.f1(r.fouls_per_match), rc.f1(r.fouls_suffered_per_match),
+        rc.f2(r.cards_per_10_fouls)]) rc.cell(tr, v);
       return tr;
     }));
   });
@@ -671,6 +806,118 @@
   dash.draw('fd-rh-c', fdText('referee_home_cards_per_match', rc.f2));
   dash.draw('fd-ra-n', fdText('referee_away_matches', rc.int));
   dash.draw('fd-ra-c', fdText('referee_away_cards_per_match', rc.f2));
+  for (const [name, field, fmt] of [
+    ['fd-p35', 'prob_over_3_5', rc.pct], ['fd-fo35', 'fair_over_3_5', rc.f2], ['fd-fu35', 'fair_under_3_5', rc.f2],
+    ['fd-p45', 'prob_over_4_5', rc.pct], ['fd-fo45', 'fair_over_4_5', rc.f2], ['fd-fu45', 'fair_under_4_5', rc.f2],
+    ['fd-p55', 'prob_over_5_5', rc.pct], ['fd-fo55', 'fair_over_5_5', rc.f2], ['fd-fu55', 'fair_under_5_5', rc.f2],
+    ['fd-h15', 'home_prob_over_1_5', rc.pct], ['fd-h25', 'home_prob_over_2_5', rc.pct],
+    ['fd-a15', 'away_prob_over_1_5', rc.pct], ['fd-a25', 'away_prob_over_2_5', rc.pct],
+    ['fd-rf', 'referee_factor', rc.f2], ['fd-hr', 'home_receives_factor', rc.f2], ['fd-ar', 'away_receives_factor', rc.f2],
+  ]) dash.draw(name, fdText(field, fmt));
+
+  // Odds check: the model's chance for the chosen bet vs the chance the odds imply.
+  const calcChance = () => {
+    const f = pickedFixture();
+    if (!f) return null;
+    const [side, line] = rc.calcBet.split('|');
+    const over = f[`prob_over_${line}`];
+    return over == null ? null : side === 'over' ? over / 100 : 1 - over / 100;
+  };
+  dash.draw('calc-p', (el) => { const c = calcChance(); el.textContent = c == null ? '—' : (100 * c).toFixed(1) + '%'; });
+  dash.draw('calc-i', (el) => { el.textContent = rc.calcOdds ? (100 / rc.calcOdds).toFixed(1) + '%' : '—'; });
+  dash.draw('calc-ev', (el) => {
+    const c = calcChance();
+    if (c == null || !rc.calcOdds) { el.textContent = '—'; el.style.color = ''; return; }
+    const ev = c * rc.calcOdds - 1;
+    el.textContent = (ev >= 0 ? '+' : '') + ev.toFixed(2);
+    el.style.color = ev >= 0 ? 'var(--color-ok)' : 'var(--color-bad)';
+  });
+
+  // Chance of 0, 1, ... 11+ cards for the picked fixture.
+  dash.draw('fd-dist', (el) => {
+    el.replaceChildren();
+    const d = dash.data('fixture_distribution');
+    const p = rc.p();
+    if (d.status !== 'ok' || !p.fx) return;
+    const rows = d.data.filter((r) => r.fixture === p.fx).sort((a, b) => a.order - b.order);
+    if (!rows.length) return;
+    const width = Math.max(240, el.clientWidth);
+    const height = 150, top = 16, bottom = 20;
+    const x = d3.scaleBand(rows.map((r) => r.cards), [0, width]).padding(0.2);
+    const y = d3.scaleLinear([0, d3.max(rows, (r) => r.prob_pct)], [height - bottom, top]);
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${width} ${height}`)
+      .attr('height', height).attr('role', 'img').attr('aria-label', 'Chance of each number of cards');
+    svg.append('line').attr('x1', 0).attr('x2', width).attr('y1', height - bottom).attr('y2', height - bottom)
+      .style('stroke', 'var(--cds-chart-axis)');
+    const g = svg.selectAll('g').data(rows).join('g');
+    g.append('rect').attr('x', (r) => x(r.cards)).attr('y', (r) => y(r.prob_pct)).attr('width', x.bandwidth())
+      .attr('height', (r) => height - bottom - y(r.prob_pct)).attr('rx', 2).style('fill', dash.colors[0]);
+    g.append('text').attr('x', (r) => x(r.cards) + x.bandwidth() / 2).attr('y', height - 5).attr('text-anchor', 'middle')
+      .attr('font-size', 11).style('fill', 'var(--color-fg-muted)').text((r) => r.cards);
+    if (x.bandwidth() >= 22) {
+      g.append('text').attr('x', (r) => x(r.cards) + x.bandwidth() / 2).attr('y', (r) => y(r.prob_pct) - 4)
+        .attr('text-anchor', 'middle').attr('font-size', 10).style('fill', 'var(--color-fg-muted)')
+        .text((r) => Math.round(r.prob_pct) + '%');
+    }
+    const tip = document.createElement('div');
+    tip.className = 'rc-tip';
+    tip.hidden = true;
+    el.append(tip);
+    g.on('mousemove', (event, r) => {
+      tip.replaceChildren();
+      const s = document.createElement('span');
+      s.textContent = `${r.cards} cards`;
+      tip.append(s, document.createTextNode(`${r.prob_pct.toFixed(1)}% chance`));
+      tip.hidden = false;
+      const box = el.getBoundingClientRect();
+      tip.style.left = `${Math.max(0, Math.min(event.clientX - box.left + 12, box.width - tip.offsetWidth))}px`;
+      tip.style.top = `${event.clientY - box.top + 12}px`;
+    }).on('mouseleave', () => { tip.hidden = true; });
+  });
+
+  dash.draw('bet-rows', (tbody) => {
+    const d = dash.data('bets');
+    tbody.replaceChildren(...(d.status === 'ok' ? d.data : []).map((b) => {
+      const tr = document.createElement('tr');
+      tr.dataset.key = b.key;
+      for (const v of [b.placed_at, b.match, b.bet, rc.f2(b.odds), rc.f2(b.stake), rc.pct(b.model_prob),
+        rc.pct(b.implied_prob), b.status, b.actual == null ? '' : String(b.actual), rc.f2(b.profit)]) rc.cell(tr, v);
+      return tr;
+    }));
+  });
+  const betTotal = (field, fmt) => (el) => {
+    const d = dash.data('bets_summary');
+    const row = d.status === 'ok' ? d.data[0] : null;
+    if (!row) { el.textContent = '—'; return; }
+    el.dataset.where = 'key=all';
+    el.textContent = fmt(row[field]);
+  };
+  dash.draw('bs-settled', betTotal('settled', rc.int));
+  dash.draw('bs-total', betTotal('bets', rc.int));
+  dash.draw('bs-staked', betTotal('staked', rc.f2));
+  dash.draw('bs-profit', betTotal('profit', rc.f2));
+  dash.draw('bs-roi', betTotal('roi_pct', rc.pct));
+
+  dash.draw('quality-rows', (tbody) => {
+    const d = dash.data('model_quality');
+    tbody.replaceChildren(...(d.status === 'ok' ? d.data : []).map((r) => {
+      const tr = document.createElement('tr');
+      tr.dataset.key = r.method;
+      for (const v of [r.method, rc.int(r.matches), r.log_score.toFixed(4), r.brier_over_3_5.toFixed(4),
+        r.brier_over_4_5.toFixed(4), r.brier_over_5_5.toFixed(4), r.mae.toFixed(3)]) rc.cell(tr, v);
+      return tr;
+    }));
+  });
+  dash.draw('calibration-rows', (tbody) => {
+    const d = dash.data('calibration');
+    tbody.replaceChildren(...(d.status === 'ok' ? d.data : []).map((r) => {
+      const tr = document.createElement('tr');
+      tr.dataset.key = r.key;
+      for (const v of [r.bin, rc.int(r.matches), rc.pct(r.predicted_pct), rc.pct(r.observed_pct)]) rc.cell(tr, v);
+      return tr;
+    }));
+  });
+
   dash.draw('fd-compare', (tbody) => {
     const f = pickedFixture();
     const d = dash.data('team_stats');

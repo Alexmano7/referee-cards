@@ -91,6 +91,50 @@ that leaves the machine (pushing to GitHub especially).
 - `referees.json` has a `teams` section, and the dashboard has a `team_stats` table (key
   `league|team|season`).
 
+## Fouls, home/away bias, settlement (added 2026-11-07)
+- Fouls (`HF`/`AF`) are read from football-data.co.uk. Referees and leagues get `fouls_per_match`,
+  `cards_per_10_fouls` (strictness per foul), `home/away_cards_per_match` and `away_share_pct`.
+  Teams get fouls committed and suffered, and cards per 10 fouls.
+- `config.RED_CARD_COUNTS_AS` (default 1) sets how many "cards" a red counts as, for card markets and
+  the bet log. The user bets with **Stoiximan/Betano**; their exact rule wasn't confirmed online, so ask
+  the user before changing it. A 35-point cap per player and second-yellow handling need player-level
+  card events (possibly from API-Football).
+
+## Probability model (`model.py`, added 2026-11-07)
+- Per side of each match: `base[league, venue] x referee x receives[team] x draws[opponent]`, fitted
+  together by weighted Poisson with Gamma(mean 1) priors (`k_referee`, `k_team` = strength in expected
+  cards). Recency weight is `0.5^(age_days / half_life_days)`. Negative binomial with per-league `phi`
+  (method of moments) gives the probabilities.
+- `stats.apply_model` replaces fixture projections: `projected_cards`, `prob_over_3_5/4_5/5_5` (as %),
+  fair odds (1/p, no margin), side means and `home/away_prob_over_1_5/2_5`, `distribution` (0..10, 11+),
+  and factors (`referee_factor`, `home/away_receives_factor`, `home/away_draws_factor`). `referees.json`
+  referee/team blocks get `model_factor` / `model_receives_factor` / `model_draws_factor`.
+- Settings live in `config/model_params.json`, tuned by **`uv run referees backtest`**
+  (`backtest.py`, about 1 minute). That run is a weekly walk-forward: tuned on 2025/26 by log score,
+  then scored on 2026/27 so far against the old method and the league average. It writes
+  `docs/backtest.md` and `docs/backtest.json`. The first grid picked its edge, so the grid was widened;
+  the chosen settings are interior (half-life 180 d, k_ref 80, k_team 40).
+- Result (2026-11-07, 352 holdout matches): the model is best on every score but only slightly
+  (Brier for over 4.5: 0.230 vs 0.231 for the old method and 0.234 for the league average). It is well
+  calibrated in the populated bins. Card counts are noisy, so **don't overstate the edge** to the user.
+
+## Bet log (`bets.py`, added 2026-11-07)
+- `config/bets.csv`: placed_at, league, date, home, away (football-data.org names, as in `upcoming`),
+  market (`match_cards` | `home_cards` | `away_cards` | `match_booking_points`), selection (over/under),
+  line (half lines only), odds, stake, model_prob (the model's % for that selection at logging time), note.
+- **"Log a bet …"** from the user: find the fixture in `uv run referees upcoming` or the fixtures table,
+  take model_prob from the dashboard data (`prob_over_X`, or 100 minus it for under), append the row,
+  confirm it back to the user, then refresh the dashboard's `bets` dataset (export, upload, update).
+- `settle()` marks bets won/lost once the match is in the joined data. The dashboard shows them with totals
+  (calc `bets_summary`).
+
+## API-Football (pending the user's free key)
+- `api_football.py` and **`uv run referees api-football-probe`** (about 8 of the 100 daily requests) report
+  the plan, seasons and coverage per league, the referee field on upcoming fixtures, and card bet types.
+- The key goes in `.env` as `API_FOOTBALL_KEY` (template in `.env.example`). The user registers themselves.
+  Next step once it's there: run the probe, then decide what to integrate (card events for exact
+  settlement, early referees, card odds).
+
 ## Sofascore / datafc: tried and rejected (2026-11-06)
 - The user asked for Sofascore via the `datafc` package as a referee source. A throwaway trial
   (`uv run --no-project --with datafc`, not added to the project) got **HTTP 403 for every
@@ -114,6 +158,9 @@ Referees/
 ├─ .env                         # real token. NEVER committed (in .gitignore)
 ├─ config/team_name_mapping.csv # created by suggest-mapping, then reviewed by hand
 ├─ config/referee_appointments.csv # upcoming referees found by Claude's web lookup, with sources
+├─ config/model_params.json     # tuned model settings (written by `referees backtest`)
+├─ config/bets.csv              # bet log (written by Claude on the user's request)
+├─ docs/backtest.md / .json     # backtest report
 ├─ dashboard/index.html         # the claude.ai dashboard page (stored there as files/index.html)
 ├─ src/referees/
 │  ├─ config.py      # leagues, seasons, paths, token
@@ -124,6 +171,10 @@ Referees/
 │  ├─ stats.py       # referee stats, adjustments, projections, referees.json content
 │  ├─ appointments.py    # looked-up referees: load, match names, apply to fixtures
 │  ├─ team_stats.py      # card statistics per team, fixture split between teams
+│  ├─ model.py           # probability model (referee/team/opponent factors, negative binomial)
+│  ├─ backtest.py        # walk-forward backtest + settings tuning
+│  ├─ bets.py            # bet log settlement
+│  ├─ api_football.py    # API-Football client + free-plan probe
 │  ├─ dashboard_export.py # flat row tables for the dashboard
 │  └─ cli.py         # `referees` command
 ├─ data/raw/{api,csv}/          # downloads (git-ignored)
@@ -140,6 +191,8 @@ Referees/
 - Show 10 joined matches, failed joins and referee coverage: `uv run referees check`
 - Build outputs: `uv run referees build` (or `update` = fetch + build)
 - Upcoming fixtures and which lack a referee: `uv run referees upcoming`
+- Backtest and tune the card model: `uv run referees backtest` (re-run after big data changes)
+- Probe the API-Football free plan: `uv run referees api-football-probe`
 - Dashboard tables: `uv run referees export-dashboard` (after `fetch`)
 - Tests: `uv run pytest`. Lint and format: `uv run ruff check .` / `uv run ruff format .`
 
@@ -176,7 +229,8 @@ Referees/
   (document `{text, edit}`). Written to the type's one-writer rules: text in the HTML, data in
   `data-draw` drawings, and every number marked with `data-source`. Each `<script>` has its own
   scope, so share helpers via `window.rc`.
-- Data: `uv run referees export-dashboard` writes 6 row tables to `data/dashboard/` (git-ignored):
+- Data: `uv run referees export-dashboard` writes 10 row tables to `data/dashboard/` (git-ignored): `fixture_distribution`
+  (key `fixture|i`), `model_quality` and `calibration` (from docs/backtest.json), `bets`,
   `team_stats` (key `league|team|season`; a Teams section and the match card read it),
   `referee_stats` (key `referee_id|league|season`, league `ALL` or a code, season `All seasons` or
   `2026/27`), `league_summary`, `league_bars`, `fixtures`, `data_checks`. Each is an uploaded asset
@@ -199,7 +253,7 @@ Referees/
      they're history, and the API's own referee wins once it appears.
   3. `uv run referees export-dashboard`. It builds in memory from `data/raw` and never touches the
      bot's `data/*` files. It prints "Referees from web lookup used" and any PROBLEM lines: fix them.
-  4. Upload each of the 6 JSON files as an asset (`Artifact` publish, `url` above, `asset: true`,
+  4. Upload each of the 10 JSON files as an asset (`Artifact` publish, `url` above, `asset: true`,
      one call each, since they're JSON).
   5. `ArtifactData` batch `update` of each `datasets/<id>`: `source.url` (new `/_blob/…`),
      `updated: {at: <"Data generated at" time>, by: …}` and `edit`, pinned with `if_version`.
