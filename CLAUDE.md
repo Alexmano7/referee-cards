@@ -240,7 +240,11 @@ Referees/
   `2026/27`), `league_summary`, `league_bars`, `fixtures`, `data_checks`. Each is an uploaded asset
   referenced by `datasets/<same id>`. The page also defines a calc `fx_counts`.
 - Filters are dash params (`league`, `season`, `minm`, `ref`, `fx` = the picked fixture); no query uses them.
-- **"Refresh my referee dashboard" procedure:**
+- **The user types `refresh`** (or `/refresh`) to run everything. The routine is the project skill
+  `.claude/skills/refresh/SKILL.md`, and that skill is the source of truth. Since 2026-11-07, at the
+  user's request, referee lookups are **saved automatically** (no confirmation step), still only for
+  pairings a source states for that exact match. Found names are reported in the summary.
+- Older notes on the same procedure:
   1. `git pull`, then `uv run referees fetch` (~1.5 min; downloads to the git-ignored `data/raw/`).
   2. **Referee lookup** (the user chose this, option 2): `uv run referees upcoming` lists the next
      14 days' fixtures, marking each MISSING, "lookup file" or football-data.org. For the MISSING ones,
@@ -252,7 +256,7 @@ Referees/
      - La Liga: rfef.es designaciones (the lists are PDFs, often unreadable) and news sites.
      - Ligue 1: ligue1.com / club and news sites.
      Only use a pairing a source states for that exact match, and never infer one from list order.
-     **Show the user the found list with sources and wait for OK**, then append rows to
+     (Since 2026-11-07 no OK is needed: see the refresh skill.) Append rows to
      `config/referee_appointments.csv` using the exact team names from `upcoming`. Keep old rows:
      they're history, and the API's own referee wins once it appears.
   3. `uv run referees export-dashboard`. It builds in memory from `data/raw` and never touches the

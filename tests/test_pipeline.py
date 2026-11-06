@@ -307,6 +307,11 @@ def test_match_referee_names():
     )  # accents and case don't matter
     assert match_referee("Daniel", known) is None  # two Daniels: never guess
     assert match_referee("Felix Zwayer", known) is None  # unknown referee
+    assert (
+        match_referee("Rob Jones", known + [(5, "Robert Jones")]) == 5
+    )  # short first name
+    assert match_referee("Dan Siebert", known) == 3
+    assert match_referee("Dan", known) is None  # a short form alone is not enough
 
 
 def _fixture(home="A", away="B", day=date(2026, 11, 8), referee=None, referee_id=None):

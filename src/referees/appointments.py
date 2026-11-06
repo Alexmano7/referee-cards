@@ -55,21 +55,27 @@ def _tokens(name: str) -> list[str]:
 def match_referee(name: str, candidates: list[tuple[int, str]]) -> int | None:
     """Find the one known referee this announced name refers to, or None.
 
-    Every word of the announced name must appear in the known full name, and a single
-    letter counts as an initial. So "S. Jablonski" and "Sven Jablonski" both match
-    "Sven Jablonski", and the Spanish surname-only "Hernández Hernández" matches
-    "Alejandro Hernández Hernández". Two possible matches count as none: never guess.
+    Every word of the announced name must appear in the known full name. A single letter
+    counts as an initial, and the first word may be a short form of 3+ letters ("Rob" for
+    "Robert"). So "S. Jablonski" and "Sven Jablonski" both match "Sven Jablonski", "Rob
+    Jones" matches "Robert Jones", and the Spanish surname-only "Hernández Hernández"
+    matches "Alejandro Hernández Hernández". Two possible matches count as none: never guess.
     """
     wanted = _tokens(name)
     if not wanted:
         return None
+
+    def word_ok(i: int, t: str, have: list[str]) -> bool:
+        if t in have:
+            return True
+        if len(t) == 1 or (i == 0 and len(wanted) > 1 and len(t) >= 3):
+            return any(h.startswith(t) for h in have)
+        return False
+
     hits = set()
     for ref_id, full in candidates:
         have = _tokens(full)
-        if all(
-            t in have or (len(t) == 1 and any(h.startswith(t) for h in have))
-            for t in wanted
-        ):
+        if all(word_ok(i, t, have) for i, t in enumerate(wanted)):
             hits.add(ref_id)
     return hits.pop() if len(hits) == 1 else None
 
