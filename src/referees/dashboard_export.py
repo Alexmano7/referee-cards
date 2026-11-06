@@ -280,7 +280,26 @@ def build_tables(
         for c in backtest.get("calibration_over_4_5", []):
             calibration_rows.append({"key": c["bin"], **c})
 
+    # --- hot predictions and their backtest record -------------------------------------
+    hot_rows = []
+    for h in report.get("hot_picks", []):
+        ko = pd.Timestamp(h["utc_kickoff"]).tz_convert(ATHENS)
+        hot_rows.append(
+            {
+                "key": str(h["rank"]),
+                **{k: v for k, v in h.items() if k != "utc_kickoff"},
+                "kickoff": ko.strftime("%a %d %b, %H:%M"),
+                "match": f"{h['home']} v {h['away']}",
+            }
+        )
+    record_rows = [
+        {"key": period, "period": period, **rec}
+        for period, rec in ((backtest or {}).get("hot_picks") or {}).items()
+    ]
+
     return {
+        "hot_picks": hot_rows,
+        "hot_picks_record": record_rows,
         "fixture_distribution": dist_rows,
         "model_quality": quality_rows,
         "calibration": calibration_rows,

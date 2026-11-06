@@ -119,6 +119,49 @@ def _current_method_predictions(df, obs, start, end) -> list[dict]:
     return out
 
 
+def hot_pick_record(df, obs, start, end, params, n_picks: int = 3) -> dict:
+    """Backtest of the Hot Prediction rule (picks.py): each week, the top picks are chosen
+    from earlier data only, then checked against what happened."""
+    from referees.picks import best_candidate, is_hit
+
+    picks = []
+    typical_params = {**params, "k_referee": 1e9, "k_team": 1e9}
+    for wk, g in _weeks(df, start, end):
+        m = fit(obs, as_of=wk, **params)
+        typical = fit(obs, as_of=wk, **typical_params)
+        week = []
+        for r in g.itertuples():
+            ref = r.referee_id if pd.notna(r.referee_id) else None
+            c = best_candidate(
+                m.predict(r.league, r.api_home, r.api_away, ref),
+                typical.predict(r.league, r.api_home, r.api_away, None),
+            )
+            if c:
+                known = ref is not None and int(ref) in m.referee
+                week.append((known, c["score"], c, r))
+        week.sort(key=lambda x: (x[0], x[1]), reverse=True)
+        for _, _, c, r in week[:n_picks]:
+            picks.append(
+                {
+                    "p": c["p"],
+                    "base": c["base"],
+                    "hit": is_hit(c, r.home_cards, r.away_cards),
+                }
+            )
+    if not picks:
+        return {"picks": 0}
+    hits = sum(p["hit"] for p in picks)
+    rate = hits / len(picks)
+    return {
+        "picks": len(picks),
+        "hits": int(hits),
+        "hit_rate_pct": round(100 * rate, 1),
+        "avg_model_pct": round(100 * float(np.mean([p["p"] for p in picks])), 1),
+        "avg_typical_pct": round(100 * float(np.mean([p["base"] for p in picks])), 1),
+        "break_even_odds": round(1 / rate, 2) if rate else None,
+    }
+
+
 def score(preds: list[dict]) -> dict:
     if not preds:
         return {"matches": 0}
@@ -195,6 +238,10 @@ def run(joined: pd.DataFrame, today: date | None = None, progress=print) -> dict
         },
         "tuning_season": {"Model (tuned)": score(model_tune)},
         "calibration_over_4_5": calibration(model_tune + model_hold),
+        "hot_picks": {
+            "2026/27 so far": hot_pick_record(df, obs, *holdout, best_params),
+            "2025/26": hot_pick_record(df, obs, *TUNE_PERIOD, best_params),
+        },
     }
     return results
 
@@ -236,4 +283,12 @@ def render_markdown(r: dict) -> str:
         + table(r["tuning_season"])
         + "\n## Calibration of P(over 4.5 cards), both periods\n\n"
         + cal
+        + "\n## Hot Prediction rule (3 picks per week, chosen from earlier data only)\n\n"
+        + "| Period | Picks | Won | Hit rate | Model said | Typical match | Break-even odds |\n"
+        + "|---|---|---|---|---|---|---|\n"
+        + "".join(
+            f"| {k} | {v.get('picks')} | {v.get('hits')} | {v.get('hit_rate_pct')}% "
+            f"| {v.get('avg_model_pct')}% | {v.get('avg_typical_pct')}% | {v.get('break_even_odds')} |\n"
+            for k, v in r.get("hot_picks", {}).items()
+        )
     )

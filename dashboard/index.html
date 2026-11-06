@@ -70,6 +70,18 @@
   .rc-calc input[type=number] { width: 8rem; }
   .rc-bets td:nth-child(8) { font-weight: var(--cds-font-weight-medium); }
   .rc-bets :is(th, td):nth-child(-n+3) { text-align: left; }
+  .rc-hot-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); gap: var(--cds-gap-md); min-height: 6rem; }
+  .rc-hot-card { display: flex; flex-direction: column; gap: var(--cds-gap-xs); padding: var(--cds-pad-md); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-bg); min-width: 0; }
+  .rc-hot-rank { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); text-transform: uppercase; letter-spacing: .04em; }
+  .rc-hot-bet { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-heading); line-height: 1.25; }
+  .rc-hot-match { font-weight: var(--cds-font-weight-medium); }
+  .rc-hot-meta, .rc-hot-why { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .rc-hot-nums { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--cds-gap-xs) var(--cds-gap-md); font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; margin: var(--cds-gap-xs) 0; }
+  .rc-hot-nums b { display: block; font-size: var(--cds-font-size-body); color: var(--color-fg); }
+  .rc-hot-nums span { color: var(--color-fg-muted); }
+  .rc-hot-open { align-self: flex-start; font: inherit; font-size: var(--cds-font-size-caption); padding: var(--cds-pad-xs) var(--cds-pad-sm); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-panel); color: var(--color-fg); cursor: pointer; margin-top: auto; }
+  .rc-hot-open:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
+  .rc .rc-hot-record b { font-weight: 600; color: var(--color-fg); }
   .rc-detail-head { display: flex; justify-content: space-between; align-items: center; gap: var(--cds-gap-md); }
   .rc-close { font: inherit; font-size: var(--cds-font-size-caption); padding: var(--cds-pad-xs) var(--cds-pad-sm); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-panel); color: var(--color-fg); cursor: pointer; }
   .rc-bars { position: relative; min-height: 10rem; }
@@ -151,6 +163,14 @@
       <span class="rc-tile-value dash-skeleton" data-draw="t-refs" data-source="league_summary" data-field="referees">—</span>
       <span class="rc-tile-sub">With at least one match</span>
     </div>
+  </section>
+
+  <section class="rc-card" id="hot-prediction">
+    <h2>Hot Prediction</h2>
+    <p class="rc-note">The card bets in the next 7 days where the model differs most from a typical match in that league, from the referee and both teams. Each pick has at least a 55% model chance. <b>Bet only if your bookmaker offers at least the minimum odds shown</b>; below that the price is not worth it. These are estimates, not certainties.</p>
+    <div class="rc-hot-list" data-draw="hot-list" data-source="hot_picks"></div>
+    <p class="rc-note rc-hot-empty" hidden>No match in the next 7 days passes the rule yet. Refresh again closer to the weekend, when more referees are announced.</p>
+    <p class="rc-note rc-hot-record">Track record of this rule on past weeks (each week picked from earlier data only): this season so far it won <b data-draw="hr-hits" data-source="hot_picks_record" data-field="hits">—</b> of <b data-draw="hr-picks" data-source="hot_picks_record" data-field="picks">—</b> picks (<b data-draw="hr-rate" data-source="hot_picks_record" data-field="hit_rate_pct">—</b>), against <b data-draw="hr-model" data-source="hot_picks_record" data-field="avg_model_pct">—</b> the model expected and <b data-draw="hr-typical" data-source="hot_picks_record" data-field="avg_typical_pct">—</b> for a typical match. Small sample: treat as a guide.</p>
   </section>
 
   <section class="rc-grid rc-grid-fx">
@@ -591,6 +611,10 @@
       const f = fxAll.data.find((x) => x.key === p.fx);
       for (const el of document.querySelectorAll('.rc-fd-hist')) el.hidden = !f || f.referee === 'TBD';
     }
+    const hp = dash.data('hot_picks');
+    if (hp.status === 'ok') {
+      for (const el of document.querySelectorAll('.rc-hot-empty')) el.hidden = hp.data.length > 0;
+    }
     const bs = dash.data('bets');
     if (bs.status === 'ok') {
       for (const el of document.querySelectorAll('.rc-bets-empty')) el.hidden = bs.data.length > 0;
@@ -917,6 +941,60 @@
       return tr;
     }));
   });
+
+
+  // Hot Prediction cards: one per pick; "Open match" shows the match card.
+  dash.draw('hot-list', (el) => {
+    const d = dash.data('hot_picks');
+    el.replaceChildren();
+    if (d.status !== 'ok') return;
+    const add = (parent, tag, cls, text) => {
+      const n = document.createElement(tag);
+      if (cls) n.className = cls;
+      if (text != null) n.textContent = text;
+      parent.append(n);
+      return n;
+    };
+    for (const h of [...d.data].sort((a, b) => a.rank - b.rank)) {
+      const card = add(el, 'article', 'rc-hot-card');
+      add(card, 'div', 'rc-hot-rank', `Pick ${h.rank} · ${h.league} · ${h.kickoff}`);
+      add(card, 'div', 'rc-hot-bet', h.bet);
+      add(card, 'div', 'rc-hot-match', h.match);
+      const nums = add(card, 'div', 'rc-hot-nums');
+      for (const [label, value] of [
+        ['Model chance', rc.pct(h.model_prob)],
+        ['Typical match', rc.pct(h.typical_prob)],
+        ['Fair odds', rc.f2(h.fair_odds)],
+        ['Bet only at odds of', rc.f2(h.min_odds) + '+'],
+      ]) {
+        const cell = add(nums, 'div');
+        add(cell, 'span', null, label);
+        add(cell, 'b', null, value);
+      }
+      add(card, 'div', 'rc-hot-meta', `Referee: ${h.referee}` + (h.referee_matches ? ` (${h.referee_matches} matches in our data)` : ''));
+      add(card, 'div', 'rc-hot-why', `Why: ${h.why}.`);
+      const btn = add(card, 'button', 'rc-hot-open', 'Open match');
+      btn.type = 'button';
+      btn.addEventListener('click', () => {
+        dash.setParams({ fx: h.fixture });
+        requestAnimationFrame(() => {
+          for (const x of document.querySelectorAll('#fixture-detail')) x.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        });
+      });
+    }
+  });
+  const hotRecord = (field, fmt) => (el) => {
+    const d = dash.data('hot_picks_record');
+    const row = d.status === 'ok' ? d.data.find((r) => r.key === '2026/27 so far') : null;
+    if (!row) { el.textContent = '—'; return; }
+    el.dataset.where = 'key=' + rc.enc(row.key);
+    el.textContent = fmt(row[field]);
+  };
+  dash.draw('hr-hits', hotRecord('hits', rc.int));
+  dash.draw('hr-picks', hotRecord('picks', rc.int));
+  dash.draw('hr-rate', hotRecord('hit_rate_pct', rc.pct));
+  dash.draw('hr-model', hotRecord('avg_model_pct', rc.pct));
+  dash.draw('hr-typical', hotRecord('avg_typical_pct', rc.pct));
 
   dash.draw('fd-compare', (tbody) => {
     const f = pickedFixture();

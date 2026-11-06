@@ -301,6 +301,80 @@ def apply_model(fixtures: list[dict], df: pd.DataFrame, today: date, league_avg:
     return model
 
 
+def hot_picks(
+    fixtures: list[dict], df: pd.DataFrame, model, today: date, referees: list[dict]
+) -> list[dict]:
+    """The 2-3 card bets where the model differs most from a typical match (see picks.py)."""
+    from referees.model import fit, load_params, side_observations
+    from referees.picks import (
+        N_PICKS,
+        WINDOW_DAYS,
+        best_candidate,
+        bet_label,
+        min_odds,
+    )
+
+    params = {
+        **load_params(),
+        "k_referee": 1e9,
+        "k_team": 1e9,
+    }  # league-only: a typical match
+    typical = fit(side_observations(df), as_of=today + timedelta(days=1), **params)
+    n_matches = {r["id"]: r["overall"]["matches"] for r in referees}
+    horizon = str(today + timedelta(days=WINDOW_DAYS))
+    scored = []
+    for f in fixtures:
+        if f["date"] > horizon:
+            continue
+        ref_id = f.get("referee_id")
+        pick = best_candidate(
+            model.predict(f["league"], f["home"], f["away"], ref_id),
+            typical.predict(f["league"], f["home"], f["away"], None),
+        )
+        if pick:
+            scored.append(
+                (ref_id is not None and ref_id in n_matches, pick["score"], f, pick)
+            )
+    scored.sort(
+        key=lambda x: (x[0], x[1]), reverse=True
+    )  # referee known first, then strongest
+    out = []
+    for rank, (has_ref, score, f, pick) in enumerate(scored[:N_PICKS], start=1):
+        ref_id = f.get("referee_id")
+        factors = (
+            f"referee {f['referee']} {f['referee_factor']:.2f}x an average referee"
+            if has_ref
+            else "referee not known yet (teams and league only)"
+        )
+        out.append(
+            {
+                "rank": rank,
+                "fixture": f"{f['league']}|{f['date']}|{f['home']}",
+                "league": f["league"],
+                "date": f["date"],
+                "utc_kickoff": f["utc_kickoff"],
+                "home": f["home"],
+                "away": f["away"],
+                "referee": f.get("referee") or "TBD",
+                "referee_matches": n_matches.get(ref_id, 0) if ref_id else 0,
+                "bet": bet_label(pick, f["home"], f["away"]),
+                "market": pick["market"],
+                "selection": pick["selection"],
+                "line": pick["line"],
+                "model_prob": round(100 * pick["p"], 1),
+                "typical_prob": round(100 * pick["base"], 1),
+                "shift_pp": round(100 * score, 1),
+                "fair_odds": round(1 / pick["p"], 2),
+                "min_odds": min_odds(pick["p"]),
+                "why": (
+                    f"{factors}; {f['home']} {f['home_receives_factor']:.2f}x and "
+                    f"{f['away']} {f['away_receives_factor']:.2f}x their league's usual cards"
+                ),
+            }
+        )
+    return out
+
+
 def build_report(
     joined: pd.DataFrame,
     api: pd.DataFrame,
@@ -393,6 +467,7 @@ def build_report(
     horizon = str(today + timedelta(days=UPCOMING_DAYS))
     upcoming = [f for f in all_projected if f["date"] <= horizon]
 
+    picks = hot_picks(all_projected, df, model, today, referees)
     by_ref = {r["id"]: r for r in referees}
     for (
         f
@@ -427,6 +502,7 @@ def build_report(
         "leagues": leagues,
         "referees": referees,
         "teams": teams,
+        "hot_picks": picks,
         "upcoming_fixtures": upcoming,
         "data_quality": {
             "joined_matches": len(joined),

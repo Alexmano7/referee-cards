@@ -118,6 +118,18 @@ that leaves the machine (pushing to GitHub especially).
   (Brier for over 4.5: 0.230 vs 0.231 for the old method and 0.234 for the league average). It is well
   calibrated in the populated bins. Card counts are noisy, so **don't overstate the edge** to the user.
 
+## Hot Prediction (`picks.py`, added 2026-11-07)
+- Each refresh picks the 2-3 card bets in the next 7 days where the model differs most from a
+  **typical match** (the same model with referee/team effects switched off, `k = 1e9`). The
+  candidates are match total over/under 3.5/4.5/5.5 and each side over/under 1.5/2.5. Only bets with
+  a model chance of at least 55% count. The score is model chance minus typical chance; the best
+  candidate per fixture is taken, then the top 3 fixtures, with a known referee first.
+- Each pick shows fair odds (1/p) and **minimum odds** (fair + 5%, rounded up). Tell the user to bet only at
+  or above that. `report["hot_picks"]`; dashboard datasets `hot_picks` and `hot_picks_record`.
+- Backtest of the exact rule (`backtest.hot_pick_record`, in `docs/backtest.md`): 2026/27 so far, 22/33
+  won (66.7%) against 64.4% predicted and 51.5% for a typical match; 2025/26, 82/111 (73.9%) against
+  66.3% and 49.6%. The sample is small and bookmakers price better than "typical", so present it as a guide.
+
 ## Bet log (`bets.py`, added 2026-11-07)
 - `config/bets.csv`: placed_at, league, date, home, away (football-data.org names, as in `upcoming`),
   market (`match_cards` | `home_cards` | `away_cards` | `match_booking_points`), selection (over/under),
@@ -178,6 +190,7 @@ Referees/
 │  ├─ model.py           # probability model (referee/team/opponent factors, negative binomial)
 │  ├─ backtest.py        # walk-forward backtest + settings tuning
 │  ├─ bets.py            # bet log settlement
+│  ├─ picks.py           # Hot Prediction rule
 │  ├─ api_football.py    # API-Football client + free-plan probe
 │  ├─ dashboard_export.py # flat row tables for the dashboard
 │  └─ cli.py         # `referees` command

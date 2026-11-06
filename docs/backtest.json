@@ -962,5 +962,23 @@
    "predicted_pct": 67.6,
    "observed_pct": 42.9
   }
- ]
+ ],
+ "hot_picks": {
+  "2026/27 so far": {
+   "picks": 33,
+   "hits": 22,
+   "hit_rate_pct": 66.7,
+   "avg_model_pct": 64.4,
+   "avg_typical_pct": 51.5,
+   "break_even_odds": 1.5
+  },
+  "2025/26": {
+   "picks": 111,
+   "hits": 82,
+   "hit_rate_pct": 73.9,
+   "avg_model_pct": 66.3,
+   "avg_typical_pct": 49.6,
+   "break_even_odds": 1.35
+  }
+ }
 }

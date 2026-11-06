@@ -611,3 +611,38 @@ def test_bets_are_settled_from_card_data():
     assert rows[1]["profit"] == -10.0
     assert rows[2]["actual"] == 75
     assert rows[0]["implied_prob"] == 50.0
+
+
+# --- hot predictions ------------------------------------------------------------------
+
+
+def test_hot_pick_prefers_the_biggest_shift_from_a_typical_match():
+    from referees.picks import best_candidate, is_hit, min_odds
+
+    def probs(over35, over45, over55, h15, h25, a15, a25):
+        return {
+            "prob_over_3_5": over35,
+            "prob_over_4_5": over45,
+            "prob_over_5_5": over55,
+            "home_prob_over_1_5": h15,
+            "home_prob_over_2_5": h25,
+            "away_prob_over_1_5": a15,
+            "away_prob_over_2_5": a25,
+        }
+
+    typical = probs(0.55, 0.40, 0.25, 0.45, 0.25, 0.55, 0.30)
+    model = probs(
+        0.75, 0.58, 0.40, 0.50, 0.28, 0.60, 0.33
+    )  # strict referee: totals go up
+    pick = best_candidate(model, typical)
+    assert (pick["market"], pick["selection"], pick["line"]) == (
+        "match_cards",
+        "over",
+        3.5,
+    )
+    assert pick["score"] == pytest.approx(0.20)
+    assert (
+        best_candidate(probs(*[0.5] * 7), typical, min_prob=0.9) is None
+    )  # nothing likely enough
+    assert is_hit(pick, 2, 2) and not is_hit(pick, 1, 2)
+    assert min_odds(0.625) == 1.68  # fair 1.60 + 5%

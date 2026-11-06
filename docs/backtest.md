@@ -27,3 +27,10 @@ Generated 2026-11-07 by `uv run referees backtest`. Walk-forward: each week is p
 | 35-50% | 934 | 41.5% | 41.6% |
 | 50-65% | 216 | 54.8% | 54.2% |
 | 65-80% | 7 | 67.6% | 42.9% |
+
+## Hot Prediction rule (3 picks per week, chosen from earlier data only)
+
+| Period | Picks | Won | Hit rate | Model said | Typical match | Break-even odds |
+|---|---|---|---|---|---|---|
+| 2026/27 so far | 33 | 22 | 66.7% | 64.4% | 51.5% | 1.5 |
+| 2025/26 | 111 | 82 | 73.9% | 66.3% | 49.6% | 1.35 |
