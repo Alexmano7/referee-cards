@@ -48,7 +48,7 @@ TUNE_PERIOD = (date(2025, 7, 1), date(2026, 7, 1))
 GRID = {
     # First run (120-730 days, k 5-40) picked the edge (120 d, k 40, k 40), so the grid
     # was widened toward shorter half-lives and stronger evening-out.
-    "half_life_days": [60, 90, 120, 180, 365],
+    "half_life_days": [120, 180, 365, 540, 730],
     "k_referee": [20.0, 40.0, 80.0, 160.0],
     "k_team": [20.0, 40.0, 80.0, 160.0],
 }
