@@ -77,6 +77,14 @@ def match_referee(name: str, candidates: list[tuple[int, str]]) -> int | None:
         have = _tokens(full)
         if all(word_ok(i, t, have) for i, t in enumerate(wanted)):
             hits.add(ref_id)
+    if not hits and len(wanted) >= 3:
+        # Fallback for full middle names (RFEF writes "Francisco José Hernández" for
+        # "Francisco Hernández Maeso"): first name and last announced word must match,
+        # middle words may be missing. Still only when exactly one referee fits.
+        for ref_id, full in candidates:
+            have = _tokens(full)
+            if word_ok(0, wanted[0], have) and wanted[-1] in have:
+                hits.add(ref_id)
     return hits.pop() if len(hits) == 1 else None
 
 
@@ -110,6 +118,8 @@ def apply_appointments(
             continue  # the match has been played: the row is history, not a problem
         label = f"{a.league} {a.date} {a.home} v {a.away}"
         i = index.get((a.league, a.date, a.home, a.away))
+        if i is None and today and a.date == today:
+            continue  # today's match has already kicked off, so it is no longer upcoming
         if i is None:
             problems.append(
                 f"{label}: no upcoming fixture with these exact names and date"

@@ -312,6 +312,21 @@ def test_match_referee_names():
     )  # short first name
     assert match_referee("Dan Siebert", known) == 3
     assert match_referee("Dan", known) is None  # a short form alone is not enough
+    spanish = [
+        (10, "Francisco Hernández Maeso"),
+        (11, "Alejandro Hernández Hernández"),
+        (12, "Miguel Ortiz Arias"),
+        (13, "Juan Martínez Munuera"),
+        (14, "José Sánchez Martínez"),
+    ]
+    assert (
+        match_referee("Francisco José Hernández", spanish) == 10
+    )  # RFEF full middle name
+    assert match_referee("Miguel Ángel Ortiz", spanish) == 12
+    assert match_referee("Juan Martínez", spanish) == 13  # not José Sánchez Martínez
+    assert (
+        match_referee("Pedro José Hernández", spanish) is None
+    )  # first name fits nobody
 
 
 def _fixture(home="A", away="B", day=date(2026, 11, 8), referee=None, referee_id=None):

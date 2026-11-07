@@ -160,6 +160,21 @@ that leaves the machine (pushing to GitHub especially).
   bet log. Revisit a one-month paid test only if the logged bets suggest the model finds value. Don't
   integrate API-Football data unless the user asks again.
 
+## Referee sources tested (2026-11-07, user's list)
+- **referee.observer/fixtures**: the best. It listed 25 of the weekend's PL/BL1/FL1 referees and agreed with
+  all 24 official pairings we had, and it gave Man United v Aston Villa = Chris Kavanagh. No La Liga.
+- **RFEF**: per-day articles on `/es/federacion/arbitros/designaciones`; the referees are only in a linked PDF,
+  which `referees rfef-pdf` reads (`<date> <home> <away> <time>` then `Árbitro:<name>`).
+- StatsBet (free view: top 5 only) is a usable second check. WorldReferee and OddAlerts return 403 (blocked:
+  don't work around it). premierleague.com/en/referees, NinetyMinutesPlus and the DFB season page have no pairings.
+- The order is in the refresh skill. A preview article once named Brooks for Man United v Villa; two
+  aggregators said Kavanagh. Lesson: conflicts are resolved by official sources or aggregators, never by guessing.
+- Name matching: RFEF writes full middle names ("Francisco José Hernández" = "Francisco Hernández Maeso"),
+  so `match_referee` has a fallback: first name and last announced word, only if exactly one referee fits.
+- **Upcoming means the kick-off is still ahead** (fixed 2026-11-07). A run for today drops matches that
+  already kicked off, so picks and trebles never include a started game. Appointments for today's started
+  matches are skipped silently.
+
 ## Sofascore / datafc: tried and rejected (2026-11-06)
 - The user asked for Sofascore via the `datafc` package as a referee source. A throwaway trial
   (`uv run --no-project --with datafc`, not added to the project) got **HTTP 403 for every
@@ -169,7 +184,8 @@ that leaves the machine (pushing to GitHub especially).
 
 ## Stack and why
 - **Python 3.13** via **uv** (one tool for Python, the virtual environment and dependencies).
-- `requests`, `python-dotenv`, `pandas`. Dev: `pytest`, `ruff`.
+- `requests`, `python-dotenv`, `pandas`, `pypdf` (added 2026-11-07 with the user's OK, to read the
+  RFEF's La Liga designation PDFs). Dev: `pytest`, `ruff`.
 - **Machine quirk:** the Claude desktop app redirects writes to `AppData\Roaming`, which broke
   uv's default Python location. Python is installed in `C:\Users\worsh\.local\share\uv\python`.
   In Claude sessions, set `UV_PYTHON_INSTALL_DIR` to that path and add
@@ -201,6 +217,7 @@ Referees/
 │  ├─ bets.py            # bet log settlement
 │  ├─ picks.py           # Hot Prediction rule
 │  ├─ api_football.py    # API-Football client + free-plan probe
+│  ├─ rfef.py            # download + read RFEF La Liga designation PDFs (rfef.es only)
 │  ├─ dashboard_export.py # flat row tables for the dashboard
 │  └─ cli.py         # `referees` command
 ├─ data/raw/{api,csv}/          # downloads (git-ignored)
@@ -219,6 +236,7 @@ Referees/
 - Upcoming fixtures and which lack a referee: `uv run referees upcoming`
 - Backtest and tune the card model: `uv run referees backtest` (re-run after big data changes)
 - Probe the API-Football free plan: `uv run referees api-football-probe`
+- Read an RFEF designation PDF: `uv run referees rfef-pdf "<pdf url on rfef.es>"` (saved to data/raw/rfef/)
 - Dashboard tables: `uv run referees export-dashboard` (after `fetch`)
 - Tests: `uv run pytest`. Lint and format: `uv run ruff check .` / `uv run ruff format .`
 

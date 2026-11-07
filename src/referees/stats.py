@@ -455,9 +455,18 @@ def build_report(
         )
 
     # Upcoming fixtures: the next UPCOMING_DAYS days for the panel; any date for "next fixture".
+    # Upcoming = kick-off still ahead. On a run for today, use the current time, so a match
+    # that started earlier today (still "TIMED" in data downloaded before kick-off) drops out;
+    # for any other date (tests, backfills), use the start of that day.
+    cutoff = (
+        pd.Timestamp.now(tz="UTC")
+        if today >= date.today()
+        else pd.Timestamp(today).tz_localize("UTC")
+    )
     future = api[
         api["status"].isin(["SCHEDULED", "TIMED"])
         & (pd.to_datetime(api["date"]) >= pd.Timestamp(today))
+        & (pd.to_datetime(api["utc_kickoff"], utc=True) > cutoff)
     ]
     future = future.sort_values("utc_kickoff")
     known = with_ref[["referee_id", "referee", "league"]].drop_duplicates()

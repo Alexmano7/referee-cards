@@ -6,6 +6,7 @@ Commands:
   check            join the data, show 10 joined matches and list failed joins
   build            write data/matches.csv, data/unmatched.csv and data/referees.json
   update           fetch + build
+  rfef-pdf <url>   download an RFEF La Liga designation PDF (rfef.es only) and print its text
   api-football-probe  show what the free API-Football plan offers (needs API_FOOTBALL_KEY)
   backtest         test the card model on past weeks, tune its settings (docs/backtest.md)
   upcoming         list fixtures in the next 14 days and which still lack a referee
@@ -225,6 +226,16 @@ def cmd_api_football_probe() -> None:
         print(line)
 
 
+def cmd_rfef_pdf(url: str) -> None:
+    """Download an RFEF designation PDF (rfef.es only) and print its text."""
+    from referees.rfef import download_pdf, pdf_text
+
+    path = download_pdf(url)
+    print(f"Saved {path.name} ({path.stat().st_size // 1024} KB)")
+    print()
+    print(pdf_text(path))
+
+
 def main() -> None:
     # Show accents (Atlético, Köln) correctly even in older Windows terminals.
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -245,8 +256,10 @@ def main() -> None:
             "upcoming",
             "backtest",
             "api-football-probe",
+            "rfef-pdf",
         ],
     )
+    parser.add_argument("url", nargs="?", help="for rfef-pdf: the PDF link on rfef.es")
     args = parser.parse_args()
     if args.command == "fetch":
         cmd_fetch()
@@ -264,6 +277,10 @@ def main() -> None:
         cmd_backtest()
     elif args.command == "api-football-probe":
         cmd_api_football_probe()
+    elif args.command == "rfef-pdf":
+        if not args.url:
+            raise SystemExit("Usage: uv run referees rfef-pdf <pdf link on rfef.es>")
+        cmd_rfef_pdf(args.url)
     else:
         cmd_fetch()
         cmd_build()

@@ -20,13 +20,25 @@ Project facts and rules are in `CLAUDE.md`; this is the routine.
 
 ## 2. Look up announced referees (automatic)
 1. `uv run referees upcoming` lists the next 14 days' fixtures. Work on the rows marked `MISSING`.
-2. Search the official appointment pages, then reputable news or club sites:
-   - **Bundesliga:** WebFetch `https://datencenter.dfb.de/global_referee_schedule` (lists every match).
-   - **Premier League:** premierleague.com "referee appointments: Matchweek N". That page lists
-     referees without fixtures, so take the pairing from a source that names the match (club or news sites).
-   - **La Liga:** rfef.es "designaciones" (often PDFs) and Spanish news.
-   - **Ligue 1:** ligue1.com / LFP and French club or news sites.
-   - Never use Sofascore or anything that gets around a bot check (see CLAUDE.md).
+2. Sources, in this order (tested 2026-11-07):
+   - **First: referee.observer.** WebFetch `https://www.referee.observer/fixtures` and ask for every
+     Premier League, Bundesliga and Ligue 1 fixture with its referee. One page covers three leagues,
+     and on 2026-11-07 it agreed with every official pairing we had. It has no La Liga.
+   - **Official pages** (confirm, or fill gaps):
+     - Bundesliga: WebFetch `https://datencenter.dfb.de/global_referee_schedule` (every match).
+     - Ligue 1: ligue1.com "Les arbitres de la Ne journée de Ligue 1" (full list per matchday).
+     - **La Liga (RFEF PDFs):** WebFetch `https://rfef.es/es/federacion/arbitros/designaciones`
+       for the newest "Estos son los árbitros para los partidos del <día>" articles, WebFetch each
+       article for its PDF link, then run `uv run referees rfef-pdf "<pdf url>"`. It prints lines like
+       `07-11-2026 <home> <away> <time>` followed by `Árbitro:<name>`. Use the main referee only.
+     - Premier League: premierleague.com "referee appointments: Matchweek N" lists names without
+       fixtures, so it only checks plausibility (each referee once per round).
+   - **Second check:** statsbet.org/football/referees (its free view shows the top 5 upcoming matches).
+   - **Gaps only:** reputable news or club sites that name the exact match.
+   - **Don't use:** Sofascore, WorldReferee and OddAlerts (they block automated access, so never work
+     around that); premierleague.com/en/referees, NinetyMinutesPlus and the DFB season page (no pairings).
+   - **If sources disagree,** use the official page. If there's no official page, save nothing for
+     that match and mention it in the summary.
 3. **Save only pairings a source states for that exact match.** Never infer from list order, and
    never guess. Append rows to `config/referee_appointments.csv` with the exact team names from
    `upcoming`, the page URL as `source_url`, and today's date as `found_at`. Keep old rows.
