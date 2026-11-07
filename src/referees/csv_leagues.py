@@ -212,3 +212,54 @@ def identity_mapping(csv: pd.DataFrame) -> pd.DataFrame:
         ],
         columns=["league", "api_name", "csv_name", "checked"],
     )
+
+
+def fill_api_referees(
+    api: pd.DataFrame, ro_referees: dict, team_mapping: pd.DataFrame
+) -> tuple[pd.DataFrame, int]:
+    """Fill finished API matches that lack a referee (Liga Portugal) from referee.observer.
+
+    API team names go through the team-name mapping to CSV names, which is how the
+    referee.observer history is keyed. A filled name is linked to the same referee's
+    football-data.org id when the name matches exactly one known referee of that league,
+    so one person never becomes two; otherwise it gets a stable id from the name.
+    Returns (api, number of matches filled).
+    """
+    from referees.appointments import match_referee
+    from referees.config import LEAGUES
+
+    leagues = {lg.key for lg in LEAGUES if lg.api_code and lg.ro_competition_id}
+    if api.empty or not leagues or not ro_referees:
+        return api, 0
+    lookup = {(r.league, r.api_name): r.csv_name for r in team_mapping.itertuples()}
+    out = api.copy()
+    filled = 0
+    for lg in leagues:
+        known_rows = out[(out["league"] == lg) & out["referee_id"].notna()]
+        known = list(
+            dict.fromkeys(
+                zip(known_rows["referee_id"].astype(int), known_rows["referee"])
+            )
+        )
+        gaps = out[
+            (out["league"] == lg)
+            & (out["status"] == "FINISHED")
+            & out["referee"].isna()
+        ]
+        for i, r in gaps.iterrows():
+            key = (
+                lg,
+                r["date"],
+                lookup.get((lg, r["api_home"])),
+                lookup.get((lg, r["api_away"])),
+            )
+            name = ro_referees.get(key)
+            if not name:
+                continue
+            ref_id = match_referee(name, known)
+            out.at[i, "referee"] = name if ref_id is None else dict(known)[ref_id]
+            out.at[i, "referee_id"] = (
+                ref_id if ref_id is not None else stable_referee_id(name)
+            )
+            filled += 1
+    return out, filled

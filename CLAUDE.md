@@ -29,7 +29,7 @@ to `data/referees.json`, which a dashboard will read later (plan phase 5).
 | `BL1` | Bundesliga           | `BL1`             | `D1`      | football-data.org             | Europe/Berlin   |
 | `SA`  | Serie A              | `SA`              | `I1`      | football-data.org             | Europe/Rome     |
 | `FL1` | Ligue 1              | `FL1`             | `F1`      | football-data.org             | Europe/Paris    |
-| `PPL` | Liga Portugal        | `PPL`             | `P1`      | football-data.org (only ~37%) | Europe/Lisbon   |
+| `PPL` | Liga Portugal        | `PPL`             | `P1`      | football-data.org + referee.observer gaps (407/703) | Europe/Lisbon |
 | `GR`  | Super League Greece  | none (CSV league) | `G1`      | referee.observer (mid-2025 →) | Europe/Athens   |
 | `BEL` | Belgian Pro League   | none (CSV league) | `B1`      | referee.observer (mid-2025 →) | Europe/Brussels |
 | `SCO` | Scottish Premiership | none (CSV league) | `SC0`     | the card file's Referee column | Europe/London  |
@@ -44,6 +44,12 @@ Leagues were added on 2026-11-07 at the user's request (Serie A, Liga Portugal, 
 - Upcoming fixtures for them come from `football-data.co.uk/fixtures.csv` (the coming week; UK times).
 - GR/BEL past referees: `referee_observer.py` reads public pages (robots.txt allows them; never `/api/`),
   1.5 s apart. A 404 past the last page means "no more"; a 403/429 means stop and report it.
+- **Liga Portugal gap fill (2026-11-07):** football-data.org names a referee for only 260 of 703 finished
+  PPL matches. `fill_api_referees` (csv_leagues.py) fills gaps from the referee.observer history
+  (competition "Primeira Liga", id 2045), keyed by CSV team names via the team mapping. A filled name is
+  linked to the same referee's API id via `match_referee`, so no referee is split in two (all 147 fills
+  linked; 0 new ids). The API's own referee is never overwritten. Coverage now 407/703
+  (2024/25: 15/306, because referee.observer starts mid-2025; 2025/26: 301/306; 2026/27: 91/91).
   `uv run referees fetch-ro [--full]` writes `data/referee_observer_history.csv` (committed, so the daily
   GitHub job doesn't contact the site) and `config/ro_team_mapping.csv` (same-day vote suggestions).
 - Scottish card files abbreviate referee names ("N Walsh"), and `match_referee` accepts "Nicholas Walsh".

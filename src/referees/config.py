@@ -55,7 +55,17 @@ LEAGUES: list[League] = [
     League("BL1", "Bundesliga", "BL1", "D1", "Europe/Berlin"),
     League("SA", "Serie A", "SA", "I1", "Europe/Rome"),
     League("FL1", "Ligue 1", "FL1", "F1", "Europe/Paris"),
-    League("PPL", "Liga Portugal", "PPL", "P1", "Europe/Lisbon"),
+    # football-data.org names only ~37% of Portuguese referees: referee.observer fills the gaps
+    League(
+        "PPL",
+        "Liga Portugal",
+        "PPL",
+        "P1",
+        "Europe/Lisbon",
+        "api",
+        "Primeira Liga",
+        2045,
+    ),
     League(
         "GR",
         "Super League Greece",

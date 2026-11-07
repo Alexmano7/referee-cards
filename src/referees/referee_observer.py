@@ -166,8 +166,7 @@ def update_history(
     targets: list[League] = [
         lg
         for lg in LEAGUES
-        if lg.referee_source == "referee_observer"
-        and (not leagues or lg.key in leagues)
+        if lg.ro_competition_id and (not leagues or lg.key in leagues)
     ]
     merged = load_history()
     start_count = len(merged)

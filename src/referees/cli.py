@@ -69,6 +69,11 @@ def _load():
         csv_matches(csv, ro),
         csv_fixtures(fetch_csv.read_fixtures(CSV_LEAGUES), current_season_start_year()),
     ]
+    from referees.csv_leagues import fill_api_referees
+
+    if not api.empty:
+        api["referee_id"] = api["referee_id"].astype("Int64")
+        api, _ = fill_api_referees(api, ro, load_mapping())
     frames = [f for f in [api, *extra] if not f.empty]
     api = pd.concat(frames, ignore_index=True) if frames else api
     api["referee_id"] = api["referee_id"].astype("Int64")

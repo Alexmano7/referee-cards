@@ -18,8 +18,8 @@ Project facts and rules are in `CLAUDE.md`; this is the routine.
 2. `uv run referees fetch` (~2.5 minutes; football-data.org for PL, PD, BL1, SA, FL1, PPL;
    football-data.co.uk card files for all 9 leagues plus `fixtures.csv`, the coming week's fixtures
    for Greece, Belgium and Scotland). If a download fails, report it and stop: never publish partial data.
-3. `uv run referees fetch-ro` (~2 minutes): the newest page of every Greek and Belgian referee's
-   history on referee.observer, merged into `data/referee_observer_history.csv` (committed), plus
+3. `uv run referees fetch-ro` (~2 minutes): the newest page of every Greek, Belgian and Portuguese referee's
+   history (Portugal: fills matches football-data.org left without a referee) on referee.observer, merged into `data/referee_observer_history.csv` (committed), plus
    team-name suggestions in `config/ro_team_mapping.csv`. If it reports HTTP 403/429, stop that step,
    report it, and carry on with the existing history: never work around a block.
 

@@ -778,3 +778,68 @@ def test_csv_league_matches_get_referees_from_history_or_file():
     assert rows.loc["GR", "utc_kickoff"].startswith(
         "2026-10-24T16:00"
     )  # 17:00 UK summer time
+
+
+def test_portugal_gaps_are_filled_without_splitting_a_referee():
+    from referees.csv_leagues import fill_api_referees, stable_referee_id
+
+    day = date(2026, 10, 4)
+    api = pd.DataFrame(
+        [
+            {
+                **_fixture(
+                    home="FC Porto",
+                    away="SL Benfica",
+                    day=day,
+                    referee="Rui Costa",
+                    referee_id=77,
+                ),
+                "league": "PPL",
+                "status": "FINISHED",
+            },
+            {
+                **_fixture(
+                    home="SC Braga",
+                    away="FC Porto",
+                    day=day,
+                    referee=None,
+                    referee_id=None,
+                ),
+                "league": "PPL",
+                "status": "FINISHED",
+            },
+            {
+                **_fixture(
+                    home="Rio Ave",
+                    away="SC Braga",
+                    day=day,
+                    referee=None,
+                    referee_id=None,
+                ),
+                "league": "PPL",
+                "status": "FINISHED",
+            },
+        ]
+    ).astype({"referee_id": "Int64"})
+    mapping = pd.DataFrame(
+        {
+            "league": ["PPL"] * 5,
+            "api_name": ["FC Porto", "SL Benfica", "SC Braga", "Rio Ave", "x"],
+            "csv_name": ["Porto", "Benfica", "Sp Braga", "Rio Ave", "x"],
+            "checked": ["yes"] * 5,
+        }
+    )
+    ro = {
+        (
+            "PPL",
+            day,
+            "Sp Braga",
+            "Porto",
+        ): "Rui Manuel Costa",  # same person as API id 77
+        ("PPL", day, "Rio Ave", "Sp Braga"): "Ana Nova",
+        ("PPL", day, "Porto", "Benfica"): "Somebody Else",
+    }  # must not overwrite the API's own
+    out, filled = fill_api_referees(api, ro, mapping)
+    assert filled == 2
+    assert list(out["referee"]) == ["Rui Costa", "Rui Costa", "Ana Nova"]
+    assert list(out["referee_id"]) == [77, 77, stable_referee_id("Ana Nova")]
