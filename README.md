@@ -1,7 +1,8 @@
 # Referee card tracker
 
-Counts **yellow and red cards per referee** in the Premier League, La Liga, Bundesliga and
-Ligue 1 over the current season and the two before it. It works out fair "adjusted" averages
+Counts **yellow and red cards per referee** in nine leagues: the Premier League, La Liga,
+Bundesliga, Serie A, Ligue 1, Liga Portugal, Super League Greece, Belgian Pro League and the
+Scottish Premiership over the current season and the two before it. It works out fair "adjusted" averages
 and projects how many cards to expect in upcoming matches. The result is one file,
 `data/referees.json`.
 

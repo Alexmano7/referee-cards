@@ -22,12 +22,31 @@ A local Python tool that counts **yellow and red cards per referee** in four lea
 adjusted per-referee rates, and projects cards for **upcoming fixtures**. Everything is written
 to `data/referees.json`, which a dashboard will read later (plan phase 5).
 
-| League          | football-data.org code | football-data.co.uk file | Timezone       |
-|-----------------|------------------------|--------------------------|----------------|
-| Premier League  | `PL`                   | `E0`                     | Europe/London  |
-| La Liga         | `PD`                   | `SP1`                    | Europe/Madrid  |
-| Bundesliga      | `BL1`                  | `D1`                     | Europe/Berlin  |
-| Ligue 1         | `FL1`                  | `F1`                     | Europe/Paris   |
+| Key   | League               | football-data.org | Card file | Past referees from            | Timezone        |
+|-------|----------------------|-------------------|-----------|-------------------------------|-----------------|
+| `PL`  | Premier League       | `PL`              | `E0`      | football-data.org             | Europe/London   |
+| `PD`  | La Liga              | `PD`              | `SP1`     | football-data.org             | Europe/Madrid   |
+| `BL1` | Bundesliga           | `BL1`             | `D1`      | football-data.org             | Europe/Berlin   |
+| `SA`  | Serie A              | `SA`              | `I1`      | football-data.org             | Europe/Rome     |
+| `FL1` | Ligue 1              | `FL1`             | `F1`      | football-data.org             | Europe/Paris    |
+| `PPL` | Liga Portugal        | `PPL`             | `P1`      | football-data.org (only ~37%) | Europe/Lisbon   |
+| `GR`  | Super League Greece  | none (CSV league) | `G1`      | referee.observer (mid-2025 →) | Europe/Athens   |
+| `BEL` | Belgian Pro League   | none (CSV league) | `B1`      | referee.observer (mid-2025 →) | Europe/Brussels |
+| `SCO` | Scottish Premiership | none (CSV league) | `SC0`     | the card file's Referee column | Europe/London  |
+
+Leagues were added on 2026-11-07 at the user's request (Serie A, Liga Portugal, Greece, Belgium, Scotland).
+**Switzerland was deliberately skipped**: no free source has Swiss card counts.
+
+### CSV leagues (`csv_leagues.py`)
+- GR/BEL/SCO aren't on football-data.org's free plan, so their matches are built from the card files and
+  shaped like API rows (synthetic match ids; referee ids = `stable_referee_id(name)`, 2,000,000,000+).
+  Their team names *are* the CSV names (`identity_mapping`, never written to the mapping file).
+- Upcoming fixtures for them come from `football-data.co.uk/fixtures.csv` (the coming week; UK times).
+- GR/BEL past referees: `referee_observer.py` reads public pages (robots.txt allows them; never `/api/`),
+  1.5 s apart. A 404 past the last page means "no more"; a 403/429 means stop and report it.
+  `uv run referees fetch-ro [--full]` writes `data/referee_observer_history.csv` (committed, so the daily
+  GitHub job doesn't contact the site) and `config/ro_team_mapping.csv` (same-day vote suggestions).
+- Scottish card files abbreviate referee names ("N Walsh"), and `match_referee` accepts "Nicholas Walsh".
 
 The user is a **beginner**. Explain each step in simple terms *before* running anything, define
 jargon the first time it appears, and wait for an OK before installs, deletions or anything
@@ -114,9 +133,11 @@ that leaves the machine (pushing to GitHub especially).
   then scored on 2026/27 so far against the old method and the league average. It writes
   `docs/backtest.md` and `docs/backtest.json`. The first grid picked its edge, so the grid was widened;
   the chosen settings are interior (half-life 180 d, k_ref 80, k_team 40).
-- Result (2026-11-07, 352 holdout matches): the model is best on every score but only slightly
-  (Brier for over 4.5: 0.230 vs 0.231 for the old method and 0.234 for the league average). It is well
-  calibrated in the populated bins. Card counts are noisy, so **don't overstate the edge** to the user.
+- Result with 9 leagues (2026-11-07, 763 holdout matches): the model is best (log score -2.148 vs -2.153
+  for the old method and -2.163 for the league average; Brier for over 4.5 is 0.229 for both the model and
+  the old method, vs 0.233). It is well calibrated (41.3% predicted → 41.7%, 56.9% → 55.6%). Tuned settings:
+  half-life 365 d, k_ref 80, k_team 80. The grid was widened to 730 d to confirm 365 is interior. Card
+  counts are noisy, so **don't overstate the edge** to the user.
 
 ## Hot Prediction (`picks.py`, added 2026-11-07)
 - Each refresh picks the 2-3 card bets in the next 7 days where the model differs most from a
@@ -126,17 +147,17 @@ that leaves the machine (pushing to GitHub especially).
   candidate per fixture is taken, then the top 3 fixtures, with a known referee first.
 - Each pick shows fair odds (1/p) and **minimum odds** (fair + 5%, rounded up). Tell the user to bet only at
   or above that. `report["hot_picks"]`; dashboard datasets `hot_picks` and `hot_picks_record`.
-- Backtest of the exact rule (`backtest.hot_pick_record`, in `docs/backtest.md`): 2026/27 so far, 22/33
-  won (66.7%) against 64.4% predicted and 51.5% for a typical match; 2025/26, 82/111 (73.9%) against
-  66.3% and 49.6%. The sample is small and bookmakers price better than "typical", so present it as a guide.
+- Backtest of the exact rule (`backtest.hot_pick_record`, in `docs/backtest.md`), 9 leagues: 2026/27 so far,
+  26/39 won (66.7%) against 65.0% predicted and 49.8% for a typical match; 2025/26, 82/121 (67.8%) against
+  64.9% and 48.0%. Bookmakers price better than "typical", so present it as a guide.
 
 - **Safe treble** (user request, 2026-11-07: "safest, combined odds around 2.00"): `best_treble` picks
   3 legs from 3 different matches. Each leg is at least 60% likely and above a typical match (top 3 legs
   per match by shift); combined fair odds must be 1.85-2.15; the choice maximises (combined model
   chance) / (combined typical chance); known referees first. The dashboard calc `treble_combined`
   gives the combined chance, fair odds and minimum odds (ceil(105/p)/100).
-- Treble backtest (one per week): 2025/26 18/37 won (48.6%, model said 48.0%, break-even 2.06);
-  2026/27 so far 4/9. **At 2.00 it is about break-even at best**: always say so and point to the
+- Treble backtest (one per week, 9 leagues): 2025/26 20/40 won (50.0%, model said 47.8%, break-even 2.00);
+  2026/27 so far 5/12. **At 2.00 it is about break-even at best**: always say so and point to the
   minimum odds. Single legs won 74-80%.
 
 ## Bet log (`bets.py`, added 2026-11-07)
@@ -218,6 +239,8 @@ Referees/
 │  ├─ picks.py           # Hot Prediction rule
 │  ├─ api_football.py    # API-Football client + free-plan probe
 │  ├─ rfef.py            # download + read RFEF La Liga designation PDFs (rfef.es only)
+│  ├─ csv_leagues.py     # GR/BEL/SCO matches + fixtures shaped like API rows
+│  ├─ referee_observer.py # Greek/Belgian referee history from referee.observer
 │  ├─ dashboard_export.py # flat row tables for the dashboard
 │  └─ cli.py         # `referees` command
 ├─ data/raw/{api,csv}/          # downloads (git-ignored)
@@ -236,6 +259,7 @@ Referees/
 - Upcoming fixtures and which lack a referee: `uv run referees upcoming`
 - Backtest and tune the card model: `uv run referees backtest` (re-run after big data changes)
 - Probe the API-Football free plan: `uv run referees api-football-probe`
+- Greek/Belgian referee history: `uv run referees fetch-ro` (newest pages; `--full` for everything)
 - Read an RFEF designation PDF: `uv run referees rfef-pdf "<pdf url on rfef.es>"` (saved to data/raw/rfef/)
 - Dashboard tables: `uv run referees export-dashboard` (after `fetch`)
 - Tests: `uv run pytest`. Lint and format: `uv run ruff check .` / `uv run ruff format .`
@@ -266,14 +290,22 @@ Referees/
   locally built `data/*` files (it causes merge conflicts).
 - GitHub's scheduler uses UTC, so `date.today()` in CI is the UTC date (same day at 04:00–05:00 UTC).
 
-## Dashboard (claude.ai Artifact, built 2026-11-06)
+## Dashboard (claude.ai Artifact, built 2026-11-06; Floodlight design since 2026-11-07)
 - **URL:** https://claude.ai/artifact/AAbaGSrga4xFAG6SG47hMZ (type "Dashboard", private to the user).
+- **Design: "Floodlight"** (the user picked mockup C of 4 on 2026-11-07; mockups canvas:
+  https://claude.ai/artifact/Mz64ooQi6gpRS35gXKKrTM). It's a deliberately single dark look: `.rc` re-points the
+  dashboard colour tokens to the `--fl-*` palette (ground #0D1117, panels #161C25, yellow #F2C230, red
+  #E5484D). Hot Prediction cards have a yellow-card rank badge; the safe treble is a light "bet slip"
+  (`.rc-treble` re-points the tokens again); a league dropdown `#rc-league` replaced the tabs. Headings use
+  a condensed system stack, because the dashboard can't load Google Fonts. The user asked for the logic to
+  stay untouched: change looks via CSS and markup, and keep `data-draw` names and marks.
   The user chose this over GitHub Pages. It does not update by itself.
 - Page source: `dashboard/index.html` (committed). It is stored in the dashboard as `files/index.html`
   (document `{text, edit}`). Written to the type's one-writer rules: text in the HTML, data in
   `data-draw` drawings, and every number marked with `data-source`. Each `<script>` has its own
   scope, so share helpers via `window.rc`.
-- Data: `uv run referees export-dashboard` writes 10 row tables to `data/dashboard/` (git-ignored): `fixture_distribution`
+- Data: `uv run referees export-dashboard` writes 14 row tables (incl. `hot_picks`, `hot_treble`,
+  `hot_picks_record`, `treble_record`) to `data/dashboard/` (git-ignored): `fixture_distribution`
   (key `fixture|i`), `model_quality` and `calibration` (from docs/backtest.json), `bets`,
   `team_stats` (key `league|team|season`; a Teams section and the match card read it),
   `referee_stats` (key `referee_id|league|season`, league `ALL` or a code, season `All seasons` or

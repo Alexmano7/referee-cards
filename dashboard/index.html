@@ -1,6 +1,32 @@
 <meta name="dash-one-writer">
 <style>
   /* Layout: header and takeaway, league tabs + filters, headline tiles, chart + fixtures side by side, referee table, notes. */
+  /* Floodlight: one dark stadium look (deliberately single-theme). Dashboard colour tokens are
+     re-pointed inside .rc, so every card, table and chart follows. Accents: yellow and red cards. */
+  #dash-root { --dash-gutter: 0; }
+  .rc {
+    --fl-bg: #0D1117; --fl-panel: #161C25; --fl-line: #222A35; --fl-text: #E8ECF1; --fl-muted: #8B96A5;
+    --fl-yellow: #F2C230; --fl-yellow-ink: #2A2105; --fl-red: #E5484D; --fl-slip: #F4EFE3; --fl-slip-ink: #1C1A14;
+    --color-bg: var(--fl-bg); --color-panel: var(--fl-panel); --color-fg: var(--fl-text); --color-fg-muted: var(--fl-muted);
+    --color-border-line: var(--fl-line); --color-ok: #3FB950; --color-warn: var(--fl-yellow); --color-bad: var(--fl-red);
+    --fl-display: "Barlow Condensed", "Roboto Condensed", "Arial Narrow", "Helvetica Neue", sans-serif;
+    background: var(--fl-bg); color: var(--fl-text); color-scheme: dark;
+    padding-block: 24px 48px; padding-left: max(16px, 3vw); padding-right: max(16px, 3vw);
+  }
+  .rc :is(h1, h2, .rc-h3) { font-family: var(--fl-display); font-stretch: condensed; text-transform: uppercase; letter-spacing: .02em; }
+  .rc-card h2 { font-size: 1.6rem; font-weight: 600; }
+  .rc .rc-h3 { font-size: 1.15rem; font-weight: 600; }
+  .rc .dash-select, .rc .rc-search { background-color: var(--fl-bg); color: var(--fl-text); border-color: #2A3341; }
+  .rc-brand { display: flex; align-items: center; gap: 12px; }
+  .rc-brand-cards { display: flex; gap: 3px; }
+  .rc-brand-cards span { width: 14px; height: 20px; border-radius: 2px; background: var(--fl-yellow); }
+  .rc-brand-cards span + span { background: var(--fl-red); }
+  .rc-topbar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px; border-bottom: 1px solid var(--fl-line); padding-bottom: 18px; }
+  .rc-head h1 { font-family: var(--fl-display); font-size: 2rem; font-weight: 700; }
+  .rc-hot-title { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .rc-hot-title h2 { font-size: 2.6rem; font-weight: 700; margin: 0; }
+  .rc .rc-tip { background: var(--fl-panel); border-color: var(--fl-line); color: var(--fl-text); }
+  .rc .rc-tip span { color: var(--fl-muted); }
   .rc { display: flex; flex-direction: column; gap: var(--cds-gap-lg); font-family: var(--font-anthropic-sans); min-width: 0; }
   .rc-head h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; }
   .rc-take { margin: var(--cds-gap-xs) 0 0; color: var(--color-fg-muted); max-width: 70ch; }
@@ -71,18 +97,25 @@
   .rc-bets td:nth-child(8) { font-weight: var(--cds-font-weight-medium); }
   .rc-bets :is(th, td):nth-child(-n+3) { text-align: left; }
   .rc-hot-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); gap: var(--cds-gap-md); min-height: 6rem; }
-  .rc-hot-card { display: flex; flex-direction: column; gap: var(--cds-gap-xs); padding: var(--cds-pad-md); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-bg); min-width: 0; }
+  .rc-hot-card { display: grid; grid-template-columns: 3.4rem minmax(0, 1fr); gap: 10px 16px; padding: 20px; border: 1px solid var(--fl-line); border-radius: 14px; background: var(--fl-panel); min-width: 0; }
+  .rc-hot-card > :not(.rc-hot-badge, .rc-hot-body) { grid-column: 1 / -1; }
+  .rc-hot-badge { width: 3.4rem; height: 4.8rem; border-radius: 6px; background: var(--fl-yellow); color: var(--fl-yellow-ink); display: flex; align-items: center; justify-content: center; font-family: var(--fl-display); font-size: 1.9rem; font-weight: 700; }
+  .rc-hot-body { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
   .rc-hot-rank { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); text-transform: uppercase; letter-spacing: .04em; }
-  .rc-hot-bet { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-heading); line-height: 1.25; }
+  .rc-hot-bet { font-family: var(--fl-display); font-stretch: condensed; font-weight: 600; font-size: 1.6rem; line-height: 1.1; }
   .rc-hot-match { font-weight: var(--cds-font-weight-medium); }
   .rc-hot-meta, .rc-hot-why { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
-  .rc-hot-nums { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--cds-gap-xs) var(--cds-gap-md); font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; margin: var(--cds-gap-xs) 0; }
-  .rc-hot-nums b { display: block; font-size: var(--cds-font-size-body); color: var(--color-fg); }
+  .rc-hot-nums { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; border-top: 1px solid var(--fl-line); padding-top: 14px; font-size: 11px; font-variant-numeric: tabular-nums; }
+  .rc-hot-nums b { display: block; font-size: 1.25rem; font-weight: 600; color: var(--fl-text); }
+  .rc-hot-nums div:last-child b { color: var(--fl-yellow); }
   .rc-hot-nums span { color: var(--color-fg-muted); }
   .rc-hot-open { align-self: flex-start; font: inherit; font-size: var(--cds-font-size-caption); padding: var(--cds-pad-xs) var(--cds-pad-sm); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-panel); color: var(--color-fg); cursor: pointer; margin-top: auto; }
   .rc-hot-open:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
   .rc .rc-hot-record b { font-weight: 600; color: var(--color-fg); }
-  .rc-treble { border-top: 1px solid var(--color-border-line); padding-top: var(--cds-pad-md); margin-top: var(--cds-gap-md); display: flex; flex-direction: column; gap: var(--cds-gap-xs); }
+  .rc-treble { --color-panel: var(--fl-slip); --color-bg: #E9E2D2; --color-fg: var(--fl-slip-ink); --color-fg-muted: #5C574A; --color-border-line: #CFC6B0;
+    background: var(--fl-slip); color: var(--fl-slip-ink); border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: var(--cds-gap-xs); min-width: 0; container-type: inline-size; color-scheme: light; }
+  .rc-treble-legs td { border-bottom-style: dashed; }
+  .rc-treble-min { padding: 10px 12px; border-radius: 8px; background: var(--fl-slip-ink); color: var(--fl-yellow); font-weight: 600; text-align: center; }
   .rc-treble-legs :is(th, td):nth-child(-n+5) { text-align: left; }
   .rc .rc-treble b { font-weight: 600; color: var(--color-fg); }
   @container rc (max-width: 40rem) { .rc-treble-legs :is(th, td):is(:nth-child(2), :nth-child(5), :nth-child(7)) { display: none; } }
@@ -105,21 +138,23 @@
 </style>
 
 <div class="rc">
-  <header class="rc-head" id="top">
-    <h1>Referee cards</h1>
-    <p class="rc-take rc-take-adj">In <span data-draw="scope-name" data-source="league_summary" data-field="league_name">—</span>, <b data-draw="top-ref" data-source="referee_stats" data-field="referee">—</b> shows the most cards once recent seasons count more and small samples are evened out: <b data-draw="top-rate" data-source="referee_stats" data-field="adjusted_cards_per_match">—</b> per match (referees with at least <span data-draw="minm">—</span> matches).</p>
-    <p class="rc-take rc-take-raw" hidden>In <span data-draw="scope-name" data-source="league_summary" data-field="league_name">—</span> during <span data-draw="season-name">—</span>, <b data-draw="top-ref-raw" data-source="referee_stats" data-field="referee">—</b> showed the most cards: <b data-draw="top-rate-raw" data-source="referee_stats" data-field="cards_per_match">—</b> per match (referees with at least <span data-draw="minm">—</span> matches).</p>
-  </header>
-
-  <div class="rc-controls">
-    <nav class="rc-tabs" aria-label="League" id="leagues">
-      <button class="rc-tab" type="button" data-league="ALL">All leagues</button>
-      <button class="rc-tab" type="button" data-league="PL">Premier League</button>
-      <button class="rc-tab" type="button" data-league="PD">La Liga</button>
-      <button class="rc-tab" type="button" data-league="BL1">Bundesliga</button>
-      <button class="rc-tab" type="button" data-league="FL1">Ligue 1</button>
-    </nav>
+  <header class="rc-head rc-topbar" id="top">
+    <div class="rc-brand"><div class="rc-brand-cards" aria-hidden="true"><span></span><span></span></div><h1>Referee cards</h1></div>
     <div class="rc-filters">
+      <label for="rc-league">League
+        <select class="dash-select" id="rc-league">
+          <option value="ALL">All leagues</option>
+          <option value="PL">Premier League</option>
+          <option value="PD">La Liga</option>
+          <option value="BL1">Bundesliga</option>
+          <option value="SA">Serie A</option>
+          <option value="FL1">Ligue 1</option>
+          <option value="PPL">Liga Portugal</option>
+          <option value="GR">Super League Greece</option>
+          <option value="BEL">Belgian Pro League</option>
+          <option value="SCO">Scottish Premiership</option>
+        </select>
+      </label>
       <label for="rc-season">Season
         <select class="dash-select" id="rc-season" data-draw="season-opts" data-source="league_summary"></select>
       </label>
@@ -132,51 +167,31 @@
           <option value="30">30</option>
         </select>
       </label>
-      <label for="rc-search">Find a referee
-        <input class="rc-search" id="rc-search" type="search" placeholder="Name" autocomplete="off">
-      </label>
     </div>
+  </header>
+  <div class="rc-head">
+    <p class="rc-take rc-take-adj">In <span data-draw="scope-name" data-source="league_summary" data-field="league_name">—</span>, <b data-draw="top-ref" data-source="referee_stats" data-field="referee">—</b> shows the most cards once recent seasons count more and small samples are evened out: <b data-draw="top-rate" data-source="referee_stats" data-field="adjusted_cards_per_match">—</b> per match (referees with at least <span data-draw="minm">—</span> matches).</p>
+    <p class="rc-take rc-take-raw" hidden>In <span data-draw="scope-name" data-source="league_summary" data-field="league_name">—</span> during <span data-draw="season-name">—</span>, <b data-draw="top-ref-raw" data-source="referee_stats" data-field="referee">—</b> showed the most cards: <b data-draw="top-rate-raw" data-source="referee_stats" data-field="cards_per_match">—</b> per match (referees with at least <span data-draw="minm">—</span> matches).</p>
   </div>
 
-  <p class="rc-caveat" data-show="ALL PL">Premier League data counts a sending-off for two yellows as one red only. The other leagues count it as a yellow plus a red, so Premier League yellow counts run slightly low.</p>
+  <p class="rc-caveat" data-show="ALL PL SCO">Premier League and Scottish data count a sending-off for two yellows as one red only. The other leagues count it as a yellow plus a red, so their yellow counts run slightly low.</p>
+  <p class="rc-caveat" data-show="GR BEL" hidden>Referee names for past matches come from referee.observer and start in mid-2025, so referee figures here rest on fewer matches than in the other leagues.</p>
   <p class="rc-caveat" data-show="PD" hidden>Some La Liga matches have no referee name in the data. They count in the league figures but are not credited to any referee.</p>
 
-  <section class="rc-tiles" id="headline" aria-label="Headline figures">
-    <div class="rc-tile">
-      <span class="rc-tile-label">Cards per match</span>
-      <span class="rc-tile-value dash-skeleton" data-draw="t-cpm" data-source="league_summary" data-field="cards_per_match">—</span>
-      <span class="rc-tile-sub">Yellows plus reds, both teams</span>
-    </div>
-    <div class="rc-tile">
-      <span class="rc-tile-label">Booking points per match</span>
-      <span class="rc-tile-value dash-skeleton" data-draw="t-bpm" data-source="league_summary" data-field="booking_points_per_match">—</span>
-      <span class="rc-tile-sub">10 per yellow, 25 per red</span>
-    </div>
-    <div class="rc-tile">
-      <span class="rc-tile-label">Matches over 4.5 cards</span>
-      <span class="rc-tile-value dash-skeleton" data-draw="t-over" data-source="league_summary" data-field="pct_over_4_5">—</span>
-      <span class="rc-tile-sub">Share with 5 or more cards</span>
-    </div>
-    <div class="rc-tile">
-      <span class="rc-tile-label">Matches</span>
-      <span class="rc-tile-value dash-skeleton" data-draw="t-matches" data-source="league_summary" data-field="matches">—</span>
-      <span class="rc-tile-sub">With card data</span>
-    </div>
-    <div class="rc-tile">
-      <span class="rc-tile-label">Referees</span>
-      <span class="rc-tile-value dash-skeleton" data-draw="t-refs" data-source="league_summary" data-field="referees">—</span>
-      <span class="rc-tile-sub">With at least one match</span>
-    </div>
-  </section>
-
-  <section class="rc-card" id="hot-prediction">
-    <h2>Hot Prediction</h2>
+  <section id="hot-prediction" style="display: flex; flex-direction: column; gap: 14px;">
+    <div class="rc-hot-title"><h2>Hot Prediction</h2></div>
     <p class="rc-note">The card bets in the next 7 days where the model differs most from a typical match in that league, from the referee and both teams. Each pick has at least a 55% model chance. <b>Bet only if your bookmaker offers at least the minimum odds shown</b>; below that the price is not worth it. These are estimates, not certainties.</p>
     <div class="rc-hot-list" data-draw="hot-list" data-source="hot_picks"></div>
     <p class="rc-note rc-hot-empty" hidden>No match in the next 7 days passes the rule yet. Refresh again closer to the weekend, when more referees are announced.</p>
+    <p class="rc-note rc-hot-record">Track record of this rule on past weeks (each week picked from earlier data only): this season so far it won <b data-draw="hr-hits" data-source="hot_picks_record" data-field="hits">—</b> of <b data-draw="hr-picks" data-source="hot_picks_record" data-field="picks">—</b> picks (<b data-draw="hr-rate" data-source="hot_picks_record" data-field="hit_rate_pct">—</b>), against <b data-draw="hr-model" data-source="hot_picks_record" data-field="avg_model_pct">—</b> the model expected and <b data-draw="hr-typical" data-source="hot_picks_record" data-field="avg_typical_pct">—</b> for a typical match. Small sample: treat as a guide.</p>
+  </section>
+
+  <section class="rc-grid rc-grid-fx">
     <div class="rc-treble" id="safe-treble">
-      <h3 class="rc-h3">Safe treble: 3 matches, combined odds about 2.00</h3>
-      <p class="rc-note">One bet per match, all three must win. Each leg is at least 60% likely and more likely than in a typical match. Combined: model chance <b data-draw="tr-p" data-source="treble_combined" data-field="model_pct">—</b> (typical match <b data-draw="tr-t" data-source="treble_combined" data-field="typical_pct">—</b>), fair odds <b data-draw="tr-fair" data-source="treble_combined" data-field="fair_odds">—</b>. <b>Take it only at combined odds of <span data-draw="tr-min" data-source="treble_combined" data-field="min_odds">—</span> or more</b>; at 2.00 it is about break-even at best.</p>
+      <h2>Safe treble</h2>
+      <p class="rc-note" style="margin: 0;">3 matches, combined odds about 2.00. All three must win.</p>
+      <p class="rc-note">One bet per match, all three must win. Each leg is at least 60% likely and more likely than in a typical match. Combined: model chance <b data-draw="tr-p" data-source="treble_combined" data-field="model_pct">—</b> (typical match <b data-draw="tr-t" data-source="treble_combined" data-field="typical_pct">—</b>), fair odds <b data-draw="tr-fair" data-source="treble_combined" data-field="fair_odds">—</b>. At 2.00 it is about break-even at best.</p>
+      <p class="rc-treble-min">Take it only at <span data-draw="tr-min" data-source="treble_combined" data-field="min_odds">—</span> or more</p>
       <div class="rc-scroll">
         <table class="rc-table rc-treble-legs" data-source="hot_treble" data-row-key="key">
           <thead><tr>
@@ -204,15 +219,6 @@
         </tr></thead>
         <tbody data-draw="treble-record-rows"></tbody>
       </table>
-    </div>
-    <p class="rc-note rc-hot-record">Track record of this rule on past weeks (each week picked from earlier data only): this season so far it won <b data-draw="hr-hits" data-source="hot_picks_record" data-field="hits">—</b> of <b data-draw="hr-picks" data-source="hot_picks_record" data-field="picks">—</b> picks (<b data-draw="hr-rate" data-source="hot_picks_record" data-field="hit_rate_pct">—</b>), against <b data-draw="hr-model" data-source="hot_picks_record" data-field="avg_model_pct">—</b> the model expected and <b data-draw="hr-typical" data-source="hot_picks_record" data-field="avg_typical_pct">—</b> for a typical match. Small sample: treat as a guide.</p>
-  </section>
-
-  <section class="rc-grid rc-grid-fx">
-    <div class="rc-card" id="league-compare">
-      <h2>Cards per match by league</h2>
-      <p class="rc-note">Same season filter as above. The selected league is highlighted.</p>
-      <div class="rc-bars" data-draw="bars" data-source="league_bars"></div>
     </div>
     <div class="rc-card" id="fixtures">
       <h2>Upcoming fixtures</h2>
@@ -325,7 +331,9 @@
   </section>
 
   <section class="rc-card" id="referees">
-    <h2>Referees</h2>
+    <div class="rc-card-head"><h2>Referees</h2><label class="rc-tile-label" for="rc-search">Find a referee
+        <input class="rc-search" id="rc-search" type="search" placeholder="Name" autocomplete="off">
+      </label></div>
     <p class="rc-note">Click a column to sort and a referee to see their record by season. <span class="rc-adj-note">"Adjusted" counts recent seasons more and pulls referees with few matches toward their league's average.</span> "Away share" is the share of their cards given to away teams; "Cards / 10 fouls" shows how often a foul becomes a card.<span class="rc-raw-note" hidden>For a single season the table shows that season's figures; adjusted figures cover all seasons.</span></p>
     <div class="rc-scroll">
       <table class="rc-table rc-refs rc-left" data-source="referee_stats" data-row-key="key">
@@ -350,6 +358,45 @@
       </table>
     </div>
     <p class="rc-note rc-refs-empty" hidden>No referees match these filters. Try a lower minimum or clear the search.</p>
+  </section>
+
+  <section class="rc-grid rc-grid-fx" aria-label="League overview">
+    <div class="rc-card" id="league-compare">
+      <h2>Cards per match by league</h2>
+      <p class="rc-note">Same season filter as above. The selected league is highlighted.</p>
+      <div class="rc-bars" data-draw="bars" data-source="league_bars"></div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: var(--cds-gap-md); min-width: 0;">
+      <h2 style="margin: 0;">League figures</h2>
+      <section class="rc-tiles" id="headline" aria-label="Headline figures">
+    <div class="rc-tile">
+      <span class="rc-tile-label">Cards per match</span>
+      <span class="rc-tile-value dash-skeleton" data-draw="t-cpm" data-source="league_summary" data-field="cards_per_match">—</span>
+      <span class="rc-tile-sub">Yellows plus reds, both teams</span>
+    </div>
+    <div class="rc-tile">
+      <span class="rc-tile-label">Booking points per match</span>
+      <span class="rc-tile-value dash-skeleton" data-draw="t-bpm" data-source="league_summary" data-field="booking_points_per_match">—</span>
+      <span class="rc-tile-sub">10 per yellow, 25 per red</span>
+    </div>
+    <div class="rc-tile">
+      <span class="rc-tile-label">Matches over 4.5 cards</span>
+      <span class="rc-tile-value dash-skeleton" data-draw="t-over" data-source="league_summary" data-field="pct_over_4_5">—</span>
+      <span class="rc-tile-sub">Share with 5 or more cards</span>
+    </div>
+    <div class="rc-tile">
+      <span class="rc-tile-label">Matches</span>
+      <span class="rc-tile-value dash-skeleton" data-draw="t-matches" data-source="league_summary" data-field="matches">—</span>
+      <span class="rc-tile-sub">With card data</span>
+    </div>
+    <div class="rc-tile">
+      <span class="rc-tile-label">Referees</span>
+      <span class="rc-tile-value dash-skeleton" data-draw="t-refs" data-source="league_summary" data-field="referees">—</span>
+      <span class="rc-tile-sub">With at least one match</span>
+    </div>
+  </section>
+
+    </div>
   </section>
 
   <section class="rc-card" id="teams">
@@ -533,7 +580,7 @@
     inputs: ['fixtures'],
     fn: (fixtures) => {
       const by = {};
-      for (const k of ['ALL', 'PL', 'PD', 'BL1', 'FL1']) by[k] = { league: k, fixtures: 0, appointed: 0 };
+      for (const k of ['ALL', 'PL', 'PD', 'BL1', 'SA', 'FL1', 'PPL', 'GR', 'BEL', 'SCO']) by[k] = { league: k, fixtures: 0, appointed: 0 };
       for (const f of fixtures) {
         for (const k of ['ALL', f.league]) {
           by[k].fixtures += 1;
@@ -547,8 +594,8 @@
 
 <script>
   // Controls: tabs, season, minimum matches, search, sort, row clicks.
-  for (const b of document.querySelectorAll('.rc-tab')) {
-    b.addEventListener('click', () => dash.setParams({ league: b.dataset.league }));
+  for (const sel of document.querySelectorAll('#rc-league')) {
+    sel.addEventListener('change', () => dash.setParams({ league: sel.value }));
   }
   for (const s of document.querySelectorAll('#rc-minm')) {
     s.addEventListener('change', () => dash.setParams({ minm: Number(s.value) }));
@@ -640,11 +687,7 @@
   dash.onData(() => {
     const p = rc.p();
     const all = rc.allSeasons(p);
-    for (const b of document.querySelectorAll('.rc-tab')) {
-      const on = b.dataset.league === p.league;
-      b.classList.toggle('is-on', on);
-      b.setAttribute('aria-pressed', on ? 'true' : 'false');
-    }
+    for (const sel of document.querySelectorAll('#rc-league')) sel.value = p.league;
     for (const s of document.querySelectorAll('#rc-minm')) s.value = String(p.minm);
     for (const el of document.querySelectorAll('.rc-take-adj, .rc-adj-note')) el.hidden = !all;
     for (const el of document.querySelectorAll('.rc-take-raw, .rc-raw-note')) el.hidden = all;
@@ -1009,15 +1052,18 @@
     };
     for (const h of [...d.data].sort((a, b) => a.rank - b.rank)) {
       const card = add(el, 'article', 'rc-hot-card');
-      add(card, 'div', 'rc-hot-rank', `Pick ${h.rank} · ${h.league} · ${h.kickoff}`);
-      add(card, 'div', 'rc-hot-bet', h.bet);
-      add(card, 'div', 'rc-hot-match', h.match);
+      const badge = add(card, 'div', 'rc-hot-badge', String(h.rank));
+      badge.setAttribute('aria-hidden', 'true');
+      const body = add(card, 'div', 'rc-hot-body');
+      add(body, 'div', 'rc-hot-rank', `Pick ${h.rank} · ${h.league} · ${h.kickoff}`);
+      add(body, 'div', 'rc-hot-bet', h.bet);
+      add(body, 'div', 'rc-hot-match', h.match);
       const nums = add(card, 'div', 'rc-hot-nums');
       for (const [label, value] of [
-        ['Model chance', rc.pct(h.model_prob)],
+        ['Model', rc.pct(h.model_prob)],
         ['Typical match', rc.pct(h.typical_prob)],
         ['Fair odds', rc.f2(h.fair_odds)],
-        ['Bet only at odds of', rc.f2(h.min_odds) + '+'],
+        ['Bet at', rc.f2(h.min_odds) + '+'],
       ]) {
         const cell = add(nums, 'div');
         add(cell, 'span', null, label);
