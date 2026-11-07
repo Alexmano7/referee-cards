@@ -114,11 +114,41 @@
   .rc .rc-hot-record b { font-weight: 600; color: var(--color-fg); }
   .rc-treble { --color-panel: var(--fl-slip); --color-bg: #E9E2D2; --color-fg: var(--fl-slip-ink); --color-fg-muted: #5C574A; --color-border-line: #CFC6B0;
     background: var(--fl-slip); color: var(--fl-slip-ink); border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: var(--cds-gap-xs); min-width: 0; container-type: inline-size; color-scheme: light; }
-  .rc-treble-legs td { border-bottom-style: dashed; }
   .rc-treble-min { padding: 10px 12px; border-radius: 8px; background: var(--fl-slip-ink); color: var(--fl-yellow); font-weight: 600; text-align: center; }
-  .rc-treble-legs :is(th, td):nth-child(-n+5) { text-align: left; }
   .rc .rc-treble b { font-weight: 600; color: var(--color-fg); }
-  @container rc (max-width: 40rem) { .rc-treble-legs :is(th, td):is(:nth-child(2), :nth-child(5), :nth-child(7)) { display: none; } }
+  /* Legs as stacked slip lines (the slip sits in the narrow column, so an 8-column table never fit). */
+  .rc-treble .rc-treble-scroll { overflow: visible; max-height: none; }
+  .rc-treble-legs, .rc-treble-legs tbody { display: block; }
+  .rc-treble-legs thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .rc-treble-legs tr { display: grid; grid-template-columns: 2rem repeat(3, minmax(0, 1fr)); column-gap: 10px; row-gap: 2px; padding: 12px 0; border-bottom: 1px dashed var(--color-border-line); cursor: pointer; }
+  .rc-treble-legs tr:hover, .rc-treble-legs tr:focus-visible { background: #EBE4D3; outline: none; }
+  .rc-treble-legs td { display: block; padding: 0; border: 0; text-align: left; white-space: normal; min-width: 0; overflow-wrap: anywhere; }
+  .rc-treble-legs td:nth-child(1) { grid-column: 1; grid-row: 1 / span 4; align-self: start; width: 2rem; height: 2.6rem; border-radius: 4px; background: var(--fl-yellow); color: var(--fl-yellow-ink); display: flex; align-items: center; justify-content: center; font-family: var(--fl-display); font-size: 1.3rem; font-weight: 700; }
+  .rc-treble-legs td:nth-child(3) { grid-column: 2 / -1; grid-row: 1; font-weight: 600; }
+  .rc-treble-legs td:nth-child(4) { grid-column: 2 / -1; grid-row: 2; font-family: var(--fl-display); font-stretch: condensed; font-weight: 600; font-size: 1.2rem; line-height: 1.15; }
+  .rc-treble-legs td:nth-child(2) { grid-column: 2 / -1; grid-row: 3; color: var(--color-fg-muted); }
+  .rc-treble-legs td:nth-child(5) { grid-column: 2 / -1; grid-row: 4; color: var(--color-fg-muted); }
+  .rc-treble-legs td:nth-child(5)::before { content: "Referee: "; }
+  .rc-treble-legs td:nth-child(n+6) { grid-row: 5; margin-top: 6px; font-weight: 600; }
+  .rc-treble-legs td:nth-child(6) { grid-column: 2; }
+  .rc-treble-legs td:nth-child(7) { grid-column: 3; }
+  .rc-treble-legs td:nth-child(8) { grid-column: 4; }
+  .rc-treble-legs td:nth-child(n+6)::before { display: block; font-weight: 400; font-size: 11px; color: var(--color-fg-muted); }
+  .rc-treble-legs td:nth-child(6)::before { content: "Model"; }
+  .rc-treble-legs td:nth-child(7)::before { content: "Typical"; }
+  .rc-treble-legs td:nth-child(8)::before { content: "Fair odds"; }
+  .rc-treble-record-title { margin: var(--cds-gap-md) 0 0; font-weight: 600; font-size: var(--cds-font-size-caption); }
+  .rc-treble-record, .rc-treble-record tbody { display: block; }
+  .rc-treble-record thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .rc-treble-record tr { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px 10px; padding: 8px 0; border-bottom: 1px dashed var(--color-border-line); }
+  .rc-treble-record td { display: block; padding: 0; border: 0; text-align: left; white-space: normal; font-weight: 600; }
+  .rc-treble-record td:first-child { grid-column: 1 / -1; }
+  .rc-treble-record td:not(:first-child)::before { display: block; font-weight: 400; font-size: 11px; color: var(--color-fg-muted); }
+  .rc-treble-record td:nth-child(2)::before { content: "Trebles"; }
+  .rc-treble-record td:nth-child(3)::before { content: "All 3 won"; }
+  .rc-treble-record td:nth-child(4)::before { content: "Win rate"; }
+  .rc-treble-record td:nth-child(5)::before { content: "Model said"; }
+  .rc-treble-record td:nth-child(6)::before { content: "Break-even"; }
   .rc-detail-head { display: flex; justify-content: space-between; align-items: center; gap: var(--cds-gap-md); }
   .rc-close { font: inherit; font-size: var(--cds-font-size-caption); padding: var(--cds-pad-xs) var(--cds-pad-sm); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-panel); color: var(--color-fg); cursor: pointer; }
   .rc-bars { position: relative; min-height: 10rem; }
@@ -190,9 +220,9 @@
     <div class="rc-treble" id="safe-treble">
       <h2>Safe treble</h2>
       <p class="rc-note" style="margin: 0;">3 matches, combined odds about 2.00. All three must win.</p>
-      <p class="rc-note">One bet per match, all three must win. Each leg is at least 60% likely and more likely than in a typical match. Combined: model chance <b data-draw="tr-p" data-source="treble_combined" data-field="model_pct">—</b> (typical match <b data-draw="tr-t" data-source="treble_combined" data-field="typical_pct">—</b>), fair odds <b data-draw="tr-fair" data-source="treble_combined" data-field="fair_odds">—</b>. At 2.00 it is about break-even at best.</p>
+      <p class="rc-note"> Each leg is at least 60% likely and more likely than in a typical match. Combined: model chance <b data-draw="tr-p" data-source="treble_combined" data-field="model_pct">—</b> (typical match <b data-draw="tr-t" data-source="treble_combined" data-field="typical_pct">—</b>), fair odds <b data-draw="tr-fair" data-source="treble_combined" data-field="fair_odds">—</b>. At 2.00 it is about break-even at best.</p>
       <p class="rc-treble-min">Take it only at <span data-draw="tr-min" data-source="treble_combined" data-field="min_odds">—</span> or more</p>
-      <div class="rc-scroll">
+      <div class="rc-scroll rc-treble-scroll">
         <table class="rc-table rc-treble-legs" data-source="hot_treble" data-row-key="key">
           <thead><tr>
             <th data-field="leg">Leg</th>
@@ -208,9 +238,10 @@
         </table>
       </div>
       <p class="rc-note rc-treble-empty" hidden>No treble near 2.00 can be built from this week's safe bets yet. Refresh again when more referees are announced.</p>
+      <p class="rc-treble-record-title">Track record (one treble per past week)</p>
       <table class="rc-table rc-checks rc-treble-record" data-source="treble_record" data-row-key="key">
         <thead><tr>
-          <th data-field="period">Track record (one treble per past week)</th>
+          <th data-field="period">Track record (1 treble a week)</th>
           <th data-field="trebles">Trebles</th>
           <th data-field="won">All 3 won</th>
           <th data-field="win_rate_pct">Win rate</th>
