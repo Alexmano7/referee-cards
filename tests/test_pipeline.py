@@ -327,6 +327,12 @@ def test_match_referee_names():
     assert (
         match_referee("Pedro José Hernández", spanish) is None
     )  # first name fits nobody
+    scottish = [(20, "N Walsh"), (21, "J Beaton"), (22, "N Smith")]
+    assert (
+        match_referee("Nicholas Walsh", scottish) == 20
+    )  # the file abbreviates first names
+    assert match_referee("John Beaton", scottish) == 21
+    assert match_referee("Nicholas Jones", scottish) is None  # surname must still match
 
 
 def _fixture(home="A", away="B", day=date(2026, 11, 8), referee=None, referee_id=None):
@@ -690,3 +696,85 @@ def test_safe_treble_targets_about_two_and_prefers_known_referees():
     assert (
         best_treble([("A", True, [leg(0.99, 0.5)])] * 2) is None
     )  # fewer than 3 matches
+
+
+# --- CSV leagues (Greece, Belgium, Scotland) and referee.observer ----------------------
+
+
+def test_referee_observer_history_page_is_parsed():
+    from referees.referee_observer import parse_history, referee_name
+
+    page = (
+        "<html><head><title>Ana Example \u2014 All Matches</title></head><body>"
+        "<div>Super League Greece</div><div>07/11/2026</div><div>Volos</div><div>1</div><div>\u2013</div>"
+        "<div>3</div><div>Kifisia</div><div>\U0001f4fa</div><div>VAR</div><div>2026/27</div>"
+        "<div>Super League Greece</div><div>24/10/2026</div><div>Iraklis</div><div>2</div><div>\u2013</div>"
+        "<div>3</div><div>Kifisia</div><div>Referee</div><div>2026/27</div>"
+        "<script>ignored 01/01/2020</script></body></html>"
+    )
+    rows = parse_history(page)
+    assert referee_name(page) == "Ana Example"
+    assert [(r["home"], r["away"], r["role"]) for r in rows] == [
+        ("Volos", "Kifisia", "VAR"),
+        ("Iraklis", "Kifisia", "Referee"),
+    ]
+    assert rows[1]["date"] == date(2026, 10, 24)
+
+
+def test_csv_league_matches_get_referees_from_history_or_file():
+    from referees.csv_leagues import (
+        csv_matches,
+        ro_referees_for_csv,
+        stable_referee_id,
+        suggest_ro_mapping,
+    )
+
+    csv = pd.DataFrame(
+        [
+            {
+                "league": "GR",
+                "season": 2026,
+                "date": date(2026, 10, 24),
+                "time": "17:00",
+                "csv_home": "Iraklis",
+                "csv_away": "Kifisia",
+                "csv_referee": None,
+            },
+            {
+                "league": "SCO",
+                "season": 2026,
+                "date": date(2026, 10, 25),
+                "time": "15:00",
+                "csv_home": "Celtic",
+                "csv_away": "Hearts",
+                "csv_referee": "J Beaton",
+            },
+        ]
+    )
+    history = pd.DataFrame(
+        [
+            {
+                "league": "GR",
+                "date": date(2026, 10, 24),
+                "ro_home": "Iraklis FC",
+                "ro_away": "AE Kifisia",
+                "referee": "Ana Example",
+                "ro_path": "/referee/gre/x",
+            }
+        ]
+    )
+    empty = pd.DataFrame(columns=["league", "ro_name", "csv_name", "checked"])
+    mapping = suggest_ro_mapping(history, csv, empty)
+    assert dict(zip(mapping["ro_name"], mapping["csv_name"])) == {
+        "AE Kifisia": "Kifisia",
+        "Iraklis FC": "Iraklis",
+    }
+    rows = csv_matches(csv, ro_referees_for_csv(history, csv, mapping)).set_index(
+        "league"
+    )
+    assert rows.loc["GR", "referee"] == "Ana Example"
+    assert rows.loc["SCO", "referee"] == "J Beaton"
+    assert rows.loc["SCO", "referee_id"] == stable_referee_id("j beaton")
+    assert rows.loc["GR", "utc_kickoff"].startswith(
+        "2026-10-24T16:00"
+    )  # 17:00 UK summer time

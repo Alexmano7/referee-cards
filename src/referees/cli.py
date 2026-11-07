@@ -6,6 +6,7 @@ Commands:
   check            join the data, show 10 joined matches and list failed joins
   build            write data/matches.csv, data/unmatched.csv and data/referees.json
   update           fetch + build
+  fetch-ro [--full] read Greek/Belgian referee history from referee.observer (slow, polite)
   rfef-pdf <url>   download an RFEF La Liga designation PDF (rfef.es only) and print its text
   api-football-probe  show what the free API-Football plan offers (needs API_FOOTBALL_KEY)
   backtest         test the card model on past weeks, tune its settings (docs/backtest.md)
@@ -43,16 +44,49 @@ from referees.team_names import (
 
 
 def _load():
-    seasons = seasons_to_fetch()
-    return fetch_api.load_all_api_matches(seasons), fetch_csv.load_all_csv_matches(
-        seasons
+    """All matches shaped like API rows (API leagues + CSV leagues) and all card rows.
+
+    CSV leagues (Greece, Belgium, Scotland) are built from their card files, with past
+    referees from the file (Scotland) or the committed referee.observer history (Greece,
+    Belgium), and the coming week's fixtures from fixtures.csv.
+    """
+    from referees.config import CSV_LEAGUES, current_season_start_year
+    from referees.csv_leagues import (
+        csv_fixtures,
+        csv_matches,
+        load_ro_mapping,
+        ro_referees_for_csv,
     )
+    from referees.referee_observer import load_history
+
+    seasons = seasons_to_fetch()
+    api = fetch_api.load_all_api_matches(seasons)
+    csv = fetch_csv.load_all_csv_matches(seasons)
+    if csv.empty:
+        return api, csv
+    ro = ro_referees_for_csv(load_history(), csv, load_ro_mapping())
+    extra = [
+        csv_matches(csv, ro),
+        csv_fixtures(fetch_csv.read_fixtures(CSV_LEAGUES), current_season_start_year()),
+    ]
+    frames = [f for f in [api, *extra] if not f.empty]
+    api = pd.concat(frames, ignore_index=True) if frames else api
+    api["referee_id"] = api["referee_id"].astype("Int64")
+    return api, csv
+
+
+def _mapping(csv: pd.DataFrame) -> pd.DataFrame:
+    """The team-name mapping file plus identity rows for the CSV leagues."""
+    from referees.csv_leagues import identity_mapping
+
+    return pd.concat([load_mapping(), identity_mapping(csv)], ignore_index=True)
 
 
 def cmd_fetch() -> None:
     seasons = seasons_to_fetch()
     print(f"Downloading CSVs for seasons {seasons} ...")
     fetch_csv.download_all(seasons)
+    fetch_csv.download_fixtures()
     print(
         "Downloading football-data.org matches (spaced out for the 10/minute limit) ..."
     )
@@ -64,6 +98,10 @@ def cmd_fetch() -> None:
 
 def cmd_suggest_mapping() -> None:
     api, csv = _load()
+    from referees.config import API_LEAGUES
+
+    api_keys = {lg.key for lg in API_LEAGUES}  # CSV leagues use their own (CSV) names
+    api = api[api["league"].isin(api_keys)]
     merged, added = merge_suggestions(load_mapping(), suggest_mapping(api, csv))
     save_mapping(merged)
     print(
@@ -77,7 +115,7 @@ def cmd_suggest_mapping() -> None:
 
 def cmd_check() -> None:
     api, csv = _load()
-    mapping = load_mapping()
+    mapping = _mapping(csv)
     missing = unmapped_teams(api, mapping)
     if missing:
         print(
@@ -115,7 +153,7 @@ def cmd_check() -> None:
 
 def cmd_build() -> None:
     api, csv = _load()
-    joined, unmatched = join_matches(api, csv, load_mapping())
+    joined, unmatched = join_matches(api, csv, _mapping(csv))
     MATCHES_FILE.parent.mkdir(parents=True, exist_ok=True)
     joined.to_csv(MATCHES_FILE, index=False, lineterminator="\n")
     unmatched.to_csv(UNMATCHED_FILE, index=False, lineterminator="\n")
@@ -139,7 +177,7 @@ def cmd_export_dashboard() -> None:
     api, csv = _load()
     if api.empty or csv.empty:
         raise SystemExit("No downloaded data found. Run `uv run referees fetch` first.")
-    joined, unmatched = join_matches(api, csv, load_mapping())
+    joined, unmatched = join_matches(api, csv, _mapping(csv))
     report = build_report(joined, api, unmatched, appointments=load_appointments())
     from referees.backtest import RESULTS_FILE
     from referees.bets import load_bets, settle
@@ -210,7 +248,7 @@ def cmd_backtest() -> None:
     api, csv = _load()
     if api.empty or csv.empty:
         raise SystemExit("No downloaded data found. Run `uv run referees fetch` first.")
-    joined, _ = join_matches(api, csv, load_mapping())
+    joined, _ = join_matches(api, csv, _mapping(csv))
     results = backtest.run(joined)
     backtest.save(results)
     print()
@@ -236,6 +274,23 @@ def cmd_rfef_pdf(url: str) -> None:
     print(pdf_text(path))
 
 
+def cmd_fetch_ro(full: bool, leagues: list[str] | None = None) -> None:
+    """Read Greek/Belgian referee history from referee.observer and suggest team names."""
+    from referees.csv_leagues import (
+        RO_MAPPING_FILE,
+        load_ro_mapping,
+        suggest_ro_mapping,
+    )
+    from referees.referee_observer import update_history
+
+    history = update_history(full=full or None, leagues=leagues)
+    _, csv = _load()
+    mapping = suggest_ro_mapping(history, csv, load_ro_mapping())
+    RO_MAPPING_FILE.parent.mkdir(parents=True, exist_ok=True)
+    mapping.to_csv(RO_MAPPING_FILE, index=False, lineterminator="\n")
+    print(f"Team-name mapping: {len(mapping)} rows in {RO_MAPPING_FILE.name}")
+
+
 def main() -> None:
     # Show accents (Atlético, Köln) correctly even in older Windows terminals.
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -257,7 +312,11 @@ def main() -> None:
             "backtest",
             "api-football-probe",
             "rfef-pdf",
+            "fetch-ro",
         ],
+    )
+    parser.add_argument(
+        "--full", action="store_true", help="for fetch-ro: read every history page"
     )
     parser.add_argument("url", nargs="?", help="for rfef-pdf: the PDF link on rfef.es")
     args = parser.parse_args()
@@ -277,6 +336,8 @@ def main() -> None:
         cmd_backtest()
     elif args.command == "api-football-probe":
         cmd_api_football_probe()
+    elif args.command == "fetch-ro":
+        cmd_fetch_ro(args.full, [args.url] if args.url else None)
     elif args.command == "rfef-pdf":
         if not args.url:
             raise SystemExit("Usage: uv run referees rfef-pdf <pdf link on rfef.es>")

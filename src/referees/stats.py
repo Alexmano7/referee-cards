@@ -41,9 +41,11 @@ METHOD_NOTES = {
     "card_lines": CARD_LINES,
     "projection": "probability model (model.py): league x referee x team x opponent factors "
     "fitted together, negative binomial probabilities; settings tuned by `referees backtest`",
-    "england_second_yellow": "football-data.co.uk: in English files a second-yellow dismissal "
-    "counts as 1 red only; in Spain/Germany/France it counts as 1 yellow "
-    "+ 1 red. Compare Premier League numbers with care across leagues.",
+    "england_second_yellow": "football-data.co.uk: in English and Scottish files a second-yellow "
+    "dismissal counts as 1 red only; in the other leagues it counts as 1 yellow + 1 red. "
+    "Compare Premier League and Scottish numbers with care across leagues.",
+    "referee_sources": "PL/PD/BL1/SA/FL1/PPL: football-data.org; SCO: the card file; "
+    "GR/BEL: referee.observer history (from mid-2025).",
 }
 
 

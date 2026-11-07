@@ -1,0 +1,624 @@
+league,date,ro_home,ro_away,referee,ro_path
+BEL,2025-07-25,Antwerp,Union Saint-Gilloise,Erik Lambrechts,/referee/bel/erik-lambrechts
+BEL,2025-07-26,Dender,Cercle Brugge,Michiel Allaerts,/referee/bel/michiel-allaerts
+BEL,2025-07-26,La Louvière,Standard Liège,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2025-07-26,Zulte Waregem,Mechelen,Kevin Van Damme,/referee/bel/kevin-van-damme
+BEL,2025-07-27,Club Brugge,Genk,Jasper Vergoote,/referee/bel/jasper-vergoote
+BEL,2025-07-27,OH Leuven,Charleroi,Nathan Verboomen,/referee/bel/nathan-verboomen
+BEL,2025-07-27,Sint-Truiden,Gent,Bert Put,/referee/bel/bert-put
+BEL,2025-08-01,Mechelen,Club Brugge,Erik Lambrechts,/referee/bel/erik-lambrechts
+BEL,2025-08-02,Gent,La Louvière,Nathan Verboomen,/referee/bel/nathan-verboomen
+BEL,2025-08-02,Westerlo,Zulte Waregem,Bert Verbeke,/referee/bel/bert-verbeke
+BEL,2025-08-03,Cercle Brugge,Anderlecht,Wesli De Cremer,/referee/bel/wesli-de-cremer
+BEL,2025-08-03,Charleroi,Sint-Truiden,Kevin Van Damme,/referee/bel/kevin-van-damme
+BEL,2025-08-03,Genk,Antwerp,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2025-08-03,Union Saint-Gilloise,OH Leuven,Jan Boterberg,/referee/bel/jan-boterberg
+BEL,2025-08-08,Sint-Truiden,Dender,Massimiliano Ledda,/referee/unk/massimiliano-ledda
+BEL,2025-08-09,Gent,Union Saint-Gilloise,Jasper Vergoote,/referee/bel/jasper-vergoote
+BEL,2025-08-09,Westerlo,Mechelen,Michiel Allaerts,/referee/bel/michiel-allaerts
+BEL,2025-08-10,Anderlecht,Zulte Waregem,Bert Put,/referee/bel/bert-put
+BEL,2025-08-10,Antwerp,OH Leuven,Wesli De Cremer,/referee/bel/wesli-de-cremer
+BEL,2025-08-10,La Louvière,Charleroi,Nicolas Laforge,/referee/bel/nicolas-laforge
+BEL,2025-08-10,Standard Liège,Genk,Nathan Verboomen,/referee/bel/nathan-verboomen
+BEL,2025-08-16,Mechelen,Gent,Nicolas Laforge,/referee/bel/nicolas-laforge
+BEL,2025-08-16,Union Saint-Gilloise,Standard Liège,Bram Van Driessche,/referee/bel/bram-van-driessche
+BEL,2025-08-16,Zulte Waregem,Club Brugge,Jan Boterberg,/referee/bel/jan-boterberg
+BEL,2025-08-17,Cercle Brugge,Westerlo,Anthony Letellier,/referee/unk/anthony-letellier
+BEL,2025-08-17,Dender,Anderlecht,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2025-08-17,Sint-Truiden,La Louvière,Bert Verbeke,/referee/bel/bert-verbeke
+BEL,2025-08-23,Standard Liège,Cercle Brugge,Jan Boterberg,/referee/bel/jan-boterberg
+BEL,2025-08-23,Zulte Waregem,Sint-Truiden,Kevin Van Damme,/referee/bel/kevin-van-damme
+BEL,2025-08-24,Antwerp,Mechelen,Bram Van Driessche,/referee/bel/bram-van-driessche
+BEL,2025-08-24,Dender,OH Leuven,Jasper Vergoote,/referee/bel/jasper-vergoote
+BEL,2025-08-24,La Louvière,Union Saint-Gilloise,Nathan Verboomen,/referee/bel/nathan-verboomen
+BEL,2025-08-29,Cercle Brugge,Sint-Truiden,Nicolas Laforge,/referee/bel/nicolas-laforge
+BEL,2025-08-30,Charleroi,Dender,Wesli De Cremer,/referee/bel/wesli-de-cremer
+BEL,2025-08-30,Mechelen,La Louvière,Massimiliano Ledda,/referee/unk/massimiliano-ledda
+BEL,2025-08-30,Westerlo,Antwerp,Jan Boterberg,/referee/bel/jan-boterberg
+BEL,2025-08-31,Genk,Zulte Waregem,Bram Van Driessche,/referee/bel/bram-van-driessche
+BEL,2025-08-31,OH Leuven,Standard Liège,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2025-08-31,Union Saint-Gilloise,Anderlecht,Jasper Vergoote,/referee/bel/jasper-vergoote
+BEL,2025-09-12,Standard Liège,Mechelen,Nicolas Laforge,/referee/bel/nicolas-laforge
+BEL,2025-09-13,Dender,Union Saint-Gilloise,Bert Verbeke,/referee/bel/bert-verbeke
+BEL,2025-09-13,La Louvière,Club Brugge,Bert Put,/referee/bel/bert-put
+BEL,2025-09-13,Zulte Waregem,OH Leuven,Nathan Verboomen,/referee/bel/nathan-verboomen
+BEL,2025-09-14,Antwerp,Gent,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2025-09-14,Cercle Brugge,Charleroi,Jasper Vergoote,/referee/bel/jasper-vergoote
+BEL,2025-09-14,Sint-Truiden,Westerlo,Bram Van Driessche,/referee/bel/bram-van-driessche
+BEL,2025-09-19,Gent,Dender,Jan Boterberg,/referee/bel/jan-boterberg
+BEL,2025-09-20,Anderlecht,Antwerp,Erik Lambrechts,/referee/bel/erik-lambrechts
+BEL,2025-09-20,Charleroi,Zulte Waregem,Michiel Allaerts,/referee/bel/michiel-allaerts
+BEL,2025-09-20,OH Leuven,La Louvière,Wesli De Cremer,/referee/bel/wesli-de-cremer
+BEL,2025-09-21,Genk,Union Saint-Gilloise,Nathan Verboomen,/referee/bel/nathan-verboomen
+BEL,2025-09-21,Mechelen,Cercle Brugge,Bert Verbeke,/referee/bel/bert-verbeke
+BEL,2025-09-21,Westerlo,Standard Liège,Kevin Van Damme,/referee/bel/kevin-van-damme
+BEL,2025-09-23,Anderlecht,Gent,Nicolas Laforge,/referee/bel/nicolas-laforge
+BEL,2025-09-24,Club Brugge,Westerlo,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2025-09-27,Standard Liège,Club Brugge,Jasper Vergoote,/referee/bel/jasper-vergoote
+BEL,2025-09-27,Union Saint-Gilloise,Westerlo,Nicolas Laforge,/referee/bel/nicolas-laforge
+BEL,2025-09-27,Zulte Waregem,Antwerp,Bert Verbeke,/referee/bel/bert-verbeke
+BEL,2025-09-28,Cercle Brugge,Gent,Bert Put,/referee/bel/bert-put
+BEL,2025-09-28,Charleroi,Mechelen,Bram Van Driessche,/referee/bel/bram-van-driessche
+BEL,2025-09-28,Dender,La Louvière,Anthony Letellier,/referee/unk/anthony-letellier
+BEL,2025-09-28,Sint-Truiden,Genk,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2025-10-03,Gent,Charleroi,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2025-10-04,Antwerp,Cercle Brugge,Nathan Verboomen,/referee/bel/nathan-verboomen
+BEL,2025-10-04,La Louvière,Zulte Waregem,Kevin Van Damme,/referee/bel/kevin-van-damme
+BEL,2025-10-04,Mechelen,Sint-Truiden,Jasper Vergoote,/referee/bel/jasper-vergoote
+BEL,2025-10-05,Anderlecht,Standard Liège,Bram Van Driessche,/referee/bel/bram-van-driessche
+BEL,2025-10-05,Club Brugge,Union Saint-Gilloise,Jan Boterberg,/referee/bel/jan-boterberg
+BEL,2025-10-05,Genk,Dender,Massimiliano Ledda,/referee/unk/massimiliano-ledda
+BEL,2025-10-18,La Louvière,Westerlo,Massimiliano Ledda,/referee/unk/massimiliano-ledda
+BEL,2025-10-18,OH Leuven,Club Brugge,Bert Verbeke,/referee/bel/bert-verbeke
+BEL,2025-10-19,Cercle Brugge,Genk,Wesli De Cremer,/referee/bel/wesli-de-cremer
+BEL,2025-10-19,Dender,Mechelen,Michiel Allaerts,/referee/bel/michiel-allaerts
+BEL,2025-10-19,Sint-Truiden,Anderlecht,Nicolas Laforge,/referee/bel/nicolas-laforge
+BEL,2025-10-19,Zulte Waregem,Gent,Erik Lambrechts,/referee/bel/erik-lambrechts
+BEL,2025-10-24,Charleroi,Anderlecht,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2025-10-25,Gent,Standard Liège,Nathan Verboomen,/referee/bel/nathan-verboomen
+BEL,2025-10-25,Mechelen,OH Leuven,Kevin Van Damme,/referee/bel/kevin-van-damme
+BEL,2025-10-25,Westerlo,Dender,Anthony Letellier,/referee/unk/anthony-letellier
+BEL,2025-10-26,Antwerp,Club Brugge,Nicolas Laforge,/referee/bel/nicolas-laforge
+BEL,2025-10-26,Cercle Brugge,Zulte Waregem,Jan Boterberg,/referee/bel/jan-boterberg
+BEL,2025-10-26,Genk,La Louvière,Bert Verbeke,/referee/bel/bert-verbeke
+BEL,2025-10-26,Union Saint-Gilloise,Sint-Truiden,Bram Van Driessche,/referee/bel/bram-van-driessche
+BEL,2025-10-31,Standard Liège,Charleroi,Erik Lambrechts,/referee/bel/erik-lambrechts
+BEL,2025-11-01,Club Brugge,Dender,Kevin Van Damme,/referee/bel/kevin-van-damme
+BEL,2025-11-02,La Louvière,Cercle Brugge,Bert Put,/referee/bel/bert-put
+BEL,2025-11-02,OH Leuven,Gent,Wesli De Cremer,/referee/bel/wesli-de-cremer
+BEL,2025-11-02,Sint-Truiden,Antwerp,Nathan Verboomen,/referee/bel/nathan-verboomen
+BEL,2025-11-02,Westerlo,Genk,Michiel Allaerts,/referee/bel/michiel-allaerts
+BEL,2025-11-07,Dender,Zulte Waregem,Michiel Allaerts,/referee/bel/michiel-allaerts
+BEL,2025-11-08,Antwerp,La Louvière,Bram Van Driessche,/referee/bel/bram-van-driessche
+BEL,2025-11-08,Charleroi,Westerlo,Bert Verbeke,/referee/bel/bert-verbeke
+BEL,2025-11-09,Anderlecht,Club Brugge,Erik Lambrechts,/referee/bel/erik-lambrechts
+BEL,2025-11-09,Gent,Genk,Jan Boterberg,/referee/bel/jan-boterberg
+BEL,2025-11-09,Mechelen,Union Saint-Gilloise,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2025-11-09,Sint-Truiden,Standard Liège,Nicolas Laforge,/referee/bel/nicolas-laforge
+BEL,2025-11-21,Standard Liège,Zulte Waregem,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2025-11-22,Union Saint-Gilloise,Cercle Brugge,Nicolas Laforge,/referee/bel/nicolas-laforge
+BEL,2025-11-22,Westerlo,Gent,Bert Put,/referee/bel/bert-put
+BEL,2025-11-23,Antwerp,Dender,Wesli De Cremer,/referee/bel/wesli-de-cremer
+BEL,2025-11-23,Genk,Mechelen,Bram Van Driessche,/referee/bel/bram-van-driessche
+BEL,2025-11-23,La Louvière,Anderlecht,Jan Boterberg,/referee/bel/jan-boterberg
+BEL,2025-11-23,OH Leuven,Sint-Truiden,Bert Verbeke,/referee/bel/bert-verbeke
+BEL,2025-11-29,Charleroi,La Louvière,Bram Van Driessche,/referee/bel/bram-van-driessche
+BEL,2025-11-29,Dender,Westerlo,Jan Boterberg,/referee/bel/jan-boterberg
+BEL,2025-11-29,Zulte Waregem,Cercle Brugge,Massimiliano Ledda,/referee/unk/massimiliano-ledda
+BEL,2025-11-30,Anderlecht,Union Saint-Gilloise,Nathan Verboomen,/referee/bel/nathan-verboomen
+BEL,2025-11-30,Genk,OH Leuven,Wesli De Cremer,/referee/bel/wesli-de-cremer
+BEL,2025-11-30,Gent,Sint-Truiden,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2025-12-05,La Louvière,Dender,Nathan Verboomen,/referee/bel/nathan-verboomen
+BEL,2025-12-06,Cercle Brugge,Standard Liège,Bert Verbeke,/referee/bel/bert-verbeke
+BEL,2025-12-06,Sint-Truiden,Club Brugge,Bram Van Driessche,/referee/bel/bram-van-driessche
+BEL,2025-12-07,Antwerp,Genk,Jasper Vergoote,/referee/bel/jasper-vergoote
+BEL,2025-12-07,Mechelen,Charleroi,Nicolas Laforge,/referee/bel/nicolas-laforge
+BEL,2025-12-07,OH Leuven,Zulte Waregem,Anthony Letellier,/referee/unk/anthony-letellier
+BEL,2025-12-07,Westerlo,Anderlecht,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2025-12-12,Standard Liège,OH Leuven,Massimiliano Ledda,/referee/unk/massimiliano-ledda
+BEL,2025-12-13,Cercle Brugge,Mechelen,Kevin Van Damme,/referee/bel/kevin-van-damme
+BEL,2025-12-13,Zulte Waregem,La Louvière,Wesli De Cremer,/referee/bel/wesli-de-cremer
+BEL,2025-12-14,Charleroi,Union Saint-Gilloise,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2025-12-14,Dender,Club Brugge,Bert Verbeke,/referee/bel/bert-verbeke
+BEL,2025-12-14,Genk,Westerlo,Michiel Allaerts,/referee/bel/michiel-allaerts
+BEL,2025-12-14,Gent,Antwerp,Nicolas Laforge,/referee/bel/nicolas-laforge
+BEL,2025-12-20,Dender,Standard Liège,Nicolas Laforge,/referee/bel/nicolas-laforge
+BEL,2025-12-20,Union Saint-Gilloise,Zulte Waregem,Nathan Verboomen,/referee/bel/nathan-verboomen
+BEL,2025-12-20,Westerlo,La Louvière,Anthony Letellier,/referee/unk/anthony-letellier
+BEL,2025-12-21,Antwerp,Anderlecht,Erik Lambrechts,/referee/bel/erik-lambrechts
+BEL,2025-12-21,Club Brugge,Gent,Jasper Vergoote,/referee/bel/jasper-vergoote
+BEL,2025-12-21,OH Leuven,Cercle Brugge,Michiel Allaerts,/referee/bel/michiel-allaerts
+BEL,2025-12-21,Sint-Truiden,Mechelen,Jan Boterberg,/referee/bel/jan-boterberg
+BEL,2025-12-26,Anderlecht,Charleroi,Bram Van Driessche,/referee/bel/bram-van-driessche
+BEL,2025-12-26,Genk,Club Brugge,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2025-12-26,Standard Liège,Sint-Truiden,Jasper Vergoote,/referee/bel/jasper-vergoote
+BEL,2025-12-27,Antwerp,Zulte Waregem,Bert Verbeke,/referee/bel/bert-verbeke
+BEL,2025-12-27,La Louvière,OH Leuven,Jan Boterberg,/referee/bel/jan-boterberg
+BEL,2025-12-27,Mechelen,Dender,Massimiliano Ledda,/referee/unk/massimiliano-ledda
+BEL,2026-01-17,Union Saint-Gilloise,Mechelen,Bram Van Driessche,/referee/bel/bram-van-driessche
+BEL,2026-01-17,Westerlo,Cercle Brugge,Bert Put,/referee/bel/bert-put
+BEL,2026-01-18,Charleroi,Standard Liège,Jasper Vergoote,/referee/bel/jasper-vergoote
+BEL,2026-01-18,Dender,Antwerp,Michiel Allaerts,/referee/bel/michiel-allaerts
+BEL,2026-01-18,Gent,Anderlecht,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2026-01-18,Sint-Truiden,OH Leuven,Massimiliano Ledda,/referee/unk/massimiliano-ledda
+BEL,2026-01-24,Club Brugge,Zulte Waregem,Bert Verbeke,/referee/bel/bert-verbeke
+BEL,2026-01-24,La Louvière,Sint-Truiden,Kevin Van Damme,/referee/bel/kevin-van-damme
+BEL,2026-01-24,OH Leuven,Union Saint-Gilloise,Michiel Allaerts,/referee/bel/michiel-allaerts
+BEL,2026-01-25,Anderlecht,Dender,Wesli De Cremer,/referee/bel/wesli-de-cremer
+BEL,2026-01-25,Antwerp,Charleroi,Jan Boterberg,/referee/bel/jan-boterberg
+BEL,2026-01-25,Genk,Cercle Brugge,Nathan Verboomen,/referee/bel/nathan-verboomen
+BEL,2026-01-25,Mechelen,Westerlo,Erik Lambrechts,/referee/bel/erik-lambrechts
+BEL,2026-01-30,La Louvière,Gent,Massimiliano Ledda,/referee/unk/massimiliano-ledda
+BEL,2026-01-31,Sint-Truiden,Charleroi,Bert Verbeke,/referee/bel/bert-verbeke
+BEL,2026-01-31,Zulte Waregem,Westerlo,Bram Van Driessche,/referee/bel/bram-van-driessche
+BEL,2026-02-01,Dender,Genk,Nicolas Laforge,/referee/bel/nicolas-laforge
+BEL,2026-02-01,OH Leuven,Mechelen,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2026-02-01,Standard Liège,Anderlecht,Erik Lambrechts,/referee/bel/erik-lambrechts
+BEL,2026-02-01,Union Saint-Gilloise,Club Brugge,Nathan Verboomen,/referee/bel/nathan-verboomen
+BEL,2026-02-06,Westerlo,Sint-Truiden,Wesli De Cremer,/referee/bel/wesli-de-cremer
+BEL,2026-02-07,Charleroi,Cercle Brugge,Bert Put,/referee/bel/bert-put
+BEL,2026-02-07,Gent,OH Leuven,Kevin Van Damme,/referee/bel/kevin-van-damme
+BEL,2026-02-07,Zulte Waregem,Dender,Anthony Letellier,/referee/unk/anthony-letellier
+BEL,2026-02-08,Club Brugge,Standard Liège,Bram Van Driessche,/referee/bel/bram-van-driessche
+BEL,2026-02-08,Genk,Anderlecht,Jasper Vergoote,/referee/bel/jasper-vergoote
+BEL,2026-02-08,Union Saint-Gilloise,La Louvière,Nicolas Laforge,/referee/bel/nicolas-laforge
+BEL,2026-02-13,Mechelen,Genk,Jan Boterberg,/referee/bel/jan-boterberg
+BEL,2026-02-14,Charleroi,Gent,Erik Lambrechts,/referee/bel/erik-lambrechts
+BEL,2026-02-14,OH Leuven,Dender,Bram Van Driessche,/referee/bel/bram-van-driessche
+BEL,2026-02-14,Standard Liège,Union Saint-Gilloise,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2026-02-15,Anderlecht,La Louvière,Wesli De Cremer,/referee/bel/wesli-de-cremer
+BEL,2026-02-15,Antwerp,Westerlo,Bert Verbeke,/referee/bel/bert-verbeke
+BEL,2026-02-15,Sint-Truiden,Zulte Waregem,Nathan Verboomen,/referee/bel/nathan-verboomen
+BEL,2026-02-20,Gent,Cercle Brugge,Jan Boterberg,/referee/bel/jan-boterberg
+BEL,2026-02-21,Club Brugge,OH Leuven,Jasper Vergoote,/referee/bel/jasper-vergoote
+BEL,2026-02-21,Union Saint-Gilloise,Antwerp,Bram Van Driessche,/referee/bel/bram-van-driessche
+BEL,2026-02-22,La Louvière,Mechelen,Michiel Allaerts,/referee/bel/michiel-allaerts
+BEL,2026-02-22,Westerlo,Charleroi,Kevin Van Damme,/referee/bel/kevin-van-damme
+BEL,2026-02-22,Zulte Waregem,Anderlecht,Bert Verbeke,/referee/bel/bert-verbeke
+BEL,2026-02-28,Antwerp,Sint-Truiden,Wesli De Cremer,/referee/bel/wesli-de-cremer
+BEL,2026-02-28,Mechelen,Zulte Waregem,Jasper Vergoote,/referee/bel/jasper-vergoote
+BEL,2026-03-01,Cercle Brugge,Dender,Nathan Verboomen,/referee/bel/nathan-verboomen
+BEL,2026-03-01,Charleroi,Club Brugge,Bert Verbeke,/referee/bel/bert-verbeke
+BEL,2026-03-01,Genk,Gent,Nicolas Laforge,/referee/bel/nicolas-laforge
+BEL,2026-03-01,Westerlo,Union Saint-Gilloise,Jan Boterberg,/referee/bel/jan-boterberg
+BEL,2026-03-06,La Louvière,Antwerp,Jasper Vergoote,/referee/bel/jasper-vergoote
+BEL,2026-03-07,Dender,Charleroi,Jan Boterberg,/referee/bel/jan-boterberg
+BEL,2026-03-07,OH Leuven,Westerlo,Nathan Verboomen,/referee/bel/nathan-verboomen
+BEL,2026-03-07,Union Saint-Gilloise,Genk,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2026-03-08,Club Brugge,Anderlecht,Erik Lambrechts,/referee/bel/erik-lambrechts
+BEL,2026-03-08,Sint-Truiden,Cercle Brugge,Bert Verbeke,/referee/bel/bert-verbeke
+BEL,2026-03-08,Zulte Waregem,Standard Liège,Nicolas Laforge,/referee/bel/nicolas-laforge
+BEL,2026-03-14,Charleroi,OH Leuven,Jasper Vergoote,/referee/bel/jasper-vergoote
+BEL,2026-03-14,Union Saint-Gilloise,Dender,Bert Verbeke,/referee/bel/bert-verbeke
+BEL,2026-03-14,Westerlo,Club Brugge,Bram Van Driessche,/referee/bel/bram-van-driessche
+BEL,2026-03-15,Antwerp,Standard Liège,Nathan Verboomen,/referee/bel/nathan-verboomen
+BEL,2026-03-15,Cercle Brugge,La Louvière,Jan Boterberg,/referee/bel/jan-boterberg
+BEL,2026-03-15,Mechelen,Anderlecht,Nicolas Laforge,/referee/bel/nicolas-laforge
+BEL,2026-03-22,Club Brugge,Mechelen,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2026-03-22,Dender,Gent,Wesli De Cremer,/referee/bel/wesli-de-cremer
+BEL,2026-03-22,La Louvière,Genk,Nathan Verboomen,/referee/bel/nathan-verboomen
+BEL,2026-03-22,OH Leuven,Antwerp,Nicolas Laforge,/referee/bel/nicolas-laforge
+BEL,2026-03-22,Sint-Truiden,Union Saint-Gilloise,Jasper Vergoote,/referee/bel/jasper-vergoote
+BEL,2026-03-22,Standard Liège,Westerlo,Bert Put,/referee/bel/bert-put
+BEL,2026-03-22,Zulte Waregem,Charleroi,Bram Van Driessche,/referee/bel/bram-van-driessche
+BEL,2026-04-04,OH Leuven,Standard Liège,Bert Verbeke,/referee/bel/bert-verbeke
+BEL,2026-04-04,Union Saint-Gilloise,Sint-Truiden,Erik Lambrechts,/referee/bel/erik-lambrechts
+BEL,2026-04-04,Zulte Waregem,Cercle Brugge,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2026-04-05,Westerlo,Charleroi,Nathan Verboomen,/referee/bel/nathan-verboomen
+BEL,2026-04-06,Club Brugge,Anderlecht,Jasper Vergoote,/referee/bel/jasper-vergoote
+BEL,2026-04-06,Gent,Mechelen,Jan Boterberg,/referee/bel/jan-boterberg
+BEL,2026-04-06,La Louvière,Dender,Bram Van Driessche,/referee/bel/bram-van-driessche
+BEL,2026-04-10,Charleroi,Antwerp,Jan Boterberg,/referee/bel/jan-boterberg
+BEL,2026-04-11,Standard Liège,Westerlo,Wesli De Cremer,/referee/bel/wesli-de-cremer
+BEL,2026-04-12,Anderlecht,Gent,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2026-04-12,Dender,Zulte Waregem,Jasper Vergoote,/referee/bel/jasper-vergoote
+BEL,2026-04-12,Genk,OH Leuven,Wim Smet,/referee/bel/wim-smet
+BEL,2026-04-12,Mechelen,Union Saint-Gilloise,Nicolas Laforge,/referee/bel/nicolas-laforge
+BEL,2026-04-18,Antwerp,OH Leuven,Bert Put,/referee/bel/bert-put
+BEL,2026-04-18,Charleroi,Standard Liège,Bram Van Driessche,/referee/bel/bram-van-driessche
+BEL,2026-04-18,Mechelen,Anderlecht,Erik Lambrechts,/referee/bel/erik-lambrechts
+BEL,2026-04-18,Westerlo,Genk,Bert Verbeke,/referee/bel/bert-verbeke
+BEL,2026-04-19,Dender,Cercle Brugge,Jan Boterberg,/referee/bel/jan-boterberg
+BEL,2026-04-19,Gent,Sint-Truiden,Jasper Vergoote,/referee/bel/jasper-vergoote
+BEL,2026-04-19,La Louvière,Zulte Waregem,Wim Smet,/referee/bel/wim-smet
+BEL,2026-04-19,Union Saint-Gilloise,Club Brugge,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2026-04-21,Genk,Charleroi,Nicolas Laforge,/referee/bel/nicolas-laforge
+BEL,2026-04-21,OH Leuven,Westerlo,Kevin Van Damme,/referee/bel/kevin-van-damme
+BEL,2026-04-21,Standard Liège,Antwerp,Nathan Verboomen,/referee/bel/nathan-verboomen
+BEL,2026-04-22,Club Brugge,Mechelen,Bram Van Driessche,/referee/bel/bram-van-driessche
+BEL,2026-04-24,Cercle Brugge,Dender,Michiel Allaerts,/referee/bel/michiel-allaerts
+BEL,2026-04-25,OH Leuven,Charleroi,Anthony Letellier,/referee/unk/anthony-letellier
+BEL,2026-04-25,Westerlo,Antwerp,Nicolas Laforge,/referee/bel/nicolas-laforge
+BEL,2026-04-26,Anderlecht,Union Saint-Gilloise,Jasper Vergoote,/referee/bel/jasper-vergoote
+BEL,2026-04-26,Gent,Club Brugge,Erik Lambrechts,/referee/bel/erik-lambrechts
+BEL,2026-04-26,Mechelen,Sint-Truiden,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2026-04-26,Zulte Waregem,La Louvière,Massimiliano Ledda,/referee/unk/massimiliano-ledda
+BEL,2026-05-01,Cercle Brugge,Zulte Waregem,Anthony Letellier,/referee/unk/anthony-letellier
+BEL,2026-05-02,Charleroi,Genk,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2026-05-02,Sint-Truiden,Union Saint-Gilloise,Jan Boterberg,/referee/bel/jan-boterberg
+BEL,2026-05-02,Westerlo,OH Leuven,Wesli De Cremer,/referee/bel/wesli-de-cremer
+BEL,2026-05-03,Anderlecht,Club Brugge,Nicolas Laforge,/referee/bel/nicolas-laforge
+BEL,2026-05-03,Antwerp,Standard Liège,Jasper Vergoote,/referee/bel/jasper-vergoote
+BEL,2026-05-03,Dender,La Louvière,Nathan Verboomen,/referee/bel/nathan-verboomen
+BEL,2026-05-08,Standard Liège,OH Leuven,Bram Van Driessche,/referee/bel/bram-van-driessche
+BEL,2026-05-09,Club Brugge,Sint-Truiden,Jasper Vergoote,/referee/bel/jasper-vergoote
+BEL,2026-05-09,La Louvière,Cercle Brugge,Kevin Van Damme,/referee/bel/kevin-van-damme
+BEL,2026-05-09,Zulte Waregem,Dender,Bert Put,/referee/bel/bert-put
+BEL,2026-05-10,Antwerp,Charleroi,Bert Verbeke,/referee/bel/bert-verbeke
+BEL,2026-05-10,Gent,Anderlecht,Nathan Verboomen,/referee/bel/nathan-verboomen
+BEL,2026-05-10,Union Saint-Gilloise,Mechelen,Erik Lambrechts,/referee/bel/erik-lambrechts
+BEL,2026-05-15,OH Leuven,Antwerp,Anthony Letellier,/referee/unk/anthony-letellier
+BEL,2026-05-16,Charleroi,Westerlo,Jasper Vergoote,/referee/bel/jasper-vergoote
+BEL,2026-05-16,Sint-Truiden,Gent,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2026-05-16,Standard Liège,Genk,Nicolas Laforge,/referee/bel/nicolas-laforge
+BEL,2026-05-17,Anderlecht,Mechelen,Jan Boterberg,/referee/bel/jan-boterberg
+BEL,2026-05-17,Lommel,Dender,Wesli De Cremer,/referee/bel/wesli-de-cremer
+BEL,2026-05-19,Charleroi,OH Leuven,Bert Put,/referee/bel/bert-put
+BEL,2026-05-19,Genk,Antwerp,Bram Van Driessche,/referee/bel/bram-van-driessche
+BEL,2026-05-19,Westerlo,Standard Liège,Erik Lambrechts,/referee/bel/erik-lambrechts
+BEL,2026-05-21,Anderlecht,Sint-Truiden,Nicolas Laforge,/referee/bel/nicolas-laforge
+BEL,2026-05-21,Gent,Union Saint-Gilloise,Jasper Vergoote,/referee/bel/jasper-vergoote
+BEL,2026-05-23,Antwerp,Westerlo,Massimiliano Ledda,/referee/unk/massimiliano-ledda
+BEL,2026-05-23,OH Leuven,Genk,Bert Verbeke,/referee/bel/bert-verbeke
+BEL,2026-05-23,Standard Liège,Charleroi,Jan Boterberg,/referee/bel/jan-boterberg
+BEL,2026-05-24,Club Brugge,Gent,Erik Lambrechts,/referee/bel/erik-lambrechts
+BEL,2026-05-24,Sint-Truiden,Mechelen,Jasper Vergoote,/referee/bel/jasper-vergoote
+BEL,2026-05-24,Union Saint-Gilloise,Anderlecht,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2026-08-08,Standard Liège,Cercle Brugge,Jasper Vergoote,/referee/bel/jasper-vergoote
+BEL,2026-08-09,Anderlecht,La Louvière,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2026-08-09,Antwerp,Beveren,Wesli De Cremer,/referee/bel/wesli-de-cremer
+BEL,2026-08-09,Gent,Mechelen,Erik Lambrechts,/referee/bel/erik-lambrechts
+BEL,2026-08-14,Cercle Brugge,Sint-Truiden,Jan Boterberg,/referee/bel/jan-boterberg
+BEL,2026-08-15,Genk,Westerlo,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2026-08-15,Kortrijk,Antwerp,Nicolas Laforge,/referee/bel/nicolas-laforge
+BEL,2026-08-15,OH Leuven,Club Brugge,Jasper Vergoote,/referee/bel/jasper-vergoote
+BEL,2026-08-16,Beveren,Anderlecht,Nathan Verboomen,/referee/bel/nathan-verboomen
+BEL,2026-08-16,La Louvière,Gent,Bert Put,/referee/bel/bert-put
+BEL,2026-08-16,Lommel,Charleroi,Kevin Van Damme,/referee/bel/kevin-van-damme
+BEL,2026-08-16,Mechelen,Standard Liège,Bram Van Driessche,/referee/bel/bram-van-driessche
+BEL,2026-08-22,Antwerp,Genk,Jasper Vergoote,/referee/bel/jasper-vergoote
+BEL,2026-08-22,Zulte Waregem,Beveren,Michiel Allaerts,/referee/bel/michiel-allaerts
+BEL,2026-08-23,Club Brugge,Cercle Brugge,Nicolas Laforge,/referee/bel/nicolas-laforge
+BEL,2026-08-23,Lommel,Westerlo,Bert Verbeke,/referee/bel/bert-verbeke
+BEL,2026-08-28,Genk,Beveren,Bert Verbeke,/referee/bel/bert-verbeke
+BEL,2026-08-29,Kortrijk,Charleroi,Wesli De Cremer,/referee/bel/wesli-de-cremer
+BEL,2026-08-29,La Louvière,Mechelen,Anthony Letellier,/referee/unk/anthony-letellier
+BEL,2026-08-29,OH Leuven,Standard Liège,Kevin Van Damme,/referee/bel/kevin-van-damme
+BEL,2026-09-05,Charleroi,Union Saint-Gilloise,Nicolas Laforge,/referee/bel/nicolas-laforge
+BEL,2026-09-05,Sint-Truiden,La Louvière,Bert Verbeke,/referee/bel/bert-verbeke
+BEL,2026-09-05,Standard Liège,Antwerp,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2026-09-06,Beveren,OH Leuven,Wim Smet,/referee/bel/wim-smet
+BEL,2026-09-12,Beveren,Sint-Truiden,Kevin Van Damme,/referee/bel/kevin-van-damme
+BEL,2026-09-12,Union Saint-Gilloise,Lommel,Yusuke Araki,/referee/jpn/yusuke-araki
+BEL,2026-09-13,Club Brugge,Antwerp,Nicolas Laforge,/referee/bel/nicolas-laforge
+BEL,2026-09-13,Zulte Waregem,Charleroi,Bert Verbeke,/referee/bel/bert-verbeke
+BEL,2026-09-19,Charleroi,Cercle Brugge,Anthony Letellier,/referee/unk/anthony-letellier
+BEL,2026-09-19,Lommel,Mechelen,Wesli De Cremer,/referee/bel/wesli-de-cremer
+BEL,2026-09-19,OH Leuven,La Louvière,Jasper Vergoote,/referee/bel/jasper-vergoote
+BEL,2026-09-20,Antwerp,Union Saint-Gilloise,Jan Boterberg,/referee/bel/jan-boterberg
+BEL,2026-09-20,Club Brugge,Genk,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2026-09-20,Kortrijk,Beveren,Yusuke Araki,/referee/jpn/yusuke-araki
+BEL,2026-09-20,Sint-Truiden,Westerlo,Massimiliano Ledda,/referee/unk/massimiliano-ledda
+BEL,2026-10-09,Beveren,Lommel,Michiel Allaerts,/referee/bel/michiel-allaerts
+BEL,2026-10-10,Cercle Brugge,Anderlecht,Kevin Van Damme,/referee/bel/kevin-van-damme
+BEL,2026-10-24,Antwerp,Charleroi,Wim Smet,/referee/bel/wim-smet
+BEL,2026-10-24,La Louvière,Zulte Waregem,Massimiliano Ledda,/referee/unk/massimiliano-ledda
+BEL,2026-10-24,OH Leuven,Lommel,Jan Boterberg,/referee/bel/jan-boterberg
+BEL,2026-10-24,Westerlo,Beveren,Anthony Letellier,/referee/unk/anthony-letellier
+BEL,2026-10-25,Club Brugge,Sint-Truiden,Nathan Verboomen,/referee/bel/nathan-verboomen
+BEL,2026-10-25,Genk,Standard Liège,Jasper Vergoote,/referee/bel/jasper-vergoote
+BEL,2026-10-25,Gent,Anderlecht,Erik Lambrechts,/referee/bel/erik-lambrechts
+BEL,2026-10-25,Union Saint-Gilloise,Cercle Brugge,Wesli De Cremer,/referee/bel/wesli-de-cremer
+BEL,2026-10-30,Zulte Waregem,Club Brugge,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2026-10-31,Anderlecht,Westerlo,Nicolas Laforge,/referee/bel/nicolas-laforge
+BEL,2026-10-31,Beveren,Union Saint-Gilloise,Bert Put,/referee/bel/bert-put
+BEL,2026-10-31,Standard Liège,Kortrijk,Bram Van Driessche,/referee/bel/bram-van-driessche
+BEL,2026-11-01,Charleroi,La Louvière,Erik Lambrechts,/referee/bel/erik-lambrechts
+BEL,2026-11-01,Lommel,Gent,Kevin Van Damme,/referee/bel/kevin-van-damme
+BEL,2026-11-01,Sint-Truiden,OH Leuven,Michiel Allaerts,/referee/bel/michiel-allaerts
+BEL,2026-11-04,Kortrijk,Mechelen,Bert Verbeke,/referee/bel/bert-verbeke
+BEL,2026-11-06,Standard Liège,Beveren,Massimiliano Ledda,/referee/unk/massimiliano-ledda
+BEL,2026-11-07,Antwerp,Lommel,Nathan Verboomen,/referee/bel/nathan-verboomen
+BEL,2026-11-07,La Louvière,Cercle Brugge,Wim Smet,/referee/bel/wim-smet
+BEL,2026-11-07,OH Leuven,Mechelen,Lawrence Visser,/referee/bel/lawrence-visser
+BEL,2026-11-07,Westerlo,Charleroi,Wesli De Cremer,/referee/bel/wesli-de-cremer
+GR,2025-08-23,Aris,Volos N.F.C.,Aléxandros Tsakalídis,/referee/gre/alexandros-tsakalidis
+GR,2025-08-23,Olympiacos,Asteras Tripoli,Tasos Sidiropoulos,/referee/gre/tasos-sidiropoulos
+GR,2025-08-23,Panetolikos,Atromitos,Melétios Gioumatzídis,/referee/gre/meletios-gioumatzidis
+GR,2025-08-24,AEK Athens,Panserraikos,Fotis Polychronis,/referee/unk/fotis-polychronis
+GR,2025-08-24,PAOK,Larissa,Vassilis Fotias,/referee/gre/vassilis-fotias
+GR,2025-08-25,Levadiakos,AE Kifisia,Dimítrios Móschou,/referee/gre/dimitrios-moschou
+GR,2025-08-30,Aris,Panetolikos,Christos Vergetis,/referee/gre/christos-vergetis
+GR,2025-08-30,Larissa,AE Kifisia,Panagiotis Koukoulas,/referee/unk/panagiotis-koukoulas
+GR,2025-08-30,Panserraikos,OFI Crete,Michaíl Matsoúkas,/referee/gre/michail-matsoukas
+GR,2025-08-30,Volos N.F.C.,Olympiacos,Stavros Tsimenteridis,/referee/unk/stavros-tsimenteridis
+GR,2025-08-31,AEK Athens,Asteras Tripoli,Aléxandros Tsakalídis,/referee/gre/alexandros-tsakalidis
+GR,2025-08-31,PAOK,Atromitos,Alexandros Katsikogiannis,/referee/gre/alexandros-katsikogiannis
+GR,2025-08-31,Panathinaikos,Levadiakos,Ioánnis Papadópoulos,/referee/gre/ioannis-papadopoulos
+GR,2025-09-13,Atromitos,Aris,Vassilis Fotias,/referee/gre/vassilis-fotias
+GR,2025-09-13,Olympiacos,Panserraikos,Spyridon Zampalas,/referee/gre/spyridon-zampalas
+GR,2025-09-13,Panetolikos,Volos N.F.C.,Athanásios Tzílos,/referee/gre/athanasios-tzilos
+GR,2025-09-14,AE Kifisia,Panathinaikos,Konstantinos Katikos,/referee/unk/konstantinos-katikos
+GR,2025-09-14,Asteras Tripoli,Larissa,Geórgios Kókkinos,/referee/gre/georgios-kokkinos
+GR,2025-09-14,Levadiakos,AEK Athens,Anastasios Papapetrou,/referee/gre/anastasios-papapetrou
+GR,2025-09-14,OFI Crete,PAOK,Ángelos Evangélou,/referee/gre/angelos-evangelou
+GR,2025-09-20,AE Kifisia,Aris,Melétios Gioumatzídis,/referee/gre/meletios-gioumatzidis
+GR,2025-09-20,PAOK,Panetolikos,Tasos Sidiropoulos,/referee/gre/tasos-sidiropoulos
+GR,2025-09-20,Panserraikos,Atromitos,Stavros Tsimenteridis,/referee/unk/stavros-tsimenteridis
+GR,2025-09-20,Volos N.F.C.,Asteras Tripoli,Fotis Polychronis,/referee/unk/fotis-polychronis
+GR,2025-09-21,Larissa,AEK Athens,Dimítrios Móschou,/referee/gre/dimitrios-moschou
+GR,2025-09-21,Levadiakos,OFI Crete,Christos Vergetis,/referee/gre/christos-vergetis
+GR,2025-09-21,Panathinaikos,Olympiacos,Deniz Aytekin,/referee/ger/deniz-aytekin
+GR,2025-09-27,Aris,Panserraikos,Ángelos Evangélou,/referee/gre/angelos-evangelou
+GR,2025-09-27,Olympiacos,Levadiakos,Alexandros Katsikogiannis,/referee/gre/alexandros-katsikogiannis
+GR,2025-09-28,AEK Athens,Volos N.F.C.,Vassilis Fotias,/referee/gre/vassilis-fotias
+GR,2025-09-28,Asteras Tripoli,PAOK,Stavros Tsimenteridis,/referee/unk/stavros-tsimenteridis
+GR,2025-09-28,OFI Crete,AE Kifisia,Ioánnis Papadópoulos,/referee/gre/ioannis-papadopoulos
+GR,2025-09-28,Panetolikos,Panathinaikos,Aléxandros Tsakalídis,/referee/gre/alexandros-tsakalidis
+GR,2025-09-29,Atromitos,Larissa,Michaíl Matsoúkas,/referee/gre/michail-matsoukas
+GR,2025-10-04,Larissa,Volos N.F.C.,Anastasios Papapetrou,/referee/gre/anastasios-papapetrou
+GR,2025-10-04,OFI Crete,Aris,Athanásios Tzílos,/referee/gre/athanasios-tzilos
+GR,2025-10-04,Panserraikos,Asteras Tripoli,Panagiotis Koukoulas,/referee/unk/panagiotis-koukoulas
+GR,2025-10-05,AE Kifisia,AEK Athens,Christos Vergetis,/referee/gre/christos-vergetis
+GR,2025-10-05,Levadiakos,Panetolikos,Geórgios Kókkinos,/referee/gre/georgios-kokkinos
+GR,2025-10-05,PAOK,Olympiacos,Harm Osmers,/referee/ger/harm-osmers
+GR,2025-10-05,Panathinaikos,Atromitos,Fotis Polychronis,/referee/unk/fotis-polychronis
+GR,2025-10-18,Atromitos,Levadiakos,Dimítrios Móschou,/referee/gre/dimitrios-moschou
+GR,2025-10-18,Larissa,Olympiacos,Aléxandros Tsakalídis,/referee/gre/alexandros-tsakalidis
+GR,2025-10-18,Panetolikos,OFI Crete,Konstantinos Katikos,/referee/unk/konstantinos-katikos
+GR,2025-10-19,AEK Athens,PAOK,Sascha Stegemann,/referee/ger/sascha-stegemann
+GR,2025-10-19,Aris,Panathinaikos,Felix Zwayer,/referee/ger/felix-zwayer
+GR,2025-10-19,Asteras Tripoli,AE Kifisia,Michaíl Matsoúkas,/referee/gre/michail-matsoukas
+GR,2025-10-19,Volos N.F.C.,Panserraikos,Tasos Sidiropoulos,/referee/gre/tasos-sidiropoulos
+GR,2025-10-25,AE Kifisia,Panetolikos,Alexandros Katsikogiannis,/referee/gre/alexandros-katsikogiannis
+GR,2025-10-25,OFI Crete,Atromitos,Spyridon Zampalas,/referee/gre/spyridon-zampalas
+GR,2025-10-25,Panserraikos,Larissa,Melétios Gioumatzídis,/referee/gre/meletios-gioumatzidis
+GR,2025-10-26,Levadiakos,Aris,Aléxandros Tsakalídis,/referee/gre/alexandros-tsakalidis
+GR,2025-10-26,Olympiacos,AEK Athens,Uroš Stojković,/referee/srb/uros-stojkovic
+GR,2025-10-26,PAOK,Volos N.F.C.,Christos Vergetis,/referee/gre/christos-vergetis
+GR,2025-10-26,Panathinaikos,Asteras Tripoli,Athanásios Tzílos,/referee/gre/athanasios-tzilos
+GR,2025-11-01,Atromitos,AE Kifisia,Ángelos Evangélou,/referee/gre/angelos-evangelou
+GR,2025-11-01,Olympiacos,Aris,Daniel Siebert,/referee/ger/daniel-siebert
+GR,2025-11-01,Volos N.F.C.,Panathinaikos,Anastasios Papapetrou,/referee/gre/anastasios-papapetrou
+GR,2025-11-02,AEK Athens,Panetolikos,Ioánnis Papadópoulos,/referee/gre/ioannis-papadopoulos
+GR,2025-11-02,Larissa,Levadiakos,Konstantinos Katikos,/referee/unk/konstantinos-katikos
+GR,2025-11-02,Panserraikos,PAOK,Athanásios Tzílos,/referee/gre/athanasios-tzilos
+GR,2025-11-03,Asteras Tripoli,OFI Crete,Fotis Polychronis,/referee/unk/fotis-polychronis
+GR,2025-11-08,Panetolikos,Larissa,Dimítrios Móschou,/referee/gre/dimitrios-moschou
+GR,2025-11-09,AE Kifisia,Olympiacos,Christos Vergetis,/referee/gre/christos-vergetis
+GR,2025-11-09,Aris,Asteras Tripoli,Spyridon Zampalas,/referee/gre/spyridon-zampalas
+GR,2025-11-09,Atromitos,Volos N.F.C.,Stavros Tsimenteridis,/referee/unk/stavros-tsimenteridis
+GR,2025-11-09,Levadiakos,Panserraikos,Michaíl Matsoúkas,/referee/gre/michail-matsoukas
+GR,2025-11-09,OFI Crete,AEK Athens,Aléxandros Tsakalídis,/referee/gre/alexandros-tsakalidis
+GR,2025-11-09,Panathinaikos,PAOK,Daniel Schlager,/referee/ger/daniel-schlager
+GR,2025-11-22,Asteras Tripoli,Panetolikos,Panagiotis Koukoulas,/referee/unk/panagiotis-koukoulas
+GR,2025-11-22,Olympiacos,Atromitos,Tasos Sidiropoulos,/referee/gre/tasos-sidiropoulos
+GR,2025-11-23,AEK Athens,Aris,Harm Osmers,/referee/ger/harm-osmers
+GR,2025-11-23,PAOK,AE Kifisia,Geórgios Kókkinos,/referee/gre/georgios-kokkinos
+GR,2025-11-23,Panserraikos,Panathinaikos,Ángelos Evangélou,/referee/gre/angelos-evangelou
+GR,2025-11-24,Larissa,OFI Crete,Melétios Gioumatzídis,/referee/gre/meletios-gioumatzidis
+GR,2025-11-24,Volos N.F.C.,Levadiakos,Anastasios Papapetrou,/referee/gre/anastasios-papapetrou
+GR,2025-11-29,AE Kifisia,Panserraikos,Stavros Tsimenteridis,/referee/unk/stavros-tsimenteridis
+GR,2025-11-29,Aris,Larissa,Fotis Polychronis,/referee/unk/fotis-polychronis
+GR,2025-11-29,OFI Crete,Volos N.F.C.,Spyridon Zampalas,/referee/gre/spyridon-zampalas
+GR,2025-11-30,Atromitos,Asteras Tripoli,Anastasios Papapetrou,/referee/gre/anastasios-papapetrou
+GR,2025-11-30,Levadiakos,PAOK,Tasos Sidiropoulos,/referee/gre/tasos-sidiropoulos
+GR,2025-11-30,Panathinaikos,AEK Athens,Robert Schröder,/referee/ger/robert-schroder
+GR,2025-11-30,Panetolikos,Olympiacos,Aléxandros Tsakalídis,/referee/gre/alexandros-tsakalidis
+GR,2025-12-06,Olympiacos,OFI Crete,Fotis Polychronis,/referee/unk/fotis-polychronis
+GR,2025-12-06,Volos N.F.C.,AE Kifisia,Aléxandros Tsakalídis,/referee/gre/alexandros-tsakalidis
+GR,2025-12-07,AEK Athens,Atromitos,Spyridon Zampalas,/referee/gre/spyridon-zampalas
+GR,2025-12-07,Asteras Tripoli,Levadiakos,Vassilis Fotias,/referee/gre/vassilis-fotias
+GR,2025-12-07,Larissa,Panathinaikos,Ángelos Evangélou,/referee/gre/angelos-evangelou
+GR,2025-12-07,PAOK,Aris,Srđan Jovanović,/referee/mne/srdan-jovanovic
+GR,2025-12-08,Panserraikos,Panetolikos,Athanásios Tzílos,/referee/gre/athanasios-tzilos
+GR,2025-12-13,AE Kifisia,Asteras Tripoli,Fotis Polychronis,/referee/unk/fotis-polychronis
+GR,2025-12-13,Levadiakos,Larissa,Michaíl Matsoúkas,/referee/gre/michail-matsoukas
+GR,2025-12-13,OFI Crete,Panserraikos,Konstantinos Katikos,/referee/unk/konstantinos-katikos
+GR,2025-12-14,Aris,Olympiacos,Sven Jablonski,/referee/ger/sven-jablonski
+GR,2025-12-14,Atromitos,PAOK,Aléxandros Tsakalídis,/referee/gre/alexandros-tsakalidis
+GR,2025-12-14,Panathinaikos,Volos N.F.C.,Vassilis Fotias,/referee/gre/vassilis-fotias
+GR,2025-12-14,Panetolikos,AEK Athens,Anastasios Papapetrou,/referee/gre/anastasios-papapetrou
+GR,2025-12-20,Asteras Tripoli,Aris,Aléxandros Tsakalídis,/referee/gre/alexandros-tsakalidis
+GR,2025-12-20,Olympiacos,AE Kifisia,Ángelos Evangélou,/referee/gre/angelos-evangelou
+GR,2025-12-20,Volos N.F.C.,Panetolikos,Melétios Gioumatzídis,/referee/gre/meletios-gioumatzidis
+GR,2025-12-21,AEK Athens,OFI Crete,Vassilis Fotias,/referee/gre/vassilis-fotias
+GR,2025-12-21,Larissa,Atromitos,Christos Vergetis,/referee/gre/christos-vergetis
+GR,2025-12-21,PAOK,Panathinaikos,Irfan Peljto,/referee/bih/irfan-peljto
+GR,2025-12-22,Panserraikos,Levadiakos,Ioánnis Papadópoulos,/referee/gre/ioannis-papadopoulos
+GR,2026-01-10,AE Kifisia,Larissa,Tasos Sidiropoulos,/referee/gre/tasos-sidiropoulos
+GR,2026-01-10,Atromitos,Olympiacos,Stavros Tsimenteridis,/referee/unk/stavros-tsimenteridis
+GR,2026-01-10,Panetolikos,PAOK,Vassilis Fotias,/referee/gre/vassilis-fotias
+GR,2026-01-11,Aris,AEK Athens,Rohit Saggi,/referee/nor/rohit-saggi
+GR,2026-01-11,Levadiakos,Volos N.F.C.,Anastasios Papapetrou,/referee/gre/anastasios-papapetrou
+GR,2026-01-11,OFI Crete,Asteras Tripoli,Athanásios Tzílos,/referee/gre/athanasios-tzilos
+GR,2026-01-11,Panathinaikos,Panserraikos,Konstantinos Katikos,/referee/unk/konstantinos-katikos
+GR,2026-01-17,Panserraikos,AE Kifisia,Dimítrios Móschou,/referee/gre/dimitrios-moschou
+GR,2026-01-18,AEK Athens,Panathinaikos,Rade Obrenovic,/referee/svn/rade-obrenovic
+GR,2026-01-18,Larissa,Aris,Spyridon Zampalas,/referee/gre/spyridon-zampalas
+GR,2026-01-18,PAOK,OFI Crete,Melétios Gioumatzídis,/referee/gre/meletios-gioumatzidis
+GR,2026-01-19,Panetolikos,Levadiakos,Fotis Polychronis,/referee/unk/fotis-polychronis
+GR,2026-01-19,Volos N.F.C.,Atromitos,Ioánnis Papadópoulos,/referee/gre/ioannis-papadopoulos
+GR,2026-01-24,Asteras Tripoli,AEK Athens,Ángelos Evangélou,/referee/gre/angelos-evangelou
+GR,2026-01-24,Larissa,Panserraikos,Geórgios Kókkinos,/referee/gre/georgios-kokkinos
+GR,2026-01-24,Olympiacos,Volos N.F.C.,Tasos Sidiropoulos,/referee/gre/tasos-sidiropoulos
+GR,2026-01-25,Aris,Levadiakos,Michaíl Matsoúkas,/referee/gre/michail-matsoukas
+GR,2026-01-25,Atromitos,Panathinaikos,Christos Vergetis,/referee/gre/christos-vergetis
+GR,2026-01-25,OFI Crete,Panetolikos,Panagiotis Koukoulas,/referee/unk/panagiotis-koukoulas
+GR,2026-01-31,Atromitos,OFI Crete,Vassilis Fotias,/referee/gre/vassilis-fotias
+GR,2026-01-31,Panetolikos,Aris,Anastasios Papapetrou,/referee/gre/anastasios-papapetrou
+GR,2026-01-31,Volos N.F.C.,Larissa,Konstantinos Katikos,/referee/unk/konstantinos-katikos
+GR,2026-02-01,AEK Athens,Olympiacos,Danny Makkelie,/referee/ned/danny-makkelie
+GR,2026-02-01,Levadiakos,Asteras Tripoli,Spyridon Zampalas,/referee/gre/spyridon-zampalas
+GR,2026-02-01,PAOK,Panserraikos,Michaíl Matsoúkas,/referee/gre/michail-matsoukas
+GR,2026-02-01,Panathinaikos,AE Kifisia,Ioánnis Papadópoulos,/referee/gre/ioannis-papadopoulos
+GR,2026-02-04,Asteras Tripoli,Olympiacos,Alexandros Katsikogiannis,/referee/gre/alexandros-katsikogiannis
+GR,2026-02-07,AE Kifisia,Atromitos,Anastasios Papapetrou,/referee/gre/anastasios-papapetrou
+GR,2026-02-07,Asteras Tripoli,Volos N.F.C.,Aléxandros Tsakalídis,/referee/gre/alexandros-tsakalidis
+GR,2026-02-07,Larissa,Panetolikos,Christos Vergetis,/referee/gre/christos-vergetis
+GR,2026-02-08,Aris,PAOK,Sascha Stegemann,/referee/ger/sascha-stegemann
+GR,2026-02-08,OFI Crete,Levadiakos,Stavros Tsimenteridis,/referee/unk/stavros-tsimenteridis
+GR,2026-02-08,Olympiacos,Panathinaikos,Erik Lambrechts,/referee/bel/erik-lambrechts
+GR,2026-02-08,Panserraikos,AEK Athens,Athanásios Tzílos,/referee/gre/athanasios-tzilos
+GR,2026-02-14,Levadiakos,Olympiacos,Vassilis Fotias,/referee/gre/vassilis-fotias
+GR,2026-02-14,Panetolikos,Asteras Tripoli,Ángelos Evangélou,/referee/gre/angelos-evangelou
+GR,2026-02-14,Volos N.F.C.,Aris,Tasos Sidiropoulos,/referee/gre/tasos-sidiropoulos
+GR,2026-02-15,AE Kifisia,OFI Crete,Spyridon Zampalas,/referee/gre/spyridon-zampalas
+GR,2026-02-15,PAOK,AEK Athens,Harm Osmers,/referee/ger/harm-osmers
+GR,2026-02-15,Panathinaikos,Larissa,Dimítrios Móschou,/referee/gre/dimitrios-moschou
+GR,2026-02-16,Atromitos,Panserraikos,Fotis Polychronis,/referee/unk/fotis-polychronis
+GR,2026-02-21,Asteras Tripoli,Atromitos,Michaíl Matsoúkas,/referee/gre/michail-matsoukas
+GR,2026-02-21,Olympiacos,Panetolikos,Spyridon Zampalas,/referee/gre/spyridon-zampalas
+GR,2026-02-22,AEK Athens,Levadiakos,Christos Vergetis,/referee/gre/christos-vergetis
+GR,2026-02-22,Aris,AE Kifisia,Aléxandros Tsakalídis,/referee/gre/alexandros-tsakalidis
+GR,2026-02-22,Larissa,PAOK,Stavros Tsimenteridis,/referee/unk/stavros-tsimenteridis
+GR,2026-02-22,OFI Crete,Panathinaikos,Alexandros Katsikogiannis,/referee/gre/alexandros-katsikogiannis
+GR,2026-02-22,Panserraikos,Volos N.F.C.,Konstantinos Katikos,/referee/unk/konstantinos-katikos
+GR,2026-02-28,AE Kifisia,Levadiakos,Michaíl Matsoúkas,/referee/gre/michail-matsoukas
+GR,2026-02-28,Atromitos,Panetolikos,Christos Vergetis,/referee/gre/christos-vergetis
+GR,2026-02-28,OFI Crete,Larissa,Spyridon Zampalas,/referee/gre/spyridon-zampalas
+GR,2026-03-01,PAOK,Asteras Tripoli,Anastasios Papapetrou,/referee/gre/anastasios-papapetrou
+GR,2026-03-01,Panathinaikos,Aris,Tamás Bognár,/referee/hun/tamas-bognar
+GR,2026-03-01,Panserraikos,Olympiacos,Fotis Polychronis,/referee/unk/fotis-polychronis
+GR,2026-03-01,Volos N.F.C.,AEK Athens,Stavros Tsimenteridis,/referee/unk/stavros-tsimenteridis
+GR,2026-03-04,AE Kifisia,PAOK,Vassilis Fotias,/referee/gre/vassilis-fotias
+GR,2026-03-04,Panathinaikos,OFI Crete,Ángelos Evangélou,/referee/gre/angelos-evangelou
+GR,2026-03-07,AEK Athens,Larissa,Fotis Polychronis,/referee/unk/fotis-polychronis
+GR,2026-03-07,Aris,Atromitos,Anastasios Papapetrou,/referee/gre/anastasios-papapetrou
+GR,2026-03-08,Asteras Tripoli,Panserraikos,Alexandros Katsikogiannis,/referee/gre/alexandros-katsikogiannis
+GR,2026-03-08,Levadiakos,Panathinaikos,Aléxandros Tsakalídis,/referee/gre/alexandros-tsakalidis
+GR,2026-03-08,Olympiacos,PAOK,José María Sánchez,/referee/esp/jose-maria-sanchez
+GR,2026-03-08,Volos N.F.C.,OFI Crete,Melétios Gioumatzídis,/referee/gre/meletios-gioumatzidis
+GR,2026-03-09,Panetolikos,AE Kifisia,Athanásios Tzílos,/referee/gre/athanasios-tzilos
+GR,2026-03-14,Larissa,Asteras Tripoli,Aléxandros Tsakalídis,/referee/gre/alexandros-tsakalidis
+GR,2026-03-14,OFI Crete,Olympiacos,Michaíl Matsoúkas,/referee/gre/michail-matsoukas
+GR,2026-03-14,Panserraikos,Aris,Spyridon Zampalas,/referee/gre/spyridon-zampalas
+GR,2026-03-15,AE Kifisia,Volos N.F.C.,Anastasios Papapetrou,/referee/gre/anastasios-papapetrou
+GR,2026-03-15,Atromitos,AEK Athens,Ángelos Evangélou,/referee/gre/angelos-evangelou
+GR,2026-03-15,PAOK,Levadiakos,Christos Vergetis,/referee/gre/christos-vergetis
+GR,2026-03-15,Panathinaikos,Panetolikos,Stavros Tsimenteridis,/referee/unk/stavros-tsimenteridis
+GR,2026-03-22,AEK Athens,AE Kifisia,Vassilis Fotias,/referee/gre/vassilis-fotias
+GR,2026-03-22,Aris,OFI Crete,Athanásios Tzílos,/referee/gre/athanasios-tzilos
+GR,2026-03-22,Asteras Tripoli,Panathinaikos,Anastasios Papapetrou,/referee/gre/anastasios-papapetrou
+GR,2026-03-22,Levadiakos,Atromitos,Ioánnis Papadópoulos,/referee/gre/ioannis-papadopoulos
+GR,2026-03-22,Olympiacos,Larissa,Christos Vergetis,/referee/gre/christos-vergetis
+GR,2026-03-22,Panetolikos,Panserraikos,Ángelos Evangélou,/referee/gre/angelos-evangelou
+GR,2026-03-22,Volos N.F.C.,PAOK,Fotis Polychronis,/referee/unk/fotis-polychronis
+GR,2026-04-04,AE Kifisia,Panserraikos,Michaíl Matsoúkas,/referee/gre/michail-matsoukas
+GR,2026-04-04,Asteras Tripoli,Larissa,Vassilis Fotias,/referee/gre/vassilis-fotias
+GR,2026-04-04,Panetolikos,Atromitos,Spyridon Zampalas,/referee/gre/spyridon-zampalas
+GR,2026-04-05,Levadiakos,Aris,Anastasios Papapetrou,/referee/gre/anastasios-papapetrou
+GR,2026-04-05,Olympiacos,AEK Athens,Tobias Stieler,/referee/ger/tobias-stieler
+GR,2026-04-05,PAOK,Panathinaikos,Damian Sylwestrzak,/referee/pol/damian-sylwestrzak
+GR,2026-04-05,Volos N.F.C.,OFI Crete,Aléxandros Tsakalídis,/referee/gre/alexandros-tsakalidis
+GR,2026-04-08,Atromitos,AE Kifisia,Athanásios Tzílos,/referee/gre/athanasios-tzilos
+GR,2026-04-08,Larissa,Panetolikos,Christos Vergetis,/referee/gre/christos-vergetis
+GR,2026-04-08,Panserraikos,Asteras Tripoli,Ioánnis Papadópoulos,/referee/gre/ioannis-papadopoulos
+GR,2026-04-18,AE Kifisia,Asteras Tripoli,Ángelos Evangélou,/referee/gre/angelos-evangelou
+GR,2026-04-18,Aris,Volos N.F.C.,Fotis Polychronis,/referee/unk/fotis-polychronis
+GR,2026-04-18,Atromitos,Larissa,Konstantinos Katikos,/referee/unk/konstantinos-katikos
+GR,2026-04-18,OFI Crete,Levadiakos,Alexandros Katsikogiannis,/referee/gre/alexandros-katsikogiannis
+GR,2026-04-18,Panetolikos,Panserraikos,Tasos Sidiropoulos,/referee/gre/tasos-sidiropoulos
+GR,2026-04-19,AEK Athens,PAOK,Jesús Gil,/referee/gre/jesus-gil
+GR,2026-04-19,Panathinaikos,Olympiacos,Halil Umut Meler,/referee/tur/halil-umut-meler
+GR,2026-04-22,Asteras Tripoli,Panetolikos,Ioánnis Papadópoulos,/referee/gre/ioannis-papadopoulos
+GR,2026-04-22,Larissa,AE Kifisia,Anastasios Papapetrou,/referee/gre/anastasios-papapetrou
+GR,2026-04-22,Panserraikos,Atromitos,Aléxandros Tsakalídis,/referee/gre/alexandros-tsakalidis
+GR,2026-04-26,AE Kifisia,Panetolikos,Stavros Tsimenteridis,/referee/unk/stavros-tsimenteridis
+GR,2026-04-26,Atromitos,Asteras Tripoli,Athanásios Tzílos,/referee/gre/athanasios-tzilos
+GR,2026-04-26,Larissa,Panserraikos,Christos Vergetis,/referee/gre/christos-vergetis
+GR,2026-05-02,Asteras Tripoli,Atromitos,Fotis Polychronis,/referee/unk/fotis-polychronis
+GR,2026-05-02,Panetolikos,AE Kifisia,Anastasios Papapetrou,/referee/gre/anastasios-papapetrou
+GR,2026-05-02,Panserraikos,Larissa,Vassilis Fotias,/referee/gre/vassilis-fotias
+GR,2026-05-03,Levadiakos,Volos N.F.C.,Dimítrios Móschou,/referee/gre/dimitrios-moschou
+GR,2026-05-03,OFI Crete,Aris,Aléxandros Tsakalídis,/referee/gre/alexandros-tsakalidis
+GR,2026-05-03,PAOK,Olympiacos,Simone Sozza,/referee/ita/simone-sozza
+GR,2026-05-03,Panathinaikos,AEK Athens,Halil Umut Meler,/referee/tur/halil-umut-meler
+GR,2026-05-09,Atromitos,Panetolikos,Michaíl Matsoúkas,/referee/gre/michail-matsoukas
+GR,2026-05-09,Larissa,Asteras Tripoli,Ángelos Evangélou,/referee/gre/angelos-evangelou
+GR,2026-05-09,Panserraikos,AE Kifisia,Ioánnis Papadópoulos,/referee/gre/ioannis-papadopoulos
+GR,2026-05-10,AEK Athens,Panathinaikos,Harm Osmers,/referee/ger/harm-osmers
+GR,2026-05-10,Aris,OFI Crete,Geórgios Kókkinos,/referee/gre/georgios-kokkinos
+GR,2026-05-10,Olympiacos,PAOK,José María Sánchez,/referee/esp/jose-maria-sanchez
+GR,2026-05-10,Volos N.F.C.,Levadiakos,Melétios Gioumatzídis,/referee/gre/meletios-gioumatzidis
+GR,2026-05-12,AE Kifisia,Atromitos,Vassilis Fotias,/referee/gre/vassilis-fotias
+GR,2026-05-12,Asteras Tripoli,Panserraikos,Anastasios Papapetrou,/referee/gre/anastasios-papapetrou
+GR,2026-05-12,Panetolikos,Larissa,Aléxandros Tsakalídis,/referee/gre/alexandros-tsakalidis
+GR,2026-05-13,Levadiakos,OFI Crete,Panagiotis Koukoulas,/referee/unk/panagiotis-koukoulas
+GR,2026-05-13,Olympiacos,Panathinaikos,Rade Obrenovic,/referee/svn/rade-obrenovic
+GR,2026-05-13,PAOK,AEK Athens,Sven Jablonski,/referee/ger/sven-jablonski
+GR,2026-05-13,Volos N.F.C.,Aris,Tasos Sidiropoulos,/referee/gre/tasos-sidiropoulos
+GR,2026-05-16,Asteras Tripoli,AE Kifisia,Aléxandros Tsakalídis,/referee/gre/alexandros-tsakalidis
+GR,2026-05-16,Larissa,Atromitos,Spyridon Zampalas,/referee/gre/spyridon-zampalas
+GR,2026-05-17,AEK Athens,Olympiacos,Andrea Colombo,/referee/ita/andrea-colombo
+GR,2026-05-17,Aris,Levadiakos,Christos Vergetis,/referee/gre/christos-vergetis
+GR,2026-05-17,OFI Crete,Volos N.F.C.,Athanásios Tzílos,/referee/gre/athanasios-tzilos
+GR,2026-05-17,Panathinaikos,PAOK,Goga Kikacheishvili,/referee/geo/goga-kikacheishvili
+GR,2026-05-17,Panserraikos,Panetolikos,Fotis Polychronis,/referee/unk/fotis-polychronis
+GR,2026-05-21,AE Kifisia,Larissa,Ioánnis Papadópoulos,/referee/gre/ioannis-papadopoulos
+GR,2026-05-21,Atromitos,Panserraikos,Ángelos Evangélou,/referee/gre/angelos-evangelou
+GR,2026-05-21,Panetolikos,Asteras Tripoli,Geórgios Kókkinos,/referee/gre/georgios-kokkinos
+GR,2026-08-22,AEK Athens,Iraklis,Michaíl Matsoúkas,/referee/gre/michail-matsoukas
+GR,2026-08-22,Kalamata,Aris,Spyridon Zampalas,/referee/gre/spyridon-zampalas
+GR,2026-08-22,Olympiacos,Atromitos,Aléxandros Tsakalídis,/referee/gre/alexandros-tsakalidis
+GR,2026-08-23,OFI Crete,Volos N.F.C.,Melétios Gioumatzídis,/referee/gre/meletios-gioumatzidis
+GR,2026-08-23,PAOK,Levadiakos,Ángelos Evangélou,/referee/gre/angelos-evangelou
+GR,2026-08-23,Panetolikos,Asteras Tripoli,Eleftherios Katopis,/referee/gre/eleftherios-katopis
+GR,2026-08-29,Panetolikos,Kalamata,Konstantinos Tsetsilas,/referee/gre/konstantinos-tsetsilas
+GR,2026-08-29,Volos N.F.C.,Iraklis,Stavros Tsimenteridis,/referee/unk/stavros-tsimenteridis
+GR,2026-08-30,AE Kifisia,AEK Athens,Vasílios Fotiás,/referee/gre/vasilios-fotias
+GR,2026-08-30,Aris,OFI Crete,Anastasios Papapetrou,/referee/gre/anastasios-papapetrou
+GR,2026-08-30,Asteras Tripoli,Olympiacos,Fótios Polychrónis,/referee/gre/fotios-polychronis
+GR,2026-08-30,Atromitos,PAOK,Athanásios Tzílos,/referee/gre/athanasios-tzilos
+GR,2026-08-31,Levadiakos,Panathinaikos,Christos Vergetis,/referee/gre/christos-vergetis
+GR,2026-09-05,AEK Athens,Aris,Aléxandros Tsakalídis,/referee/gre/alexandros-tsakalidis
+GR,2026-09-05,Volos N.F.C.,Olympiacos,Athanásios Tzílos,/referee/gre/athanasios-tzilos
+GR,2026-09-06,Atromitos,Kalamata,Panagiotis Koukoulas,/referee/unk/panagiotis-koukoulas
+GR,2026-09-06,Levadiakos,Panetolikos,Alexandros Katsikogiannis,/referee/gre/alexandros-katsikogiannis
+GR,2026-09-06,OFI Crete,AE Kifisia,Fotios Ntaoulas,/referee/gre/fotios-ntaoulas
+GR,2026-09-06,Panathinaikos,PAOK,Felix Maximilian Zwayer,/referee/gre/felix-maximilian-zwayer
+GR,2026-09-07,Asteras Tripoli,Iraklis,Konstantinos Katoikos,/referee/unk/konstantinos-katoikos
+GR,2026-09-10,Panathinaikos,AE Kifisia,Michaíl Matsoúkas,/referee/gre/michail-matsoukas
+GR,2026-09-12,Iraklis,Atromitos,Eleftherios Katopis,/referee/gre/eleftherios-katopis
+GR,2026-09-12,Olympiacos,OFI Crete,Vasílios Fotiás,/referee/gre/vasilios-fotias
+GR,2026-09-13,AE Kifisia,Levadiakos,Konstantinos Tsetsilas,/referee/gre/konstantinos-tsetsilas
+GR,2026-09-13,Asteras Tripoli,AEK Athens,Anastasios Papapetrou,/referee/gre/anastasios-papapetrou
+GR,2026-09-13,Kalamata,Volos N.F.C.,Vasileios Fitsas,/referee/gre/vasileios-fitsas
+GR,2026-09-13,PAOK,Aris,Andrea Colombo,/referee/ita/andrea-colombo
+GR,2026-09-13,Panathinaikos,Panetolikos,Stavros Tsimenteridis,/referee/unk/stavros-tsimenteridis
+GR,2026-09-19,Aris,Iraklis,Christos Vergetis,/referee/gre/christos-vergetis
+GR,2026-09-19,Atromitos,AE Kifisia,Melétios Gioumatzídis,/referee/gre/meletios-gioumatzidis
+GR,2026-09-20,Kalamata,Panathinaikos,Anastasios Papapetrou,/referee/gre/anastasios-papapetrou
+GR,2026-09-20,Levadiakos,Olympiacos,Stavros Tsimenteridis,/referee/unk/stavros-tsimenteridis
+GR,2026-09-20,OFI Crete,Asteras Tripoli,Aléxandros Tsakalídis,/referee/gre/alexandros-tsakalidis
+GR,2026-09-20,Panetolikos,PAOK,Konstantinos Katoikos,/referee/unk/konstantinos-katoikos
+GR,2026-09-20,Volos N.F.C.,AEK Athens,Fótios Polychrónis,/referee/gre/fotios-polychronis
+GR,2026-10-10,AEK Athens,OFI Crete,Geórgios Kókkinos,/referee/gre/georgios-kokkinos
+GR,2026-10-10,Asteras Tripoli,Atromitos,Dimítrios Móschou,/referee/gre/dimitrios-moschou
+GR,2026-10-11,AE Kifisia,Panetolikos,Panagiotis Koukoulas,/referee/unk/panagiotis-koukoulas
+GR,2026-10-11,Aris,Volos N.F.C.,Vasílios Fotiás,/referee/gre/vasilios-fotias
+GR,2026-10-11,Iraklis,Levadiakos,Ángelos Evangélou,/referee/gre/angelos-evangelou
+GR,2026-10-11,Olympiacos,Panathinaikos,Alejandro José Hernández Hernández,/referee/esp/alejandro-jose-hernandez-hernandez
+GR,2026-10-12,PAOK,Kalamata,Alexandros Katsikogiannis,/referee/gre/alexandros-katsikogiannis
+GR,2026-10-17,Levadiakos,Volos N.F.C.,Anastasios Papapetrou,/referee/gre/anastasios-papapetrou
+GR,2026-10-18,AE Kifisia,Aris,Fotios Ntaoulas,/referee/gre/fotios-ntaoulas
+GR,2026-10-18,Kalamata,OFI Crete,Eleftherios Katopis,/referee/gre/eleftherios-katopis
+GR,2026-10-18,PAOK,Iraklis,Vasílios Fotiás,/referee/gre/vasilios-fotias
+GR,2026-10-18,Panathinaikos,Asteras Tripoli,Ángelos Evangélou,/referee/gre/angelos-evangelou
+GR,2026-10-18,Panetolikos,Olympiacos,Michaíl Matsoúkas,/referee/gre/michail-matsoukas
+GR,2026-10-24,AEK Athens,Panetolikos,Vasileios Fitsas,/referee/gre/vasileios-fitsas
+GR,2026-10-24,Asteras Tripoli,Levadiakos,Alexandros Megas,/referee/gre/alexandros-megas
+GR,2026-10-24,Iraklis,AE Kifisia,Aléxandros Tsakalídis,/referee/gre/alexandros-tsakalidis
+GR,2026-10-25,Aris,Atromitos,Stavros Tsimenteridis,/referee/unk/stavros-tsimenteridis
+GR,2026-10-25,OFI Crete,PAOK,Christos Vergetis,/referee/gre/christos-vergetis
+GR,2026-10-25,Olympiacos,Kalamata,Spyridon Zampalas,/referee/gre/spyridon-zampalas
+GR,2026-10-25,Volos N.F.C.,Panathinaikos,Konstantinos Tsetsilas,/referee/gre/konstantinos-tsetsilas
+GR,2026-10-31,AE Kifisia,Olympiacos,Konstantinos Tsetsilas,/referee/gre/konstantinos-tsetsilas
+GR,2026-11-01,Levadiakos,Aris,Athanásios Tzílos,/referee/gre/athanasios-tzilos
+GR,2026-11-01,PAOK,Asteras Tripoli,Michaíl Matsoúkas,/referee/gre/michail-matsoukas
+GR,2026-11-01,Panathinaikos,AEK Athens,Sven Jablonski,/referee/ger/sven-jablonski
+GR,2026-11-01,Panetolikos,OFI Crete,Spyridon Zampalas,/referee/gre/spyridon-zampalas
+GR,2026-11-02,Atromitos,Volos N.F.C.,Alexandros Katsikogiannis,/referee/gre/alexandros-katsikogiannis
+GR,2026-11-02,Kalamata,Iraklis,Christos Vergetis,/referee/gre/christos-vergetis
+GR,2026-11-07,Aris,Panetolikos,Panagiotis Koukoulas,/referee/unk/panagiotis-koukoulas
+GR,2026-11-07,Volos N.F.C.,AE Kifisia,Vasílios Fotiás,/referee/gre/vasilios-fotias

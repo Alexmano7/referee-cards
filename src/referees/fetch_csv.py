@@ -71,6 +71,10 @@ def read_csv_matches(path: Path, league: League, season: int) -> pd.DataFrame:
             "league": league.key,
             "season": season,
             "date": pd.to_datetime(df["Date"], dayfirst=True, format="mixed").dt.date,
+            # UK time, as football-data.co.uk publishes it (used for CSV-only leagues)
+            "time": df["Time"].astype(str).str.strip()
+            if "Time" in df.columns
+            else None,
             "csv_home": df["HomeTeam"].str.strip(),
             "csv_away": df["AwayTeam"].str.strip(),
             # "Int64" allows a blank (unknown) value, e.g. an abandoned match
@@ -101,3 +105,42 @@ def load_all_csv_matches(
     if not frames:
         return pd.DataFrame()
     return pd.concat(frames, ignore_index=True)
+
+
+# --- the coming week's fixtures (used for leagues that football-data.org's free plan lacks) ---
+
+
+def download_fixtures() -> Path:
+    """football-data.co.uk/fixtures.csv: next week's fixtures for all its leagues."""
+    from referees.config import FIXTURES_CSV_URL
+
+    path = RAW_CSV_DIR / "fixtures.csv"
+    resp = requests.get(
+        FIXTURES_CSV_URL, headers={"User-Agent": USER_AGENT}, timeout=30
+    )
+    resp.raise_for_status()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_suffix(".tmp")
+    tmp.write_bytes(resp.content)
+    tmp.replace(path)
+    return path
+
+
+def read_fixtures(leagues: list[League], path: Path | None = None) -> pd.DataFrame:
+    """Upcoming fixtures for the given leagues from fixtures.csv (empty if not downloaded)."""
+    path = path or RAW_CSV_DIR / "fixtures.csv"
+    cols = ["league", "date", "time", "csv_home", "csv_away"]
+    if not path.exists():
+        return pd.DataFrame(columns=cols)
+    df = pd.read_csv(io.StringIO(_decode(path.read_bytes())))
+    by_code = {lg.csv_code: lg.key for lg in leagues}
+    df = df[df["Div"].isin(by_code)].dropna(subset=["HomeTeam", "AwayTeam", "Date"])
+    return pd.DataFrame(
+        {
+            "league": df["Div"].map(by_code),
+            "date": pd.to_datetime(df["Date"], dayfirst=True, format="mixed").dt.date,
+            "time": df["Time"].astype(str).str.strip(),
+            "csv_home": df["HomeTeam"].str.strip(),
+            "csv_away": df["AwayTeam"].str.strip(),
+        }
+    ).reset_index(drop=True)

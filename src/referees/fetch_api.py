@@ -12,7 +12,7 @@ import requests
 
 from referees.config import (
     API_BASE_URL,
-    LEAGUES,
+    API_LEAGUES,
     RAW_API_DIR,
     USER_AGENT,
     League,
@@ -76,7 +76,7 @@ def download_all(seasons: list[int]) -> list[str]:
     problems = []
     called_before = False
     for season in seasons:
-        for league in LEAGUES:
+        for league in API_LEAGUES:
             if called_before:
                 time.sleep(SECONDS_BETWEEN_CALLS)
             try:
@@ -127,7 +127,7 @@ def load_all_api_matches(
 ) -> pd.DataFrame:
     frames = []
     for season in seasons:
-        for league in LEAGUES:
+        for league in API_LEAGUES:
             path = api_path(league, season, base_dir)
             if path.exists():
                 data = json.loads(path.read_text(encoding="utf-8"))

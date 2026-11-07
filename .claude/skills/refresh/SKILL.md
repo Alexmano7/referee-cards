@@ -15,15 +15,21 @@ Project facts and rules are in `CLAUDE.md`; this is the routine.
 ## 1. Get the latest data
 1. `git pull --ff-only` (the GitHub bot commits `data/` every morning). If it can't fast-forward,
    stop and explain. Never force anything.
-2. `uv run referees fetch` (~1.5 minutes; football-data.org + football-data.co.uk). If a download
-   fails, report it and stop: never publish partial data.
+2. `uv run referees fetch` (~2.5 minutes; football-data.org for PL, PD, BL1, SA, FL1, PPL;
+   football-data.co.uk card files for all 9 leagues plus `fixtures.csv`, the coming week's fixtures
+   for Greece, Belgium and Scotland). If a download fails, report it and stop: never publish partial data.
+3. `uv run referees fetch-ro` (~2 minutes): the newest page of every Greek and Belgian referee's
+   history on referee.observer, merged into `data/referee_observer_history.csv` (committed), plus
+   team-name suggestions in `config/ro_team_mapping.csv`. If it reports HTTP 403/429, stop that step,
+   report it, and carry on with the existing history: never work around a block.
 
 ## 2. Look up announced referees (automatic)
 1. `uv run referees upcoming` lists the next 14 days' fixtures. Work on the rows marked `MISSING`.
 2. Sources, in this order (tested 2026-11-07):
    - **First: referee.observer.** WebFetch `https://www.referee.observer/fixtures` and ask for every
-     Premier League, Bundesliga and Ligue 1 fixture with its referee. One page covers three leagues,
-     and on 2026-11-07 it agreed with every official pairing we had. It has no La Liga.
+     Premier League, Bundesliga, Ligue 1, Liga Portugal, Super League Greece, Belgian Pro League and
+     Scottish Premiership fixture with its referee. On 2026-11-07 it agreed with every official pairing
+     we had. It has no La Liga, and Serie A was missing that week.
    - **Official pages** (confirm, or fill gaps):
      - Bundesliga: WebFetch `https://datencenter.dfb.de/global_referee_schedule` (every match).
      - Ligue 1: ligue1.com "Les arbitres de la Ne journée de Ligue 1" (full list per matchday).
@@ -33,6 +39,10 @@ Project facts and rules are in `CLAUDE.md`; this is the routine.
        `07-11-2026 <home> <away> <time>` followed by `Árbitro:<name>`. Use the main referee only.
      - Premier League: premierleague.com "referee appointments: Matchweek N" lists names without
        fixtures, so it only checks plausibility (each referee once per round).
+     - **Serie A:** AIA/FIGC "designazioni" (aia-figc.it) or Italian news naming each match
+       (e.g. "Serie A, le designazioni arbitrali della N giornata").
+     - Liga Portugal: FPF "nomeações"; Greece: EPO "ορισμοί διαιτητών"; Belgium: RBFA referee
+       designations; Scotland: Scottish FA match officials. Use them to confirm referee.observer.
    - **Second check:** statsbet.org/football/referees (its free view shows the top 5 upcoming matches).
    - **Gaps only:** reputable news or club sites that name the exact match.
    - **Don't use:** Sofascore, WorldReferee and OddAlerts (they block automated access, so never work

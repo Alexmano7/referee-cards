@@ -68,8 +68,13 @@ def match_referee(name: str, candidates: list[tuple[int, str]]) -> int | None:
     def word_ok(i: int, t: str, have: list[str]) -> bool:
         if t in have:
             return True
-        if len(t) == 1 or (i == 0 and len(wanted) > 1 and len(t) >= 3):
-            return any(h.startswith(t) for h in have)
+        if (len(t) == 1 or (i == 0 and len(wanted) > 1 and len(t) >= 3)) and any(
+            h.startswith(t) for h in have
+        ):
+            return True
+        # the known name may use an initial: Scottish files write "N Walsh" for "Nicholas Walsh"
+        if i == 0 and len(wanted) > 1:
+            return any(len(h) == 1 and t.startswith(h) for h in have)
         return False
 
     hits = set()

@@ -35,20 +35,60 @@ SEASONS_TO_FETCH = 3
 
 @dataclass(frozen=True)
 class League:
-    key: str  # short id used everywhere in our own files (same as the API code)
+    key: str  # short id used everywhere in our own files
     name: str
-    api_code: str  # football-data.org competition code
+    api_code: (
+        str | None
+    )  # football-data.org code; None = not on the free plan ("CSV league")
     csv_code: str  # football-data.co.uk file name
-    timezone: str  # used to turn the API's UTC kick-off time into a local date
+    timezone: str  # turns UTC kick-off times into a local date
+    # Where past referees come from when there is no API: "csv" (the card file's Referee
+    # column) or "referee_observer" (referee.observer history pages, see referee_observer.py).
+    referee_source: str = "api"
+    ro_competition: str | None = None  # the competition's name on referee.observer
+    ro_competition_id: int | None = None
 
 
 LEAGUES: list[League] = [
     League("PL", "Premier League", "PL", "E0", "Europe/London"),
     League("PD", "La Liga", "PD", "SP1", "Europe/Madrid"),
     League("BL1", "Bundesliga", "BL1", "D1", "Europe/Berlin"),
+    League("SA", "Serie A", "SA", "I1", "Europe/Rome"),
     League("FL1", "Ligue 1", "FL1", "F1", "Europe/Paris"),
+    League("PPL", "Liga Portugal", "PPL", "P1", "Europe/Lisbon"),
+    League(
+        "GR",
+        "Super League Greece",
+        None,
+        "G1",
+        "Europe/Athens",
+        "referee_observer",
+        "Super League Greece",
+        2057,
+    ),
+    League(
+        "BEL",
+        "Belgian Pro League",
+        None,
+        "B1",
+        "Europe/Brussels",
+        "referee_observer",
+        "Belgian Pro League",
+        2053,
+    ),
+    League("SCO", "Scottish Premiership", None, "SC0", "Europe/London", "csv"),
 ]
 LEAGUES_BY_KEY = {lg.key: lg for lg in LEAGUES}
+API_LEAGUES = [lg for lg in LEAGUES if lg.api_code]
+CSV_LEAGUES = [
+    lg for lg in LEAGUES if not lg.api_code
+]  # matches built from the card files
+FIXTURES_CSV_URL = (
+    "https://football-data.co.uk/fixtures.csv"  # the coming week, all leagues
+)
+# Referee history read from referee.observer (Greece, Belgium); committed so the daily
+# GitHub job can use it without contacting the site.
+RO_HISTORY_FILE = DATA_DIR / "referee_observer_history.csv"
 
 
 def current_season_start_year(today: date | None = None) -> int:
