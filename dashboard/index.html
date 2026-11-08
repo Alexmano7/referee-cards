@@ -137,6 +137,37 @@
   .rc-treble-record :is(th, td) { padding-block: 3px; }
   .rc-treble-record th { white-space: normal; }
   @container (max-width: 46rem) { .rc-treble-legs :is(th, td):is(:nth-child(2), :nth-child(5), :nth-child(7)) { display: none; } }
+  /* Side rail (mockup A): sections menu, pinned while scrolling; a sticky link bar on narrow screens. */
+  .rc.rc-layout { flex-direction: row; flex-wrap: wrap; align-items: flex-start; column-gap: 24px; }
+  .rc-main { flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: var(--cds-gap-lg); container: rc / inline-size; }
+  .rc-rail { flex: 1 1 14.5rem; max-width: 16rem; box-sizing: border-box; position: sticky; top: 16px; max-height: calc(100vh - 32px); overflow-y: auto;
+    display: flex; flex-direction: column; gap: 18px; padding: 18px 12px; background: #0A0E14; border: 1px solid var(--fl-line); border-radius: 14px; }
+  .rc-rail .rc-brand { padding: 0 8px; gap: 10px; }
+  .rc-rail .rc-brand h1 { margin: 0; font-size: 1.35rem; font-weight: 700; }
+  .rc-rail .rc-brand-cards span { width: 12px; height: 17px; }
+  .rc-rail-league { padding: 0 8px; }
+  .rc-rail-league label, .rc-rail-league select { width: 100%; }
+  .rc-rail-group { display: flex; flex-direction: column; gap: 2px; }
+  .rc-rail-title { font-size: 12px; font-weight: 600; color: var(--fl-muted); text-transform: uppercase; letter-spacing: .06em; padding: 0 10px 6px; }
+  .rc-rail a { display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 10px; border-radius: 8px; color: var(--fl-text); text-decoration: none; }
+  .rc-rail a svg { color: var(--fl-muted); flex: none; }
+  .rc-rail a span { white-space: nowrap; }
+  .rc-rail a:hover { background: var(--fl-panel); }
+  .rc-rail a:focus-visible { outline: 2px solid var(--fl-text); outline-offset: -2px; }
+  .rc-rail a[aria-current] { background: #1F2733; font-weight: 600; }
+  .rc-rail a[aria-current] svg { color: var(--fl-yellow); }
+  .rc-rail-count { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fl-muted); font-variant-numeric: tabular-nums; }
+  .rc-rail .rc-rail-pill { min-width: 22px; height: 22px; padding: 0 6px; box-sizing: border-box; border-radius: 11px; background: var(--fl-yellow); color: var(--fl-yellow-ink); font-weight: 600; display: inline-flex; align-items: center; justify-content: center; }
+  .rc-rail-foot { margin: auto 0 0; padding: 12px 10px 0; border-top: 1px solid var(--fl-line); font-size: 12px; color: var(--fl-muted); line-height: 1.5; }
+  @container rc (max-width: 56rem) {
+    .rc-rail { flex-basis: 100%; max-width: none; position: sticky; top: 0; z-index: 5; max-height: none; flex-direction: row; align-items: center; gap: 6px;
+      overflow-x: auto; overflow-y: hidden; padding: 6px 8px; border-radius: 10px; }
+    .rc-rail .rc-brand, .rc-rail-title, .rc-rail-foot { display: none; }
+    .rc-rail-group { flex-direction: row; gap: 2px; }
+    .rc-rail-league { padding: 0; flex: none; }
+    .rc-rail-league label { flex-direction: row; align-items: center; }
+    .rc-rail a { white-space: nowrap; gap: 8px; }
+  }
   .rc-detail-head { display: flex; justify-content: space-between; align-items: center; gap: var(--cds-gap-md); }
   .rc-close { font: inherit; font-size: var(--cds-font-size-caption); padding: var(--cds-pad-xs) var(--cds-pad-sm); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-panel); color: var(--color-fg); cursor: pointer; }
   .rc-bars { position: relative; min-height: 10rem; }
@@ -155,10 +186,10 @@
   [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
 </style>
 
-<div class="rc">
-  <header class="rc-head rc-topbar" id="top">
+<div class="rc rc-layout">
+  <nav class="rc-rail" aria-label="Dashboard sections">
     <div class="rc-brand"><div class="rc-brand-cards" aria-hidden="true"><span></span><span></span></div><h1>Referee cards</h1></div>
-    <div class="rc-filters">
+    <div class="rc-filters rc-rail-league">
       <label for="rc-league">League
         <select class="dash-select" id="rc-league">
           <option value="ALL">All leagues</option>
@@ -173,6 +204,30 @@
           <option value="SCO">Scottish Premiership</option>
         </select>
       </label>
+    </div>
+    <div class="rc-rail-group">
+      <div class="rc-rail-title">Bet</div>
+      <a href="#hot-prediction"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2c1 4 5 6 5 11a5 5 0 0 1-10 0c0-3 2-4 2-7 2 1 3 3 3 5"></path></svg><span>Hot Prediction</span><b class="rc-rail-count rc-rail-pill" data-draw="nav-hot" data-source="hot_picks">—</b></a>
+      <a href="#safe-treble"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16v3a2 2 0 0 0 0 4v3H4v-3a2 2 0 0 0 0-4z"></path><path d="M10 7v10" stroke-dasharray="2 2"></path></svg><span>Safe treble</span><b class="rc-rail-count" data-draw="nav-treble" data-source="treble_combined" data-field="fair_odds">—</b></a>
+      <a href="#fixtures"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg><span>Upcoming fixtures</span><b class="rc-rail-count" data-draw="nav-fx" data-source="fx_counts" data-field="fixtures">—</b></a>
+    </div>
+    <div class="rc-rail-group">
+      <div class="rc-rail-title">Research</div>
+      <a href="#referees"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="4"></circle><path d="M4 21c0-4 4-6 8-6s8 2 8 6"></path></svg><span>Referees</span><b class="rc-rail-count" data-draw="nav-refs" data-source="league_summary" data-field="referees">—</b></a>
+      <a href="#league-overview"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path></svg><span>League overview</span></a>
+      <a href="#teams"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z"></path></svg><span>Teams</span></a>
+    </div>
+    <div class="rc-rail-group">
+      <div class="rc-rail-title">Track</div>
+      <a href="#bets"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h11a2 2 0 0 1 2 2v16H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"></path><path d="M8 8h7M8 12h7"></path></svg><span>Bet log</span></a>
+      <a href="#model-quality"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18a8 8 0 1 1 16 0"></path><path d="M12 18l4-6"></path></svg><span>Model quality</span></a>
+      <a href="#notes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v6M12 7.5v.01"></path></svg><span>How it works</span></a>
+    </div>
+    <p class="rc-rail-foot">Type "refresh" in Claude Code to update the data.</p>
+  </nav>
+  <div class="rc-main">
+  <header class="rc-head rc-topbar" id="top">
+    <div class="rc-filters">
       <label for="rc-season">Season
         <select class="dash-select" id="rc-season" data-draw="season-opts" data-source="league_summary"></select>
       </label>
@@ -395,7 +450,7 @@
     <p class="rc-note rc-refs-empty" hidden>No referees match these filters. Try a lower minimum or clear the search.</p>
   </section>
 
-  <section class="rc-grid rc-grid-fx" aria-label="League overview">
+  <section class="rc-grid rc-grid-fx" id="league-overview" aria-label="League overview">
     <div class="rc-card" id="league-compare">
       <h2>Cards per match by league</h2>
       <p class="rc-note">Same season filter as above. The selected league is highlighted.</p>
@@ -540,6 +595,7 @@
       <tbody data-draw="checks"></tbody>
     </table>
   </details>
+  </div>
 </div>
 
 <script>
@@ -1256,5 +1312,59 @@
       tip.style.left = `${Math.max(0, left)}px`;
       tip.style.top = `${event.clientY - box.top + 12}px`;
     }).on('mouseleave', () => { tip.hidden = true; });
+  });
+</script>
+
+<script>
+  // Side rail: jump to a section, highlight the section in view, live counts.
+  const railLinks = [...document.querySelectorAll('.rc-rail a[href^="#"]')];
+  const setCurrent = (link) => {
+    for (const x of railLinks) {
+      if (x === link) x.setAttribute('aria-current', 'true'); else x.removeAttribute('aria-current');
+    }
+  };
+  for (const a of railLinks) {
+    a.addEventListener('click', (e) => {
+      const target = document.getElementById(a.getAttribute('href').slice(1));
+      if (!target) return;
+      e.preventDefault();
+      if (target.tagName === 'DETAILS') target.open = true;
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setCurrent(a);
+    });
+  }
+  if ('IntersectionObserver' in window) {
+    const byId = new Map(railLinks.map((a) => [a.getAttribute('href').slice(1), a]));
+    const io = new IntersectionObserver((entries) => {
+      for (const en of entries) if (en.isIntersecting && byId.has(en.target.id)) setCurrent(byId.get(en.target.id));
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    for (const id of byId.keys()) {
+      const el = document.getElementById(id);
+      if (el) io.observe(el);
+    }
+  }
+  dash.draw('nav-hot', (el) => {
+    const d = dash.data('hot_picks');
+    el.textContent = d.status === 'ok' ? String(d.data.length) : '—';
+  });
+  dash.draw('nav-treble', (el) => {
+    const d = dash.data('treble_combined');
+    const r = d.status === 'ok' ? d.data[0] : null;
+    el.textContent = r ? rc.f2(r.fair_odds) : '—';
+    if (r) el.dataset.where = 'key=treble';
+  });
+  dash.draw('nav-fx', (el) => {
+    const d = dash.data('fx_counts');
+    const p = rc.p();
+    const r = d.status === 'ok' ? d.data.find((x) => x.league === p.league) : null;
+    el.textContent = r ? rc.int(r.fixtures) : '—';
+    if (r) el.dataset.where = 'league=' + rc.enc(r.league);
+  });
+  dash.draw('nav-refs', (el) => {
+    const d = dash.data('league_summary');
+    const p = rc.p();
+    const r = d.status === 'ok' ? d.data.find((x) => x.key === `${p.league}|${p.season}`) : null;
+    el.textContent = r ? rc.int(r.referees) : '—';
+    if (r) el.dataset.where = rc.where(r.key);
   });
 </script>

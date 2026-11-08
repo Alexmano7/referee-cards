@@ -311,6 +311,10 @@ Referees/
   smaller widths hide Why, then Kick-off/Typical/Referee. The safe treble sits full width above Upcoming fixtures
   (`.rc-stack`) as a compact slip: header with the minimum-odds pill, a legs table (click a leg to open the match)
   and a small track-record table; narrow widths hide Kick-off, Referee and Typical.
+  Side rail (mockup A of 2, chosen 2026-11-08; canvas https://claude.ai/artifact/FDgQ5tWQXjZYgrQqU9ax21): `.rc-rail` holds
+  the logo, the league dropdown and Bet / Research / Track links with live counts (draws `nav-hot`, `nav-treble`,
+  `nav-fx`, `nav-refs`); the section in view is highlighted; the page content sits in `.rc-main` (now the `rc`
+  container for the width queries). Below 56rem the rail becomes a sticky, sideways-scrolling link bar.
   Speed (2026-11-08): the referee, team and fixture tables are rebuilt only when their data, filters, sort or
   search change (`rc.unchanged`); picking a row only moves the highlight (`rc.markPicked`).
   The user chose this over GitHub Pages. It does not update by itself.
