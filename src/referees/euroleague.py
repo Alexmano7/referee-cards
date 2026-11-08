@@ -57,13 +57,29 @@ def season_label(code: str) -> str:
     return f"{year}/{str(year + 1)[-2:]}"
 
 
+_PARTICLES = {"DE", "DA", "DI", "DO", "DU", "LA", "LE", "EL", "Y"}
+
+
+def nice_case(text: str) -> str:
+    """'FC BARCELONA' -> 'FC Barcelona', 'TJ SHORTS' -> 'TJ Shorts', 'DE COLO' -> 'De Colo'.
+
+    Words of one or two letters stay in capitals (initials, FC), except name particles.
+    """
+    words = []
+    for w in text.split():
+        bare = w.strip(".'").upper()
+        keep = len(bare) <= 2 and bare.isalpha() and bare not in _PARTICLES
+        words.append(w.upper() if keep else w.title())
+    return " ".join(words)
+
+
 def person_name(surname_first: str) -> str:
     """'JAVOR, DAMIR' -> 'Damir Javor' (feed names are upper case, surname first)."""
     parts = [p.strip() for p in surname_first.split(",")]
     if len(parts) >= 2 and parts[1]:
         surname, first = parts[0], " ".join(parts[1:])
-        return f"{first} {surname}".title()
-    return surname_first.strip().title()
+        return nice_case(f"{first} {surname}")
+    return nice_case(surname_first.strip())
 
 
 def parse_referees(text: str | None) -> list[str]:

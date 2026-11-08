@@ -195,3 +195,123 @@ def test_crew_figures_match_names_and_flag_unknown_referees():
     newbie = crew_figures(["Zed Newcomer", "Bob Common", "Cid Common"], report)
     assert newbie["unknown"] == ["Zed Newcomer"]
     assert newbie["factor"]["fouls_total"] == pytest.approx(1.0, abs=0.01)
+
+
+# --- player model, picks and dashboard tables -------------------------------------------
+
+
+def test_name_casing_keeps_initials():
+    assert el.nice_case("FC BARCELONA") == "FC Barcelona"
+    assert el.person_name("SHORTS, TJ") == "TJ Shorts"
+    assert el.person_name("DE COLO, NANDO") == "Nando De Colo"
+
+
+def test_free_throw_and_foul_chances_are_proper_distributions():
+    from referees.euroleague_model import ftm_pmf, p_over, pick_chance, poisson_pmf
+
+    pmf = ftm_pmf(6.0, 0.8)
+    assert sum(pmf) == pytest.approx(1.0, abs=1e-6)
+    assert sum(k * q for k, q in enumerate(pmf)) == pytest.approx(4.8, abs=0.01)
+    fouls = poisson_pmf(2.0)
+    assert p_over(fouls, 2.5) == pytest.approx(1 - sum(fouls[:3]))
+    assert pick_chance(0.70) == pytest.approx(0.65)
+    assert pick_chance(0.5) == 0.5
+
+
+def _model_data():
+    """Two teams, 8 games; player 'big' fouls far more often than 'guard'."""
+    games, players = [], []
+    for i in range(8):
+        home, away = ("AAA", "BBB") if i % 2 == 0 else ("BBB", "AAA")
+        games.append(
+            {
+                "season": "E2025",
+                "game": i,
+                "round": "RS",
+                "date": f"2025-10-{i + 10}",
+                "time": "20:00",
+                "home": home,
+                "home_code": home,
+                "away": away,
+                "away_code": away,
+                "referees": ["Ann Ref", "Bob Ref", "Cid Ref"],
+                "home_fouls": 20,
+                "away_fouls": 20,
+                "home_ftm": 15,
+                "away_ftm": 15,
+                "home_fta": 20,
+                "away_fta": 20,
+            }
+        )
+        for pid, team, fc, fd, fta, ftm in (
+            ("big", "AAA", 4, 2, 2, 1),
+            ("guard", "AAA", 1, 4, 6, 5),
+            ("opp", "BBB", 2, 2, 3, 2),
+        ):
+            players.append(
+                {
+                    "season": "E2025",
+                    "game": i,
+                    "player_id": pid,
+                    "player": pid.title(),
+                    "team": team,
+                    "side": "home" if team == home else "away",
+                    "starter": True,
+                    "minutes": 28.0,
+                    "ftm": ftm,
+                    "fta": fta,
+                    "fouls_committed": fc,
+                    "fouls_drawn": fd,
+                }
+            )
+    return pd.DataFrame(games), pd.DataFrame(players)
+
+
+def test_player_projections_follow_each_players_habits():
+    from referees.euroleague_model import fit, project_player
+
+    games, players = _model_data()
+    f = fit(games, players, "2025-11-01")
+    avg = {"known": False, "matched": 0, "fc": 1.0, "fd": 1.0, "fta": 1.0}
+    big = project_player(f, "big", "home", "BBB", avg)
+    guard = project_player(f, "guard", "home", "BBB", avg)
+    assert big["exp_minutes"] == pytest.approx(28.0)
+    assert big["mu"]["fc"] > guard["mu"]["fc"]
+    assert guard["mu_ftm"] > big["mu_ftm"]
+    assert f.rosters["AAA"] == ["big", "guard"]
+    strict = project_player(f, "big", "home", "BBB", {**avg, "known": True, "fc": 1.2})
+    assert strict["mu"]["fc"] == pytest.approx(1.2 * big["mu"]["fc"])
+
+
+def test_dashboard_tables_from_toy_data():
+    from referees.euroleague_export import athens_time, build_tables
+    from referees.euroleague_stats import build
+
+    games, players = _model_data()
+    report = build(games, players)
+    upcoming = [
+        {
+            "season": "E2025",
+            "game": 99,
+            "round": "RS",
+            "date": "2025-11-05",
+            "time": "20:30",
+            "home": "AAA TEAM",
+            "home_code": "AAA",
+            "away": "BBB TEAM",
+            "away_code": "BBB",
+            "played": False,
+            "referees": ["Ann Ref", "Bob Ref", "Cid Ref"],
+        }
+    ]
+    t = build_tables(games, players, report, upcoming, None, today="2025-11-01")
+    assert (
+        t["el_games"][0]["crew_known"]
+        and t["el_games"][0]["match"] == "Aaa Team v Bbb Team"
+    )
+    assert {r["player"] for r in t["el_game_players"]} == {"Big", "Guard", "Opp"}
+    assert len(t["el_hot_picks"]) <= 5
+    for h in t["el_hot_picks"]:
+        assert h["model_prob"] >= 50 and h["min_odds"] > h["fair_odds"] - 0.01
+    assert {r["scope"] for r in t["el_teams"]} == {"This season", "All seasons"}
+    assert athens_time("2026-11-12", "20:30") == "Thu 12 Nov 21:30"

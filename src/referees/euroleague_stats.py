@@ -82,10 +82,13 @@ def _by_referee(g: pd.DataFrame) -> pd.DataFrame:
     return rows[rows["referee"].notna() & (rows["referee"] != "")]
 
 
-def build(
-    games: pd.DataFrame, players: pd.DataFrame, problems: list[str] | None = None
-) -> dict:
-    """The full EuroLeague referee report (written to data/euroleague_referees.json)."""
+def referee_table(
+    games: pd.DataFrame, players: pd.DataFrame
+) -> tuple[list[dict], dict, pd.DataFrame, pd.DataFrame]:
+    """Per-referee figures from these games -> (referees, league averages, games, players).
+
+    Also used by the backtest with only the games played before a given week.
+    """
     g = game_metrics(games)
     p = player_expectations(players)
     per_game = (
@@ -101,13 +104,6 @@ def build(
     league = {m: float((g[m] * w).sum() / w.sum()) for m in METRICS}
     exp_c = float((g["expected_committed"] * w).sum() / w.sum())
     exp_d = float((g["expected_drawn"] * w).sum() / w.sum())
-    league_by_season = {
-        season_label(s): {
-            "games": len(x),
-            **{m: round(float(x[m].mean()), 2) for m in METRICS},
-        }
-        for s, x in g.groupby("season")
-    }
 
     refs = []
     for name, x in _by_referee(g).groupby("referee"):
@@ -144,7 +140,21 @@ def build(
             }
         )
     refs.sort(key=lambda r: (-r["games"], r["referee"]))
+    return refs, league, g, p
 
+
+def build(
+    games: pd.DataFrame, players: pd.DataFrame, problems: list[str] | None = None
+) -> dict:
+    """The full EuroLeague referee report (written to data/euroleague_referees.json)."""
+    refs, league, g, p = referee_table(games, players)
+    league_by_season = {
+        season_label(s): {
+            "games": len(x),
+            **{m: round(float(x[m].mean()), 2) for m in METRICS},
+        }
+        for s, x in g.groupby("season")
+    }
     players_out = player_table(p)
     return {
         "generated_at": datetime.now(UTC).isoformat(timespec="seconds"),

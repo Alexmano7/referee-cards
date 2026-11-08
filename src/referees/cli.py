@@ -19,6 +19,8 @@ EuroLeague (basketball):
   el-build         write data/euroleague_referees.json (referees, players, league averages)
   el-crew A B C    expected fouls and free throws for a crew of three referees
   el-upcoming      next 7 days of games with each announced crew's figures
+  el-backtest      walk-forward check of the player picks (docs/el_backtest.md, ~30 s)
+  el-export        EuroLeague dashboard tables into data/dashboard/el_*.json
 """
 
 from __future__ import annotations
@@ -422,6 +424,63 @@ def cmd_el_upcoming() -> None:
             print("  Crew not announced yet.")
 
 
+def cmd_el_backtest() -> None:
+    from referees import euroleague as el
+    from referees.config import PROJECT_ROOT
+    from referees.euroleague_backtest import run, write
+
+    games, players, _ = el.load()
+    print("Walk-forward backtest of the EuroLeague player picks...")
+    result = run(games, players)
+    docs = PROJECT_ROOT / "docs"
+    write(result, docs / "el_backtest.json", docs / "el_backtest.md")
+    for period, r in result["pick_record"].items():
+        print(
+            f"  {period}: {r['won']}/{r['picks']} picks won ({r['hit_rate_pct']}%), "
+            f"shown chance {r['avg_corrected_pct']}%, typical player {r['avg_typical_pct']}%"
+        )
+    s = result["scores"]
+    print(
+        f"  All over-line chances: log loss {s['log_loss_model']} (model) vs "
+        f"{s['log_loss_typical']} (typical player). Written to docs/el_backtest.md"
+    )
+
+
+def cmd_el_export() -> None:
+    from referees import euroleague as el
+    from referees.config import PROJECT_ROOT
+    from referees.dashboard_export import write_tables
+    from referees.euroleague_export import build_tables, load_backtest
+
+    report = cmd_el_build()
+    games, players, _ = el.load()
+    print("Looking up the next 7 days of games and their crews...")
+    try:
+        upcoming = el.upcoming()
+    except el.FeedBlocked as e:
+        raise SystemExit(f"PROBLEM: {e}")
+    backtest = load_backtest(PROJECT_ROOT / "docs" / "el_backtest.json")
+    if backtest is None:
+        print(
+            "  PROBLEM: no docs/el_backtest.json yet: run `uv run referees el-backtest`"
+        )
+    tables = build_tables(games, players, report, upcoming, backtest)
+    out = DATA_DIR / "dashboard"
+    for path in write_tables(tables, out):
+        print(
+            f"  {path.name}: {len(tables[path.stem])} rows, {path.stat().st_size // 1024} KB"
+        )
+    known = sum(g["crew_known"] for g in tables["el_games"])
+    print(
+        f"{len(tables['el_games'])} games in the next 7 days, {known} with a crew announced."
+    )
+    for h in tables["el_hot_picks"]:
+        print(
+            f"  Pick {h['rank']}: {h['bet']} ({h['match']}, {h['kickoff']}) "
+            f"{h['model_prob']}% -> bet at {h['min_odds']}+"
+        )
+
+
 def main() -> None:
     # Show accents (Atlético, Köln) correctly even in older Windows terminals.
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -448,6 +507,8 @@ def main() -> None:
             "el-build",
             "el-crew",
             "el-upcoming",
+            "el-backtest",
+            "el-export",
         ],
     )
     parser.add_argument(
@@ -495,6 +556,10 @@ def main() -> None:
         cmd_el_crew(args.args)
     elif args.command == "el-upcoming":
         cmd_el_upcoming()
+    elif args.command == "el-backtest":
+        cmd_el_backtest()
+    elif args.command == "el-export":
+        cmd_el_export()
     else:
         cmd_fetch()
         cmd_build()
