@@ -168,7 +168,7 @@
   {
    "period": "2025/26",
    "week": "2025-10-06",
-   "player": "Perry Dozier Jr",
+   "player": "Perry Dozier JR",
    "market": "fouls_committed",
    "selection": "over",
    "line": 1.5,
@@ -216,7 +216,7 @@
   {
    "period": "2025/26",
    "week": "2025-10-20",
-   "player": "Tj Shorts",
+   "player": "TJ Shorts",
    "market": "fouls_drawn",
    "selection": "over",
    "line": 3.5,
@@ -276,7 +276,7 @@
   {
    "period": "2025/26",
    "week": "2025-10-27",
-   "player": "Tj Shorts",
+   "player": "TJ Shorts",
    "market": "fouls_drawn",
    "selection": "over",
    "line": 3.5,
@@ -288,7 +288,7 @@
   {
    "period": "2025/26",
    "week": "2025-10-27",
-   "player": "Tj Shorts",
+   "player": "TJ Shorts",
    "market": "fouls_drawn",
    "selection": "over",
    "line": 3.5,
@@ -336,7 +336,7 @@
   {
    "period": "2025/26",
    "week": "2025-11-03",
-   "player": "Tj Shorts",
+   "player": "TJ Shorts",
    "market": "fouls_drawn",
    "selection": "over",
    "line": 2.5,
@@ -396,7 +396,7 @@
   {
    "period": "2025/26",
    "week": "2025-11-10",
-   "player": "Tj Shorts",
+   "player": "TJ Shorts",
    "market": "fouls_drawn",
    "selection": "over",
    "line": 2.5,
@@ -432,7 +432,7 @@
   {
    "period": "2025/26",
    "week": "2025-11-10",
-   "player": "Tj Shorts",
+   "player": "TJ Shorts",
    "market": "fouls_drawn",
    "selection": "over",
    "line": 2.5,
@@ -456,7 +456,7 @@
   {
    "period": "2025/26",
    "week": "2025-11-17",
-   "player": "Tj Shorts",
+   "player": "TJ Shorts",
    "market": "fouls_drawn",
    "selection": "over",
    "line": 2.5,
@@ -552,7 +552,7 @@
   {
    "period": "2025/26",
    "week": "2025-11-24",
-   "player": "Tj Shorts",
+   "player": "TJ Shorts",
    "market": "fouls_drawn",
    "selection": "over",
    "line": 2.5,
@@ -612,7 +612,7 @@
   {
    "period": "2025/26",
    "week": "2025-12-01",
-   "player": "Tj Shorts",
+   "player": "TJ Shorts",
    "market": "fouls_drawn",
    "selection": "over",
    "line": 2.5,
@@ -1272,7 +1272,7 @@
   {
    "period": "2025/26",
    "week": "2026-02-23",
-   "player": "Tj Shorts",
+   "player": "TJ Shorts",
    "market": "fouls_drawn",
    "selection": "over",
    "line": 2.5,
@@ -2088,7 +2088,7 @@
   {
    "period": "2026/27 so far",
    "week": "2026-09-28",
-   "player": "Bandja Sy",
+   "player": "Bandja SY",
    "market": "fouls_drawn",
    "selection": "under",
    "line": 1.5,
@@ -2300,6 +2300,252 @@
    "typical": 0.3682183525063546,
    "actual": 2.0,
    "won": false
+  }
+ ],
+ "treble_record": {
+  "2025/26": {
+   "trebles": 24,
+   "won": 17,
+   "win_rate_pct": 70.8,
+   "legs_won_pct": 88.9,
+   "avg_model_pct": 47.3,
+   "avg_typical_pct": 11.6,
+   "break_even_odds": 1.41
+  },
+  "2026/27 so far": {
+   "trebles": 4,
+   "won": 3,
+   "win_rate_pct": 75.0,
+   "legs_won_pct": 83.3,
+   "avg_model_pct": 47.2,
+   "avg_typical_pct": 14.9,
+   "break_even_odds": 1.33
+  }
+ },
+ "trebles": [
+  {
+   "period": "2025/26",
+   "week": "2025-09-29",
+   "p": 0.4671302579272014,
+   "typical": 0.13865646698178502,
+   "legs_won": 3,
+   "won": true
+  },
+  {
+   "period": "2025/26",
+   "week": "2025-10-27",
+   "p": 0.4658384604696515,
+   "typical": 0.15798317425167377,
+   "legs_won": 3,
+   "won": true
+  },
+  {
+   "period": "2025/26",
+   "week": "2025-11-03",
+   "p": 0.4656427014400599,
+   "typical": 0.1174871990259295,
+   "legs_won": 3,
+   "won": true
+  },
+  {
+   "period": "2025/26",
+   "week": "2025-11-10",
+   "p": 0.4752790282246704,
+   "typical": 0.10138165326777769,
+   "legs_won": 3,
+   "won": true
+  },
+  {
+   "period": "2025/26",
+   "week": "2025-11-17",
+   "p": 0.46985681468362617,
+   "typical": 0.10594377228540025,
+   "legs_won": 2,
+   "won": false
+  },
+  {
+   "period": "2025/26",
+   "week": "2025-11-24",
+   "p": 0.47203986365922374,
+   "typical": 0.1429088361565404,
+   "legs_won": 3,
+   "won": true
+  },
+  {
+   "period": "2025/26",
+   "week": "2025-12-01",
+   "p": 0.46889747560549955,
+   "typical": 0.09621922440510942,
+   "legs_won": 3,
+   "won": true
+  },
+  {
+   "period": "2025/26",
+   "week": "2025-12-08",
+   "p": 0.4871586903765734,
+   "typical": 0.09408901661896431,
+   "legs_won": 1,
+   "won": false
+  },
+  {
+   "period": "2025/26",
+   "week": "2025-12-29",
+   "p": 0.46580118482444416,
+   "typical": 0.10421638000611774,
+   "legs_won": 2,
+   "won": false
+  },
+  {
+   "period": "2025/26",
+   "week": "2026-01-05",
+   "p": 0.4699004211661631,
+   "typical": 0.09324004006586462,
+   "legs_won": 3,
+   "won": true
+  },
+  {
+   "period": "2025/26",
+   "week": "2026-01-12",
+   "p": 0.4716211887774249,
+   "typical": 0.11886903098444715,
+   "legs_won": 3,
+   "won": true
+  },
+  {
+   "period": "2025/26",
+   "week": "2026-01-19",
+   "p": 0.476270184577764,
+   "typical": 0.12710128260119657,
+   "legs_won": 2,
+   "won": false
+  },
+  {
+   "period": "2025/26",
+   "week": "2026-01-26",
+   "p": 0.48206729966942286,
+   "typical": 0.1506565023801547,
+   "legs_won": 3,
+   "won": true
+  },
+  {
+   "period": "2025/26",
+   "week": "2026-02-02",
+   "p": 0.4681979592092196,
+   "typical": 0.12340452391363103,
+   "legs_won": 3,
+   "won": true
+  },
+  {
+   "period": "2025/26",
+   "week": "2026-02-09",
+   "p": 0.4702300501320757,
+   "typical": 0.12916265826429704,
+   "legs_won": 3,
+   "won": true
+  },
+  {
+   "period": "2025/26",
+   "week": "2026-02-23",
+   "p": 0.47295637746609986,
+   "typical": 0.11654204643364542,
+   "legs_won": 2,
+   "won": false
+  },
+  {
+   "period": "2025/26",
+   "week": "2026-03-02",
+   "p": 0.4838928987264466,
+   "typical": 0.13741741019740517,
+   "legs_won": 3,
+   "won": true
+  },
+  {
+   "period": "2025/26",
+   "week": "2026-03-16",
+   "p": 0.47656674931093695,
+   "typical": 0.12011308990236601,
+   "legs_won": 3,
+   "won": true
+  },
+  {
+   "period": "2025/26",
+   "week": "2026-03-23",
+   "p": 0.47251233780636454,
+   "typical": 0.1232415419725002,
+   "legs_won": 3,
+   "won": true
+  },
+  {
+   "period": "2025/26",
+   "week": "2026-03-30",
+   "p": 0.47065300937761195,
+   "typical": 0.11649285647451128,
+   "legs_won": 2,
+   "won": false
+  },
+  {
+   "period": "2025/26",
+   "week": "2026-04-06",
+   "p": 0.474411850450522,
+   "typical": 0.07707902712423675,
+   "legs_won": 2,
+   "won": false
+  },
+  {
+   "period": "2025/26",
+   "week": "2026-04-13",
+   "p": 0.48078807457267625,
+   "typical": 0.10087851054024452,
+   "legs_won": 3,
+   "won": true
+  },
+  {
+   "period": "2025/26",
+   "week": "2026-04-27",
+   "p": 0.46551796618025615,
+   "typical": 0.10057818651025496,
+   "legs_won": 3,
+   "won": true
+  },
+  {
+   "period": "2025/26",
+   "week": "2026-05-04",
+   "p": 0.4760126440374564,
+   "typical": 0.0948043469462591,
+   "legs_won": 3,
+   "won": true
+  },
+  {
+   "period": "2026/27 so far",
+   "week": "2026-09-28",
+   "p": 0.465690509286397,
+   "typical": 0.2347515388453446,
+   "legs_won": 3,
+   "won": true
+  },
+  {
+   "period": "2026/27 so far",
+   "week": "2026-10-19",
+   "p": 0.4768741542397431,
+   "typical": 0.14091708412310439,
+   "legs_won": 1,
+   "won": false
+  },
+  {
+   "period": "2026/27 so far",
+   "week": "2026-10-26",
+   "p": 0.4780903796552563,
+   "typical": 0.11718831834998819,
+   "legs_won": 3,
+   "won": true
+  },
+  {
+   "period": "2026/27 so far",
+   "week": "2026-11-02",
+   "p": 0.46813101665791335,
+   "typical": 0.10366670522230449,
+   "legs_won": 3,
+   "won": true
   }
  ]
 }

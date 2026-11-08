@@ -261,6 +261,7 @@
     <div class="rc-rail-group" data-sport="el">
       <div class="rc-rail-title">Bet</div>
       <a href="#el-hot"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2c1 4 5 6 5 11a5 5 0 0 1-10 0c0-3 2-4 2-7 2 1 3 3 3 5"></path></svg><span>Hot Prediction</span><b class="rc-rail-count rc-rail-pill" data-draw="nav-el-hot" data-source="el_hot_picks">—</b></a>
+      <a href="#el-treble"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16v3a2 2 0 0 0 0 4v3H4v-3a2 2 0 0 0 0-4z"></path><path d="M10 7v10" stroke-dasharray="2 2"></path></svg><span>Safe treble</span><b class="rc-rail-count" data-draw="nav-el-treble" data-source="el_treble_combined" data-field="fair_odds">—</b></a>
       <a href="#el-games"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg><span>Upcoming games</span><b class="rc-rail-count" data-draw="nav-el-games" data-source="el_games">—</b></a>
     </div>
     <div class="rc-rail-group" data-sport="el">
@@ -690,6 +691,41 @@
     <p class="rc-note rc-hot-record">Track record of this rule on past weeks (each week picked from earlier games only): this season so far <b data-draw="el-hr-won" data-source="el_pick_record" data-field="won">—</b> of <b data-draw="el-hr-picks" data-source="el_pick_record" data-field="picks">—</b> picks won (<b data-draw="el-hr-rate" data-source="el_pick_record" data-field="hit_rate_pct">—</b>, shown chance <b data-draw="el-hr-model" data-source="el_pick_record" data-field="avg_model_pct">—</b>); in 2025/26 <b data-draw="el-hr-rate-prev" data-source="el_pick_record" data-field="hit_rate_pct">—</b> of <b data-draw="el-hr-picks-prev" data-source="el_pick_record" data-field="picks">—</b> picks won. Small samples: treat as a guide.</p>
   </section>
 
+  <div class="rc-treble" id="el-treble">
+    <div class="rc-treble-head">
+      <h2>Safe treble</h2>
+      <p class="rc-treble-min">Take it only at <span data-draw="el-tr-min" data-source="el_treble_combined" data-field="min_odds">—</span> or more</p>
+    </div>
+    <p class="rc-note">3 games, combined odds about 2.00; all three must win. Same rule as football: each leg is at least 60% likely and more likely than for a typical player in the same role. Combined: model chance <b data-draw="el-tr-p" data-source="el_treble_combined" data-field="model_pct">—</b> (typical player <b data-draw="el-tr-t" data-source="el_treble_combined" data-field="typical_pct">—</b>), fair odds <b data-draw="el-tr-fair" data-source="el_treble_combined" data-field="fair_odds">—</b>. The chances use the backtest correction, which made past trebles win more often than shown; it is a small sample, so treat it as a guide. Click a leg to open the game.</p>
+    <div class="rc-scroll rc-treble-scroll">
+      <table class="rc-table rc-treble-legs" data-source="el_hot_treble" data-row-key="key">
+        <thead><tr>
+          <th data-field="leg">Leg</th>
+          <th data-field="kickoff">Tip-off</th>
+          <th data-field="match">Game</th>
+          <th data-field="bet">Bet</th>
+          <th data-field="crew">Crew</th>
+          <th data-field="model_prob">Model</th>
+          <th data-field="typical_prob">Typical</th>
+          <th data-field="fair_odds">Fair odds</th>
+        </tr></thead>
+        <tbody data-draw="el-treble-rows"></tbody>
+      </table>
+    </div>
+    <p class="rc-note rc-el-treble-empty" hidden>No treble near 2.00 can be built from this week's safe player bets yet. Refresh again closer to game day, when crews are announced.</p>
+    <table class="rc-table rc-checks rc-treble-record" data-source="el_treble_record" data-row-key="key">
+      <thead><tr>
+        <th data-field="period">Track record (one treble per past week)</th>
+        <th data-field="trebles">Trebles</th>
+        <th data-field="won">All 3 won</th>
+        <th data-field="win_rate_pct">Win rate</th>
+        <th data-field="avg_model_pct">Model said</th>
+        <th data-field="break_even_odds">Break-even odds</th>
+      </tr></thead>
+      <tbody data-draw="el-treble-record-rows"></tbody>
+    </table>
+  </div>
+
   <section class="rc-card" id="el-games">
     <h2>Upcoming games</h2>
     <p class="rc-note">Next 7 days, tip-off in Athens time. <b data-draw="el-crews" data-source="el_games">—</b> of <b data-draw="el-games-n" data-source="el_games">—</b> have a crew (the official feed publishes crews close to game day). Expected fouls and free throws made per team come from the league average, both teams' habits and the crew. Click a game for its card.</p>
@@ -1079,8 +1115,8 @@
     }
     const ht = dash.data('hot_treble');
     if (ht.status === 'ok') {
-      for (const el of document.querySelectorAll('.rc-treble-empty')) el.hidden = ht.data.length > 0;
-      for (const el of document.querySelectorAll('.rc-treble-legs')) el.hidden = ht.data.length === 0;
+      for (const el of document.querySelectorAll('#safe-treble .rc-treble-empty')) el.hidden = ht.data.length > 0;
+      for (const el of document.querySelectorAll('#safe-treble .rc-treble-legs')) el.hidden = ht.data.length === 0;
     }
     const hp = dash.data('hot_picks');
     if (hp.status === 'ok') {
@@ -1908,5 +1944,50 @@
       for (const v of [r.bin, rc.int(r.predictions), rc.pct(r.predicted_pct), rc.pct(r.observed_pct)]) rc.cell(tr, v);
       return tr;
     }));
+  });
+  // Safe treble (same rule and look as football).
+  dash.calc('el_treble_combined', {
+    title: 'EuroLeague safe treble combined',
+    description: 'The EuroLeague treble legs combined: model chance and typical-player chance multiplied, fair odds (1 / chance) and minimum odds worth taking (fair odds + 5%).',
+    inputs: ['el_hot_treble'],
+    fn: (legs) => {
+      if (legs.length !== 3) return [];
+      const p = legs.reduce((a, l) => a * (l.model_prob / 100), 1);
+      const t = legs.reduce((a, l) => a * (l.typical_prob / 100), 1);
+      return [{ key: 'treble', model_pct: 100 * p, typical_pct: 100 * t, fair_odds: 1 / p, min_odds: Math.ceil(105 / p) / 100 }];
+    },
+  });
+  const isTreble = (r) => r.key === 'treble';
+  dash.draw('el-tr-p', elField('el_treble_combined', isTreble, 'model_pct', rc.pct));
+  dash.draw('el-tr-t', elField('el_treble_combined', isTreble, 'typical_pct', rc.pct));
+  dash.draw('el-tr-fair', elField('el_treble_combined', isTreble, 'fair_odds', rc.f2));
+  dash.draw('el-tr-min', elField('el_treble_combined', isTreble, 'min_odds', rc.f2));
+  dash.draw('nav-el-treble', elField('el_treble_combined', isTreble, 'fair_odds', rc.f2));
+  dash.draw('el-treble-rows', (tbody) => {
+    tbody.replaceChildren(...[...elRows('el_hot_treble')].sort((a, b) => a.leg - b.leg).map((l) => {
+      const tr = document.createElement('tr');
+      tr.dataset.key = l.key;
+      tr.tabIndex = 0;
+      tr.addEventListener('click', () => elOpenGame(l.game));
+      tr.addEventListener('keydown', (e) => { if (e.key === 'Enter') elOpenGame(l.game); });
+      for (const v of [String(l.leg), l.kickoff, l.match, l.bet, l.crew, rc.pct(l.model_prob), rc.pct(l.typical_prob),
+        rc.f2(l.fair_odds)]) rc.cell(tr, v);
+      return tr;
+    }));
+  });
+  dash.draw('el-treble-record-rows', (tbody) => {
+    tbody.replaceChildren(...elRows('el_treble_record').map((r) => {
+      const tr = document.createElement('tr');
+      tr.dataset.key = r.key;
+      for (const v of [r.period, rc.int(r.trebles), rc.int(r.won), rc.pct(r.win_rate_pct), rc.pct(r.avg_model_pct),
+        rc.f2(r.break_even_odds)]) rc.cell(tr, v);
+      return tr;
+    }));
+  });
+  dash.onData(() => {
+    const t = dash.data('el_hot_treble');
+    if (t.status !== 'ok') return;
+    for (const x of document.querySelectorAll('#el-treble .rc-el-treble-empty')) x.hidden = t.data.length > 0;
+    for (const x of document.querySelectorAll('#el-treble .rc-treble-legs')) x.hidden = t.data.length === 0;
   });
 </script>

@@ -244,7 +244,15 @@ after every commit, `git pull --rebase`, then `git push`, and report the pushed 
   `PICK_SHRINK = 0.75` toward 50% (then 65.5% shown vs 65.6% won). All 115k over-line chances are well
   calibrated and beat the typical-player baseline (log loss 0.446 vs 0.488). Re-check PICK_SHRINK
   after re-running. The typical player is not the bookmaker's price: say so.
-- `el-export` writes the 9 `data/dashboard/el_*.json` tables (needs the network for crews).
+- **Safe treble (added 2026-11-08, user: "same logic as football"):** `euroleague_model.best_treble`
+  runs football's `picks.best_treble` on player legs: per game the top 3 legs (>= 60% and above a typical
+  player), 3 games, combined fair odds 1.85-2.15, highest model/typical ratio, crew-known games first.
+  Legs use the corrected chance (`pick_chance`): with raw chances the rule won only 9/30 in 2025/26
+  (model said 48%); with corrected ones 17/24 (70.8%, model said 47%) and 3/4 this season, so the shown
+  chance is cautious (small sample). Some weeks have no trio in the band (the slip then says so).
+  Dashboard: slip `#el-treble` (calc `el_treble_combined`, tables `el_hot_treble`, `el_treble_record`);
+  football's treble toggles are scoped to `#safe-treble`.
+- `el-export` writes the 11 `data/dashboard/el_*.json` tables (needs the network for crews).
 - Daily GitHub job: `el-fetch` + `el-build` (raw games kept with `actions/cache`, `continue-on-error`).
 
 ## Sofascore / datafc: tried and rejected (2026-11-06)

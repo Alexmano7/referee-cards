@@ -9,6 +9,13 @@ Each week is predicted only from earlier games; bets on players who did not play
 | 2025/26 | 157 | 103 | 65.6% | 70.6% | 65.5% | 27.7% | 1.52 |
 | 2026/27 so far | 27 | 18 | 66.7% | 72.4% | 66.8% | 35.8% | 1.5 |
 
+## Safe treble (3 legs from 3 games, combined fair odds about 2.00, one per week)
+
+| Period | Trebles | All 3 won | Win rate | Legs won | Model said | Typical player | Break-even odds |
+|---|---|---|---|---|---|---|---|
+| 2025/26 | 24 | 17 | 70.8% | 88.9% | 47.3% | 11.6% | 1.41 |
+| 2026/27 so far | 4 | 3 | 75.0% | 83.3% | 47.2% | 14.9% | 1.33 |
+
 ## All over-line chances (115423 predictions)
 
 | Method | Log loss (lower is better) | Brier (lower is better) |

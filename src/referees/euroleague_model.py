@@ -429,6 +429,54 @@ def pick(
     return out
 
 
+# --- safe treble: the football rule (picks.best_treble) on player bets -------------------
+
+
+def treble_legs(projs: list[dict], league_ft_pct: float) -> list[dict]:
+    """A game's best few safe legs, as for football: chance >= 60% (after the backtest
+    correction) and above a typical player in the same role; best TREBLE_LEGS_PER_MATCH by shift."""
+    from referees.picks import TREBLE_LEGS_PER_MATCH, TREBLE_MIN_LEG_PROB
+
+    legs = []
+    for proj in projs:
+        if proj["exp_minutes"] < MIN_EXP_MINUTES or proj["games_season"] < MIN_GAMES:
+            continue
+        for c in candidates(proj, league_ft_pct):
+            p = pick_chance(c["p"])
+            if p >= TREBLE_MIN_LEG_PROB and p > c["typical"]:
+                legs.append(
+                    {
+                        **c,
+                        "raw_p": c["p"],
+                        "p": p,
+                        "base": c["typical"],
+                        "score": p - c["typical"],
+                        "proj": proj,
+                    }
+                )
+    legs.sort(key=lambda c: c["score"], reverse=True)
+    return legs[:TREBLE_LEGS_PER_MATCH]
+
+
+def best_treble(
+    entries: list[tuple[dict, dict, list[dict]]], league_ft_pct: float
+) -> list[dict] | None:
+    """Three legs from three games with combined fair odds of about 2.00 (football's rule:
+    picks.best_treble). `entries` = (game, crew, projections). Returns [{game, crew, leg}] or None."""
+    from referees.picks import best_treble as football_best_treble
+
+    pool = [
+        (i, crew["known"], treble_legs(projs, league_ft_pct))
+        for i, (_, crew, projs) in enumerate(entries)
+    ]
+    chosen = football_best_treble(pool)
+    if not chosen:
+        return None
+    return [
+        {"game": entries[i][0], "crew": entries[i][1], "leg": leg} for i, leg in chosen
+    ]
+
+
 def team_expectations(f: Fit, game: dict, crew_factors: dict, league: dict) -> dict:
     """Expected team fouls and FT made per side: league side average x team x opponent x crew."""
     out = {}

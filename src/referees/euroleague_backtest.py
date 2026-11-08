@@ -17,6 +17,7 @@ import pandas as pd
 
 from referees.euroleague_model import (
     MARKETS,
+    best_treble,
     candidates,
     crew_adjustment,
     fit,
@@ -55,7 +56,7 @@ def run(
 ) -> dict:
     today = today or date.today().isoformat()
     actual = players.set_index(["season", "game", "player_id"])
-    picks_out, calib = [], []
+    picks_out, calib, trebles_out = [], [], []
     for label, (start, end) in PERIODS.items():
         end = min(end, today)
         for monday in _mondays(start, end):
@@ -127,8 +128,57 @@ def run(
                         "won": hit(bet, value),
                     }
                 )
-        progress(f"  {label}: {sum(p['period'] == label for p in picks_out)} picks")
-    return summarise(picks_out, calib)
+            chosen = best_treble(entries, f.league_ft_pct)
+            if chosen:
+                wins = []
+                for c in chosen:
+                    g, leg = c["game"], c["leg"]
+                    value = float(
+                        actual.loc[(g["season"], g["game"], leg["proj"]["player_id"])][
+                            ACTUAL[leg["market"]]
+                        ]
+                    )
+                    wins.append(hit(leg, value))
+                trebles_out.append(
+                    {
+                        "period": label,
+                        "week": wk_start,
+                        "p": math.prod(c["leg"]["p"] for c in chosen),
+                        "typical": math.prod(c["leg"]["base"] for c in chosen),
+                        "legs_won": sum(wins),
+                        "won": all(wins),
+                    }
+                )
+        progress(
+            f"  {label}: {sum(p['period'] == label for p in picks_out)} picks, "
+            f"{sum(t['period'] == label for t in trebles_out)} trebles"
+        )
+    result = summarise(picks_out, calib)
+    result["treble_record"] = treble_summary(trebles_out)
+    result["trebles"] = trebles_out
+    return result
+
+
+def treble_summary(trebles: list[dict]) -> dict:
+    """Football's treble record, for EuroLeague: one treble per week, won if all 3 legs win."""
+    out = {}
+    for label in PERIODS:
+        ts = [t for t in trebles if t["period"] == label]
+        if not ts:
+            continue
+        won = sum(t["won"] for t in ts)
+        out[label] = {
+            "trebles": len(ts),
+            "won": won,
+            "win_rate_pct": round(100 * won / len(ts), 1),
+            "legs_won_pct": round(
+                100 * sum(t["legs_won"] for t in ts) / (3 * len(ts)), 1
+            ),
+            "avg_model_pct": round(100 * sum(t["p"] for t in ts) / len(ts), 1),
+            "avg_typical_pct": round(100 * sum(t["typical"] for t in ts) / len(ts), 1),
+            "break_even_odds": round(len(ts) / won, 2) if won else None,
+        }
+    return out
 
 
 def summarise(picks: list[dict], calib: list[dict]) -> dict:
@@ -217,6 +267,19 @@ def write(result: dict, json_path, md_path) -> None:
             f"| {label} | {r['picks']} | {r['won']} | {r['hit_rate_pct']}% | {r['avg_model_pct']}% | "
             f"{r['avg_corrected_pct']}% | {r['avg_typical_pct']}% | {r['break_even_odds']} |"
         )
+    if result.get("treble_record"):
+        lines += [
+            "",
+            "## Safe treble (3 legs from 3 games, combined fair odds about 2.00, one per week)",
+            "",
+            "| Period | Trebles | All 3 won | Win rate | Legs won | Model said | Typical player | Break-even odds |",
+            "|---|---|---|---|---|---|---|---|",
+        ]
+        for label, r in result["treble_record"].items():
+            lines.append(
+                f"| {label} | {r['trebles']} | {r['won']} | {r['win_rate_pct']}% | {r['legs_won_pct']}% | "
+                f"{r['avg_model_pct']}% | {r['avg_typical_pct']}% | {r['break_even_odds']} |"
+            )
     s = result["scores"]
     if s:
         lines += [

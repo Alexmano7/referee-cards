@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import math
+
 import pandas as pd
 import pytest
 
@@ -315,3 +317,40 @@ def test_dashboard_tables_from_toy_data():
         assert h["model_prob"] >= 50 and h["min_odds"] > h["fair_odds"] - 0.01
     assert {r["scope"] for r in t["el_teams"]} == {"This season", "All seasons"}
     assert athens_time("2026-11-12", "20:30") == "Thu 12 Nov 21:30"
+
+
+def test_treble_uses_the_football_rule_on_player_legs():
+    from referees.euroleague_model import best_treble, pick_chance, treble_legs
+    from referees.picks import TREBLE_BAND
+
+    def proj(pid, mu_fd):
+        return {
+            "player_id": pid,
+            "player": pid,
+            "team": "T",
+            "role": "starter",
+            "games_season": 10,
+            "exp_minutes": 30.0,
+            "ft_pct": 0.8,
+            "mu": {"fc": 2.0, "fd": mu_fd, "fta": 4.0},
+            "mu_ftm": 3.2,
+            "typical_mu": {"fc": 2.0, "fd": 2.0, "fta": 4.0},
+            "factors": {},
+            "rate_fc": 0.07,
+            "typical_rate_fc": 0.07,
+        }
+
+    # One player per game who draws far more fouls than a typical player.
+    entries = [
+        ({"season": "E2026", "game": i}, {"known": False}, [proj(f"p{i}", 7.0)])
+        for i in range(4)
+    ]
+    legs = treble_legs(entries[0][2], 0.78)
+    assert legs and all(leg["p"] >= 0.60 and leg["p"] > leg["base"] for leg in legs)
+    assert all(leg["p"] == pytest.approx(pick_chance(leg["raw_p"])) for leg in legs)
+    chosen = best_treble(entries, 0.78)
+    assert chosen and len({c["game"]["game"] for c in chosen}) == 3
+    odds = 1 / math.prod(c["leg"]["p"] for c in chosen)
+    assert TREBLE_BAND[0] <= odds <= TREBLE_BAND[1]
+    # Players who barely play give no legs.
+    assert treble_legs([{**proj("bench", 7.0), "exp_minutes": 5.0}], 0.78) == []

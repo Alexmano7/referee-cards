@@ -9,6 +9,8 @@ el_referees       per referee: all seasons (adjusted, factors, player foul effec
 el_pick_record    backtest of the picks rule (docs/el_backtest.json)
 el_calibration    backtest calibration of all over-line chances
 el_league         league averages per game
+el_hot_treble     safe treble: 3 legs from 3 games, combined fair odds about 2.00 (football rule)
+el_treble_record  backtest of the treble rule (one per week)
 """
 
 from __future__ import annotations
@@ -22,6 +24,7 @@ import pandas as pd
 from referees.euroleague import nice_case, season_label
 from referees.euroleague_model import (
     LAST_N,
+    best_treble,
     bet_label,
     crew_adjustment,
     distributions,
@@ -274,8 +277,39 @@ def build_tables(
             }
         )
 
-    record, calibration = [], []
+    treble = []
+    for leg_no, c in enumerate(best_treble(entries, f.league_ft_pct) or [], start=1):
+        g, leg = c["game"], c["leg"]
+        proj = leg["proj"]
+        treble.append(
+            {
+                "key": f"leg{leg_no}",
+                "leg": leg_no,
+                "game": f"{g['season']}|{g['game']}",
+                "kickoff": athens_time(g["date"], g["time"]),
+                "match": f"{nice_case(g['home'])} v {nice_case(g['away'])}",
+                "bet": f"{proj['player']}: {bet_label(leg)}",
+                "crew": ", ".join(g.get("referees") or []) or "Not announced",
+                "model_prob": round(100 * leg["p"], 1),
+                "typical_prob": round(100 * leg["base"], 1),
+                "fair_odds": round(1 / leg["p"], 2),
+            }
+        )
+
+    record, calibration, treble_record = [], [], []
     if backtest:
+        for period, r in (backtest.get("treble_record") or {}).items():
+            treble_record.append(
+                {
+                    "key": period,
+                    "period": period,
+                    "trebles": r["trebles"],
+                    "won": r["won"],
+                    "win_rate_pct": r["win_rate_pct"],
+                    "avg_model_pct": r["avg_model_pct"],
+                    "break_even_odds": r["break_even_odds"],
+                }
+            )
         for period, r in backtest["pick_record"].items():
             record.append(
                 {
@@ -298,6 +332,8 @@ def build_tables(
         "el_teams": team_rows(games),
         "el_players": player_rows(report, players, games),
         "el_referees": referee_rows(report) + referee_season_rows(games),
+        "el_hot_treble": treble,
+        "el_treble_record": treble_record,
         "el_pick_record": record,
         "el_calibration": calibration,
         "el_league": [
