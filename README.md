@@ -36,8 +36,9 @@ belong together.
 | `uv run referees update` | `fetch` + `build` in one go (what the daily job will run). |
 
 ## EuroLeague referees (basketball)
-Local only for now (not on the dashboard, not in the daily job). Data comes from the official
-EuroLeague live data feed: three seasons (2024/25 to 2026/27), playoffs and Final Four included.
+On the dashboard behind the **Football | EuroLeague** switch in the menu, and part of the daily job.
+Data comes from the official EuroLeague live data feed: three seasons (2024/25 to 2026/27), playoffs
+and Final Four included.
 
 | Command | What it does |
 |---|---|
@@ -45,6 +46,12 @@ EuroLeague live data feed: three seasons (2024/25 to 2026/27), playoffs and Fina
 | `uv run referees el-build` | Writes `data/euroleague_referees.json`: per referee fouls, free throws made/attempted (home and away) and the player foul effect, plus per-player season figures. |
 | `uv run referees el-crew "Name 1" "Name 2" "Name 3"` | A crew's expected fouls and free throws per game, compared with the league average. Surnames are enough if they're unique. |
 | `uv run referees el-upcoming` | The next 7 days of games, with each crew's figures once it is announced. |
+| `uv run referees el-backtest` | Checks the player picks on past weeks (each week predicted from earlier games only) and writes `docs/el_backtest.md`. |
+| `uv run referees el-export` | Builds the EuroLeague dashboard tables in `data/dashboard/` (picks, games, players, referees). |
+
+- **EuroLeague Hot Prediction** = up to 5 player bets (fouls, fouls drawn, free throws made) where the
+  model differs most from a typical player in the same role. The shown chances are corrected by the
+  backtest, where the picks won about 66%. Bet only at the "Bet at" odds or higher.
 
 - **Factor** = the referee (or crew) compared with an average one: 1.05 means 5% more.
 - **Player foul effect** = how many fouls players commit (or draw) with this referee compared with

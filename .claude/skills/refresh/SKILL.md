@@ -62,6 +62,11 @@ Project facts and rules are in `CLAUDE.md`; this is the routine.
    `hot_picks`, `hot_treble`, `fixtures`, `fixture_distribution`, `referee_stats`, `team_stats`,
    `league_summary`, `league_bars`, `data_checks`, `bets`. Re-upload `model_quality`, `calibration`,
    `hot_picks_record` and `treble_record` only after a new `referees backtest`.
+   **EuroLeague:** run `uv run referees el-fetch` then `uv run referees el-export` (it rebuilds the
+   figures and reads each upcoming game's crew from the official feed; no web lookup). Upload these 7
+   files too: `el_hot_picks`, `el_games`, `el_game_players`, `el_teams`, `el_players`, `el_referees`,
+   `el_league`. Re-upload `el_pick_record` and `el_calibration` only after `uv run referees el-backtest`.
+   A 403/429 from the feed means stop the EuroLeague part and report it (never work around it).
 3. `ArtifactData` `list` collection `datasets` to get each document's current `version`. Then one
    `batch` of `update`s, each pinned with `if_version`, setting `source.url` (the new `/_blob/…`),
    `updated: {at: <"Data generated at" time>, by: "Claude Code refresh"}` and `edit: {via: "claude", at: <now>}`.
@@ -80,3 +85,5 @@ Project facts and rules are in `CLAUDE.md`; this is the routine.
    treble** (3 legs from `hot_treble.json`, combined model chance, fair odds and minimum combined odds =
    ceil(105 / chance) / 100; remind that at 2.00 it is about break-even), then when the data is from, referees found (match, referee, source), what's still
    missing, any problems, the check result, and the pushed commit.
+4. Then the **EuroLeague** part: its Hot Prediction picks (bet, game, tip-off, shown chance, "bet at"
+   minimum, crew or "not announced"; from `el_hot_picks.json`) and how many upcoming games have a crew.

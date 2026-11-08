@@ -227,9 +227,25 @@ after every commit, `git pull --rebase`, then `git push`, and report the pushed 
   fouls committed and drawn.
 - Crew figures = league average x mean of the three factors; unknown names count as average and are
   listed; the exact crew's record together is shown when it exists.
-- Later (user's wishes, not built): Football/EuroLeague switch in the rail, EuroLeague Hot Prediction
-  (player foul and FTM bets furthest from a typical player in that role), game card, player table with a
-  "last 10 games" toggle, Referee Statistics section, and adding `el-fetch` to the daily job.
+- **Dashboard (built 2026-11-08):** a Football | EuroLeague switch at the top of the rail (dash param
+  `sport=el`; `.rc[data-sport]` + CSS hide the other `.rc-pane`; football logic untouched). EuroLeague
+  sections: Hot Prediction (`el_hot_picks`), Upcoming games (`el_games`, click -> game card via param
+  `elg`: crew factors, both teams from `el_teams`, players from `el_game_players`), Players (`el_players`,
+  "Last 10" or a season, search, sortable), Referee statistics (`el_referees`, click -> seasons via `elr`),
+  Model check (`el_pick_record`, `el_calibration`). Header line from `el_league`.
+- **Player model (`euroleague_model.py`):** minutes = last-10 average; per-minute rates (fouls committed,
+  drawn, FT attempts) recency-weighted (half-life 365 d) and pulled toward the role (starter/bench) rate
+  by 120 minutes; FT% pulled toward the league by 20 attempts; x venue x opponent factor x crew effect.
+  Fouls Poisson; FT made = Binomial(2 x Poisson(trips), FT%). Picks: best bet per player (min 55%, 12+
+  minutes, 5+ games this season), max 2 per game, crew-known games first, top 5 by model minus typical
+  player (role rate, same minutes). Markets: fouls 1.5-3.5, fouls drawn 1.5-4.5, FT made 1.5-4.5.
+- **Backtest (`el-backtest`, `docs/el_backtest.md`, ~30 s):** weekly walk-forward. Picks won 103/157
+  (65.6%) in 2025/26 and 18/27 this season, but the raw model said ~71%, so shown pick chances use
+  `PICK_SHRINK = 0.75` toward 50% (then 65.5% shown vs 65.6% won). All 115k over-line chances are well
+  calibrated and beat the typical-player baseline (log loss 0.446 vs 0.488). Re-check PICK_SHRINK
+  after re-running. The typical player is not the bookmaker's price: say so.
+- `el-export` writes the 9 `data/dashboard/el_*.json` tables (needs the network for crews).
+- Daily GitHub job: `el-fetch` + `el-build` (raw games kept with `actions/cache`, `continue-on-error`).
 
 ## Sofascore / datafc: tried and rejected (2026-11-06)
 - The user asked for Sofascore via the `datafc` package as a referee source. A throwaway trial
@@ -279,6 +295,9 @@ Referees/
 │  ├─ dashboard_export.py # flat row tables for the dashboard
 │  ├─ euroleague.py       # EuroLeague schedules + box scores (download, parse)
 │  ├─ euroleague_stats.py # EuroLeague referee/crew figures and player foul effect
+│  ├─ euroleague_model.py # EuroLeague player projections and Hot Prediction picks
+│  ├─ euroleague_backtest.py # walk-forward check of the EuroLeague picks
+│  ├─ euroleague_export.py   # EuroLeague dashboard tables (el_*.json)
 │  └─ cli.py         # `referees` command
 ├─ data/raw/{api,csv}/          # downloads (git-ignored)
 ├─ data/matches.csv             # joined match history (committed)
@@ -299,7 +318,8 @@ Referees/
 - Greek/Belgian referee history: `uv run referees fetch-ro` (newest pages; `--full` for everything)
 - Read an RFEF designation PDF: `uv run referees rfef-pdf "<pdf url on rfef.es>"` (saved to data/raw/rfef/)
 - Dashboard tables: `uv run referees export-dashboard` (after `fetch`)
-- EuroLeague: `uv run referees el-fetch` / `el-build` / `el-crew "A" "B" "C"` / `el-upcoming`
+- EuroLeague: `uv run referees el-fetch` / `el-build` / `el-crew "A" "B" "C"` / `el-upcoming` /
+  `el-backtest` / `el-export`
 - Tests: `uv run pytest`. Lint and format: `uv run ruff check .` / `uv run ruff format .`
 
 ## Conventions

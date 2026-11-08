@@ -176,6 +176,29 @@
     .rc-rail-league label { flex-direction: row; align-items: center; }
     .rc-rail a { white-space: nowrap; gap: 8px; }
   }
+  /* Sport switch: the football and EuroLeague panes; only the chosen sport shows. */
+  .rc-pane { display: flex; flex-direction: column; gap: var(--cds-gap-lg); min-width: 0; }
+  .rc[data-sport="el"] [data-sport="football"], .rc:not([data-sport="el"]) [data-sport="el"] { display: none !important; }
+  .rc-sport { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; margin: 0 8px; border-radius: 10px; background: var(--fl-bg); border: 1px solid var(--fl-line); }
+  .rc-sport button { font: inherit; font-size: 13px; font-weight: 600; min-height: 36px; border: 0; border-radius: 7px; background: transparent; color: var(--fl-muted); cursor: pointer; white-space: nowrap; }
+  .rc-sport button:hover { color: var(--fl-text); }
+  .rc-sport button[aria-pressed="true"] { background: var(--fl-yellow); color: var(--fl-yellow-ink); }
+  .rc-sport button:focus-visible { outline: 2px solid var(--fl-text); outline-offset: 2px; }
+  @container rc (max-width: 56rem) { .rc-sport { margin: 0; flex: none; min-width: 12rem; } }
+  .rc-el-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; border-bottom: 1px solid var(--fl-line); padding-bottom: 14px; }
+  .rc .rc-el-title h2 { margin: 0; font-size: 2rem; font-weight: 700; }
+  .rc-el-controls { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md); align-items: end; }
+  .rc-el-controls label { display: flex; flex-direction: column; gap: var(--cds-gap-xs); }
+  .rc-el-games :is(th, td):nth-child(-n+3), .rc-el-players :is(th, td):nth-child(-n+2), .rc-el-refs :is(th, td):first-child,
+  .rc-el-card-players :is(th, td):nth-child(-n+3), .rc-el-teams :is(th, td):first-child, .rc-el-record :is(th, td):first-child,
+  .rc-el-ref-seasons :is(th, td):first-child { text-align: left; }
+  .rc-el-games td:nth-child(2) { white-space: normal; min-width: 11rem; }
+  .rc-el-games td:nth-child(3) { white-space: normal; min-width: 8rem; color: var(--color-fg-muted); }
+  .rc-el-games th { white-space: normal; }
+  :is(.rc-el-games, .rc-el-refs) tbody tr { cursor: pointer; }
+  :is(.rc-el-games, .rc-el-refs, .rc-el-players) tbody tr:is(:hover, :focus-visible, .is-picked) td { background: var(--color-bg); }
+  :is(.rc-el-games, .rc-el-refs) tbody tr:focus-visible { outline: 2px solid var(--color-fg); outline-offset: -2px; }
+  .rc-el-card-players tr.rc-el-split td { border-top: 2px solid var(--fl-line); }
   .rc-detail-head { display: flex; justify-content: space-between; align-items: center; gap: var(--cds-gap-md); }
   .rc-close { font: inherit; font-size: var(--cds-font-size-caption); padding: var(--cds-pad-xs) var(--cds-pad-sm); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-panel); color: var(--color-fg); cursor: pointer; }
   .rc-bars { position: relative; min-height: 10rem; }
@@ -197,7 +220,11 @@
 <div class="rc rc-layout">
   <nav class="rc-rail" aria-label="Dashboard sections">
     <div class="rc-brand"><div class="rc-brand-cards" aria-hidden="true"><span></span><span></span></div><h1>Referee cards</h1></div>
-    <div class="rc-filters rc-rail-league">
+    <div class="rc-sport" role="group" aria-label="Sport">
+      <button type="button" data-sport-btn="football" aria-pressed="true">Football</button>
+      <button type="button" data-sport-btn="el" aria-pressed="false">EuroLeague</button>
+    </div>
+    <div class="rc-filters rc-rail-league" data-sport="football">
       <label for="rc-league">League
         <select class="dash-select" id="rc-league">
           <option value="ALL">All leagues</option>
@@ -213,27 +240,42 @@
         </select>
       </label>
     </div>
-    <div class="rc-rail-group">
+    <div class="rc-rail-group" data-sport="football">
       <div class="rc-rail-title">Bet</div>
       <a href="#hot-prediction"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2c1 4 5 6 5 11a5 5 0 0 1-10 0c0-3 2-4 2-7 2 1 3 3 3 5"></path></svg><span>Hot Prediction</span><b class="rc-rail-count rc-rail-pill" data-draw="nav-hot" data-source="hot_picks">—</b></a>
       <a href="#safe-treble"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16v3a2 2 0 0 0 0 4v3H4v-3a2 2 0 0 0 0-4z"></path><path d="M10 7v10" stroke-dasharray="2 2"></path></svg><span>Safe treble</span><b class="rc-rail-count" data-draw="nav-treble" data-source="treble_combined" data-field="fair_odds">—</b></a>
       <a href="#fixtures"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg><span>Upcoming fixtures</span><b class="rc-rail-count" data-draw="nav-fx" data-source="fx_counts" data-field="fixtures">—</b></a>
     </div>
-    <div class="rc-rail-group">
+    <div class="rc-rail-group" data-sport="football">
       <div class="rc-rail-title">Research</div>
       <a href="#referees"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="4"></circle><path d="M4 21c0-4 4-6 8-6s8 2 8 6"></path></svg><span>Referees</span><b class="rc-rail-count" data-draw="nav-refs" data-source="league_summary" data-field="referees">—</b></a>
       <a href="#league-overview"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path></svg><span>League overview</span></a>
       <a href="#teams"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z"></path></svg><span>Teams</span></a>
     </div>
-    <div class="rc-rail-group">
+    <div class="rc-rail-group" data-sport="football">
       <div class="rc-rail-title">Track</div>
       <a href="#bets"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h11a2 2 0 0 1 2 2v16H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"></path><path d="M8 8h7M8 12h7"></path></svg><span>Bet log</span></a>
       <a href="#model-quality"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18a8 8 0 1 1 16 0"></path><path d="M12 18l4-6"></path></svg><span>Model quality</span></a>
       <a href="#notes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v6M12 7.5v.01"></path></svg><span>How it works</span></a>
     </div>
+    <div class="rc-rail-group" data-sport="el">
+      <div class="rc-rail-title">Bet</div>
+      <a href="#el-hot"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2c1 4 5 6 5 11a5 5 0 0 1-10 0c0-3 2-4 2-7 2 1 3 3 3 5"></path></svg><span>Hot Prediction</span><b class="rc-rail-count rc-rail-pill" data-draw="nav-el-hot" data-source="el_hot_picks">—</b></a>
+      <a href="#el-games"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg><span>Upcoming games</span><b class="rc-rail-count" data-draw="nav-el-games" data-source="el_games">—</b></a>
+    </div>
+    <div class="rc-rail-group" data-sport="el">
+      <div class="rc-rail-title">Research</div>
+      <a href="#el-players"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><circle cx="17" cy="9" r="2.5"></circle><path d="M3 20c0-3 3-5 6-5s6 2 6 5M15 15c3 0 6 1.5 6 4.5"></path></svg><span>Players</span></a>
+      <a href="#el-referees"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="4"></circle><path d="M4 21c0-4 4-6 8-6s8 2 8 6"></path></svg><span>Referees</span><b class="rc-rail-count" data-draw="nav-el-refs" data-source="el_referees">—</b></a>
+    </div>
+    <div class="rc-rail-group" data-sport="el">
+      <div class="rc-rail-title">Track</div>
+      <a href="#el-quality"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18a8 8 0 1 1 16 0"></path><path d="M12 18l4-6"></path></svg><span>Model check</span></a>
+    </div>
     <p class="rc-rail-foot">Type "refresh" in Claude Code to update the data.</p>
   </nav>
   <div class="rc-main">
+  <div class="rc-pane" data-sport="football">
   <header class="rc-head rc-topbar" id="top">
     <div class="rc-filters">
       <label for="rc-season">Season
@@ -610,6 +652,222 @@
       <tbody data-draw="checks"></tbody>
     </table>
   </details>
+  </div>
+  <div class="rc-pane" data-sport="el">
+  <header class="rc-el-title" id="el-top">
+    <h2>EuroLeague</h2>
+    <p class="rc-note" style="margin: 0;">Per game in <span data-draw="el-seasons" data-source="el_league" data-field="seasons">—</span> (<b data-draw="el-lg-games" data-source="el_league" data-field="games">—</b> games): <b data-draw="el-lg-fouls" data-source="el_league" data-field="fouls_total">—</b> fouls and <b data-draw="el-lg-ftm" data-source="el_league" data-field="ftm_total">—</b> free throws made, both teams together.</p>
+  </header>
+
+  <section class="rc-card" id="el-hot">
+    <div class="rc-hot-head">
+      <span class="rc-hot-flame" aria-hidden="true">🔥</span>
+      <div class="rc-hot-titles">
+        <h2>Hot Prediction</h2>
+        <p class="rc-hot-kicker">EuroLeague player fouls and free throws</p>
+      </div>
+      <span class="rc-hot-chip"><b data-draw="el-hot-count" data-source="el_hot_picks">—</b> picks · next 7 days</span>
+    </div>
+    <p class="rc-note">Up to 5 player bets in the next 7 days where the model differs most from a typical player in the same role (starter or bench) playing the same minutes. The model uses the player's own habits, the opponent and, once announced, the crew. The chances shown are corrected by the backtest, because the model rated its own picks a little too high. <b>Bet only at the "Bet at" odds or higher.</b> Bookmakers know each player's habits too, so treat these as a guide. Click a row to open the game.</p>
+    <div class="rc-scroll rc-hot-wrap">
+      <table class="rc-table rc-hot-table" data-source="el_hot_picks" data-row-key="key">
+        <thead><tr>
+          <th data-field="rank">#</th>
+          <th data-field="kickoff">Tip-off</th>
+          <th data-field="match">Game</th>
+          <th data-field="bet">Bet</th>
+          <th data-field="model_prob">Model</th>
+          <th data-field="typical_prob">Typical</th>
+          <th data-field="fair_odds">Fair odds</th>
+          <th data-field="min_odds">Bet at</th>
+          <th data-field="crew">Crew</th>
+          <th data-field="why">Why</th>
+        </tr></thead>
+        <tbody data-draw="el-hot-rows"></tbody>
+      </table>
+    </div>
+    <p class="rc-note rc-el-hot-empty" hidden>No player bet in the next 7 days passes the rule yet.</p>
+    <p class="rc-note rc-hot-record">Track record of this rule on past weeks (each week picked from earlier games only): this season so far <b data-draw="el-hr-won" data-source="el_pick_record" data-field="won">—</b> of <b data-draw="el-hr-picks" data-source="el_pick_record" data-field="picks">—</b> picks won (<b data-draw="el-hr-rate" data-source="el_pick_record" data-field="hit_rate_pct">—</b>, shown chance <b data-draw="el-hr-model" data-source="el_pick_record" data-field="avg_model_pct">—</b>); in 2025/26 <b data-draw="el-hr-rate-prev" data-source="el_pick_record" data-field="hit_rate_pct">—</b> of <b data-draw="el-hr-picks-prev" data-source="el_pick_record" data-field="picks">—</b> picks won. Small samples: treat as a guide.</p>
+  </section>
+
+  <section class="rc-card" id="el-games">
+    <h2>Upcoming games</h2>
+    <p class="rc-note">Next 7 days, tip-off in Athens time. <b data-draw="el-crews" data-source="el_games">—</b> of <b data-draw="el-games-n" data-source="el_games">—</b> have a crew (the official feed publishes crews close to game day). Expected fouls and free throws made per team come from the league average, both teams' habits and the crew. Click a game for its card.</p>
+    <div class="rc-scroll rc-scroll-sm">
+      <table class="rc-table rc-el-games" data-source="el_games" data-row-key="key">
+        <thead><tr>
+          <th data-field="kickoff">Tip-off</th>
+          <th data-field="match">Game</th>
+          <th data-field="crew">Crew</th>
+          <th data-field="exp_home_fouls">Fouls home</th>
+          <th data-field="exp_away_fouls">Fouls away</th>
+          <th data-field="exp_home_ftm">FT made home</th>
+          <th data-field="exp_away_ftm">FT made away</th>
+          <th data-field="crew_fouls_factor">Crew fouls ×</th>
+          <th data-field="crew_ftm_factor">Crew FT ×</th>
+        </tr></thead>
+        <tbody data-draw="el-games-rows"></tbody>
+      </table>
+    </div>
+    <p class="rc-note rc-el-games-empty" hidden>No EuroLeague games in the next 7 days.</p>
+  </section>
+
+  <section class="rc-card" id="el-card" hidden>
+    <div class="rc-detail-head">
+      <h2 data-draw="el-card-title" data-source="el_games" data-field="match">—</h2>
+      <button class="rc-close rc-el-card-close" type="button">Close</button>
+    </div>
+    <p class="rc-note">Tip-off <span data-draw="el-card-kickoff" data-source="el_games" data-field="kickoff">—</span> (Athens time). Crew: <b data-draw="el-card-crew" data-source="el_games" data-field="crew">—</b>. Crew compared with an average one: fouls <b data-draw="el-card-ff" data-source="el_games" data-field="crew_fouls_factor">—</b>, free throws made <b data-draw="el-card-ftf" data-source="el_games" data-field="crew_ftm_factor">—</b>, players' fouls <b data-draw="el-card-ec" data-source="el_games" data-field="crew_effect_committed">—</b>, fouls drawn <b data-draw="el-card-ed" data-source="el_games" data-field="crew_effect_drawn">—</b>.</p>
+    <p class="rc-note">Expected: home team <b data-draw="el-card-hf" data-source="el_games" data-field="exp_home_fouls">—</b> fouls and <b data-draw="el-card-hm" data-source="el_games" data-field="exp_home_ftm">—</b> free throws made; away team <b data-draw="el-card-af" data-source="el_games" data-field="exp_away_fouls">—</b> fouls and <b data-draw="el-card-am" data-source="el_games" data-field="exp_away_ftm">—</b> free throws made.</p>
+    <h3 class="rc-h3">Both teams this season (per game)</h3>
+    <div class="rc-scroll rc-scroll-sm">
+      <table class="rc-table rc-el-teams" data-source="el_teams" data-row-key="key">
+        <thead><tr>
+          <th data-field="team">Team</th>
+          <th data-field="games">Games</th>
+          <th data-field="fouls_per_game">Fouls</th>
+          <th data-field="fouls_drawn_per_game">Fouls drawn</th>
+          <th data-field="ftm_per_game">FT made</th>
+          <th data-field="fta_per_game">FT attempted</th>
+          <th data-field="ft_pct">FT%</th>
+          <th data-field="opp_ftm_per_game">Opponents' FT made</th>
+        </tr></thead>
+        <tbody data-draw="el-card-teams"></tbody>
+      </table>
+    </div>
+    <h3 class="rc-h3">Players</h3>
+    <p class="rc-note">Players seen in each team's last three games, with their average minutes over the last 10 (injured or rested players may still be listed). "3+" columns are the model's chance of 3 or more.</p>
+    <div class="rc-scroll">
+      <table class="rc-table rc-el-card-players" data-source="el_game_players" data-row-key="key">
+        <thead><tr>
+          <th data-field="team">Team</th>
+          <th data-field="player">Player</th>
+          <th data-field="role">Role</th>
+          <th data-field="exp_minutes">Minutes</th>
+          <th data-field="exp_fouls">Fouls</th>
+          <th data-field="exp_fouls_drawn">Fouls drawn</th>
+          <th data-field="exp_ftm">FT made</th>
+          <th data-field="ft_pct">FT%</th>
+          <th data-field="p_fouls_over_2_5">Fouls 3+</th>
+          <th data-field="p_drawn_over_2_5">Drawn 3+</th>
+          <th data-field="p_ftm_over_2_5">FT made 3+</th>
+        </tr></thead>
+        <tbody data-draw="el-card-players"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="rc-card" id="el-players">
+    <div class="rc-card-head"><h2>Players</h2>
+      <div class="rc-el-controls">
+        <label class="rc-tile-label" for="el-scope">Show
+          <select class="dash-select" id="el-scope" data-draw="el-scope-opts" data-source="el_players"></select>
+        </label>
+        <label class="rc-tile-label" for="el-psearch">Find a player or team
+          <input class="rc-search" id="el-psearch" type="search" placeholder="Name or team code" autocomplete="off">
+        </label>
+      </div>
+    </div>
+    <p class="rc-note">Per game. "Last 10" covers each current player's last 10 games. Click a column to sort.</p>
+    <div class="rc-scroll">
+      <table class="rc-table rc-el-players" data-source="el_players" data-row-key="key">
+        <thead><tr>
+          <th data-field="player"><button type="button" data-sort="player">Player</button></th>
+          <th data-field="team"><button type="button" data-sort="team">Team</button></th>
+          <th data-field="games"><button type="button" data-sort="games">Games</button></th>
+          <th data-field="minutes_per_game"><button type="button" data-sort="minutes_per_game">Minutes</button></th>
+          <th data-field="fouls_committed_per_game"><button type="button" data-sort="fouls_committed_per_game">Fouls</button></th>
+          <th data-field="fouls_drawn_per_game"><button type="button" data-sort="fouls_drawn_per_game">Fouls drawn</button></th>
+          <th data-field="ftm_per_game"><button type="button" data-sort="ftm_per_game">FT made</button></th>
+          <th data-field="fta_per_game"><button type="button" data-sort="fta_per_game">FT attempted</button></th>
+          <th data-field="ft_pct"><button type="button" data-sort="ft_pct">FT%</button></th>
+        </tr></thead>
+        <tbody data-draw="el-player-rows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="rc-card" id="el-referees">
+    <h2>Referee statistics</h2>
+    <p class="rc-note">Per game over all seasons: recent seasons count more, and referees with few games are pulled toward the league average. "×" compares with an average referee (1.05 = 5% more). "Players' fouls ×" compares players' fouls with their own usual rate. Each game counts for all three referees of its crew. Click a column to sort and a referee for their seasons.</p>
+    <div class="rc-scroll">
+      <table class="rc-table rc-el-refs" data-source="el_referees" data-row-key="key">
+        <thead><tr>
+          <th data-field="referee"><button type="button" data-sort="referee">Referee</button></th>
+          <th data-field="games"><button type="button" data-sort="games">Games</button></th>
+          <th data-field="fouls_total"><button type="button" data-sort="fouls_total">Fouls</button></th>
+          <th data-field="fouls_home"><button type="button" data-sort="fouls_home">Home</button></th>
+          <th data-field="fouls_away"><button type="button" data-sort="fouls_away">Away</button></th>
+          <th data-field="ftm_total"><button type="button" data-sort="ftm_total">FT made</button></th>
+          <th data-field="ftm_home"><button type="button" data-sort="ftm_home">Home FT</button></th>
+          <th data-field="ftm_away"><button type="button" data-sort="ftm_away">Away FT</button></th>
+          <th data-field="factor_fouls"><button type="button" data-sort="factor_fouls">Fouls ×</button></th>
+          <th data-field="factor_ftm"><button type="button" data-sort="factor_ftm">FT ×</button></th>
+          <th data-field="effect_committed"><button type="button" data-sort="effect_committed">Players' fouls ×</button></th>
+          <th data-field="effect_drawn"><button type="button" data-sort="effect_drawn">Fouls drawn ×</button></th>
+          <th data-field="last_game"><button type="button" data-sort="last_game">Last game</button></th>
+        </tr></thead>
+        <tbody data-draw="el-ref-rows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="rc-card" id="el-ref-detail" hidden>
+    <div class="rc-detail-head">
+      <h2 data-draw="el-ref-name" data-source="el_referees" data-field="referee">—</h2>
+      <button class="rc-close rc-el-ref-close" type="button">Close</button>
+    </div>
+    <p class="rc-note">Per game, season by season (plain averages). The first row is all seasons, adjusted.</p>
+    <div class="rc-scroll rc-scroll-sm">
+      <table class="rc-table rc-el-ref-seasons" data-source="el_referees" data-row-key="key">
+        <thead><tr>
+          <th data-field="scope">Season</th>
+          <th data-field="games">Games</th>
+          <th data-field="fouls_total">Fouls</th>
+          <th data-field="fouls_home">Home</th>
+          <th data-field="fouls_away">Away</th>
+          <th data-field="ftm_total">FT made</th>
+          <th data-field="ftm_home">Home FT</th>
+          <th data-field="ftm_away">Away FT</th>
+          <th data-field="fta_total">FT attempted</th>
+        </tr></thead>
+        <tbody data-draw="el-ref-detail-rows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="rc-card" id="el-quality">
+    <h2>Model check</h2>
+    <p class="rc-note">Walk-forward backtest: every past week predicted only from earlier games; bets on players who did not play are left out (bookmakers void them).</p>
+    <div class="rc-scroll rc-scroll-sm">
+      <table class="rc-table rc-el-record" data-source="el_pick_record" data-row-key="key">
+        <thead><tr>
+          <th data-field="period">Period</th>
+          <th data-field="picks">Picks</th>
+          <th data-field="won">Won</th>
+          <th data-field="hit_rate_pct">Hit rate</th>
+          <th data-field="avg_model_pct">Shown chance</th>
+          <th data-field="avg_typical_pct">Typical player</th>
+          <th data-field="break_even_odds">Break-even odds</th>
+        </tr></thead>
+        <tbody data-draw="el-record-rows"></tbody>
+      </table>
+    </div>
+    <h3 class="rc-h3">Is the chance honest?</h3>
+    <p class="rc-note">Every player over-line chance the model gave in those weeks, grouped by size, against how often it happened.</p>
+    <div class="rc-scroll rc-scroll-sm">
+      <table class="rc-table rc-el-record" data-source="el_calibration" data-row-key="key">
+        <thead><tr>
+          <th data-field="bin">Model chance</th>
+          <th data-field="predictions">Predictions</th>
+          <th data-field="predicted_pct">Predicted</th>
+          <th data-field="observed_pct">Happened</th>
+        </tr></thead>
+        <tbody data-draw="el-cal-rows"></tbody>
+      </table>
+    </div>
+  </section>
+  </div>
   </div>
 </div>
 
@@ -1383,5 +1641,272 @@
     const r = d.status === 'ok' ? d.data.find((x) => x.key === `${p.league}|${p.season}`) : null;
     el.textContent = r ? rc.int(r.referees) : '—';
     if (r) el.dataset.where = rc.where(r.key);
+  });
+</script>
+
+<script>
+  // EuroLeague: sport switch, picks, games, game card, players and referees.
+  const elRoot = document.querySelector('.rc');
+  const el = { pSort: 'minutes_per_game', pDir: -1, pSearch: '', scope: 'Last 10', rSort: 'games', rDir: -1 };
+  const elSport = () => (dash.params().sport === 'el' ? 'el' : 'football');
+  const elShowSport = () => {
+    const s = elSport();
+    if (elRoot) elRoot.dataset.sport = s;
+    for (const b of document.querySelectorAll('[data-sport-btn]')) b.setAttribute('aria-pressed', String(b.dataset.sportBtn === s));
+  };
+  for (const b of document.querySelectorAll('[data-sport-btn]')) {
+    b.addEventListener('click', () => {
+      dash.setParams({ sport: b.dataset.sportBtn === 'el' ? 'el' : null });
+      elShowSport();
+      window.scrollTo({ top: 0 });
+    });
+  }
+  elShowSport();
+  const elRows = (name) => {
+    const d = dash.data(name);
+    return d.status === 'ok' ? d.data : [];
+  };
+  const elScroll = (sel) => requestAnimationFrame(() => {
+    for (const x of document.querySelectorAll(sel)) x.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  });
+  const elOpenGame = (key) => { dash.setParams({ elg: key }); elScroll('#el-card'); };
+  dash.onData(() => {
+    elShowSport();
+    const p = dash.params();
+    for (const c of document.querySelectorAll('#el-card')) c.hidden = !p.elg;
+    for (const c of document.querySelectorAll('#el-ref-detail')) c.hidden = !p.elr;
+    const hp = dash.data('el_hot_picks');
+    if (hp.status === 'ok') for (const x of document.querySelectorAll('.rc-el-hot-empty')) x.hidden = hp.data.length > 0;
+    const gs = dash.data('el_games');
+    if (gs.status === 'ok') for (const x of document.querySelectorAll('.rc-el-games-empty')) x.hidden = gs.data.length > 0;
+  });
+  for (const c of document.querySelectorAll('.rc-el-card-close')) c.addEventListener('click', () => dash.setParams({ elg: null }));
+  for (const c of document.querySelectorAll('.rc-el-ref-close')) c.addEventListener('click', () => dash.setParams({ elr: null }));
+
+  // Counts in the rail and the headers.
+  const elCount = (name, test) => (el2) => {
+    const d = dash.data(name);
+    el2.textContent = d.status === 'ok' ? String(test ? d.data.filter(test).length : d.data.length) : '—';
+  };
+  dash.draw('nav-el-hot', elCount('el_hot_picks'));
+  dash.draw('el-hot-count', elCount('el_hot_picks'));
+  dash.draw('nav-el-games', elCount('el_games'));
+  dash.draw('el-games-n', elCount('el_games'));
+  dash.draw('el-crews', elCount('el_games', (g) => g.crew_known));
+  dash.draw('nav-el-refs', elCount('el_referees', (r) => r.scope === 'All seasons'));
+  const elField = (name, find, field, fmt) => (node) => {
+    const row = elRows(name).find(find);
+    if (!row || row[field] == null) { node.textContent = '—'; return; }
+    node.dataset.where = rc.where(row.key);
+    node.textContent = fmt ? fmt(row[field]) : String(row[field]);
+  };
+  const isLeague = (r) => r.key === 'league';
+  dash.draw('el-seasons', elField('el_league', isLeague, 'seasons'));
+  dash.draw('el-lg-games', elField('el_league', isLeague, 'games', rc.int));
+  dash.draw('el-lg-fouls', elField('el_league', isLeague, 'fouls_total', rc.f1));
+  dash.draw('el-lg-ftm', elField('el_league', isLeague, 'ftm_total', rc.f1));
+  const thisSeason = (r) => r.key === '2026/27 so far';
+  const lastSeason = (r) => r.key === '2025/26';
+  dash.draw('el-hr-won', elField('el_pick_record', thisSeason, 'won', rc.int));
+  dash.draw('el-hr-picks', elField('el_pick_record', thisSeason, 'picks', rc.int));
+  dash.draw('el-hr-rate', elField('el_pick_record', thisSeason, 'hit_rate_pct', rc.pct));
+  dash.draw('el-hr-model', elField('el_pick_record', thisSeason, 'avg_model_pct', rc.pct));
+  dash.draw('el-hr-rate-prev', elField('el_pick_record', lastSeason, 'hit_rate_pct', rc.pct));
+  dash.draw('el-hr-picks-prev', elField('el_pick_record', lastSeason, 'picks', rc.int));
+
+  // Hot Prediction rows (same columns and look as the football table).
+  dash.draw('el-hot-rows', (tbody) => {
+    tbody.replaceChildren(...[...elRows('el_hot_picks')].sort((a, b) => a.rank - b.rank).map((h) => {
+      const tr = document.createElement('tr');
+      tr.dataset.key = h.key;
+      tr.tabIndex = 0;
+      tr.title = `Why: ${h.why}.`;
+      tr.addEventListener('click', () => elOpenGame(h.game));
+      tr.addEventListener('keydown', (e) => { if (e.key === 'Enter') elOpenGame(h.game); });
+      const rank = document.createElement('td');
+      const badge = document.createElement('span');
+      badge.textContent = String(h.rank);
+      rank.append(badge);
+      tr.append(rank);
+      for (const v of [h.kickoff, h.match, h.bet, rc.pct(h.model_prob), rc.pct(h.typical_prob), rc.f2(h.fair_odds),
+        rc.f2(h.min_odds) + '+', h.crew, h.why]) rc.cell(tr, v);
+      return tr;
+    }));
+  });
+
+  // Upcoming games.
+  dash.draw('el-games-rows', (tbody) => {
+    const p = dash.params();
+    tbody.replaceChildren(...[...elRows('el_games')].sort((a, b) => a.order - b.order).map((g) => {
+      const tr = document.createElement('tr');
+      tr.dataset.key = g.key;
+      tr.tabIndex = 0;
+      if (g.key === p.elg) tr.classList.add('is-picked');
+      tr.addEventListener('click', () => elOpenGame(g.key));
+      tr.addEventListener('keydown', (e) => { if (e.key === 'Enter') elOpenGame(g.key); });
+      for (const v of [g.kickoff, g.match, g.crew, rc.f1(g.exp_home_fouls), rc.f1(g.exp_away_fouls), rc.f1(g.exp_home_ftm),
+        rc.f1(g.exp_away_ftm), rc.f2(g.crew_fouls_factor), rc.f2(g.crew_ftm_factor)]) rc.cell(tr, v);
+      return tr;
+    }));
+  });
+
+  // Game card.
+  const elGame = () => {
+    const key = dash.params().elg;
+    return key ? elRows('el_games').find((g) => g.key === String(key)) || null : null;
+  };
+  const elCard = (field, fmt) => (node) => {
+    const g = elGame();
+    if (!g || g[field] == null) { node.textContent = '—'; return; }
+    node.dataset.where = rc.where(g.key);
+    node.textContent = fmt ? fmt(g[field]) : String(g[field]);
+  };
+  dash.draw('el-card-title', elCard('match'));
+  dash.draw('el-card-kickoff', elCard('kickoff'));
+  dash.draw('el-card-crew', elCard('crew'));
+  dash.draw('el-card-ff', elCard('crew_fouls_factor', rc.f2));
+  dash.draw('el-card-ftf', elCard('crew_ftm_factor', rc.f2));
+  dash.draw('el-card-ec', elCard('crew_effect_committed', rc.f2));
+  dash.draw('el-card-ed', elCard('crew_effect_drawn', rc.f2));
+  dash.draw('el-card-hf', elCard('exp_home_fouls', rc.f1));
+  dash.draw('el-card-hm', elCard('exp_home_ftm', rc.f1));
+  dash.draw('el-card-af', elCard('exp_away_fouls', rc.f1));
+  dash.draw('el-card-am', elCard('exp_away_ftm', rc.f1));
+  dash.draw('el-card-teams', (tbody) => {
+    const g = elGame();
+    const teams = elRows('el_teams');
+    const rows = g ? [g.home_code, g.away_code].map((c) => teams.find((t) => t.key === `${c}|This season`)).filter(Boolean) : [];
+    tbody.replaceChildren(...rows.map((t) => {
+      const tr = document.createElement('tr');
+      tr.dataset.key = t.key;
+      for (const v of [t.team, rc.int(t.games), rc.f1(t.fouls_per_game), rc.f1(t.fouls_drawn_per_game), rc.f1(t.ftm_per_game),
+        rc.f1(t.fta_per_game), rc.pct(t.ft_pct), rc.f1(t.opp_ftm_per_game)]) rc.cell(tr, v);
+      return tr;
+    }));
+  });
+  dash.draw('el-card-players', (tbody) => {
+    const g = elGame();
+    const rows = g ? elRows('el_game_players').filter((r) => r.game === g.key) : [];
+    let side = null;
+    tbody.replaceChildren(...rows.map((r) => {
+      const tr = document.createElement('tr');
+      tr.dataset.key = r.key;
+      if (side && r.side !== side) tr.classList.add('rc-el-split');
+      side = r.side;
+      for (const v of [r.team, r.player, r.role, rc.f1(r.exp_minutes), rc.f2(r.exp_fouls), rc.f2(r.exp_fouls_drawn), rc.f2(r.exp_ftm),
+        rc.pct(r.ft_pct), rc.pct(r.p_fouls_over_2_5), rc.pct(r.p_drawn_over_2_5), rc.pct(r.p_ftm_over_2_5)]) rc.cell(tr, v);
+      return tr;
+    }));
+  });
+
+  // Players table: scope (Last 10 or a season), search, sort.
+  dash.draw('el-scope-opts', (sel) => {
+    const scopes = [...new Set(elRows('el_players').map((r) => r.scope))]
+      .sort((a, b) => (a === 'Last 10' ? -1 : b === 'Last 10' ? 1 : b.localeCompare(a)));
+    if (!scopes.length) scopes.push('Last 10');
+    sel.replaceChildren(...scopes.map((s) => new Option(s, s)));
+    if (!scopes.includes(el.scope)) el.scope = scopes[0];
+    sel.value = el.scope;
+    sel.onchange = () => { el.scope = sel.value; dash.draw('el-player-rows'); };
+  });
+  for (const i of document.querySelectorAll('#el-psearch')) {
+    i.addEventListener('input', () => { el.pSearch = i.value; dash.draw('el-player-rows'); });
+  }
+  dash.draw('el-player-rows', (tbody) => {
+    const d = dash.data('el_players');
+    if (d.status !== 'ok') { tbody.replaceChildren(); tbody._rcSig = null; return; }
+    const q = el.pSearch.trim().toLowerCase();
+    if (rc.unchanged(tbody, d.data, [el.scope, q, el.pSort, el.pDir].join('|'))) return;
+    const rows = rc.sortRows(d.data.filter((r) => r.scope === el.scope
+      && (!q || r.player.toLowerCase().includes(q) || String(r.team).toLowerCase().includes(q))), el.pSort, el.pDir);
+    tbody.replaceChildren(...rows.map((r) => {
+      const tr = document.createElement('tr');
+      tr.dataset.key = r.key;
+      for (const v of [r.player, r.team, rc.int(r.games), rc.f1(r.minutes_per_game), rc.f2(r.fouls_committed_per_game),
+        rc.f2(r.fouls_drawn_per_game), rc.f2(r.ftm_per_game), rc.f2(r.fta_per_game), rc.pct(r.ft_pct)]) rc.cell(tr, v);
+      return tr;
+    }));
+  });
+
+  // Referee statistics: sortable, click for seasons.
+  dash.draw('el-ref-rows', (tbody) => {
+    const p = dash.params();
+    const rows = rc.sortRows(elRows('el_referees').filter((r) => r.scope === 'All seasons'), el.rSort, el.rDir);
+    tbody.replaceChildren(...rows.map((r) => {
+      const tr = document.createElement('tr');
+      tr.dataset.key = r.key;
+      tr.tabIndex = 0;
+      if (r.referee === p.elr) tr.classList.add('is-picked');
+      const open = () => { dash.setParams({ elr: r.referee }); elScroll('#el-ref-detail'); };
+      tr.addEventListener('click', open);
+      tr.addEventListener('keydown', (e) => { if (e.key === 'Enter') open(); });
+      for (const v of [r.referee, rc.int(r.games), rc.f1(r.fouls_total), rc.f1(r.fouls_home), rc.f1(r.fouls_away), rc.f1(r.ftm_total),
+        rc.f1(r.ftm_home), rc.f1(r.ftm_away), rc.f2(r.factor_fouls), rc.f2(r.factor_ftm), rc.f2(r.effect_committed),
+        rc.f2(r.effect_drawn), r.last_game]) rc.cell(tr, v);
+      return tr;
+    }));
+  });
+  const elRefRows = () => {
+    const name = dash.params().elr;
+    if (!name) return [];
+    const mine = elRows('el_referees').filter((r) => r.referee === String(name));
+    return mine.sort((a, b) => (a.scope === 'All seasons' ? -1 : b.scope === 'All seasons' ? 1 : b.scope.localeCompare(a.scope)));
+  };
+  dash.draw('el-ref-name', (node) => {
+    const rows = elRefRows();
+    if (!rows.length) { node.textContent = '—'; return; }
+    node.dataset.where = rc.where(rows[0].key);
+    node.textContent = rows[0].referee;
+  });
+  dash.draw('el-ref-detail-rows', (tbody) => {
+    tbody.replaceChildren(...elRefRows().map((r) => {
+      const tr = document.createElement('tr');
+      tr.dataset.key = r.key;
+      for (const v of [r.scope, rc.int(r.games), rc.f1(r.fouls_total), rc.f1(r.fouls_home), rc.f1(r.fouls_away), rc.f1(r.ftm_total),
+        rc.f1(r.ftm_home), rc.f1(r.ftm_away), rc.f1(r.fta_total)]) rc.cell(tr, v);
+      return tr;
+    }));
+  });
+
+  // Sortable headers for the players and referees tables.
+  const elSortable = (tableSel, keyName, dirName, drawName, textKeys) => {
+    const show = () => {
+      for (const th of document.querySelectorAll(`${tableSel} th`)) {
+        const btn = th.querySelector('button');
+        if (btn && btn.dataset.sort === el[keyName]) th.setAttribute('aria-sort', el[dirName] < 0 ? 'descending' : 'ascending');
+        else th.removeAttribute('aria-sort');
+      }
+    };
+    for (const btn of document.querySelectorAll(`${tableSel} th button`)) {
+      btn.addEventListener('click', () => {
+        const key = btn.dataset.sort;
+        el[dirName] = el[keyName] === key ? -el[dirName] : (textKeys.includes(key) ? 1 : -1);
+        el[keyName] = key;
+        show();
+        dash.draw(drawName);
+      });
+    }
+    show();
+  };
+  elSortable('.rc-el-players', 'pSort', 'pDir', 'el-player-rows', ['player', 'team']);
+  elSortable('.rc-el-refs', 'rSort', 'rDir', 'el-ref-rows', ['referee', 'last_game']);
+
+  // Model check tables.
+  dash.draw('el-record-rows', (tbody) => {
+    tbody.replaceChildren(...elRows('el_pick_record').map((r) => {
+      const tr = document.createElement('tr');
+      tr.dataset.key = r.key;
+      for (const v of [r.period, rc.int(r.picks), rc.int(r.won), rc.pct(r.hit_rate_pct), rc.pct(r.avg_model_pct),
+        rc.pct(r.avg_typical_pct), rc.f2(r.break_even_odds)]) rc.cell(tr, v);
+      return tr;
+    }));
+  });
+  dash.draw('el-cal-rows', (tbody) => {
+    tbody.replaceChildren(...elRows('el_calibration').map((r) => {
+      const tr = document.createElement('tr');
+      tr.dataset.key = r.key;
+      for (const v of [r.bin, rc.int(r.predictions), rc.pct(r.predicted_pct), rc.pct(r.observed_pct)]) rc.cell(tr, v);
+      return tr;
+    }));
   });
 </script>
