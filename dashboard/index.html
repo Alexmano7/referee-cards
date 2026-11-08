@@ -23,8 +23,6 @@
   .rc-brand-cards span + span { background: var(--fl-red); }
   .rc-topbar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px; border-bottom: 1px solid var(--fl-line); padding-bottom: 18px; }
   .rc-head h1 { font-family: var(--fl-display); font-size: 2rem; font-weight: 700; }
-  .rc-hot-title { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px; }
-  .rc-hot-title h2 { font-size: 2.6rem; font-weight: 700; margin: 0; }
   .rc .rc-tip { background: var(--fl-panel); border-color: var(--fl-line); color: var(--fl-text); }
   .rc .rc-tip span { color: var(--fl-muted); }
   .rc { display: flex; flex-direction: column; gap: var(--cds-gap-lg); font-family: var(--font-anthropic-sans); min-width: 0; }
@@ -96,30 +94,35 @@
   .rc-calc input[type=number] { width: 8rem; }
   .rc-bets td:nth-child(8) { font-weight: var(--cds-font-weight-medium); }
   .rc-bets :is(th, td):nth-child(-n+3) { text-align: left; }
-  .rc-hot-list { display: flex; flex-direction: column; gap: 10px; min-height: 6rem; container-type: inline-size; }
-  .rc-hot-card { display: grid; grid-template-columns: 3.4rem minmax(0, 1fr); grid-template-areas: "badge body" "nums nums" "meta meta" "why why" "open open"; gap: 10px 16px; padding: 16px 18px; border: 1px solid var(--fl-line); border-radius: 14px; background: var(--fl-panel); min-width: 0; }
-  .rc-hot-badge { grid-area: badge; align-self: start; } .rc-hot-body { grid-area: body; } .rc-hot-nums { grid-area: nums; }
-  .rc-hot-meta { grid-area: meta; } .rc-hot-why { grid-area: why; } .rc .rc-hot-open { grid-area: open; justify-self: start; }
-  @container (min-width: 52rem) {
-    .rc-hot-card { grid-template-columns: 3.4rem minmax(0, 1.25fr) minmax(20rem, 1fr) auto; grid-template-areas: "badge body nums open" "badge meta nums open" "badge why why open"; row-gap: 4px; align-items: center; }
-    .rc .rc-hot-nums { border-top: 0; padding-top: 0; border-left: 1px solid var(--fl-line); padding-left: 16px; align-self: stretch; align-content: center; }
-    .rc .rc-hot-open { align-self: center; margin-top: 0; }
-  }
-  .rc-hot-badge { width: 3.4rem; height: 4.8rem; border-radius: 6px; background: var(--fl-yellow); color: var(--fl-yellow-ink); display: flex; align-items: center; justify-content: center; font-family: var(--fl-display); font-size: 1.9rem; font-weight: 700; }
-  .rc-hot-body { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-  .rc-hot-rank { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); text-transform: uppercase; letter-spacing: .04em; }
-  .rc-hot-bet { font-family: var(--fl-display); font-stretch: condensed; font-weight: 600; font-size: 1.6rem; line-height: 1.1; }
-  .rc-hot-match { font-weight: var(--cds-font-weight-medium); }
-  .rc-hot-meta, .rc-hot-why { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
-  .rc-hot-nums { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; border-top: 1px solid var(--fl-line); padding-top: 14px; font-size: 11px; font-variant-numeric: tabular-nums; }
-  .rc-hot-nums b { display: block; font-size: 1.25rem; font-weight: 600; color: var(--fl-text); }
-  .rc-hot-nums div:last-child b { color: var(--fl-yellow); }
-  .rc-hot-nums span { color: var(--color-fg-muted); }
-  .rc-hot-open { align-self: flex-start; font: inherit; font-size: var(--cds-font-size-caption); padding: var(--cds-pad-xs) var(--cds-pad-sm); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-panel); color: var(--color-fg); cursor: pointer; margin-top: auto; }
-  .rc-hot-open:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
+  /* Hot Prediction: a compact summary table; clicking a row opens the match.
+     Columns: # | Kick-off | Match | Bet | Model | Typical | Fair odds | Bet at | Referee | Why */
+  .rc-hot-wrap { container-type: inline-size; }
+  .rc-hot-table :is(th, td):is(:nth-child(-n+4), :nth-child(n+9)) { text-align: left; }
+  .rc-hot-table td:is(:nth-child(3), :nth-child(4), :nth-child(9), :nth-child(10)) { white-space: normal; }
+  .rc-hot-table td:nth-child(3) { min-width: 10rem; }
+  .rc-hot-table td:nth-child(4) { min-width: 9rem; font-weight: 600; color: var(--fl-text); }
+  .rc-hot-table td:nth-child(8) { font-weight: 600; color: var(--fl-yellow); }
+  .rc-hot-table td:nth-child(10) { min-width: 11rem; color: var(--color-fg-muted); }
+  .rc-hot-table tbody tr { cursor: pointer; }
+  .rc-hot-table tbody tr:is(:hover, :focus-visible) td { background: var(--color-bg); }
+  .rc-hot-table tbody tr:focus-visible { outline: 2px solid var(--color-fg); outline-offset: -2px; }
+  .rc-hot-table td:first-child span { display: inline-flex; align-items: center; justify-content: center; width: 1.4rem; height: 1.9rem; border-radius: 3px; background: var(--fl-yellow); color: var(--fl-yellow-ink); font-family: var(--fl-display); font-weight: 700; font-size: 1rem; }
+  .rc-hot-table td small { color: var(--color-fg-muted); font-size: inherit; }
+  @container (max-width: 64rem) { .rc-hot-table :is(th, td):nth-child(10) { display: none; } }
+  @container (max-width: 46rem) { .rc-hot-table :is(th, td):is(:nth-child(2), :nth-child(6), :nth-child(9)) { display: none; } }
+  .rc-treble h2 { margin: 0 0 4px; }
   .rc .rc-hot-record b { font-weight: 600; color: var(--color-fg); }
   .rc-treble { --color-panel: var(--fl-slip); --color-bg: #E9E2D2; --color-fg: var(--fl-slip-ink); --color-fg-muted: #5C574A; --color-border-line: #CFC6B0;
     background: var(--fl-slip); color: var(--fl-slip-ink); border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: var(--cds-gap-xs); min-width: 0; container-type: inline-size; color-scheme: light; }
+  .rc-stack { display: flex; flex-direction: column; gap: var(--cds-gap-md); min-width: 0; }
+  /* Wide slip: the three legs side by side, the two track-record seasons side by side. */
+  @container (min-width: 46rem) {
+    .rc-treble .rc-treble-legs tbody { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 24px; }
+    .rc-treble .rc-treble-legs tr { border-bottom: 0; border-top: 1px dashed var(--color-border-line); }
+    .rc-treble .rc-treble-record tbody { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px; }
+    .rc-treble .rc-treble-record tr { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .rc .rc-treble-min { align-self: flex-start; padding-inline: 18px; }
+  }
   .rc-treble-min { padding: 10px 12px; border-radius: 8px; background: var(--fl-slip-ink); color: var(--fl-yellow); font-weight: 600; text-align: center; }
   .rc .rc-treble b { font-weight: 600; color: var(--color-fg); }
   /* Legs as stacked slip lines (the slip sits in the narrow column, so an 8-column table never fit). */
@@ -214,15 +217,31 @@
   <p class="rc-caveat" data-show="GR BEL" hidden>Referee names for past matches come from referee.observer and start in mid-2025, so referee figures here rest on fewer matches than in the other leagues.</p>
   <p class="rc-caveat" data-show="PD" hidden>Some La Liga matches have no referee name in the data. They count in the league figures but are not credited to any referee.</p>
 
-  <section id="hot-prediction" style="display: flex; flex-direction: column; gap: 14px;">
-    <div class="rc-hot-title"><h2>Hot Prediction</h2></div>
-    <p class="rc-note">Up to 5 card bets in the next 7 days, ranked by how much the model differs from a typical match in that league (because of the referee and both teams): that gap is where a bookmaker's standard price is most likely to be too generous. Each pick has at least a 55% model chance. <b>Bet only if your bookmaker offers at least the minimum odds shown</b>; below that the price is not worth it. These are estimates, not certainties.</p>
-    <div class="rc-hot-list" data-draw="hot-list" data-source="hot_picks"></div>
+  <section class="rc-card" id="hot-prediction">
+    <h2>Hot Prediction</h2>
+    <p class="rc-note">Up to 5 card bets in the next 7 days, ranked by how much the model differs from a typical match in that league (because of the referee and both teams): that gap is where a bookmaker's standard price is most likely to be too generous. Each pick has at least a 55% model chance. <b>Bet only at the "Bet at" odds or higher</b>; below that the price is not worth it. Click a row to open the match. Estimates, not certainties.</p>
+    <div class="rc-scroll rc-hot-wrap">
+      <table class="rc-table rc-hot-table" data-source="hot_picks" data-row-key="key">
+        <thead><tr>
+          <th data-field="rank">#</th>
+          <th data-field="kickoff">Kick-off</th>
+          <th data-field="match">Match</th>
+          <th data-field="bet">Bet</th>
+          <th data-field="model_prob">Model</th>
+          <th data-field="typical_prob">Typical</th>
+          <th data-field="fair_odds">Fair odds</th>
+          <th data-field="min_odds">Bet at</th>
+          <th data-field="referee">Referee (matches)</th>
+          <th data-field="why">Why (× usual cards)</th>
+        </tr></thead>
+        <tbody data-draw="hot-list"></tbody>
+      </table>
+    </div>
     <p class="rc-note rc-hot-empty" hidden>No match in the next 7 days passes the rule yet. Refresh again closer to the weekend, when more referees are announced.</p>
     <p class="rc-note rc-hot-record">Track record of this rule on past weeks (each week picked from earlier data only): this season so far it won <b data-draw="hr-hits" data-source="hot_picks_record" data-field="hits">—</b> of <b data-draw="hr-picks" data-source="hot_picks_record" data-field="picks">—</b> picks (<b data-draw="hr-rate" data-source="hot_picks_record" data-field="hit_rate_pct">—</b>), against <b data-draw="hr-model" data-source="hot_picks_record" data-field="avg_model_pct">—</b> the model expected and <b data-draw="hr-typical" data-source="hot_picks_record" data-field="avg_typical_pct">—</b> for a typical match. Small sample: treat as a guide.</p>
   </section>
 
-  <section class="rc-grid rc-grid-fx">
+  <section class="rc-stack">
     <div class="rc-treble" id="safe-treble">
       <h2>Safe treble</h2>
       <p class="rc-note" style="margin: 0;">3 matches, combined odds about 2.00. All three must win.</p>
@@ -1097,47 +1116,46 @@
 
 
   // Hot Prediction cards: one per pick; "Open match" shows the match card.
-  dash.draw('hot-list', (el) => {
+  dash.draw('hot-list', (tbody) => {
     const d = dash.data('hot_picks');
-    el.replaceChildren();
-    if (d.status !== 'ok') return;
-    const add = (parent, tag, cls, text) => {
-      const n = document.createElement(tag);
-      if (cls) n.className = cls;
-      if (text != null) n.textContent = text;
-      parent.append(n);
-      return n;
+    if (d.status !== 'ok') { tbody.replaceChildren(); return; }
+    // "referee X 0.93x an average referee; Home 0.96x and Away 0.82x their league's usual cards" -> "Ref 0.93 · Home 0.96 · Away 0.82"
+    const shortWhy = (h) => {
+      const m = /([\d.]+)x an average referee; .+? ([\d.]+)x and .+? ([\d.]+)x/.exec(h.why || '');
+      return m ? `Ref ${m[1]} · Home ${m[2]} · Away ${m[3]}` : h.why;
     };
-    for (const h of [...d.data].sort((a, b) => a.rank - b.rank)) {
-      const card = add(el, 'article', 'rc-hot-card');
-      const badge = add(card, 'div', 'rc-hot-badge', String(h.rank));
-      badge.setAttribute('aria-hidden', 'true');
-      const body = add(card, 'div', 'rc-hot-body');
-      add(body, 'div', 'rc-hot-rank', `Pick ${h.rank} · ${h.league} · ${h.kickoff}`);
-      add(body, 'div', 'rc-hot-bet', h.bet);
-      add(body, 'div', 'rc-hot-match', h.match);
-      const nums = add(card, 'div', 'rc-hot-nums');
-      for (const [label, value] of [
-        ['Model', rc.pct(h.model_prob)],
-        ['Typical match', rc.pct(h.typical_prob)],
-        ['Fair odds', rc.f2(h.fair_odds)],
-        ['Bet at', rc.f2(h.min_odds) + '+'],
-      ]) {
-        const cell = add(nums, 'div');
-        add(cell, 'span', null, label);
-        add(cell, 'b', null, value);
-      }
-      add(card, 'div', 'rc-hot-meta', `Referee: ${h.referee}` + (h.referee_matches ? ` (${h.referee_matches} matches in our data)` : ''));
-      add(card, 'div', 'rc-hot-why', `Why: ${h.why}.`);
-      const btn = add(card, 'button', 'rc-hot-open', 'Open match');
-      btn.type = 'button';
-      btn.addEventListener('click', () => {
-        dash.setParams({ fx: h.fixture });
-        requestAnimationFrame(() => {
-          for (const x of document.querySelectorAll('#fixture-detail')) x.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-        });
+    const open = (h) => {
+      dash.setParams({ fx: h.fixture });
+      requestAnimationFrame(() => {
+        for (const x of document.querySelectorAll('#fixture-detail')) x.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
       });
-    }
+    };
+    tbody.replaceChildren(...[...d.data].sort((a, b) => a.rank - b.rank).map((h) => {
+      const tr = document.createElement('tr');
+      tr.dataset.key = h.key;
+      tr.tabIndex = 0;
+      tr.title = `Why: ${h.why}.`;
+      tr.addEventListener('click', () => open(h));
+      tr.addEventListener('keydown', (e) => { if (e.key === 'Enter') open(h); });
+      const rank = document.createElement('td');
+      const badge = document.createElement('span');
+      badge.textContent = String(h.rank);
+      rank.append(badge);
+      tr.append(rank);
+      const withSmall = (text, small, before) => {
+        const td = document.createElement('td');
+        const sm = document.createElement('small');
+        sm.textContent = small;
+        if (before) td.append(sm, text); else td.append(text, sm);
+        tr.append(td);
+      };
+      rc.cell(tr, h.kickoff);
+      withSmall(h.match, `${h.league} · `, true);
+      for (const v of [h.bet, rc.pct(h.model_prob), rc.pct(h.typical_prob), rc.f2(h.fair_odds), rc.f2(h.min_odds) + '+']) rc.cell(tr, v);
+      withSmall(h.referee, h.referee_matches ? ` (${h.referee_matches})` : '', false);
+      rc.cell(tr, shortWhy(h));
+      return tr;
+    }));
   });
   const hotRecord = (field, fmt) => (el) => {
     const d = dash.data('hot_picks_record');

@@ -307,7 +307,9 @@ Referees/
   (`.rc-treble` re-points the tokens again); a league dropdown `#rc-league` replaced the tabs. Headings use
   a condensed system stack, because the dashboard can't load Google Fonts. The user asked for the logic to
   stay untouched: change looks via CSS and markup, and keep `data-draw` names and marks.
-  Hot Prediction shows each pick as one full-width row (badge, bet, numbers, button); below 52rem it stacks as a card.
+  Hot Prediction is a compact summary table (click a row to open the match; the full "why" is the row tooltip);
+  smaller widths hide Why, then Kick-off/Typical/Referee. The safe treble sits full width above Upcoming fixtures
+  (`.rc-stack`), with its three legs side by side when wide.
   Speed (2026-11-08): the referee, team and fixture tables are rebuilt only when their data, filters, sort or
   search change (`rc.unchanged`); picking a row only moves the highlight (`rc.markPicked`).
   The user chose this over GitHub Pages. It does not update by itself.
