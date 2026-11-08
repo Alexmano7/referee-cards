@@ -97,6 +97,14 @@
   /* Hot Prediction: a compact summary table; clicking a row opens the match.
      Columns: # | Kick-off | Match | Bet | Model | Typical | Fair odds | Bet at | Referee | Why */
   .rc-hot-wrap { container-type: inline-size; }
+  .rc-hot-head { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; padding-bottom: 12px; margin-bottom: 4px; border-bottom: 1px solid var(--fl-line); }
+  .rc-hot-flame { width: 3rem; height: 3rem; flex: none; display: flex; align-items: center; justify-content: center; font-size: 1.7rem; line-height: 1;
+    border-radius: 12px; background: rgba(242, 194, 48, .12); border: 1px solid rgba(242, 194, 48, .4); }
+  .rc-hot-titles { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1 1 12rem; }
+  .rc .rc-hot-titles h2 { margin: 0; font-size: 2.1rem; font-weight: 700; line-height: 1; letter-spacing: .03em; }
+  .rc-hot-kicker { margin: 0; font-size: var(--cds-font-size-caption); color: var(--fl-yellow); font-weight: 500; letter-spacing: .02em; }
+  .rc-hot-chip { margin-left: auto; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--fl-line); background: var(--fl-bg); font-size: var(--cds-font-size-caption); color: var(--fl-muted); white-space: nowrap; }
+  .rc .rc-hot-chip b { color: var(--fl-yellow); font-weight: 600; }
   .rc-hot-table :is(th, td):is(:nth-child(-n+4), :nth-child(n+9)) { text-align: left; }
   .rc-hot-table td:is(:nth-child(3), :nth-child(4), :nth-child(9), :nth-child(10)) { white-space: normal; }
   .rc-hot-table td:nth-child(3) { min-width: 10rem; }
@@ -252,7 +260,14 @@
   <p class="rc-caveat" data-show="PD" hidden>Some La Liga matches have no referee name in the data. They count in the league figures but are not credited to any referee.</p>
 
   <section class="rc-card" id="hot-prediction">
-    <h2>Hot Prediction</h2>
+    <div class="rc-hot-head">
+      <span class="rc-hot-flame" aria-hidden="true">🔥</span>
+      <div class="rc-hot-titles">
+        <h2>Hot Prediction</h2>
+        <p class="rc-hot-kicker">Where the model beats a typical match</p>
+      </div>
+      <span class="rc-hot-chip"><b data-draw="hot-count" data-source="hot_picks">—</b> picks · next 7 days</span>
+    </div>
     <p class="rc-note">Up to 5 card bets in the next 7 days, ranked by how much the model differs from a typical match in that league (because of the referee and both teams): that gap is where a bookmaker's standard price is most likely to be too generous. Each pick has at least a 55% model chance. <b>Bet only at the "Bet at" odds or higher</b>; below that the price is not worth it. Click a row to open the match. Estimates, not certainties.</p>
     <div class="rc-scroll rc-hot-wrap">
       <table class="rc-table rc-hot-table" data-source="hot_picks" data-row-key="key">
@@ -1343,10 +1358,12 @@
       if (el) io.observe(el);
     }
   }
-  dash.draw('nav-hot', (el) => {
+  const hotCount = (el) => {
     const d = dash.data('hot_picks');
     el.textContent = d.status === 'ok' ? String(d.data.length) : '—';
-  });
+  };
+  dash.draw('nav-hot', hotCount);
+  dash.draw('hot-count', hotCount);
   dash.draw('nav-treble', (el) => {
     const d = dash.data('treble_combined');
     const r = d.status === 'ok' ? d.data[0] : null;
