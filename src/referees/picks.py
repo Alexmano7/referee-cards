@@ -1,4 +1,4 @@
-"""Hot predictions: the 2-3 card bets where the model differs most from a typical match.
+"""Hot predictions: the (up to) 5 card bets where the model differs most from a typical match.
 
 A bet that is merely "likely" (over 1.5 cards) is priced short by every bookmaker. What can
 beat a bookmaker's standard price is a match where the referee and the two teams push the
@@ -22,7 +22,7 @@ import math
 MIN_PROB = 0.55
 MARGIN = 0.05  # ask for at least 5% better than fair odds
 WINDOW_DAYS = 7
-N_PICKS = 3
+N_PICKS = 5  # raised from 3 at the user's request (2026-11-08)
 MATCH_LINES = [3.5, 4.5, 5.5]
 SIDE_LINES = [1.5, 2.5]
 

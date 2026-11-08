@@ -306,7 +306,7 @@ def apply_model(fixtures: list[dict], df: pd.DataFrame, today: date, league_avg:
 def hot_picks(
     fixtures: list[dict], df: pd.DataFrame, model, today: date, referees: list[dict]
 ) -> tuple[list[dict], list[dict]]:
-    """The 2-3 card bets where the model differs most from a typical match, and a safe
+    """The (up to) 5 card bets where the model differs most from a typical match, and a safe
     treble (3 legs, combined fair odds of about 2.00). See picks.py."""
     from referees.model import fit, load_params, side_observations
     from referees.picks import (

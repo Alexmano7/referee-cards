@@ -96,7 +96,7 @@
   .rc-calc input[type=number] { width: 8rem; }
   .rc-bets td:nth-child(8) { font-weight: var(--cds-font-weight-medium); }
   .rc-bets :is(th, td):nth-child(-n+3) { text-align: left; }
-  .rc-hot-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); gap: var(--cds-gap-md); min-height: 6rem; }
+  .rc-hot-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr)); gap: var(--cds-gap-md); min-height: 6rem; }
   .rc-hot-card { display: grid; grid-template-columns: 3.4rem minmax(0, 1fr); gap: 10px 16px; padding: 20px; border: 1px solid var(--fl-line); border-radius: 14px; background: var(--fl-panel); min-width: 0; }
   .rc-hot-card > :not(.rc-hot-badge, .rc-hot-body) { grid-column: 1 / -1; }
   .rc-hot-badge { width: 3.4rem; height: 4.8rem; border-radius: 6px; background: var(--fl-yellow); color: var(--fl-yellow-ink); display: flex; align-items: center; justify-content: center; font-family: var(--fl-display); font-size: 1.9rem; font-weight: 700; }
@@ -210,7 +210,7 @@
 
   <section id="hot-prediction" style="display: flex; flex-direction: column; gap: 14px;">
     <div class="rc-hot-title"><h2>Hot Prediction</h2></div>
-    <p class="rc-note">The card bets in the next 7 days where the model differs most from a typical match in that league, from the referee and both teams. Each pick has at least a 55% model chance. <b>Bet only if your bookmaker offers at least the minimum odds shown</b>; below that the price is not worth it. These are estimates, not certainties.</p>
+    <p class="rc-note">Up to 5 card bets in the next 7 days, ranked by how much the model differs from a typical match in that league (because of the referee and both teams): that gap is where a bookmaker's standard price is most likely to be too generous. Each pick has at least a 55% model chance. <b>Bet only if your bookmaker offers at least the minimum odds shown</b>; below that the price is not worth it. These are estimates, not certainties.</p>
     <div class="rc-hot-list" data-draw="hot-list" data-source="hot_picks"></div>
     <p class="rc-note rc-hot-empty" hidden>No match in the next 7 days passes the rule yet. Refresh again closer to the weekend, when more referees are announced.</p>
     <p class="rc-note rc-hot-record">Track record of this rule on past weeks (each week picked from earlier data only): this season so far it won <b data-draw="hr-hits" data-source="hot_picks_record" data-field="hits">—</b> of <b data-draw="hr-picks" data-source="hot_picks_record" data-field="picks">—</b> picks (<b data-draw="hr-rate" data-source="hot_picks_record" data-field="hit_rate_pct">—</b>), against <b data-draw="hr-model" data-source="hot_picks_record" data-field="avg_model_pct">—</b> the model expected and <b data-draw="hr-typical" data-source="hot_picks_record" data-field="avg_typical_pct">—</b> for a typical match. Small sample: treat as a guide.</p>

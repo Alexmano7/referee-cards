@@ -142,28 +142,30 @@ that leaves the machine (pushing to GitHub especially).
 - Result with 9 leagues (2026-11-07, 763 holdout matches): the model is best (log score -2.148 vs -2.153
   for the old method and -2.163 for the league average; Brier for over 4.5 is 0.229 for both the model and
   the old method, vs 0.233). It is well calibrated (41.3% predicted → 41.7%, 56.9% → 55.6%). Tuned settings:
-  half-life 365 d, k_ref 80, k_team 80. The grid was widened to 730 d to confirm 365 is interior. Card
+  half-life 365 d, k_ref 80, k_team 80. The grid was widened to 730 d to confirm 365 is interior.
+  Re-run 2026-11-08 after the Portugal gap fill: half-life 540 d (k 80/80); holdout log score -2.146 vs
+  -2.152 (old method) and -2.164 (league average). Card
   counts are noisy, so **don't overstate the edge** to the user.
 
 ## Hot Prediction (`picks.py`, added 2026-11-07)
-- Each refresh picks the 2-3 card bets in the next 7 days where the model differs most from a
+- Each refresh picks up to 5 card bets (`N_PICKS`, raised from 3 on 2026-11-08 at the user's request) in the next 7 days where the model differs most from a
   **typical match** (the same model with referee/team effects switched off, `k = 1e9`). The
   candidates are match total over/under 3.5/4.5/5.5 and each side over/under 1.5/2.5. Only bets with
   a model chance of at least 55% count. The score is model chance minus typical chance; the best
-  candidate per fixture is taken, then the top 3 fixtures, with a known referee first.
+  candidate per fixture is taken, then the top 5 fixtures, with a known referee first.
 - Each pick shows fair odds (1/p) and **minimum odds** (fair + 5%, rounded up). Tell the user to bet only at
   or above that. `report["hot_picks"]`; dashboard datasets `hot_picks` and `hot_picks_record`.
-- Backtest of the exact rule (`backtest.hot_pick_record`, in `docs/backtest.md`), 9 leagues: 2026/27 so far,
-  26/39 won (66.7%) against 65.0% predicted and 49.8% for a typical match; 2025/26, 82/121 (67.8%) against
-  64.9% and 48.0%. Bookmakers price better than "typical", so present it as a guide.
+- Backtest of the exact rule (`backtest.hot_pick_record`, in `docs/backtest.md`), 9 leagues, 5 picks a week
+  (re-run 2026-11-08): 2026/27 so far 48/65 won (73.8%) against 64.9% predicted and 49.0% for a typical match;
+  2025/26, 142/201 (70.6%) against 65.1% and 48.0%. Bookmakers price better than "typical", so present it as a guide.
 
 - **Safe treble** (user request, 2026-11-07: "safest, combined odds around 2.00"): `best_treble` picks
   3 legs from 3 different matches. Each leg is at least 60% likely and above a typical match (top 3 legs
   per match by shift); combined fair odds must be 1.85-2.15; the choice maximises (combined model
   chance) / (combined typical chance); known referees first. The dashboard calc `treble_combined`
   gives the combined chance, fair odds and minimum odds (ceil(105/p)/100).
-- Treble backtest (one per week, 9 leagues): 2025/26 20/40 won (50.0%, model said 47.8%, break-even 2.00);
-  2026/27 so far 5/12. **At 2.00 it is about break-even at best**: always say so and point to the
+- Treble backtest (one per week, 9 leagues, re-run 2026-11-08): 2025/26 20/40 won (50.0%, model said 47.9%,
+  break-even 2.00); 2026/27 so far 7/12. **At 2.00 it is about break-even at best**: always say so and point to the
   minimum odds. Single legs won 74-80%.
 
 ## Bet log (`bets.py`, added 2026-11-07)

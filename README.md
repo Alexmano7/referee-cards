@@ -74,7 +74,7 @@ A private dashboard on claude.ai: <https://claude.ai/artifact/AAbaGSrga4xFAG6SG4
   over 1.5 / 2.5 cards), its opponents' cards and its matches' totals.
 - **Match card:** click a fixture to see the projection split between the two sides, the
   referee's history with each team, and both teams' card records side by side.
-- **Hot Prediction:** the 2–3 card bets this week where the model differs most from a typical match,
+- **Hot Prediction:** up to 5 card bets this week where the model differs most from a typical match,
   each with the minimum odds worth taking and the reasons. They're updated every time you type
   **refresh** in Claude Code, and their past track record is shown underneath.
   Below them is a **safe treble**: 3 safe bets from 3 matches with combined odds of about 2.00. It

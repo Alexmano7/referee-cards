@@ -55,6 +55,9 @@ GRID = {
 CALIBRATION_BINS = [0.0, 0.2, 0.35, 0.5, 0.65, 0.8, 1.0]
 
 
+from referees.picks import N_PICKS
+
+
 def prepare(joined: pd.DataFrame) -> pd.DataFrame:
     cards = ["home_yellows", "away_yellows", "home_reds", "away_reds"]
     played = joined[~joined[cards].isna().any(axis=1)].astype(dict.fromkeys(cards, int))
@@ -119,7 +122,7 @@ def _current_method_predictions(df, obs, start, end) -> list[dict]:
     return out
 
 
-def hot_pick_record(df, obs, start, end, params, n_picks: int = 3) -> dict:
+def hot_pick_record(df, obs, start, end, params, n_picks: int = N_PICKS) -> dict:
     """Backtest of the Hot Prediction rule (picks.py): each week, the top picks are chosen
     from earlier data only, then checked against what happened."""
     from referees.picks import best_candidate, is_hit
@@ -335,7 +338,7 @@ def render_markdown(r: dict) -> str:
         + table(r["tuning_season"])
         + "\n## Calibration of P(over 4.5 cards), both periods\n\n"
         + cal
-        + "\n## Hot Prediction rule (3 picks per week, chosen from earlier data only)\n\n"
+        + "\n## Hot Prediction rule (5 picks per week, chosen from earlier data only)\n\n"
         + "| Period | Picks | Won | Hit rate | Model said | Typical match | Break-even odds |\n"
         + "|---|---|---|---|---|---|---|\n"
         + "".join(
