@@ -206,6 +206,31 @@ after every commit, `git pull --rebase`, then `git push`, and report the pushed 
   already kicked off, so picks and trebles never include a started game. Appointments for today's started
   matches are skipped silently.
 
+## EuroLeague referees (basketball, added 2026-11-08; local only for now)
+- Asked for in a side chat: referee stats for EuroLeague only (the bookmaker offers no EuroCup), seasons
+  E2024-E2026, same recency weighting (0.6 per season) and shrinkage (8 average games) as football.
+- Modules: `euroleague.py` (download + parse) and `euroleague_stats.py` (figures). Commands `el-fetch`,
+  `el-build`, `el-crew "A" "B" "C"`, `el-upcoming`. Output `data/euroleague_referees.json` (committed);
+  raw files in `data/raw/euroleague/<season>/` (git-ignored). Tests in `tests/test_euroleague.py`.
+- Sources (free, no key): `api-live.euroleague.net/v1/schedules?seasonCode=E2026` (XML schedule with
+  `played`), `live.euroleague.net/api/Boxscore?gamecode=N&seasoncode=E2026` (crew as surname/first-name
+  pairs; per player Minutes, FreeThrowsMade/Attempted, `FoulsCommited` (sic), `FoulsReceived`; team totals
+  in `totr`), `/v1/games?seasonCode=&gameCode=` (`<referees>` filled close to game day). One request per
+  second; network errors retried; 403/429 = stop. **Never use euroleaguebasketball.net** (blocks bots).
+  referee.observer has no basketball.
+- Home/away comes from the schedule's team codes, matched to each box-score team's `Team` code.
+  Playoffs, play-in and Final Four count (`round` != RS; Final Four "home" is nominal).
+- Per referee: fouls (total/home/away), FTM and FTA (total/home/away), raw and adjusted, `factor` =
+  adjusted / league average. Each game counts for all three referees (partners mix, evens out).
+- Player foul effect: a player's expected fouls = their season fouls per minute without this game
+  (+100 league-rate prior minutes) x minutes; referee effect = actual / expected (shrunk toward 1), for
+  fouls committed and drawn.
+- Crew figures = league average x mean of the three factors; unknown names count as average and are
+  listed; the exact crew's record together is shown when it exists.
+- Later (user's wishes, not built): Football/EuroLeague switch in the rail, EuroLeague Hot Prediction
+  (player foul and FTM bets furthest from a typical player in that role), game card, player table with a
+  "last 10 games" toggle, Referee Statistics section, and adding `el-fetch` to the daily job.
+
 ## Sofascore / datafc: tried and rejected (2026-11-06)
 - The user asked for Sofascore via the `datafc` package as a referee source. A throwaway trial
   (`uv run --no-project --with datafc`, not added to the project) got **HTTP 403 for every
@@ -252,6 +277,8 @@ Referees/
 │  ├─ csv_leagues.py     # GR/BEL/SCO matches + fixtures shaped like API rows
 │  ├─ referee_observer.py # Greek/Belgian referee history from referee.observer
 │  ├─ dashboard_export.py # flat row tables for the dashboard
+│  ├─ euroleague.py       # EuroLeague schedules + box scores (download, parse)
+│  ├─ euroleague_stats.py # EuroLeague referee/crew figures and player foul effect
 │  └─ cli.py         # `referees` command
 ├─ data/raw/{api,csv}/          # downloads (git-ignored)
 ├─ data/matches.csv             # joined match history (committed)
@@ -272,6 +299,7 @@ Referees/
 - Greek/Belgian referee history: `uv run referees fetch-ro` (newest pages; `--full` for everything)
 - Read an RFEF designation PDF: `uv run referees rfef-pdf "<pdf url on rfef.es>"` (saved to data/raw/rfef/)
 - Dashboard tables: `uv run referees export-dashboard` (after `fetch`)
+- EuroLeague: `uv run referees el-fetch` / `el-build` / `el-crew "A" "B" "C"` / `el-upcoming`
 - Tests: `uv run pytest`. Lint and format: `uv run ruff check .` / `uv run ruff format .`
 
 ## Conventions

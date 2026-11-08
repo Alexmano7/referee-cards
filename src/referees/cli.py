@@ -13,6 +13,12 @@ Commands:
   upcoming         list fixtures in the next 14 days and which still lack a referee
   export-dashboard build the dashboard tables (with looked-up referees) into
                    data/dashboard/ (run `fetch` first)
+
+EuroLeague (basketball):
+  el-fetch         download schedules and box scores (3 seasons, one request per second)
+  el-build         write data/euroleague_referees.json (referees, players, league averages)
+  el-crew A B C    expected fouls and free throws for a crew of three referees
+  el-upcoming      next 7 days of games with each announced crew's figures
 """
 
 from __future__ import annotations
@@ -296,6 +302,126 @@ def cmd_fetch_ro(full: bool, leagues: list[str] | None = None) -> None:
     print(f"Team-name mapping: {len(mapping)} rows in {RO_MAPPING_FILE.name}")
 
 
+def cmd_el_fetch() -> None:
+    from referees import euroleague as el
+
+    print(
+        "Downloading EuroLeague schedules and box scores (about 1 request per second)..."
+    )
+    try:
+        counts = el.fetch()
+    except el.FeedBlocked as e:
+        raise SystemExit(f"PROBLEM: {e}")
+    print(
+        f"Done: {counts['downloaded']} new games, {counts['cached']} already saved, "
+        f"{counts['skipped']} still in progress (skipped)."
+    )
+
+
+def cmd_el_build() -> dict:
+    import json
+
+    from referees import euroleague as el
+    from referees.euroleague_stats import build
+
+    games, players, problems = el.load()
+    if games.empty:
+        raise SystemExit(
+            "No EuroLeague games saved yet: run `uv run referees el-fetch` first."
+        )
+    report = build(games, players, problems)
+    el.EL_JSON.write_text(
+        json.dumps(report, ensure_ascii=False, indent=1), encoding="utf-8"
+    )
+    print(
+        f"{report['games']} games, {len(report['referees'])} referees, "
+        f"{len(report['players'])} player-seasons -> {el.EL_JSON.relative_to(el.DATA_DIR.parent)}"
+    )
+    avg = report["league_average"]
+    print(
+        f"League average per game: {avg['fouls_total']:.1f} fouls "
+        f"({avg['fouls_home']:.1f} home / {avg['fouls_away']:.1f} away), "
+        f"{avg['ftm_total']:.1f} free throws made ({avg['ftm_home']:.1f} / {avg['ftm_away']:.1f})"
+    )
+    for p in problems[:10]:
+        print(f"  PROBLEM: {p}")
+    if len(problems) > 10:
+        print(f"  ... and {len(problems) - 10} more (see data_quality in the JSON)")
+    return report
+
+
+def _el_report() -> dict:
+    import json
+
+    from referees import euroleague as el
+
+    if not el.EL_JSON.exists():
+        raise SystemExit(
+            "No EuroLeague figures yet: run `uv run referees el-build` first."
+        )
+    return json.loads(el.EL_JSON.read_text(encoding="utf-8"))
+
+
+def _print_crew(names: list[str], report: dict, games=None) -> None:
+    from referees.euroleague_stats import crew_figures
+
+    c = crew_figures(names, report, games)
+    lg = c["league_average"]
+    print(f"  Crew: {', '.join(c['referees']) or '-'}")
+    if c["unknown"]:
+        print(f"  Not found (counted as average): {', '.join(c['unknown'])}")
+    e, f = c["expected"], c["factor"]
+    print(f"  {'':24}{'crew':>8}{'league':>8}{'factor':>8}")
+    for m, label in (
+        ("fouls_total", "Fouls (both teams)"),
+        ("fouls_home", "Fouls, home team"),
+        ("fouls_away", "Fouls, away team"),
+        ("ftm_total", "FT made (both teams)"),
+        ("ftm_home", "FT made, home team"),
+        ("ftm_away", "FT made, away team"),
+        ("fta_total", "FT attempted (both)"),
+    ):
+        print(f"  {label:24}{e[m]:>8.1f}{lg[m]:>8.1f}{f[m]:>8.2f}")
+    pfe = c["player_foul_effect"]
+    print(
+        f"  Player foul effect: committed x{pfe['committed']:.2f}, drawn x{pfe['drawn']:.2f}"
+    )
+    if c["together"]:
+        t = c["together"]
+        print(
+            f"  Together before: {t['games']} games, {t['fouls_total']:.1f} fouls and "
+            f"{t['ftm_total']:.1f} FT made per game"
+        )
+
+
+def cmd_el_crew(names: list[str]) -> None:
+    from referees import euroleague as el
+
+    report = _el_report()
+    games, _, _ = el.load()
+    _print_crew(names, report, games)
+
+
+def cmd_el_upcoming() -> None:
+    from referees import euroleague as el
+
+    report = _el_report()
+    games, _, _ = el.load()
+    print("Next 7 days of EuroLeague games (crews appear close to game day):")
+    try:
+        upcoming = el.upcoming()
+    except el.FeedBlocked as e:
+        raise SystemExit(f"PROBLEM: {e}")
+    if not upcoming:
+        print("  No games in the next 7 days.")
+    for g in upcoming:
+        print(f"\n{g['date']} {g['time']} (CET)  {g['home']} v {g['away']}")
+        if len(g["referees"]) == 3:
+            _print_crew(g["referees"], report, games)
+        else:
+            print("  Crew not announced yet.")
+
+
 def main() -> None:
     # Show accents (Atlético, Köln) correctly even in older Windows terminals.
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -318,13 +444,23 @@ def main() -> None:
             "api-football-probe",
             "rfef-pdf",
             "fetch-ro",
+            "el-fetch",
+            "el-build",
+            "el-crew",
+            "el-upcoming",
         ],
     )
     parser.add_argument(
         "--full", action="store_true", help="for fetch-ro: read every history page"
     )
-    parser.add_argument("url", nargs="?", help="for rfef-pdf: the PDF link on rfef.es")
+    parser.add_argument(
+        "args",
+        nargs="*",
+        help="rfef-pdf: the PDF link on rfef.es; fetch-ro: a league key; "
+        "el-crew: the three referee names",
+    )
     args = parser.parse_args()
+    args.url = args.args[0] if args.args else None
     if args.command == "fetch":
         cmd_fetch()
     elif args.command == "suggest-mapping":
@@ -347,6 +483,18 @@ def main() -> None:
         if not args.url:
             raise SystemExit("Usage: uv run referees rfef-pdf <pdf link on rfef.es>")
         cmd_rfef_pdf(args.url)
+    elif args.command == "el-fetch":
+        cmd_el_fetch()
+    elif args.command == "el-build":
+        cmd_el_build()
+    elif args.command == "el-crew":
+        if len(args.args) != 3:
+            raise SystemExit(
+                'Usage: uv run referees el-crew "Name 1" "Name 2" "Name 3"'
+            )
+        cmd_el_crew(args.args)
+    elif args.command == "el-upcoming":
+        cmd_el_upcoming()
     else:
         cmd_fetch()
         cmd_build()
