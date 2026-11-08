@@ -322,6 +322,10 @@ BEL,2026-11-07,Antwerp,Lommel,Nathan Verboomen,/referee/bel/nathan-verboomen
 BEL,2026-11-07,La Louvière,Cercle Brugge,Wim Smet,/referee/bel/wim-smet
 BEL,2026-11-07,OH Leuven,Mechelen,Lawrence Visser,/referee/bel/lawrence-visser
 BEL,2026-11-07,Westerlo,Charleroi,Wesli De Cremer,/referee/bel/wesli-de-cremer
+BEL,2026-11-08,Club Brugge,Anderlecht,Jasper Vergoote,/referee/bel/jasper-vergoote
+BEL,2026-11-08,Gent,Kortrijk,Jan Boterberg,/referee/bel/jan-boterberg
+BEL,2026-11-08,Sint-Truiden,Zulte Waregem,Anthony Letellier,/referee/unk/anthony-letellier
+BEL,2026-11-08,Union Saint-Gilloise,Genk,Bram Van Driessche,/referee/bel/bram-van-driessche
 GR,2025-08-23,Aris,Volos N.F.C.,Aléxandros Tsakalídis,/referee/gre/alexandros-tsakalidis
 GR,2025-08-23,Olympiacos,Asteras Tripoli,Tasos Sidiropoulos,/referee/gre/tasos-sidiropoulos
 GR,2025-08-23,Panetolikos,Atromitos,Melétios Gioumatzídis,/referee/gre/meletios-gioumatzidis
@@ -622,6 +626,11 @@ GR,2026-11-02,Atromitos,Volos N.F.C.,Alexandros Katsikogiannis,/referee/gre/alex
 GR,2026-11-02,Kalamata,Iraklis,Christos Vergetis,/referee/gre/christos-vergetis
 GR,2026-11-07,Aris,Panetolikos,Panagiotis Koukoulas,/referee/unk/panagiotis-koukoulas
 GR,2026-11-07,Volos N.F.C.,AE Kifisia,Vasílios Fotiás,/referee/gre/vasilios-fotias
+GR,2026-11-08,AEK Athens,Levadiakos,Dimítrios Móschou,/referee/gre/dimitrios-moschou
+GR,2026-11-08,Asteras Tripoli,Kalamata,Anastasios Papapetrou,/referee/gre/anastasios-papapetrou
+GR,2026-11-08,Iraklis,Panathinaikos,Ángelos Evangélou,/referee/gre/angelos-evangelou
+GR,2026-11-08,OFI Crete,Atromitos,Fótios Polychrónis,/referee/gre/fotios-polychronis
+GR,2026-11-08,Olympiacos,PAOK,José María Sanchez Martínez,/referee/esp/jose-maria-sanchez-martinez
 PPL,2025-08-08,Casa Pia AC,Sporting CP,Gustavo Fernandes Correia,/referee/por/gustavo-fernandes-correia
 PPL,2025-08-09,CD Nacional,Gil Vicente FC,David Silva,/referee/unk/david-silva
 PPL,2025-08-09,FC Arouca,AFS,Sérgio Guelho,/referee/unk/sergio-guelho
@@ -914,10 +923,12 @@ PPL,2026-08-07,Estoril Praia,FC Famalicão,Miguel Fonseca,/referee/unk/miguel-fo
 PPL,2026-08-08,Estrela Amadora,Sporting CP,João António Ferreira Gonçalves,/referee/por/joao-antonio-ferreira-goncalves
 PPL,2026-08-08,Marítimo,Casa Pia AC,Sérgio Guelho,/referee/unk/sergio-guelho
 PPL,2026-08-08,Vitória SC,FC Arouca,Miguel Nogueira,/referee/por/miguel-nogueira
+PPL,2026-08-09,Benfica,Académico de Viseu,David Rafael Oliveira da Silva,/referee/por/david-rafael-oliveira-da-silva
 PPL,2026-08-09,FC Porto,FC Alverca,Luis Godinho,/referee/por/luis-godinho
 PPL,2026-08-09,Gil Vicente FC,Rio Ave FC,Gustavo Fernandes Correia,/referee/por/gustavo-fernandes-correia
 PPL,2026-08-09,Moreirense FC,Braga,José Bessa,/referee/unk/jose-bessa
 PPL,2026-08-10,Santa Clara,CD Nacional,Hélder Carvalho,/referee/unk/helder-carvalho
+PPL,2026-08-14,Sporting CP,Vitória SC,David Rafael Oliveira da Silva,/referee/por/david-rafael-oliveira-da-silva
 PPL,2026-08-15,Académico de Viseu,Santa Clara,João António Ferreira Gonçalves,/referee/por/joao-antonio-ferreira-goncalves
 PPL,2026-08-15,FC Alverca,Estrela Amadora,José Bessa,/referee/unk/jose-bessa
 PPL,2026-08-15,Rio Ave FC,FC Porto,Miguel Fonseca,/referee/unk/miguel-fonseca
@@ -938,6 +949,7 @@ PPL,2026-08-29,FC Alverca,Santa Clara,Diogo Rosa,/referee/unk/diogo-rosa
 PPL,2026-08-29,FC Arouca,Marítimo,Gustavo Fernandes Correia,/referee/por/gustavo-fernandes-correia
 PPL,2026-08-30,CD Nacional,Estrela Amadora,Carlos Macedo,/referee/unk/carlos-macedo
 PPL,2026-08-30,Casa Pia AC,Moreirense FC,Luis Godinho,/referee/por/luis-godinho
+PPL,2026-08-30,FC Famalicão,Gil Vicente FC,David Rafael Oliveira da Silva,/referee/por/david-rafael-oliveira-da-silva
 PPL,2026-08-31,Benfica,Estoril Praia,Hélder Carvalho,/referee/unk/helder-carvalho
 PPL,2026-08-31,Braga,Vitória SC,André Narciso,/referee/por/andre-narciso
 PPL,2026-09-04,FC Porto,Moreirense FC,António Emanuel de Carvalho Nobre,/referee/por/antonio-emanuel-de-carvalho-nobre
@@ -957,11 +969,13 @@ PPL,2026-09-12,Casa Pia AC,FC Porto,José Bessa,/referee/unk/jose-bessa
 PPL,2026-09-13,Benfica,Gil Vicente FC,João António Ferreira Gonçalves,/referee/por/joao-antonio-ferreira-goncalves
 PPL,2026-09-13,FC Arouca,Santa Clara,Vítor Jorge Fernandes Ferreira,/referee/por/vitor-jorge-fernandes-ferreira
 PPL,2026-09-13,FC Famalicão,Sporting CP,Luis Godinho,/referee/por/luis-godinho
+PPL,2026-09-14,Braga,Estoril Praia,David Rafael Oliveira da Silva,/referee/por/david-rafael-oliveira-da-silva
 PPL,2026-09-14,Moreirense FC,Marítimo,Fábio Oliveira Melo,/referee/por/fabio-oliveira-melo
 PPL,2026-09-14,Rio Ave FC,Estrela Amadora,Gustavo Fernandes Correia,/referee/por/gustavo-fernandes-correia
 PPL,2026-09-19,CD Nacional,FC Famalicão,Gustavo Fernandes Correia,/referee/por/gustavo-fernandes-correia
 PPL,2026-09-19,FC Alverca,Rio Ave FC,Luís Filipe,/referee/unk/luis-filipe
 PPL,2026-09-19,Gil Vicente FC,Marítimo,Bruno José Ribeiro Pires da Costa,/referee/por/bruno-jose-ribeiro-pires-da-costa
+PPL,2026-09-19,Sporting CP,FC Arouca,David Rafael Oliveira da Silva,/referee/por/david-rafael-oliveira-da-silva
 PPL,2026-09-20,Estoril Praia,Casa Pia AC,Pedro Ramalho,/referee/unk/pedro-ramalho
 PPL,2026-09-20,Estrela Amadora,Académico de Viseu,André Narciso,/referee/por/andre-narciso
 PPL,2026-09-20,FC Porto,Benfica,Miguel Nogueira,/referee/por/miguel-nogueira
@@ -990,6 +1004,7 @@ PPL,2026-10-30,Casa Pia AC,Sporting CP,Miguel Fonseca,/referee/unk/miguel-fonsec
 PPL,2026-10-31,FC Porto,Estoril Praia,Miguel Nogueira,/referee/por/miguel-nogueira
 PPL,2026-10-31,Moreirense FC,Estrela Amadora,João Pinheiro,/referee/por/joao-pinheiro
 PPL,2026-11-01,Académico de Viseu,Rio Ave FC,João António Ferreira Gonçalves,/referee/por/joao-antonio-ferreira-goncalves
+PPL,2026-11-01,Braga,FC Famalicão,David Rafael Oliveira da Silva,/referee/por/david-rafael-oliveira-da-silva
 PPL,2026-11-01,FC Arouca,CD Nacional,Luis Godinho,/referee/por/luis-godinho
 PPL,2026-11-01,Marítimo,Santa Clara,Carlos Macedo,/referee/unk/carlos-macedo
 PPL,2026-11-02,Benfica,FC Alverca,Bruno José Ribeiro Pires da Costa,/referee/por/bruno-jose-ribeiro-pires-da-costa
@@ -998,3 +1013,9 @@ PPL,2026-11-06,FC Famalicão,FC Arouca,Gustavo Fernandes Correia,/referee/por/gu
 PPL,2026-11-07,CD Nacional,Académico de Viseu,Pedro Ramalho,/referee/unk/pedro-ramalho
 PPL,2026-11-07,FC Alverca,Casa Pia AC,Sérgio Guelho,/referee/unk/sergio-guelho
 PPL,2026-11-07,Sporting CP,Moreirense FC,João António Ferreira Gonçalves,/referee/por/joao-antonio-ferreira-goncalves
+PPL,2026-11-08,CD Nacional,Académico de Viseu,Pedro Ramalho,/referee/unk/pedro-ramalho
+PPL,2026-11-08,Estoril Praia,Marítimo,José Bessa,/referee/unk/jose-bessa
+PPL,2026-11-08,Estrela Amadora,Benfica,António Emanuel de Carvalho Nobre,/referee/por/antonio-emanuel-de-carvalho-nobre
+PPL,2026-11-08,Rio Ave FC,Braga,Cláudio Pereira,/referee/por/claudio-pereira
+PPL,2026-11-08,Santa Clara,Gil Vicente FC,Diogo Rosa,/referee/unk/diogo-rosa
+PPL,2026-11-08,Vitória SC,FC Porto,David Rafael Oliveira da Silva,/referee/por/david-rafael-oliveira-da-silva
