@@ -309,7 +309,8 @@ Referees/
   stay untouched: change looks via CSS and markup, and keep `data-draw` names and marks.
   Hot Prediction is a compact summary table (click a row to open the match; the full "why" is the row tooltip);
   smaller widths hide Why, then Kick-off/Typical/Referee. The safe treble sits full width above Upcoming fixtures
-  (`.rc-stack`), with its three legs side by side when wide.
+  (`.rc-stack`) as a compact slip: header with the minimum-odds pill, a legs table (click a leg to open the match)
+  and a small track-record table; narrow widths hide Kick-off, Referee and Typical.
   Speed (2026-11-08): the referee, team and fixture tables are rebuilt only when their data, filters, sort or
   search change (`rc.unchanged`); picking a row only moves the highlight (`rc.markPicked`).
   The user chose this over GitHub Pages. It does not update by itself.
