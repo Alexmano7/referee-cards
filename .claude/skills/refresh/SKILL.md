@@ -72,10 +72,11 @@ Project facts and rules are in `CLAUDE.md`; this is the routine.
 
 ## 4. Finish
 1. `uv run pytest -q` must pass.
-2. Commit `config/referee_appointments.csv` (and anything else changed) locally with an imperative
-   message. **Don't push** unless the user says so (global rule: ask before pushing).
+2. Commit `config/referee_appointments.csv` (and anything else changed) with an imperative
+   message, then `git pull --rebase` and `git push` (the user said "always push to github" on
+   2026-11-08, so no confirmation is needed). Never force-push; if the push fails, report it.
 3. Summary for the user: **the Hot Prediction picks first** (bet, match, kick-off, model chance,
    "bet only at odds of" minimum, referee; from `data/dashboard/hot_picks.json`), **then the safe
    treble** (3 legs from `hot_treble.json`, combined model chance, fair odds and minimum combined odds =
    ceil(105 / chance) / 100; remind that at 2.00 it is about break-even), then when the data is from, referees found (match, referee, source), what's still
-   missing, any problems, the check result, and that the commit isn't pushed.
+   missing, any problems, the check result, and the pushed commit.

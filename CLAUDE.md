@@ -56,7 +56,9 @@ Leagues were added on 2026-11-07 at the user's request (Serie A, Liga Portugal, 
 
 The user is a **beginner**. Explain each step in simple terms *before* running anything, define
 jargon the first time it appears, and wait for an OK before installs, deletions or anything
-that leaves the machine (pushing to GitHub especially).
+else that leaves the machine.
+**Pushing to GitHub needs no OK** (the user's standing instruction, 2026-11-08: "always push to github"):
+after every commit, `git pull --rebase`, then `git push`, and report the pushed commit. Never force-push.
 
 ## Data sources
 1. **football-data.org API v4** (free tier): gives referee names for finished matches, plus upcoming fixtures.
