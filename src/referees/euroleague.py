@@ -296,11 +296,30 @@ def load(
     return pd.DataFrame(games), pd.DataFrame(players), problems
 
 
-def upcoming(days: int = 7, today=None, progress=print) -> list[dict]:
-    """Unplayed games of the current season in the next `days` days, with announced crews."""
+def tipped_off(game: dict, now: datetime) -> bool:
+    """True once the game's tip-off (schedule times are Central European time) has passed."""
+    from zoneinfo import ZoneInfo
+
+    try:
+        tip = datetime.strptime(f"{game['date']} {game['time']}", "%Y-%m-%d %H:%M")
+    except ValueError:
+        return False
+    return tip.replace(tzinfo=ZoneInfo("Europe/Madrid")) <= now
+
+
+def upcoming(
+    days: int = 7, today=None, progress=print, now: datetime | None = None
+) -> list[dict]:
+    """Unplayed games of the current season in the next `days` days, with announced crews.
+
+    As for football, a game whose tip-off has passed is left out, so picks never include a
+    started game.
+    """
     from datetime import date, timedelta
+    from zoneinfo import ZoneInfo
 
     today = today or date.today()
+    now = now or datetime.now(ZoneInfo("UTC"))
     session = requests.Session()
     season = EL_SEASONS[-1]
     sched = parse_schedule(
@@ -310,6 +329,8 @@ def upcoming(days: int = 7, today=None, progress=print) -> list[dict]:
     out = []
     for g in sched:
         if g["played"] or not (today.isoformat() <= g["date"] <= horizon):
+            continue
+        if tipped_off(g, now):
             continue
         xml = _get(session, GAME_URL.format(season=season, game=g["game"])).content
         out.append({**g, "referees": parse_game_referees(xml)})

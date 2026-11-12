@@ -354,3 +354,19 @@ def test_treble_uses_the_football_rule_on_player_legs():
     assert TREBLE_BAND[0] <= odds <= TREBLE_BAND[1]
     # Players who barely play give no legs.
     assert treble_legs([{**proj("bench", 7.0), "exp_minutes": 5.0}], 0.78) == []
+
+
+def test_started_games_are_not_upcoming():
+    from datetime import datetime
+    from zoneinfo import ZoneInfo
+
+    game = {
+        "date": "2026-11-12",
+        "time": "20:30",
+    }  # Central European time = 21:30 Athens
+    athens = ZoneInfo("Europe/Athens")
+    assert not el.tipped_off(game, datetime(2026, 11, 12, 21, 29, tzinfo=athens))
+    assert el.tipped_off(game, datetime(2026, 11, 12, 21, 30, tzinfo=athens))
+    assert not el.tipped_off(
+        {"date": "2026-11-12", "time": "TBD"}, datetime(2026, 11, 13, tzinfo=athens)
+    )
