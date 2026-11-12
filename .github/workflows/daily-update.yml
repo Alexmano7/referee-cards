@@ -20,7 +20,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 60
     steps:
       - name: Check Athens time
         id: gate
@@ -59,7 +59,23 @@ jobs:
           FOOTBALL_DATA_API_TOKEN: ${{ secrets.FOOTBALL_DATA_API_TOKEN }}
         run: uv run referees update
 
-      # EuroLeague box scores are kept between runs, so only new games are downloaded.
+      - name: Commit updated football data
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/referees.json data/matches.csv data/unmatched.csv
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update referee data ($(TZ=Europe/Athens date +%F))"
+            git push
+          fi
+
+      # EuroLeague runs after the football data is saved, so it can never block it.
+      # Box scores are kept between runs (cache), so only new games are downloaded; the first run
+      # downloads ~830 games (~15 min). If the step runs out of time, the games saved so far are
+      # kept and the next day carries on.
       - name: Restore saved EuroLeague games
         if: steps.gate.outputs.run == 'true'
         uses: actions/cache@v4
@@ -70,20 +86,21 @@ jobs:
 
       - name: Download EuroLeague games and build euroleague_referees.json
         if: steps.gate.outputs.run == 'true'
-        continue-on-error: true  # a EuroLeague problem must not stop the football update
+        continue-on-error: true
+        timeout-minutes: 30
         run: |
           uv run referees el-fetch
           uv run referees el-build
 
-      - name: Commit updated data
+      - name: Commit updated EuroLeague data
         if: steps.gate.outputs.run == 'true'
+        continue-on-error: true
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/referees.json data/matches.csv data/unmatched.csv data/euroleague_referees.json
+          git add data/euroleague_referees.json
           if git diff --cached --quiet; then
-            echo "No changes to commit."
+            echo "No EuroLeague changes to commit."
           else
-            git commit -m "Update referee data ($(TZ=Europe/Athens date +%F))"
+            git commit -m "Update EuroLeague referee data ($(TZ=Europe/Athens date +%F))"
+            git pull --rebase
             git push
           fi
