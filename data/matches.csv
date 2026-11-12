@@ -712,6 +712,15 @@ BEL,2026,1743025358,2026-11-01T18:15:00+00:00,2026-11-01,FINISHED,,Charleroi,RAA
 BEL,2026,1204840482,2026-11-01T17:30:00+00:00,2026-11-01,FINISHED,,Lommel SK,Gent,2084615617,Kevin Van Damme,,Lommel SK,Gent,17:30,0,3,0,0,10,10,,0,
 BEL,2026,1219310297,2026-11-01T15:00:00+00:00,2026-11-01,FINISHED,,St Truiden,Oud-Heverlee Leuven,2071774059,Michiel Allaerts,,St Truiden,Oud-Heverlee Leuven,15:00,1,3,0,0,12,14,,0,
 BEL,2026,1341299577,2026-11-04T19:30:00+00:00,2026-11-04,FINISHED,,Kortrijk,Mechelen,2047550727,Bert Verbeke,,Kortrijk,Mechelen,19:30,4,2,1,0,18,12,,0,
+BEL,2026,1407188994,2026-11-06T19:45:00+00:00,2026-11-06,FINISHED,,Standard,Beveren,2033679016,Massimiliano Ledda,,Standard,Beveren,19:45,0,3,0,0,5,17,,0,
+BEL,2026,1338727900,2026-11-07T19:45:00+00:00,2026-11-07,FINISHED,,Antwerp,Lommel SK,2066513218,Nathan Verboomen,,Antwerp,Lommel SK,19:45,3,2,0,0,8,6,,0,
+BEL,2026,1175100916,2026-11-07T17:15:00+00:00,2026-11-07,FINISHED,,Oud-Heverlee Leuven,Mechelen,2026127098,Lawrence Visser,,Oud-Heverlee Leuven,Mechelen,17:15,2,2,1,0,20,9,,0,
+BEL,2026,1168459787,2026-11-07T19:45:00+00:00,2026-11-07,FINISHED,,RAAL La Louviere,Cercle Brugge,2030112656,Wim Smet,,RAAL La Louviere,Cercle Brugge,19:45,2,1,0,0,8,17,,0,
+BEL,2026,1019831011,2026-11-07T15:00:00+00:00,2026-11-07,FINISHED,,Westerlo,Charleroi,2078230971,Wesli De Cremer,,Westerlo,Charleroi,15:00,1,2,0,0,9,11,,0,
+BEL,2026,1067396625,2026-11-08T12:30:00+00:00,2026-11-08,FINISHED,,Club Brugge,Anderlecht,2028250912,Jasper Vergoote,,Club Brugge,Anderlecht,12:30,4,4,0,0,15,14,,0,
+BEL,2026,1606413941,2026-11-08T15:00:00+00:00,2026-11-08,FINISHED,,Gent,Kortrijk,2019181044,Jan Boterberg,,Gent,Kortrijk,15:00,1,2,0,0,9,22,,0,
+BEL,2026,1427025635,2026-11-08T18:15:00+00:00,2026-11-08,FINISHED,,St Truiden,Waregem,2016130755,Anthony Letellier,,St Truiden,Waregem,18:15,0,3,0,1,11,13,,0,
+BEL,2026,1806315589,2026-11-08T17:30:00+00:00,2026-11-08,FINISHED,,St. Gilloise,Genk,2073704493,Bram Van Driessche,,St. Gilloise,Genk,17:30,1,1,0,0,8,10,,0,
 BL1,2024,502371,2024-08-23T18:30:00+00:00,2024-08-23,FINISHED,1,Borussia Mönchengladbach,Bayer 04 Leverkusen,57519,Robert Schröder,Germany,M'gladbach,Leverkusen,19:30,1,0,0,0,11,7,,0,
 BL1,2024,502378,2024-08-24T13:30:00+00:00,2024-08-24,FINISHED,1,1. FSV Mainz 05,1. FC Union Berlin,253,Harm Osmers,Germany,Mainz,Union Berlin,14:30,1,3,0,0,9,15,,0,
 BL1,2024,502373,2024-08-24T16:30:00+00:00,2024-08-24,FINISHED,1,Borussia Dortmund,Eintracht Frankfurt,43878,Felix Zwayer,Germany,Dortmund,Ein Frankfurt,17:30,0,1,0,0,6,3,,0,
@@ -1396,6 +1405,15 @@ BL1,2026,565840,2026-10-31T14:30:00+00:00,2026-10-31,FINISHED,8,FC Schalke 04,RB
 BL1,2026,565843,2026-10-31T14:30:00+00:00,2026-10-31,FINISHED,8,SV Werder Bremen,TSG 1899 Hoffenheim,57512,Tobias Reichel,Germany,Werder Bremen,Hoffenheim,14:30,3,0,0,0,11,11,,0,
 BL1,2026,565841,2026-11-01T14:30:00+00:00,2026-11-01,FINISHED,8,1. FC Union Berlin,1. FC Köln,65990,Richard Hempel,Germany,Union Berlin,FC Koln,14:30,4,3,0,0,11,10,,0,
 BL1,2026,565844,2026-11-01T16:30:00+00:00,2026-11-01,FINISHED,8,Eintracht Frankfurt,Hamburger SV,58466,Florian Exner,Germany,Ein Frankfurt,Hamburg,16:30,2,4,0,0,10,10,,0,
+BL1,2026,565852,2026-11-06T19:30:00+00:00,2026-11-06,FINISHED,9,Hamburger SV,Borussia Mönchengladbach,15824,Sven Jablonski,Germany,Hamburg,M'gladbach,19:30,1,3,0,1,6,16,,0,
+BL1,2026,565851,2026-11-07T14:30:00+00:00,2026-11-07,FINISHED,9,1. FSV Mainz 05,FC Bayern München,57519,Robert Schröder,Germany,Mainz,Bayern Munich,14:30,3,1,0,0,8,8,,0,
+BL1,2026,565850,2026-11-07T14:30:00+00:00,2026-11-07,FINISHED,9,Borussia Dortmund,SV 07 Elversberg,253,Harm Osmers,Germany,Dortmund,Elversberg,14:30,1,2,0,0,14,11,,0,
+BL1,2026,565848,2026-11-07T14:30:00+00:00,2026-11-07,FINISHED,9,RB Leipzig,FC Augsburg,57517,Daniel Schlager,Germany,RB Leipzig,Augsburg,14:30,1,3,0,1,6,7,,0,
+BL1,2026,565853,2026-11-07T14:30:00+00:00,2026-11-07,FINISHED,9,SC Paderborn 07,Eintracht Frankfurt,15746,Bastian Dankert,Germany,Paderborn,Ein Frankfurt,14:30,0,1,0,0,14,13,,0,
+BL1,2026,565849,2026-11-07T17:30:00+00:00,2026-11-07,FINISHED,9,VfB Stuttgart,SV Werder Bremen,57515,Sören Storks,Germany,Stuttgart,Werder Bremen,17:30,1,2,0,0,6,8,,0,
+BL1,2026,565855,2026-11-08T14:30:00+00:00,2026-11-08,FINISHED,9,1. FC Köln,Bayer 04 Leverkusen,43878,Felix Zwayer,Germany,FC Koln,Leverkusen,14:30,6,5,0,0,12,12,,0,
+BL1,2026,565854,2026-11-08T16:30:00+00:00,2026-11-08,FINISHED,9,SC Freiburg,1. FC Union Berlin,9567,Sascha Stegemann,Germany,Freiburg,Union Berlin,16:30,2,2,0,0,10,17,,0,
+BL1,2026,565856,2026-11-08T18:30:00+00:00,2026-11-08,FINISHED,9,TSG 1899 Hoffenheim,FC Schalke 04,15825,Martin Petersen,Germany,Hoffenheim,Schalke 04,18:30,0,2,0,0,10,9,,0,
 FL1,2024,497958,2024-08-16T18:45:00+00:00,2024-08-16,FINISHED,1,Le Havre AC,Paris Saint-Germain FC,57042,Willy Delajod,France,Le Havre,Paris SG,19:45,3,0,0,0,9,9,,0,
 FL1,2024,497955,2024-08-17T19:00:00+00:00,2024-08-17,FINISHED,1,AS Monaco FC,AS Saint-Étienne,9374,Clément Turpin,France,Monaco,St Etienne,20:00,1,1,0,0,13,14,,0,
 FL1,2024,497951,2024-08-17T15:00:00+00:00,2024-08-17,FINISHED,1,Stade Brestois 29,Olympique de Marseille,43926,Benoît Bastien,France,Brest,Marseille,16:00,4,1,0,0,10,8,,0,
@@ -2089,6 +2107,15 @@ FL1,2026,559645,2026-11-01T19:45:00+00:00,2026-11-01,FINISHED,9,Olympique de Mar
 FL1,2026,559642,2026-11-01T16:15:00+00:00,2026-11-01,FINISHED,9,Paris FC,AS Monaco FC,1049,Jeremy Stinat,France,Paris FC,Monaco,16:15,2,2,0,0,13,15,,0,
 FL1,2026,559647,2026-11-01T14:00:00+00:00,2026-11-01,FINISHED,9,RC Strasbourg Alsace,AJ Auxerre,57084,Guillaume Paradis,France,Strasbourg,Auxerre,14:00,0,4,0,1,11,18,,0,
 FL1,2026,559641,2026-11-02T19:45:00+00:00,2026-11-02,FINISHED,9,FC Lorient,Stade Brestois 29,57073,Jérémie Pignard,France,Lorient,Brest,19:45,1,1,0,0,11,16,,0,
+FL1,2026,559638,2026-11-06T19:45:00+00:00,2026-11-06,FINISHED,10,Toulouse FC,RC Strasbourg Alsace,57054,Mathieu Vernice,France,Toulouse,Strasbourg,19:45,3,3,0,0,16,15,,0,
+FL1,2026,559637,2026-11-07T18:00:00+00:00,2026-11-07,FINISHED,10,AJ Auxerre,Paris FC,64781,Marc Bollengier,France,Auxerre,Paris FC,18:00,3,1,0,0,24,14,,0,
+FL1,2026,559635,2026-11-07T20:05:00+00:00,2026-11-07,FINISHED,10,Paris Saint-Germain FC,ES Troyes AC,43886,Ruddy Buquet,France,Paris SG,Troyes,20:05,3,1,0,0,6,7,,0,
+FL1,2026,559634,2026-11-08T16:15:00+00:00,2026-11-08,FINISHED,10,Angers SCO,OGC Nice,76682,Geoffrey Kubler,France,Angers,Nice,16:15,3,1,0,0,10,6,,0,
+FL1,2026,559633,2026-11-08T16:15:00+00:00,2026-11-08,FINISHED,10,Le Havre AC,FC Lorient,57062,Aurélien Petit,France,Le Havre,Lorient,16:15,1,3,0,0,16,19,,0,
+FL1,2026,559631,2026-11-08T16:15:00+00:00,2026-11-08,FINISHED,10,Le Mans FC,AS Monaco FC,57088,Bastien Dechepy,France,Le Mans,Monaco,16:15,0,0,0,0,16,8,,0,
+FL1,2026,559630,2026-11-08T19:45:00+00:00,2026-11-08,FINISHED,10,Racing Club de Lens,Olympique de Marseille,57042,Willy Delajod,France,Lens,Marseille,19:45,1,2,0,0,15,8,,0,
+FL1,2026,559632,2026-11-08T16:15:00+00:00,2026-11-08,FINISHED,10,Stade Brestois 29,Olympique Lyonnais,1049,Jeremy Stinat,France,Brest,Lyon,16:15,1,2,0,0,14,10,,0,
+FL1,2026,559636,2026-11-08T14:00:00+00:00,2026-11-08,FINISHED,10,Stade Rennais FC 1901,Lille OSC,9374,Clément Turpin,France,Rennes,Lille,14:00,0,3,0,0,7,15,,0,
 GR,2024,1559651514,2024-08-17T17:00:00+00:00,2024-08-17,FINISHED,,PAOK,Panserraikos,,,,PAOK,Panserraikos,18:00,1,3,0,0,13,6,,0,
 GR,2024,1456955382,2024-08-17T17:00:00+00:00,2024-08-17,FINISHED,,Volos NFC,Olympiakos,,,,Volos NFC,Olympiakos,18:00,3,2,1,0,18,22,,0,
 GR,2024,1664833289,2024-08-18T19:00:00+00:00,2024-08-18,FINISHED,,AEK,OFI Crete,,,,AEK,OFI Crete,20:00,3,2,0,0,13,12,,0,
@@ -2620,6 +2647,13 @@ GR,2026,1588057363,2026-11-01T17:30:00+00:00,2026-11-01,FINISHED,,Panathinaikos,
 GR,2026,1793146301,2026-11-01T16:00:00+00:00,2026-11-01,FINISHED,,Panetolikos,OFI Crete,2045457703,Spyridon Zampalas,,Panetolikos,OFI Crete,16:00,3,1,1,0,11,14,,0,
 GR,2026,1639585763,2026-11-02T16:00:00+00:00,2026-11-02,FINISHED,,Atromitos,Volos NFC,2075967890,Alexandros Katsikogiannis,,Atromitos,Volos NFC,16:00,1,5,0,2,22,23,,0,
 GR,2026,1010876282,2026-11-02T17:30:00+00:00,2026-11-02,FINISHED,,Kalamata,Iraklis,2039702203,Christos Vergetis,,Kalamata,Iraklis,17:30,1,2,0,0,12,17,,0,
+GR,2026,1742615975,2026-11-07T17:30:00+00:00,2026-11-07,FINISHED,,Aris,Panetolikos,2057713184,Panagiotis Koukoulas,,Aris,Panetolikos,17:30,1,2,0,0,16,15,,0,
+GR,2026,1509428646,2026-11-07T15:00:00+00:00,2026-11-07,FINISHED,,Volos NFC,Kifisia,2093676853,Vasílios Fotiás,,Volos NFC,Kifisia,15:00,3,2,0,1,16,17,,0,
+GR,2026,1474847555,2026-11-08T15:00:00+00:00,2026-11-08,FINISHED,,AEK,Levadeiakos,2047788999,Dimítrios Móschou,,AEK,Levadeiakos,15:00,3,0,1,0,13,9,,0,
+GR,2026,1636117685,2026-11-08T15:00:00+00:00,2026-11-08,FINISHED,,Asteras Tripolis,Kalamata,2048684746,Anastasios Papapetrou,,Asteras Tripolis,Kalamata,15:00,5,2,0,0,17,12,,0,
+GR,2026,1622492641,2026-11-08T15:30:00+00:00,2026-11-08,FINISHED,,Iraklis,Panathinaikos,2071778539,Ángelos Evangélou,,Iraklis,Panathinaikos,15:30,4,5,0,0,11,24,,0,
+GR,2026,1814362052,2026-11-08T16:30:00+00:00,2026-11-08,FINISHED,,OFI Crete,Atromitos,2046265806,Fótios Polychrónis,,OFI Crete,Atromitos,16:30,3,3,0,0,14,18,,0,
+GR,2026,1481383228,2026-11-08T19:00:00+00:00,2026-11-08,FINISHED,,Olympiakos,PAOK,2084012140,José María Sanchez Martínez,,Olympiakos,PAOK,19:00,2,5,0,0,14,21,,0,
 PD,2024,498613,2024-08-15T17:00:00+00:00,2024-08-15,FINISHED,1,Athletic Club,Getafe CF,215569,Alejandro Muñiz Ruiz,Spain,Ath Bilbao,Getafe,18:00,4,1,0,0,15,12,,0,
 PD,2024,498614,2024-08-15T19:30:00+00:00,2024-08-15,FINISHED,1,Real Betis Balompié,Girona FC,207048,Miguel Ortiz Arias,Spain,Betis,Girona,20:30,2,0,0,0,11,7,,0,
 PD,2024,498616,2024-08-16T17:00:00+00:00,2024-08-16,FINISHED,1,RC Celta de Vigo,Deportivo Alavés,214410,Alejandro Quintero González,Spain,Celta,Alaves,18:00,3,2,0,0,8,23,,0,
@@ -3489,6 +3523,16 @@ PD,2026,564728,2026-11-01T17:30:00+00:00,2026-11-01,FINISHED,11,Elche CF,Valenci
 PD,2026,564733,2026-11-01T13:00:00+00:00,2026-11-01,FINISHED,11,Getafe CF,Sevilla FC,56995,Víctor García Verdura,Spain,Getafe,Sevilla,13:00,2,4,0,1,18,18,,0,
 PD,2026,564734,2026-11-01T15:15:00+00:00,2026-11-01,FINISHED,11,Real Racing Club de Santander,Real Madrid CF,206223,José Munuera Montero,Spain,Santander,Real Madrid,15:15,2,0,0,0,10,8,,0,
 PD,2026,564731,2026-11-02T20:00:00+00:00,2026-11-02,FINISHED,11,RC Deportivo La Coruña,CA Osasuna,214122,Jon González Esteban,Spain,La Coruna,Osasuna,20:00,0,4,0,0,5,13,,0,
+PD,2026,564740,2026-11-06T20:00:00+00:00,2026-11-06,FINISHED,12,Sevilla FC,Deportivo Alavés,129443,Luis Bestard Servera,Spain,Sevilla,Alaves,20:00,2,3,0,0,14,19,,0,
+PD,2026,564739,2026-11-07T17:30:00+00:00,2026-11-07,FINISHED,12,CA Osasuna,Athletic Club,214573,Miguel Sesma Espinosa,Spain,Osasuna,Ath Bilbao,17:30,3,1,0,0,19,10,,0,
+PD,2026,564744,2026-11-07T13:00:00+00:00,2026-11-07,FINISHED,12,Málaga CF,Real Racing Club de Santander,57930,Isidro Díaz de Mera,Spain,Malaga,Santander,13:00,6,2,1,0,11,5,,0,
+PD,2026,564745,2026-11-07T15:15:00+00:00,2026-11-07,FINISHED,12,RCD Espanyol de Barcelona,RC Deportivo La Coruña,214410,Alejandro Quintero González,Spain,Espanol,La Coruna,15:15,4,4,0,0,17,10,,0,
+PD,2026,564741,2026-11-07T20:00:00+00:00,2026-11-07,FINISHED,12,Valencia CF,Real Madrid CF,214213,Francisco Hernández Maeso,Spain,Valencia,Real Madrid,20:00,4,3,1,0,26,6,,0,
+PD,2026,564746,2026-11-08T20:00:00+00:00,2026-11-08,FINISHED,12,Club Atlético de Madrid,FC Barcelona,80747,Javier Alberola Rojas,,Ath Madrid,Barcelona,20:00,4,1,0,0,14,14,,0,
+PD,2026,564738,2026-11-08T13:00:00+00:00,2026-11-08,FINISHED,12,Elche CF,Real Betis Balompié,207113,César Soto Grado,Spain,Elche,Betis,13:00,4,0,0,0,12,7,,0,
+PD,2026,564742,2026-11-08T17:30:00+00:00,2026-11-08,FINISHED,12,RC Celta de Vigo,Levante UD,207048,Miguel Ortiz Arias,Spain,Celta,Levante,17:30,1,2,0,0,8,9,,0,
+PD,2026,564743,2026-11-08T15:15:00+00:00,2026-11-08,FINISHED,12,Real Sociedad de Fútbol,Rayo Vallecano de Madrid,206203,Juan Martínez Munuera,Spain,Sociedad,Vallecano,15:15,2,2,0,0,11,8,,0,
+PD,2026,564747,2026-11-08T17:30:00+00:00,2026-11-08,FINISHED,12,Villarreal CF,Getafe CF,265471,Carlos Muñiz Muñoz,Spain,Villarreal,Getafe,17:30,2,2,0,0,6,13,,0,
 PL,2024,497410,2024-08-16T19:00:00+00:00,2024-08-16,FINISHED,1,Manchester United FC,Fulham FC,11446,Robert Jones,England,Man United,Fulham,20:00,2,3,0,0,12,10,R Jones,0,True
 PL,2024,497412,2024-08-17T14:00:00+00:00,2024-08-17,FINISHED,1,Arsenal FC,Wolverhampton Wanderers FC,23568,Jarred Gillett,Australia,Arsenal,Wolves,15:00,2,2,0,0,17,14,J Gillett,0,True
 PL,2024,497413,2024-08-17T14:00:00+00:00,2024-08-17,FINISHED,1,Everton FC,Brighton & Hove Albion FC,11430,Simon Hooper,England,Everton,Brighton,15:00,1,1,1,0,8,8,S Hooper,0,True
@@ -4339,6 +4383,16 @@ PL,2026,560623,2026-10-31T15:00:00+00:00,2026-10-31,FINISHED,9,Manchester City F
 PL,2026,560627,2026-10-31T17:30:00+00:00,2026-10-31,FINISHED,9,Tottenham Hotspur FC,Crystal Palace FC,11605,Michael Oliver,England,Tottenham,Crystal Palace,17:30,1,1,0,1,8,10,M Oliver,0,True
 PL,2026,560631,2026-11-01T16:30:00+00:00,2026-11-01,FINISHED,9,Liverpool FC,Arsenal FC,11423,Andy Madley,England,Liverpool,Arsenal,16:30,4,4,0,0,18,10,A Madley,0,True
 PL,2026,560622,2026-11-02T20:00:00+00:00,2026-11-02,FINISHED,9,Newcastle United FC,Everton FC,11327,John Brooks,England,Newcastle,Everton,20:00,4,2,1,0,13,9,J Brooks,0,True
+PL,2026,560634,2026-11-06T20:00:00+00:00,2026-11-06,FINISHED,10,Everton FC,Coventry City FC,11494,Stuart Attwell,England,Everton,Coventry,20:00,1,1,0,0,10,6,S Attwell,0,True
+PL,2026,560640,2026-11-07T15:00:00+00:00,2026-11-07,FINISHED,10,Arsenal FC,Hull City AFC,210717,Farai Hallam,England,Arsenal,Hull,15:00,2,3,0,0,6,15,F Hallam,0,True
+PL,2026,560633,2026-11-07T15:00:00+00:00,2026-11-07,FINISHED,10,Fulham FC,Newcastle United FC,11446,Robert Jones,England,Fulham,Newcastle,15:00,0,5,0,0,9,13,R Jones,0,True
+PL,2026,560632,2026-11-07T12:30:00+00:00,2026-11-07,FINISHED,10,Leeds United FC,Tottenham Hotspur FC,11327,John Brooks,England,Leeds,Tottenham,12:30,1,2,0,0,11,16,J Brooks,0,True
+PL,2026,560641,2026-11-07T17:30:00+00:00,2026-11-07,FINISHED,10,Nottingham Forest FC,Manchester City FC,213813,Sam Barrott,England,Nott'm Forest,Man City,17:30,0,2,0,0,13,7,S Barrott,0,True
+PL,2026,560638,2026-11-08T14:00:00+00:00,2026-11-08,FINISHED,10,Brighton & Hove Albion FC,Brentford FC,11605,Michael Oliver,England,Brighton,Brentford,14:00,4,2,0,1,11,7,M Oliver,0,True
+PL,2026,560635,2026-11-08T14:00:00+00:00,2026-11-08,FINISHED,10,Crystal Palace FC,Liverpool FC,11378,Tony Harrington,England,Crystal Palace,Liverpool,14:00,2,4,0,0,10,18,T Harrington,0,True
+PL,2026,560637,2026-11-08T14:00:00+00:00,2026-11-08,FINISHED,10,Ipswich Town FC,AFC Bournemouth,11430,Simon Hooper,England,Ipswich,Bournemouth,14:00,2,3,0,0,6,20,S Hooper,0,True
+PL,2026,560639,2026-11-08T16:30:00+00:00,2026-11-08,FINISHED,10,Manchester United FC,Aston Villa FC,11443,Chris Kavanagh,England,Man United,Aston Villa,16:30,1,1,0,0,18,9,C Kavanagh,0,True
+PL,2026,560636,2026-11-08T14:00:00+00:00,2026-11-08,FINISHED,10,Sunderland AFC,Chelsea FC,23568,Jarred Gillett,Australia,Sunderland,Chelsea,14:00,5,4,0,0,17,8,J Gillett,0,True
 PPL,2024,504020,2024-08-09T19:15:00+00:00,2024-08-09,FINISHED,1,Sporting Clube de Portugal,Rio Ave FC,,,,Sp Lisbon,Rio Ave,20:15,2,2,0,0,9,14,,0,
 PPL,2024,504016,2024-08-10T14:30:00+00:00,2024-08-10,FINISHED,1,AVS,CD Nacional,,,,AVS,Nacional,15:30,1,1,0,0,8,13,,0,
 PPL,2024,504021,2024-08-10T17:00:00+00:00,2024-08-10,FINISHED,1,Casa Pia AC,Boavista FC,,,,Casa Pia,Boavista,18:00,2,1,0,0,12,6,,0,
@@ -5041,6 +5095,14 @@ PPL,2026,567341,2026-11-01T15:30:00+00:00,2026-11-01,FINISHED,10,FC Arouca,CD Na
 PPL,2026,567339,2026-11-01T20:30:00+00:00,2026-11-01,FINISHED,10,Sporting Clube de Braga,FC Famalicão,98928,David Silva,Portugal,Sp Braga,Famalicao,20:30,5,5,0,1,24,9,,0,
 PPL,2026,567346,2026-11-02T20:15:00+00:00,2026-11-02,FINISHED,10,Gil Vicente FC,Vitória SC,220533,Hélder Carvalho,Portugal,Gil Vicente,Guimaraes,20:15,2,1,0,0,17,21,,0,
 PPL,2026,567342,2026-11-02T20:15:00+00:00,2026-11-02,FINISHED,10,Sport Lisboa e Benfica,FC Alverca,220513,Bruno Costa,Portugal,Benfica,Alverca,20:15,1,3,0,0,11,15,,0,
+PPL,2026,567353,2026-11-06T20:45:00+00:00,2026-11-06,FINISHED,11,FC Famalicão,FC Arouca,37823,Gustavo Correia,Portugal,Famalicao,Arouca,20:45,2,3,0,0,8,15,,0,
+PPL,2026,567347,2026-11-07T18:00:00+00:00,2026-11-07,FINISHED,11,FC Alverca,Casa Pia AC,57283,Sérgio Guelho,Portugal,Alverca,Casa Pia,18:00,1,1,0,0,16,13,,0,
+PPL,2026,567350,2026-11-07T20:30:00+00:00,2026-11-07,FINISHED,11,Sporting Clube de Portugal,Moreirense FC,220577,João Gonçalves,Portugal,Sp Lisbon,Moreirense,20:30,3,1,0,0,10,8,,0,
+PPL,2026,567352,2026-11-08T15:30:00+00:00,2026-11-08,FINISHED,11,CD Nacional,Académico de Viseu FC,39896,Pedro Ramalho,Portugal,Nacional,Academico Viseu,15:30,3,4,0,0,8,9,,0,
+PPL,2026,567351,2026-11-08T15:30:00+00:00,2026-11-08,FINISHED,11,CD Santa Clara,Gil Vicente FC,231221,Diogo Rosa,Portugal,Santa Clara,Gil Vicente,15:30,4,2,1,0,13,14,,0,
+PPL,2026,567355,2026-11-08T20:30:00+00:00,2026-11-08,FINISHED,11,CF Estrela da Amadora,Sport Lisboa e Benfica,37386,António Nobre,Portugal,Estrela,Benfica,20:30,2,0,0,0,15,12,,0,
+PPL,2026,567354,2026-11-08T20:30:00+00:00,2026-11-08,FINISHED,11,Rio Ave FC,Sporting Clube de Braga,176741,Claudio Pereira,,Rio Ave,Sp Braga,20:30,2,1,0,0,12,22,,0,
+PPL,2026,567349,2026-11-08T18:00:00+00:00,2026-11-08,FINISHED,11,Vitória SC,FC Porto,98928,David Silva,Portugal,Guimaraes,Porto,18:00,2,4,0,0,13,11,,0,
 SA,2024,503051,2024-08-17T18:45:00+00:00,2024-08-17,FINISHED,1,AC Milan,Torino FC,10977,Fabio Maresca,Italy,Milan,Torino,19:45,2,4,0,0,10,7,,0,
 SA,2024,503045,2024-08-17T18:45:00+00:00,2024-08-17,FINISHED,1,Empoli FC,AC Monza,10985,Michael Fabbri,Italy,Empoli,Monza,19:45,0,2,0,0,16,19,,0,
 SA,2024,503046,2024-08-17T16:30:00+00:00,2024-08-17,FINISHED,1,Genoa CFC,FC Internazionale Milano,57882,Ermanno Feliciani,Italy,Genoa,Inter,17:30,1,2,0,0,15,14,,0,
@@ -5901,6 +5963,16 @@ SA,2026,558546,2026-11-01T14:00:00+00:00,2026-11-01,FINISHED,10,SS Lazio,Cagliar
 SA,2026,558540,2026-11-01T17:00:00+00:00,2026-11-01,FINISHED,10,US Lecce,Genoa CFC,57762,Matteo Marchetti,Italy,Lecce,Genoa,17:00,2,1,0,0,19,9,,0,
 SA,2026,558545,2026-11-02T19:45:00+00:00,2026-11-02,FINISHED,10,Atalanta BC,Parma Calcio 1913,159361,Valerio Crezzini,Italy,Atalanta,Parma,19:45,0,0,0,0,8,10,,0,
 SA,2026,558541,2026-11-02T17:30:00+00:00,2026-11-02,FINISHED,10,US Sassuolo Calcio,ACF Fiorentina,57868,Matteo Marcenaro,Italy,Sassuolo,Fiorentina,17:30,2,3,0,0,12,15,,0,
+SA,2026,558537,2026-11-06T19:45:00+00:00,2026-11-06,FINISHED,11,Venezia FC,Udinese Calcio,206189,Juan Luca Sacchi,Italy,Venezia,Udinese,19:45,1,1,0,0,11,6,,0,
+SA,2026,558531,2026-11-07T19:45:00+00:00,2026-11-07,FINISHED,11,AS Roma,US Sassuolo Calcio,11060,Marco Di Bello,Italy,Roma,Sassuolo,19:45,3,2,1,0,8,13,,0,
+SA,2026,558534,2026-11-07T14:00:00+00:00,2026-11-07,FINISHED,11,Cagliari Calcio,Frosinone Calcio,57842,Giovanni Ayroldi,Italy,Cagliari,Frosinone,14:00,1,0,0,0,14,12,,0,
+SA,2026,558535,2026-11-07T17:00:00+00:00,2026-11-07,FINISHED,11,Parma Calcio 1913,Bologna FC 1909,57764,Luca Zufferli,Italy,Parma,Bologna,17:00,0,2,0,0,11,13,,0,
+SA,2026,558532,2026-11-07T14:00:00+00:00,2026-11-07,FINISHED,11,Torino FC,US Lecce,57882,Ermanno Feliciani,Italy,Torino,Lecce,14:00,3,3,0,0,11,16,,0,
+SA,2026,558538,2026-11-08T14:00:00+00:00,2026-11-08,FINISHED,11,AC Monza,Atalanta BC,283434,Claudio Allegretta,Italy,Monza,Atalanta,14:00,4,2,0,0,11,6,,0,
+SA,2026,558529,2026-11-08T19:45:00+00:00,2026-11-08,FINISHED,11,ACF Fiorentina,Juventus FC,57878,Andrea Colombo,Italy,Fiorentina,Juventus,19:45,1,3,0,0,16,18,,0,
+SA,2026,558530,2026-11-08T17:00:00+00:00,2026-11-08,FINISHED,11,FC Internazionale Milano,Como 1907,11053,Daniele Chiffi,Italy,Inter,Como,17:00,1,0,0,0,13,6,,0,
+SA,2026,558536,2026-11-08T14:00:00+00:00,2026-11-08,FINISHED,11,Genoa CFC,AC Milan,11029,Davide Massa,Italy,Genoa,Milan,14:00,2,4,0,0,14,13,,0,
+SA,2026,558533,2026-11-08T11:30:00+00:00,2026-11-08,FINISHED,11,SSC Napoli,SS Lazio,11002,Luca Pairetto,Italy,Napoli,Lazio,11:30,3,1,0,0,12,11,,0,
 SCO,2024,1549580158,2024-08-03T11:30:00+00:00,2024-08-03,FINISHED,,Hearts,Rangers,2009082962,N Walsh,,Hearts,Rangers,12:30,3,1,0,0,14,11,N Walsh,0,True
 SCO,2024,1766748577,2024-08-03T14:00:00+00:00,2024-08-03,FINISHED,,Motherwell,Ross County,2033781303,J Beaton,,Motherwell,Ross County,15:00,0,2,0,0,5,13,J Beaton,0,True
 SCO,2024,1491416493,2024-08-04T15:30:00+00:00,2024-08-04,FINISHED,,Celtic,Kilmarnock,2085294525,D Robertson,,Celtic,Kilmarnock,16:30,0,2,0,0,7,12,D Robertson,0,True
@@ -6426,3 +6498,9 @@ SCO,2026,1611036609,2026-10-28T19:45:00+00:00,2026-10-28,FINISHED,,St Mirren,Hib
 SCO,2026,1348598735,2026-10-31T15:00:00+00:00,2026-10-31,FINISHED,,Kilmarnock,St Johnstone,2064038935,M MacDermid,,Kilmarnock,St Johnstone,15:00,3,2,0,1,12,10,M MacDermid,0,True
 SCO,2026,1582699651,2026-10-31T15:00:00+00:00,2026-10-31,FINISHED,,Motherwell,St Mirren,2085294525,D Robertson,,Motherwell,St Mirren,15:00,4,5,0,0,17,14,D Robertson,0,True
 SCO,2026,1003762892,2026-11-01T13:00:00+00:00,2026-11-01,FINISHED,,Falkirk,Celtic,2051369101,D Nicolson,,Falkirk,Celtic,13:00,1,3,0,0,19,11,D Nicolson,0,True
+SCO,2026,1418841782,2026-11-07T17:45:00+00:00,2026-11-07,FINISHED,,Aberdeen,Hibernian,2051369101,D Nicolson,,Aberdeen,Hibernian,17:45,1,3,0,0,17,13,D Nicolson,0,True
+SCO,2026,1317884462,2026-11-07T15:00:00+00:00,2026-11-07,FINISHED,,Dundee United,Motherwell,2074604285,R Lee,,Dundee United,Motherwell,15:00,0,0,0,0,9,17,R Lee,0,True
+SCO,2026,1544419848,2026-11-07T15:00:00+00:00,2026-11-07,FINISHED,,St Johnstone,Dundee,2007444333,D Dickinson,,St Johnstone,Dundee,15:00,2,2,0,0,12,13,D Dickinson,0,True
+SCO,2026,1706038372,2026-11-07T20:00:00+00:00,2026-11-07,FINISHED,,St Mirren,Rangers,2009082962,N Walsh,,St Mirren,Rangers,20:00,1,1,0,0,16,22,N Walsh,0,True
+SCO,2026,1620434563,2026-11-08T16:00:00+00:00,2026-11-08,FINISHED,,Celtic,Kilmarnock,2033781303,J Beaton,,Celtic,Kilmarnock,16:00,1,5,0,0,7,12,J Beaton,0,True
+SCO,2026,1540583919,2026-11-08T15:00:00+00:00,2026-11-08,FINISHED,,Hearts,Falkirk,2064038935,M MacDermid,,Hearts,Falkirk,15:00,1,6,0,0,11,20,M MacDermid,0,True
