@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-16T13:30:44+00:00",
+ "generated_at": "2026-11-17T14:16:47+00:00",
  "seasons": [
   "2024/25",
   "2025/26",
@@ -980,11 +980,11 @@
     "referee_away_cards_per_match": null,
     "prob_over_3_5": 74.7,
     "fair_over_3_5": 1.34,
-    "fair_under_3_5": 3.95,
+    "fair_under_3_5": 3.94,
     "prob_over_4_5": 58.8,
     "fair_over_4_5": 1.7,
     "fair_under_4_5": 2.43,
-    "prob_over_5_5": 42.8,
+    "prob_over_5_5": 42.7,
     "fair_over_5_5": 2.34,
     "fair_under_5_5": 1.75,
     "home_prob_over_1_5": 76.6,
@@ -998,7 +998,7 @@
      0.1289,
      0.1584,
      0.1607,
-     0.1401,
+     0.14,
      0.1078,
      0.0747,
      0.0473,
@@ -1008,7 +1008,7 @@
     "referee_factor": 1.145,
     "home_receives_factor": 0.981,
     "away_receives_factor": 0.954,
-    "home_draws_factor": 0.876,
+    "home_draws_factor": 0.877,
     "away_draws_factor": 1.003
    }
   },
@@ -2355,7 +2355,7 @@
     "adjusted_pct_over_3_5": 78.0,
     "adjusted_pct_over_4_5": 65.4,
     "adjusted_pct_over_5_5": 48.9,
-    "model_factor": 1.072
+    "model_factor": 1.071
    },
    "next_fixture": null
   },
@@ -3141,7 +3141,7 @@
     "adjusted_pct_over_3_5": 83.0,
     "adjusted_pct_over_4_5": 70.4,
     "adjusted_pct_over_5_5": 37.1,
-    "model_factor": 1.054
+    "model_factor": 1.053
    },
    "next_fixture": null
   },
@@ -5037,7 +5037,7 @@
     "adjusted_pct_over_3_5": 72.5,
     "adjusted_pct_over_4_5": 50.9,
     "adjusted_pct_over_5_5": 42.5,
-    "model_factor": 1.085
+    "model_factor": 1.084
    },
    "next_fixture": null
   },
@@ -8175,7 +8175,7 @@
     "adjusted_pct_over_3_5": 62.7,
     "adjusted_pct_over_4_5": 42.0,
     "adjusted_pct_over_5_5": 30.8,
-    "model_factor": 0.914
+    "model_factor": 0.915
    },
    "next_fixture": null
   },
@@ -8886,7 +8886,7 @@
     "adjusted_pct_over_3_5": 59.1,
     "adjusted_pct_over_4_5": 45.9,
     "adjusted_pct_over_5_5": 29.5,
-    "model_factor": 1.115
+    "model_factor": 1.114
    },
    "next_fixture": null
   },
@@ -9516,7 +9516,7 @@
     "adjusted_pct_over_3_5": 61.9,
     "adjusted_pct_over_4_5": 46.3,
     "adjusted_pct_over_5_5": 29.7,
-    "model_factor": 1.085
+    "model_factor": 1.084
    },
    "next_fixture": null
   },
@@ -11854,7 +11854,7 @@
     "adjusted_pct_over_3_5": 64.6,
     "adjusted_pct_over_4_5": 43.1,
     "adjusted_pct_over_5_5": 19.9,
-    "model_factor": 1.052
+    "model_factor": 1.051
    },
    "next_fixture": null
   },
@@ -18508,7 +18508,7 @@
     "adjusted_pct_over_3_5": 59.1,
     "adjusted_pct_over_4_5": 37.6,
     "adjusted_pct_over_5_5": 15.7,
-    "model_factor": 0.986
+    "model_factor": 0.987
    },
    "next_fixture": null
   },
@@ -19867,7 +19867,7 @@
     "adjusted_pct_over_3_5": 51.3,
     "adjusted_pct_over_4_5": 34.9,
     "adjusted_pct_over_5_5": 21.3,
-    "model_factor": 0.952
+    "model_factor": 0.953
    },
    "next_fixture": null
   },
@@ -24946,7 +24946,7 @@
     "adjusted_home_cards_per_match": 1.79,
     "adjusted_away_cards_per_match": 2.01,
     "model_receives_factor": 0.95,
-    "model_draws_factor": 0.923
+    "model_draws_factor": 0.924
    }
   },
   {
@@ -27262,7 +27262,7 @@
     "adjusted_home_cards_per_match": 1.55,
     "adjusted_away_cards_per_match": 1.96,
     "model_receives_factor": 0.944,
-    "model_draws_factor": 0.94
+    "model_draws_factor": 0.941
    }
   },
   {
@@ -27739,7 +27739,7 @@
     "adjusted_cards_per_match": 2.14,
     "adjusted_home_cards_per_match": 2.04,
     "adjusted_away_cards_per_match": 2.19,
-    "model_receives_factor": 1.046,
+    "model_receives_factor": 1.045,
     "model_draws_factor": 0.944
    }
   },
@@ -28218,7 +28218,7 @@
     "adjusted_home_cards_per_match": 1.6,
     "adjusted_away_cards_per_match": 1.75,
     "model_receives_factor": 0.907,
-    "model_draws_factor": 1.064
+    "model_draws_factor": 1.063
    }
   },
   {
@@ -30293,7 +30293,7 @@
     "adjusted_cards_per_match": 3.58,
     "adjusted_home_cards_per_match": 3.06,
     "adjusted_away_cards_per_match": 3.82,
-    "model_receives_factor": 1.2,
+    "model_receives_factor": 1.199,
     "model_draws_factor": 0.98
    }
   },
@@ -31511,7 +31511,7 @@
     "adjusted_cards_per_match": 2.24,
     "adjusted_home_cards_per_match": 2.21,
     "adjusted_away_cards_per_match": 2.3,
-    "model_receives_factor": 0.968,
+    "model_receives_factor": 0.969,
     "model_draws_factor": 0.884
    }
   },
@@ -35619,7 +35619,7 @@
     "adjusted_cards_per_match": 2.83,
     "adjusted_home_cards_per_match": 2.76,
     "adjusted_away_cards_per_match": 2.71,
-    "model_receives_factor": 1.06,
+    "model_receives_factor": 1.059,
     "model_draws_factor": 1.018
    }
   },
@@ -36293,7 +36293,7 @@
     "adjusted_cards_per_match": 2.91,
     "adjusted_home_cards_per_match": 2.99,
     "adjusted_away_cards_per_match": 2.72,
-    "model_receives_factor": 1.097,
+    "model_receives_factor": 1.096,
     "model_draws_factor": 1.018
    }
   },
@@ -36588,7 +36588,7 @@
     "adjusted_home_cards_per_match": 2.52,
     "adjusted_away_cards_per_match": 2.42,
     "model_receives_factor": 0.981,
-    "model_draws_factor": 0.876
+    "model_draws_factor": 0.877
    }
   },
   {
@@ -38144,7 +38144,7 @@
     "adjusted_home_cards_per_match": 1.97,
     "adjusted_away_cards_per_match": 2.0,
     "model_receives_factor": 1.046,
-    "model_draws_factor": 1.141
+    "model_draws_factor": 1.14
    }
   },
   {
@@ -38523,7 +38523,7 @@
     "adjusted_cards_per_match": 2.44,
     "adjusted_home_cards_per_match": 2.28,
     "adjusted_away_cards_per_match": 2.44,
-    "model_receives_factor": 1.163,
+    "model_receives_factor": 1.162,
     "model_draws_factor": 0.888
    }
   },
@@ -40798,7 +40798,7 @@
    "market": "home_cards",
    "selection": "under",
    "line": 2.5,
-   "model_prob": 86.9,
+   "model_prob": 86.8,
    "typical_prob": 73.7,
    "fair_odds": 1.15
   },
@@ -40971,7 +40971,7 @@
     0.0576,
     0.118,
     0.1657,
-    0.1796,
+    0.1795,
     0.1599,
     0.1219,
     0.0818,
@@ -41085,7 +41085,7 @@
     0.1632,
     0.1325,
     0.0946,
-    0.0607,
+    0.0606,
     0.0354,
     0.0191,
     0.0174
@@ -41148,7 +41148,7 @@
    "referee_factor": null,
    "home_receives_factor": 1.046,
    "away_receives_factor": 1.021,
-   "home_draws_factor": 1.141,
+   "home_draws_factor": 1.14,
    "away_draws_factor": 0.9
   },
   {
@@ -41176,7 +41176,7 @@
    "prob_over_3_5": 63.8,
    "fair_over_3_5": 1.57,
    "fair_under_3_5": 2.77,
-   "prob_over_4_5": 44.7,
+   "prob_over_4_5": 44.6,
    "fair_over_4_5": 2.24,
    "fair_under_4_5": 1.81,
    "prob_over_5_5": 27.8,
@@ -41195,8 +41195,8 @@
     0.1684,
     0.1232,
     0.0772,
-    0.0424,
-    0.0207,
+    0.0423,
+    0.0206,
     0.0091,
     0.0056
    ],
@@ -41235,7 +41235,7 @@
    "fair_over_4_5": 2.64,
    "fair_under_4_5": 1.61,
    "prob_over_5_5": 23.1,
-   "fair_over_5_5": 4.33,
+   "fair_over_5_5": 4.32,
    "fair_under_5_5": 1.3,
    "home_prob_over_1_5": 53.9,
    "home_prob_over_2_5": 27.1,
@@ -41247,7 +41247,7 @@
     0.1479,
     0.1868,
     0.1828,
-    0.1477,
+    0.1476,
     0.1024,
     0.0627,
     0.0346,
@@ -41259,7 +41259,7 @@
    "home_receives_factor": 1.02,
    "away_receives_factor": 0.944,
    "home_draws_factor": 1.156,
-   "away_draws_factor": 0.94
+   "away_draws_factor": 0.941
   },
   {
    "league": "BL1",
@@ -41463,7 +41463,7 @@
    "away_prob_over_2_5": 33.8,
    "distribution": [
     0.0296,
-    0.098,
+    0.0979,
     0.1679,
     0.1983,
     0.1815,
@@ -41506,7 +41506,7 @@
    "prob_over_3_5": 61.8,
    "fair_over_3_5": 1.62,
    "fair_under_3_5": 2.62,
-   "prob_over_4_5": 42.7,
+   "prob_over_4_5": 42.6,
    "fair_over_4_5": 2.34,
    "fair_under_4_5": 1.74,
    "prob_over_5_5": 26.3,
@@ -41520,9 +41520,9 @@
     0.0145,
     0.0606,
     0.1274,
-    0.1797,
+    0.1798,
     0.1913,
-    0.1638,
+    0.1637,
     0.1175,
     0.0727,
     0.0396,
@@ -41684,10 +41684,10 @@
    "distribution": [
     0.0151,
     0.0626,
-    0.1303,
+    0.1304,
     0.182,
     0.1918,
-    0.1626,
+    0.1625,
     0.1155,
     0.0707,
     0.0381,
@@ -41795,7 +41795,7 @@
     0.0104,
     0.0443,
     0.0974,
-    0.1468,
+    0.1469,
     0.1708,
     0.1633,
     0.1337,
@@ -41849,7 +41849,7 @@
    "distribution": [
     0.0369,
     0.1218,
-    0.201,
+    0.2009,
     0.2209,
     0.1822,
     0.1202,
@@ -42068,7 +42068,7 @@
    "away_prob_over_2_5": 35.0,
    "distribution": [
     0.0183,
-    0.0724,
+    0.0725,
     0.144,
     0.192,
     0.1931,
@@ -42124,7 +42124,7 @@
    "distribution": [
     0.0154,
     0.0644,
-    0.1342,
+    0.1343,
     0.1867,
     0.1947,
     0.1624,
@@ -42172,14 +42172,14 @@
    "prob_over_5_5": 23.7,
    "fair_over_5_5": 4.21,
    "fair_under_5_5": 1.31,
-   "home_prob_over_1_5": 59.7,
+   "home_prob_over_1_5": 59.6,
    "home_prob_over_2_5": 32.6,
    "away_prob_over_1_5": 62.9,
    "away_prob_over_2_5": 35.9,
    "distribution": [
     0.0159,
     0.0658,
-    0.1363,
+    0.1364,
     0.1882,
     0.1949,
     0.1614,
@@ -42229,7 +42229,7 @@
    "fair_under_5_5": 1.3,
    "home_prob_over_1_5": 58.8,
    "home_prob_over_2_5": 31.8,
-   "away_prob_over_1_5": 63.0,
+   "away_prob_over_1_5": 62.9,
    "away_prob_over_2_5": 36.0,
    "distribution": [
     0.0163,
@@ -42318,7 +42318,7 @@
    "referee_source": null,
    "source_url": null,
    "projected_cards": 3.23,
-   "projected_booking_points": 34.4,
+   "projected_booking_points": 34.5,
    "basis": "model: both teams and league (referee not appointed yet)",
    "home_cards_received": 1.38,
    "away_cards_received": 1.84,
@@ -42331,14 +42331,14 @@
    "prob_over_3_5": 40.5,
    "fair_over_3_5": 2.47,
    "fair_under_3_5": 1.68,
-   "prob_over_4_5": 22.5,
-   "fair_over_4_5": 4.44,
+   "prob_over_4_5": 22.6,
+   "fair_over_4_5": 4.43,
    "fair_under_4_5": 1.29,
    "prob_over_5_5": 10.9,
-   "fair_over_5_5": 9.15,
+   "fair_over_5_5": 9.14,
    "fair_under_5_5": 1.12,
    "home_prob_over_1_5": 35.5,
-   "home_prob_over_2_5": 13.1,
+   "home_prob_over_2_5": 13.2,
    "away_prob_over_1_5": 59.0,
    "away_prob_over_2_5": 31.9,
    "distribution": [
@@ -42401,7 +42401,7 @@
     0.0646,
     0.1279,
     0.1738,
-    0.1822,
+    0.1821,
     0.1569,
     0.1157,
     0.0751,
@@ -42427,7 +42427,7 @@
    "referee": null,
    "referee_source": null,
    "source_url": null,
-   "projected_cards": 3.6,
+   "projected_cards": 3.61,
    "projected_booking_points": 38.4,
    "basis": "model: both teams and league (referee not appointed yet)",
    "home_cards_received": 1.59,
@@ -42440,7 +42440,7 @@
    "referee_away_cards_per_match": null,
    "prob_over_3_5": 48.6,
    "fair_over_3_5": 2.06,
-   "fair_under_3_5": 1.94,
+   "fair_under_3_5": 1.95,
    "prob_over_4_5": 29.5,
    "fair_over_4_5": 3.4,
    "fair_under_4_5": 1.42,
@@ -42457,7 +42457,7 @@
     0.1767,
     0.2123,
     0.1913,
-    0.1379,
+    0.138,
     0.0829,
     0.0427,
     0.0192,
@@ -42510,15 +42510,15 @@
     0.0185,
     0.0695,
     0.1346,
-    0.1789,
+    0.1788,
     0.1833,
     0.1545,
     0.1114,
     0.0707,
-    0.0402,
+    0.0403,
     0.0209,
     0.01,
-    0.0074
+    0.0075
    ],
    "referee_factor": null,
    "home_receives_factor": 0.817,
@@ -42562,13 +42562,13 @@
    "away_prob_over_1_5": 50.9,
    "away_prob_over_2_5": 24.5,
    "distribution": [
-    0.03,
+    0.0299,
     0.1051,
     0.1843,
     0.2155,
     0.189,
     0.1326,
-    0.0775,
+    0.0776,
     0.0389,
     0.017,
     0.0066,
@@ -42658,7 +42658,7 @@
    "referee_home_cards_per_match": null,
    "referee_away_matches": 0,
    "referee_away_cards_per_match": null,
-   "prob_over_3_5": 53.1,
+   "prob_over_3_5": 53.0,
    "fair_over_3_5": 1.89,
    "fair_under_3_5": 2.13,
    "prob_over_4_5": 33.6,
@@ -42775,7 +42775,7 @@
    "fair_over_4_5": 2.4,
    "fair_under_4_5": 1.71,
    "prob_over_5_5": 26.3,
-   "fair_over_5_5": 3.8,
+   "fair_over_5_5": 3.81,
    "fair_under_5_5": 1.36,
    "home_prob_over_1_5": 62.7,
    "home_prob_over_2_5": 35.7,
@@ -42785,11 +42785,11 @@
     0.0191,
     0.0705,
     0.1349,
-    0.1778,
+    0.1779,
     0.1817,
     0.1532,
     0.111,
-    0.071,
+    0.0709,
     0.0409,
     0.0215,
     0.0105,
@@ -42823,7 +42823,7 @@
    "referee_home_cards_per_match": null,
    "referee_away_matches": 0,
    "referee_away_cards_per_match": null,
-   "prob_over_3_5": 71.1,
+   "prob_over_3_5": 71.0,
    "fair_over_3_5": 1.41,
    "fair_under_3_5": 3.45,
    "prob_over_4_5": 54.2,
@@ -42840,7 +42840,7 @@
     0.0098,
     0.0423,
     0.094,
-    0.1434,
+    0.1435,
     0.1689,
     0.1635,
     0.1354,
@@ -42889,7 +42889,7 @@
    "fair_under_5_5": 1.27,
    "home_prob_over_1_5": 54.1,
    "home_prob_over_2_5": 27.3,
-   "away_prob_over_1_5": 63.8,
+   "away_prob_over_1_5": 63.7,
    "away_prob_over_2_5": 36.9,
    "distribution": [
     0.0187,
@@ -42908,7 +42908,7 @@
    "referee_factor": null,
    "home_receives_factor": 0.907,
    "away_receives_factor": 0.997,
-   "home_draws_factor": 1.064,
+   "home_draws_factor": 1.063,
    "away_draws_factor": 1.092
   },
   {
@@ -42992,7 +42992,7 @@
    "fair_over_3_5": 1.65,
    "fair_under_3_5": 2.54,
    "prob_over_4_5": 42.5,
-   "fair_over_4_5": 2.35,
+   "fair_over_4_5": 2.36,
    "fair_under_4_5": 1.74,
    "prob_over_5_5": 27.0,
    "fair_over_5_5": 3.7,
@@ -43008,7 +43008,7 @@
     0.1757,
     0.1812,
     0.1543,
-    0.1129,
+    0.1128,
     0.0729,
     0.0424,
     0.0225,
@@ -43222,12 +43222,12 @@
    "away_prob_over_1_5": 47.0,
    "away_prob_over_2_5": 21.3,
    "distribution": [
-    0.0458,
+    0.0457,
     0.1411,
-    0.2177,
+    0.2176,
     0.2238,
     0.1726,
-    0.1064,
+    0.1065,
     0.0547,
     0.0241,
     0.0093,
@@ -43282,7 +43282,7 @@
     0.0988,
     0.1482,
     0.1715,
-    0.1633,
+    0.1632,
     0.133,
     0.0952,
     0.0612,
@@ -43292,7 +43292,7 @@
    ],
    "referee_factor": null,
    "home_receives_factor": 1.215,
-   "away_receives_factor": 0.968,
+   "away_receives_factor": 0.969,
    "home_draws_factor": 1.066,
    "away_draws_factor": 0.884
   },
@@ -43502,7 +43502,7 @@
     0.1477,
     0.1867,
     0.1828,
-    0.1478,
+    0.1477,
     0.1026,
     0.0629,
     0.0347,
@@ -43655,10 +43655,10 @@
    "fair_over_4_5": 2.09,
    "fair_under_4_5": 1.91,
    "prob_over_5_5": 30.8,
-   "fair_over_5_5": 3.24,
+   "fair_over_5_5": 3.25,
    "fair_under_5_5": 1.45,
    "home_prob_over_1_5": 60.1,
-   "home_prob_over_2_5": 33.1,
+   "home_prob_over_2_5": 33.0,
    "away_prob_over_1_5": 71.9,
    "away_prob_over_2_5": 46.5,
    "distribution": [
@@ -43937,15 +43937,15 @@
    "away_prob_over_1_5": 64.7,
    "away_prob_over_2_5": 37.9,
    "distribution": [
-    0.0203,
+    0.0204,
     0.0741,
     0.1395,
     0.1812,
     0.1823,
-    0.1514,
+    0.1513,
     0.108,
     0.068,
-    0.0386,
+    0.0385,
     0.02,
     0.0096,
     0.0072
@@ -43981,25 +43981,25 @@
    "prob_over_3_5": 46.6,
    "fair_over_3_5": 2.15,
    "fair_under_3_5": 1.87,
-   "prob_over_4_5": 28.7,
+   "prob_over_4_5": 28.8,
    "fair_over_4_5": 3.48,
    "fair_under_4_5": 1.4,
    "prob_over_5_5": 15.9,
    "fair_over_5_5": 6.28,
    "fair_under_5_5": 1.19,
    "home_prob_over_1_5": 50.9,
-   "home_prob_over_2_5": 24.4,
+   "home_prob_over_2_5": 24.5,
    "away_prob_over_1_5": 54.8,
    "away_prob_over_2_5": 27.9,
    "distribution": [
-    0.0355,
+    0.0354,
     0.1117,
     0.1822,
     0.2048,
     0.1783,
     0.1282,
     0.0792,
-    0.0431,
+    0.0432,
     0.0212,
     0.0095,
     0.0039,
@@ -44008,7 +44008,7 @@
    "referee_factor": null,
    "home_receives_factor": 0.944,
    "away_receives_factor": 0.952,
-   "home_draws_factor": 0.94,
+   "home_draws_factor": 0.941,
    "away_draws_factor": 0.961
   },
   {
@@ -44148,9 +44148,9 @@
    "fair_under_3_5": 1.91,
    "prob_over_4_5": 28.8,
    "fair_over_4_5": 3.47,
-   "fair_under_4_5": 1.4,
+   "fair_under_4_5": 1.41,
    "prob_over_5_5": 15.3,
-   "fair_over_5_5": 6.52,
+   "fair_over_5_5": 6.51,
    "fair_under_5_5": 1.18,
    "home_prob_over_1_5": 47.7,
    "home_prob_over_2_5": 21.8,
@@ -44164,7 +44164,7 @@
     0.1884,
     0.1348,
     0.0808,
-    0.0417,
+    0.0418,
     0.019,
     0.0077,
     0.0028,
@@ -44220,7 +44220,7 @@
     0.1533,
     0.102,
     0.0585,
-    0.0295,
+    0.0296,
     0.0133,
     0.0054,
     0.003
@@ -44270,7 +44270,7 @@
     0.0179,
     0.0677,
     0.1322,
-    0.1771,
+    0.177,
     0.183,
     0.1554,
     0.113,
@@ -44336,7 +44336,7 @@
     0.0227
    ],
    "referee_factor": null,
-   "home_receives_factor": 1.097,
+   "home_receives_factor": 1.096,
    "away_receives_factor": 0.988,
    "home_draws_factor": 1.018,
    "away_draws_factor": 0.889
@@ -44366,7 +44366,7 @@
    "prob_over_3_5": 77.1,
    "fair_over_3_5": 1.3,
    "fair_under_3_5": 4.36,
-   "prob_over_4_5": 62.0,
+   "prob_over_4_5": 61.9,
    "fair_over_4_5": 1.61,
    "fair_under_4_5": 2.63,
    "prob_over_5_5": 46.1,
@@ -44381,11 +44381,11 @@
     0.0306,
     0.0727,
     0.1192,
-    0.1513,
+    0.1514,
     0.1587,
-    0.143,
+    0.1429,
     0.1137,
-    0.0815,
+    0.0814,
     0.0533,
     0.0323,
     0.0371
@@ -44425,12 +44425,12 @@
    "fair_over_4_5": 3.22,
    "fair_under_4_5": 1.45,
    "prob_over_5_5": 16.8,
-   "fair_over_5_5": 5.95,
+   "fair_over_5_5": 5.94,
    "fair_under_5_5": 1.2,
    "home_prob_over_1_5": 48.4,
    "home_prob_over_2_5": 22.4,
    "away_prob_over_1_5": 61.0,
-   "away_prob_over_2_5": 33.9,
+   "away_prob_over_2_5": 34.0,
    "distribution": [
     0.025,
     0.0923,
@@ -44438,7 +44438,7 @@
     0.2092,
     0.1929,
     0.1423,
-    0.0874,
+    0.0875,
     0.0461,
     0.0212,
     0.0087,
@@ -44488,7 +44488,7 @@
    "away_prob_over_2_5": 30.5,
    "distribution": [
     0.0161,
-    0.0665,
+    0.0666,
     0.1373,
     0.189,
     0.195,
@@ -44583,7 +44583,7 @@
    "referee_home_cards_per_match": null,
    "referee_away_matches": 0,
    "referee_away_cards_per_match": null,
-   "prob_over_3_5": 60.4,
+   "prob_over_3_5": 60.3,
    "fair_over_3_5": 1.66,
    "fair_under_3_5": 2.52,
    "prob_over_4_5": 41.1,
@@ -44667,7 +44667,7 @@
    ],
    "referee_factor": null,
    "home_receives_factor": 1.025,
-   "away_receives_factor": 0.968,
+   "away_receives_factor": 0.969,
    "home_draws_factor": 0.986,
    "away_draws_factor": 0.884
   },
@@ -44688,7 +44688,7 @@
    "home_cards_received": 2.74,
    "away_cards_received": 2.36,
    "projected_home_cards": 2.36,
-   "projected_away_cards": 2.32,
+   "projected_away_cards": 2.33,
    "referee_home_matches": 0,
    "referee_home_cards_per_match": null,
    "referee_away_matches": 0,
@@ -44808,20 +44808,20 @@
    "fair_under_3_5": 1.65,
    "prob_over_4_5": 21.6,
    "fair_over_4_5": 4.64,
-   "fair_under_4_5": 1.27,
+   "fair_under_4_5": 1.28,
    "prob_over_5_5": 10.3,
-   "fair_over_5_5": 9.71,
+   "fair_over_5_5": 9.7,
    "fair_under_5_5": 1.11,
    "home_prob_over_1_5": 44.3,
    "home_prob_over_2_5": 19.2,
    "away_prob_over_1_5": 49.9,
-   "away_prob_over_2_5": 23.6,
+   "away_prob_over_2_5": 23.7,
    "distribution": [
     0.0416,
-    0.1324,
-    0.2104,
+    0.1323,
+    0.2103,
     0.2229,
-    0.1771,
+    0.1772,
     0.1126,
     0.0597,
     0.0271,
@@ -44834,7 +44834,7 @@
    "home_receives_factor": 0.772,
    "away_receives_factor": 0.907,
    "home_draws_factor": 0.905,
-   "away_draws_factor": 1.064
+   "away_draws_factor": 1.063
   },
   {
    "league": "FL1",
@@ -44972,7 +44972,7 @@
    "fair_over_3_5": 2.05,
    "fair_under_3_5": 1.95,
    "prob_over_4_5": 29.5,
-   "fair_over_4_5": 3.39,
+   "fair_over_4_5": 3.38,
    "fair_under_4_5": 1.42,
    "prob_over_5_5": 15.7,
    "fair_over_5_5": 6.36,
@@ -45080,7 +45080,7 @@
    "referee_away_cards_per_match": null,
    "prob_over_3_5": 74.4,
    "fair_over_3_5": 1.34,
-   "fair_under_3_5": 3.91,
+   "fair_under_3_5": 3.9,
    "prob_over_4_5": 58.5,
    "fair_over_4_5": 1.71,
    "fair_under_4_5": 2.41,
@@ -45154,9 +45154,9 @@
     0.1954,
     0.1559,
     0.1036,
-    0.0591,
+    0.059,
     0.0294,
-    0.0131,
+    0.013,
     0.0052,
     0.0028
    ],
@@ -45191,7 +45191,7 @@
    "prob_over_3_5": 51.1,
    "fair_over_3_5": 1.96,
    "fair_under_3_5": 2.04,
-   "prob_over_4_5": 31.9,
+   "prob_over_4_5": 32.0,
    "fair_over_4_5": 3.13,
    "fair_under_4_5": 1.47,
    "prob_over_5_5": 17.6,
@@ -45309,7 +45309,7 @@
    "fair_under_5_5": 1.31,
    "home_prob_over_1_5": 56.1,
    "home_prob_over_2_5": 29.1,
-   "away_prob_over_1_5": 65.7,
+   "away_prob_over_1_5": 65.6,
    "away_prob_over_2_5": 39.0,
    "distribution": [
     0.0161,
@@ -45365,7 +45365,7 @@
    "home_prob_over_1_5": 55.7,
    "home_prob_over_2_5": 28.8,
    "away_prob_over_1_5": 52.4,
-   "away_prob_over_2_5": 25.7,
+   "away_prob_over_2_5": 25.8,
    "distribution": [
     0.0267,
     0.0967,
@@ -45470,10 +45470,10 @@
    "fair_over_4_5": 2.33,
    "fair_under_4_5": 1.75,
    "prob_over_5_5": 26.6,
-   "fair_over_5_5": 3.76,
+   "fair_over_5_5": 3.77,
    "fair_under_5_5": 1.36,
    "home_prob_over_1_5": 59.4,
-   "home_prob_over_2_5": 32.4,
+   "home_prob_over_2_5": 32.3,
    "away_prob_over_1_5": 67.0,
    "away_prob_over_2_5": 40.5,
    "distribution": [
@@ -45484,7 +45484,7 @@
     0.191,
     0.1642,
     0.1183,
-    0.0735,
+    0.0734,
     0.0401,
     0.0196,
     0.0087,
@@ -45520,8 +45520,8 @@
    "referee_away_cards_per_match": null,
    "prob_over_3_5": 62.3,
    "fair_over_3_5": 1.6,
-   "fair_under_3_5": 2.66,
-   "prob_over_4_5": 43.3,
+   "fair_under_3_5": 2.65,
+   "prob_over_4_5": 43.2,
    "fair_over_4_5": 2.31,
    "fair_under_4_5": 1.76,
    "prob_over_5_5": 26.8,
@@ -45534,7 +45534,7 @@
    "distribution": [
     0.014,
     0.0592,
-    0.1253,
+    0.1254,
     0.1781,
     0.1909,
     0.1646,
@@ -45593,7 +45593,7 @@
     0.1868,
     0.1926,
     0.1597,
-    0.1111,
+    0.111,
     0.0665,
     0.0351,
     0.0165,
@@ -45637,7 +45637,7 @@
    "prob_over_5_5": 16.1,
    "fair_over_5_5": 6.2,
    "fair_under_5_5": 1.19,
-   "home_prob_over_1_5": 50.7,
+   "home_prob_over_1_5": 50.8,
    "home_prob_over_2_5": 24.3,
    "away_prob_over_1_5": 55.4,
    "away_prob_over_2_5": 28.4,
@@ -45690,11 +45690,11 @@
    "fair_over_4_5": 2.45,
    "fair_under_4_5": 1.69,
    "prob_over_5_5": 25.4,
-   "fair_over_5_5": 3.94,
+   "fair_over_5_5": 3.93,
    "fair_under_5_5": 1.34,
    "home_prob_over_1_5": 64.5,
    "home_prob_over_2_5": 37.7,
-   "away_prob_over_1_5": 59.4,
+   "away_prob_over_1_5": 59.5,
    "away_prob_over_2_5": 32.4,
    "distribution": [
     0.0192,
@@ -45739,7 +45739,7 @@
    "referee_away_matches": 0,
    "referee_away_cards_per_match": null,
    "prob_over_3_5": 59.7,
-   "fair_over_3_5": 1.67,
+   "fair_over_3_5": 1.68,
    "fair_under_3_5": 2.48,
    "prob_over_4_5": 40.2,
    "fair_over_4_5": 2.49,
@@ -45863,8 +45863,8 @@
    "away_prob_over_2_5": 35.2,
    "distribution": [
     0.0241,
-    0.0889,
-    0.1647,
+    0.0888,
+    0.1646,
     0.2046,
     0.1918,
     0.1446,
@@ -45979,7 +45979,7 @@
     0.1808,
     0.1587,
     0.1192,
-    0.0787,
+    0.0788,
     0.0467,
     0.0252,
     0.0126,
@@ -46044,7 +46044,7 @@
    "home_receives_factor": 0.938,
    "away_receives_factor": 0.981,
    "home_draws_factor": 0.962,
-   "away_draws_factor": 0.876
+   "away_draws_factor": 0.877
   },
   {
    "league": "BL1",
@@ -46126,7 +46126,7 @@
    "prob_over_3_5": 55.9,
    "fair_over_3_5": 1.79,
    "fair_under_3_5": 2.27,
-   "prob_over_4_5": 36.4,
+   "prob_over_4_5": 36.3,
    "fair_over_4_5": 2.75,
    "fair_under_4_5": 1.57,
    "prob_over_5_5": 20.9,
@@ -46153,7 +46153,7 @@
    "referee_factor": null,
    "home_receives_factor": 1.046,
    "away_receives_factor": 0.884,
-   "home_draws_factor": 1.141,
+   "home_draws_factor": 1.14,
    "away_draws_factor": 1.029
   },
   {
@@ -46200,7 +46200,7 @@
     0.1598,
     0.1091,
     0.0638,
-    0.0327,
+    0.0326,
     0.0149,
     0.0061,
     0.0034
@@ -46359,7 +46359,7 @@
    "distribution": [
     0.0382,
     0.1247,
-    0.2036,
+    0.2035,
     0.2216,
     0.1809,
     0.1181,
@@ -46367,7 +46367,7 @@
     0.03,
     0.0122,
     0.0044,
-    0.0014,
+    0.0015,
     0.0006
    ],
    "referee_factor": null,
@@ -46456,10 +46456,10 @@
    "prob_over_3_5": 77.8,
    "fair_over_3_5": 1.28,
    "fair_under_3_5": 4.51,
-   "prob_over_4_5": 62.8,
+   "prob_over_4_5": 62.7,
    "fair_over_4_5": 1.59,
    "fair_under_4_5": 2.68,
-   "prob_over_5_5": 46.8,
+   "prob_over_5_5": 46.7,
    "fair_over_5_5": 2.14,
    "fair_under_5_5": 1.88,
    "home_prob_over_1_5": 71.5,
@@ -46470,8 +46470,8 @@
     0.0061,
     0.0287,
     0.0699,
-    0.1169,
-    0.1508,
+    0.117,
+    0.1509,
     0.16,
     0.1452,
     0.1159,
@@ -46595,6 +46595,61 @@
    "away_receives_factor": 0.987,
    "home_draws_factor": 1.111,
    "away_draws_factor": 1.071
+  },
+  {
+   "league": "PL",
+   "date": "2026-12-01",
+   "utc_kickoff": "2026-12-01T20:00:00+00:00",
+   "matchday": 13,
+   "home": "Coventry City FC",
+   "away": "Ipswich Town FC",
+   "referee_id": null,
+   "referee": null,
+   "referee_source": null,
+   "source_url": null,
+   "projected_cards": 3.79,
+   "projected_booking_points": 39.8,
+   "basis": "model: both teams and league (referee not appointed yet)",
+   "home_cards_received": 1.57,
+   "away_cards_received": 2.12,
+   "projected_home_cards": 1.64,
+   "projected_away_cards": 2.15,
+   "referee_home_matches": 0,
+   "referee_home_cards_per_match": null,
+   "referee_away_matches": 0,
+   "referee_away_cards_per_match": null,
+   "prob_over_3_5": 52.3,
+   "fair_over_3_5": 1.91,
+   "fair_under_3_5": 2.1,
+   "prob_over_4_5": 33.1,
+   "fair_over_4_5": 3.02,
+   "fair_under_4_5": 1.49,
+   "prob_over_5_5": 18.5,
+   "fair_over_5_5": 5.4,
+   "fair_under_5_5": 1.23,
+   "home_prob_over_1_5": 48.9,
+   "home_prob_over_2_5": 22.8,
+   "away_prob_over_1_5": 63.2,
+   "away_prob_over_2_5": 36.3,
+   "distribution": [
+    0.0235,
+    0.0872,
+    0.1627,
+    0.2035,
+    0.1921,
+    0.1458,
+    0.0928,
+    0.0509,
+    0.0246,
+    0.0106,
+    0.0041,
+    0.0022
+   ],
+   "referee_factor": null,
+   "home_receives_factor": 0.921,
+   "away_receives_factor": 1.028,
+   "home_draws_factor": 0.958,
+   "away_draws_factor": 0.985
   }
  ],
  "data_quality": {
