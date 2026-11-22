@@ -178,7 +178,7 @@
   }
   /* Sport switch: the football and EuroLeague panes; only the chosen sport shows. */
   .rc-pane { display: flex; flex-direction: column; gap: var(--cds-gap-lg); min-width: 0; }
-  .rc[data-sport="el"] [data-sport="football"], .rc:not([data-sport="el"]) [data-sport="el"] { display: none !important; }
+  .rc.is-el [data-sport="football"], .rc:not(.is-el) [data-sport="el"] { display: none !important; }
   .rc-sport { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; margin: 0 8px; border-radius: 10px; background: var(--fl-bg); border: 1px solid var(--fl-line); }
   .rc-sport button { font: inherit; font-size: 13px; font-weight: 600; min-height: 36px; border: 0; border-radius: 7px; background: transparent; color: var(--fl-muted); cursor: pointer; white-space: nowrap; }
   .rc-sport button:hover { color: var(--fl-text); }
@@ -1687,7 +1687,8 @@
   const elSport = () => (dash.params().sport === 'el' ? 'el' : 'football');
   const elShowSport = () => {
     const s = elSport();
-    if (elRoot) elRoot.dataset.sport = s;
+    // A class, never a data-* attribute: outside a drawing the dashboard allows only class, style, hidden, aria-*.
+    if (elRoot) elRoot.classList.toggle('is-el', s === 'el');
     for (const b of document.querySelectorAll('[data-sport-btn]')) b.setAttribute('aria-pressed', String(b.dataset.sportBtn === s));
   };
   for (const b of document.querySelectorAll('[data-sport-btn]')) {

@@ -228,7 +228,7 @@ after every commit, `git pull --rebase`, then `git push`, and report the pushed 
 - Crew figures = league average x mean of the three factors; unknown names count as average and are
   listed; the exact crew's record together is shown when it exists.
 - **Dashboard (built 2026-11-08):** a Football | EuroLeague switch at the top of the rail (dash param
-  `sport=el`; `.rc[data-sport]` + CSS hide the other `.rc-pane`; football logic untouched). EuroLeague
+  `sport=el`; class `.rc.is-el` + CSS hide the other `.rc-pane`; football logic untouched). EuroLeague
   sections: Hot Prediction (`el_hot_picks`), Upcoming games (`el_games`, click -> game card via param
   `elg`: crew factors, both teams from `el_teams`, players from `el_game_players`), Players (`el_players`,
   "Last 10" or a season, search, sortable), Referee statistics (`el_referees`, click -> seasons via `elr`),
@@ -270,6 +270,8 @@ after every commit, `git pull --rebase`, then `git push`, and report the pushed 
   uv's default Python location. Python is installed in `C:\Users\worsh\.local\share\uv\python`.
   In Claude sessions, set `UV_PYTHON_INSTALL_DIR` to that path and add
   `C:\Users\worsh\.local\bin` to `PATH` before running `uv`.
+- **Clock quirk:** `TZ=Europe/Athens date` in Git Bash here prints **UTC** (found 2026-11-22). For Athens time use
+  Python: `datetime.now(ZoneInfo("Europe/Athens"))` through `uv run python`.
 
 ## Folder structure
 ```
@@ -350,6 +352,8 @@ Referees/
   at 07:00 Athens time continue (it checks the `+0300`/`+0200` offset against `github.event.schedule`).
   It can also be started manually (`workflow_dispatch`). Steps: install uv 0.13.7 → `uv sync --locked`
   → pytest → `referees update` → commit the `data/*` outputs as github-actions[bot].
+- **Real run time (found 2026-11-22):** GitHub starts the scheduled job 7-9 hours late. Every scheduled bot
+  commit from 6 to 21 November landed 11:38-14:17 UTC (13:38-16:17 Athens), so don't tell the user it updates at 07:00.
 - The token is the repository secret `FOOTBALL_DATA_API_TOKEN`.
 - The first manual run (#1) succeeded and committed `cfbc65a` with complete data.
 - **The bot commits `data/` every day.** Always `git pull` before working locally, and don't commit
@@ -378,7 +382,9 @@ Referees/
   The user chose this over GitHub Pages. It does not update by itself.
 - Page source: `dashboard/index.html` (committed). It is stored in the dashboard as `files/index.html`
   (document `{text, edit}`). Written to the type's one-writer rules: text in the HTML, data in
-  `data-draw` drawings, and every number marked with `data-source`. Each `<script>` has its own
+  `data-draw` drawings, and every number marked with `data-source`.
+  **Outside a drawing, scripts may set only** class, style, hidden, open, disabled, tabindex, value, checked,
+  selected or aria-* (never `el.dataset.x = ...`): anything else fails the check as `stray_write`. Each `<script>` has its own
   scope, so share helpers via `window.rc`.
 - Data: `uv run referees export-dashboard` writes 14 row tables (incl. `hot_picks`, `hot_treble`,
   `hot_picks_record`, `treble_record`) to `data/dashboard/` (git-ignored): `fixture_distribution`
