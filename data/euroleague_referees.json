@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-25T15:27:24+00:00",
+ "generated_at": "2026-11-26T14:55:53+00:00",
  "competition": "EuroLeague",
  "seasons": [
   "2024/25",
@@ -30,15 +30,15 @@
   "FF": "Final Four"
  },
  "league_average": {
-  "fouls_total": 41.91,
+  "fouls_total": 41.94,
   "fouls_home": 20.72,
-  "fouls_away": 21.19,
-  "ftm_total": 30.23,
-  "ftm_home": 15.42,
-  "ftm_away": 14.81,
-  "fta_total": 38.8,
-  "fta_home": 19.73,
-  "fta_away": 19.07
+  "fouls_away": 21.22,
+  "ftm_total": 30.27,
+  "ftm_home": 15.44,
+  "ftm_away": 14.83,
+  "fta_total": 38.85,
+  "fta_home": 19.77,
+  "fta_away": 19.08
  },
  "league_by_season": {
   "2024/25": {
@@ -66,67 +66,67 @@
    "fta_away": 18.84
   },
   "2026/27": {
-   "games": 136,
-   "fouls_total": 42.82,
-   "fouls_home": 21.55,
-   "fouls_away": 21.27,
-   "ftm_total": 30.01,
-   "ftm_home": 14.76,
-   "ftm_away": 15.25,
-   "fta_total": 38.96,
-   "fta_home": 19.03,
-   "fta_away": 19.93
+   "games": 140,
+   "fouls_total": 42.87,
+   "fouls_home": 21.5,
+   "fouls_away": 21.37,
+   "ftm_total": 30.17,
+   "ftm_home": 14.87,
+   "ftm_away": 15.3,
+   "fta_total": 39.15,
+   "fta_home": 19.2,
+   "fta_away": 19.95
   }
  },
- "games": 868,
+ "games": 872,
  "referees": [
   {
    "referee": "Carlos Peruga",
-   "games": 79,
+   "games": 80,
    "games_by_season": {
     "2024/25": 32,
     "2025/26": 36,
-    "2026/27": 11
+    "2026/27": 12
    },
    "playoff_games": 9,
    "raw": {
-    "fouls_total": 41.19,
-    "fouls_home": 20.82,
-    "fouls_away": 20.37,
-    "ftm_total": 29.49,
-    "ftm_home": 14.39,
+    "fouls_total": 41.23,
+    "fouls_home": 20.79,
+    "fouls_away": 20.44,
+    "ftm_total": 29.51,
+    "ftm_home": 14.41,
     "ftm_away": 15.1,
-    "fta_total": 38.35,
-    "fta_home": 18.53,
-    "fta_away": 19.82
+    "fta_total": 38.39,
+    "fta_home": 18.57,
+    "fta_away": 19.81
    },
    "adjusted": {
-    "fouls_total": 41.53,
-    "fouls_home": 20.95,
-    "fouls_away": 20.57,
-    "ftm_total": 29.77,
-    "ftm_home": 14.68,
-    "ftm_away": 15.08,
-    "fta_total": 38.55,
-    "fta_home": 18.85,
-    "fta_away": 19.7
+    "fouls_total": 41.58,
+    "fouls_home": 20.9,
+    "fouls_away": 20.68,
+    "ftm_total": 29.8,
+    "ftm_home": 14.71,
+    "ftm_away": 15.09,
+    "fta_total": 38.6,
+    "fta_home": 18.91,
+    "fta_away": 19.69
    },
    "factor": {
     "fouls_total": 0.991,
-    "fouls_home": 1.011,
-    "fouls_away": 0.971,
-    "ftm_total": 0.985,
-    "ftm_home": 0.952,
-    "ftm_away": 1.019,
+    "fouls_home": 1.009,
+    "fouls_away": 0.975,
+    "ftm_total": 0.984,
+    "ftm_home": 0.953,
+    "ftm_away": 1.017,
     "fta_total": 0.994,
-    "fta_home": 0.955,
-    "fta_away": 1.033
+    "fta_home": 0.957,
+    "fta_away": 1.032
    },
    "player_foul_effect": {
-    "committed": 1.007,
-    "drawn": 0.989
+    "committed": 1.009,
+    "drawn": 0.988
    },
-   "last_game": "2026-11-19"
+   "last_game": "2026-11-25"
   },
   {
    "referee": "Mehdi Difallah",
@@ -152,23 +152,23 @@
     "fouls_total": 42.15,
     "fouls_home": 21.0,
     "fouls_away": 21.15,
-    "ftm_total": 30.24,
+    "ftm_total": 30.25,
     "ftm_home": 15.04,
     "ftm_away": 15.2,
-    "fta_total": 38.76,
+    "fta_total": 38.77,
     "fta_home": 19.34,
     "fta_away": 19.43
    },
    "factor": {
-    "fouls_total": 1.006,
+    "fouls_total": 1.005,
     "fouls_home": 1.013,
-    "fouls_away": 0.998,
-    "ftm_total": 1.0,
-    "ftm_home": 0.976,
-    "ftm_away": 1.026,
-    "fta_total": 0.999,
-    "fta_home": 0.98,
-    "fta_away": 1.019
+    "fouls_away": 0.997,
+    "ftm_total": 0.999,
+    "ftm_home": 0.974,
+    "ftm_away": 1.025,
+    "fta_total": 0.998,
+    "fta_home": 0.978,
+    "fta_away": 1.018
    },
    "player_foul_effect": {
     "committed": 1.029,
@@ -199,28 +199,28 @@
    "adjusted": {
     "fouls_total": 42.18,
     "fouls_home": 21.02,
-    "fouls_away": 21.16,
-    "ftm_total": 30.74,
+    "fouls_away": 21.17,
+    "ftm_total": 30.75,
     "ftm_home": 15.22,
     "ftm_away": 15.52,
-    "fta_total": 39.33,
-    "fta_home": 19.34,
+    "fta_total": 39.34,
+    "fta_home": 19.35,
     "fta_away": 19.99
    },
    "factor": {
     "fouls_total": 1.006,
-    "fouls_home": 1.014,
-    "fouls_away": 0.999,
-    "ftm_total": 1.017,
-    "ftm_home": 0.987,
-    "ftm_away": 1.048,
-    "fta_total": 1.014,
-    "fta_home": 0.98,
-    "fta_away": 1.048
+    "fouls_home": 1.015,
+    "fouls_away": 0.998,
+    "ftm_total": 1.016,
+    "ftm_home": 0.986,
+    "ftm_away": 1.047,
+    "fta_total": 1.012,
+    "fta_home": 0.979,
+    "fta_away": 1.047
    },
    "player_foul_effect": {
     "committed": 1.025,
-    "drawn": 1.003
+    "drawn": 1.002
    },
    "last_game": "2026-11-19"
   },
@@ -247,78 +247,78 @@
    "adjusted": {
     "fouls_total": 41.4,
     "fouls_home": 19.99,
-    "fouls_away": 21.4,
+    "fouls_away": 21.41,
     "ftm_total": 29.16,
-    "ftm_home": 15.59,
-    "ftm_away": 13.56,
+    "ftm_home": 15.6,
+    "ftm_away": 13.57,
     "fta_total": 37.43,
-    "fta_home": 20.03,
+    "fta_home": 20.04,
     "fta_away": 17.39
    },
    "factor": {
-    "fouls_total": 0.988,
+    "fouls_total": 0.987,
     "fouls_home": 0.965,
-    "fouls_away": 1.01,
-    "ftm_total": 0.965,
-    "ftm_home": 1.011,
-    "ftm_away": 0.916,
-    "fta_total": 0.965,
-    "fta_home": 1.016,
-    "fta_away": 0.912
+    "fouls_away": 1.009,
+    "ftm_total": 0.964,
+    "ftm_home": 1.01,
+    "ftm_away": 0.915,
+    "fta_total": 0.963,
+    "fta_home": 1.014,
+    "fta_away": 0.911
    },
    "player_foul_effect": {
-    "committed": 1.008,
-    "drawn": 0.98
+    "committed": 1.007,
+    "drawn": 0.979
    },
    "last_game": "2026-11-20"
   },
   {
    "referee": "Emin Mogulkoc",
-   "games": 73,
+   "games": 74,
    "games_by_season": {
     "2024/25": 27,
     "2025/26": 34,
-    "2026/27": 12
+    "2026/27": 13
    },
    "playoff_games": 6,
    "raw": {
-    "fouls_total": 41.18,
-    "fouls_home": 20.29,
-    "fouls_away": 20.89,
-    "ftm_total": 29.23,
-    "ftm_home": 14.9,
-    "ftm_away": 14.33,
-    "fta_total": 37.85,
-    "fta_home": 19.04,
-    "fta_away": 18.81
+    "fouls_total": 41.28,
+    "fouls_home": 20.27,
+    "fouls_away": 21.01,
+    "ftm_total": 29.38,
+    "ftm_home": 15.01,
+    "ftm_away": 14.36,
+    "fta_total": 37.97,
+    "fta_home": 19.18,
+    "fta_away": 18.8
    },
    "adjusted": {
-    "fouls_total": 41.44,
-    "fouls_home": 20.57,
-    "fouls_away": 20.87,
-    "ftm_total": 29.81,
-    "ftm_home": 15.06,
-    "ftm_away": 14.75,
-    "fta_total": 38.31,
-    "fta_home": 19.13,
-    "fta_away": 19.18
+    "fouls_total": 41.59,
+    "fouls_home": 20.54,
+    "fouls_away": 21.05,
+    "ftm_total": 30.02,
+    "ftm_home": 15.22,
+    "ftm_away": 14.8,
+    "fta_total": 38.49,
+    "fta_home": 19.33,
+    "fta_away": 19.16
    },
    "factor": {
-    "fouls_total": 0.989,
-    "fouls_home": 0.993,
-    "fouls_away": 0.985,
-    "ftm_total": 0.986,
-    "ftm_home": 0.977,
-    "ftm_away": 0.996,
-    "fta_total": 0.987,
-    "fta_home": 0.97,
-    "fta_away": 1.006
+    "fouls_total": 0.992,
+    "fouls_home": 0.992,
+    "fouls_away": 0.992,
+    "ftm_total": 0.992,
+    "ftm_home": 0.986,
+    "ftm_away": 0.998,
+    "fta_total": 0.991,
+    "fta_home": 0.978,
+    "fta_away": 1.004
    },
    "player_foul_effect": {
-    "committed": 0.998,
-    "drawn": 0.981
+    "committed": 1.002,
+    "drawn": 0.983
    },
-   "last_game": "2026-11-20"
+   "last_game": "2026-11-25"
   },
   {
    "referee": "Ilija Belosevic",
@@ -342,28 +342,28 @@
    },
    "adjusted": {
     "fouls_total": 42.13,
-    "fouls_home": 20.48,
-    "fouls_away": 21.65,
-    "ftm_total": 30.39,
+    "fouls_home": 20.47,
+    "fouls_away": 21.66,
+    "ftm_total": 30.4,
     "ftm_home": 16.32,
-    "ftm_away": 14.07,
-    "fta_total": 39.19,
-    "fta_home": 20.96,
+    "ftm_away": 14.08,
+    "fta_total": 39.2,
+    "fta_home": 20.97,
     "fta_away": 18.23
    },
    "factor": {
     "fouls_total": 1.005,
     "fouls_home": 0.988,
-    "fouls_away": 1.022,
-    "ftm_total": 1.005,
-    "ftm_home": 1.058,
-    "ftm_away": 0.95,
-    "fta_total": 1.01,
-    "fta_home": 1.062,
-    "fta_away": 0.956
+    "fouls_away": 1.021,
+    "ftm_total": 1.004,
+    "ftm_home": 1.057,
+    "ftm_away": 0.949,
+    "fta_total": 1.009,
+    "fta_home": 1.061,
+    "fta_away": 0.955
    },
    "player_foul_effect": {
-    "committed": 1.022,
+    "committed": 1.021,
     "drawn": 0.997
    },
    "last_game": "2026-11-24"
@@ -391,27 +391,27 @@
    "adjusted": {
     "fouls_total": 42.71,
     "fouls_home": 21.14,
-    "fouls_away": 21.57,
-    "ftm_total": 31.54,
-    "ftm_home": 16.08,
+    "fouls_away": 21.58,
+    "ftm_total": 31.55,
+    "ftm_home": 16.09,
     "ftm_away": 15.46,
-    "fta_total": 40.46,
-    "fta_home": 20.57,
+    "fta_total": 40.47,
+    "fta_home": 20.58,
     "fta_away": 19.89
    },
    "factor": {
     "fouls_total": 1.019,
     "fouls_home": 1.02,
-    "fouls_away": 1.018,
-    "ftm_total": 1.043,
-    "ftm_home": 1.043,
-    "ftm_away": 1.044,
-    "fta_total": 1.043,
-    "fta_home": 1.043,
-    "fta_away": 1.043
+    "fouls_away": 1.017,
+    "ftm_total": 1.042,
+    "ftm_home": 1.042,
+    "ftm_away": 1.043,
+    "fta_total": 1.042,
+    "fta_home": 1.041,
+    "fta_away": 1.042
    },
    "player_foul_effect": {
-    "committed": 1.024,
+    "committed": 1.023,
     "drawn": 1.003
    },
    "last_game": "2026-11-24"
@@ -437,29 +437,29 @@
     "fta_away": 17.51
    },
    "adjusted": {
-    "fouls_total": 41.51,
+    "fouls_total": 41.52,
     "fouls_home": 20.19,
-    "fouls_away": 21.32,
-    "ftm_total": 29.44,
+    "fouls_away": 21.33,
+    "ftm_total": 29.45,
     "ftm_home": 15.53,
-    "ftm_away": 13.91,
+    "ftm_away": 13.92,
     "fta_total": 37.72,
     "fta_home": 19.86,
     "fta_away": 17.86
    },
    "factor": {
     "fouls_total": 0.99,
-    "fouls_home": 0.974,
-    "fouls_away": 1.006,
-    "ftm_total": 0.974,
-    "ftm_home": 1.007,
-    "ftm_away": 0.94,
-    "fta_total": 0.972,
-    "fta_home": 1.007,
+    "fouls_home": 0.975,
+    "fouls_away": 1.005,
+    "ftm_total": 0.973,
+    "ftm_home": 1.006,
+    "ftm_away": 0.939,
+    "fta_total": 0.971,
+    "fta_home": 1.005,
     "fta_away": 0.936
    },
    "player_foul_effect": {
-    "committed": 1.006,
+    "committed": 1.005,
     "drawn": 0.988
    },
    "last_game": "2026-11-24"
@@ -485,32 +485,80 @@
     "fta_away": 17.74
    },
    "adjusted": {
-    "fouls_total": 40.59,
+    "fouls_total": 40.6,
     "fouls_home": 19.77,
     "fouls_away": 20.82,
-    "ftm_total": 29.27,
-    "ftm_home": 15.55,
+    "ftm_total": 29.28,
+    "ftm_home": 15.56,
     "ftm_away": 13.72,
-    "fta_total": 37.84,
-    "fta_home": 19.83,
+    "fta_total": 37.85,
+    "fta_home": 19.84,
     "fta_away": 18.01
    },
    "factor": {
     "fouls_total": 0.968,
     "fouls_home": 0.954,
-    "fouls_away": 0.982,
-    "ftm_total": 0.969,
-    "ftm_home": 1.009,
-    "ftm_away": 0.927,
-    "fta_total": 0.975,
-    "fta_home": 1.005,
+    "fouls_away": 0.981,
+    "ftm_total": 0.967,
+    "ftm_home": 1.008,
+    "ftm_away": 0.926,
+    "fta_total": 0.974,
+    "fta_home": 1.003,
     "fta_away": 0.944
    },
    "player_foul_effect": {
-    "committed": 0.995,
+    "committed": 0.994,
     "drawn": 0.969
    },
    "last_game": "2026-11-19"
+  },
+  {
+   "referee": "Sasa Pukl",
+   "games": 69,
+   "games_by_season": {
+    "2024/25": 26,
+    "2025/26": 31,
+    "2026/27": 12
+   },
+   "playoff_games": 5,
+   "raw": {
+    "fouls_total": 39.54,
+    "fouls_home": 19.52,
+    "fouls_away": 20.01,
+    "ftm_total": 27.07,
+    "ftm_home": 13.67,
+    "ftm_away": 13.41,
+    "fta_total": 34.64,
+    "fta_home": 17.59,
+    "fta_away": 17.04
+   },
+   "adjusted": {
+    "fouls_total": 40.28,
+    "fouls_home": 19.91,
+    "fouls_away": 20.37,
+    "ftm_total": 27.68,
+    "ftm_home": 13.99,
+    "ftm_away": 13.69,
+    "fta_total": 35.52,
+    "fta_home": 17.97,
+    "fta_away": 17.55
+   },
+   "factor": {
+    "fouls_total": 0.961,
+    "fouls_home": 0.961,
+    "fouls_away": 0.96,
+    "ftm_total": 0.915,
+    "ftm_home": 0.906,
+    "ftm_away": 0.923,
+    "fta_total": 0.914,
+    "fta_home": 0.909,
+    "fta_away": 0.92
+   },
+   "player_foul_effect": {
+    "committed": 0.975,
+    "drawn": 0.954
+   },
+   "last_game": "2026-11-25"
   },
   {
    "referee": "Emilio Perez",
@@ -535,126 +583,78 @@
    "adjusted": {
     "fouls_total": 40.13,
     "fouls_home": 19.96,
-    "fouls_away": 20.17,
+    "fouls_away": 20.18,
     "ftm_total": 29.03,
-    "ftm_home": 14.86,
-    "ftm_away": 14.16,
-    "fta_total": 37.01,
-    "fta_home": 18.96,
-    "fta_away": 18.05
+    "ftm_home": 14.87,
+    "ftm_away": 14.17,
+    "fta_total": 37.02,
+    "fta_home": 18.97,
+    "fta_away": 18.06
    },
    "factor": {
     "fouls_total": 0.957,
     "fouls_home": 0.963,
-    "fouls_away": 0.952,
-    "ftm_total": 0.96,
-    "ftm_home": 0.964,
-    "ftm_away": 0.956,
-    "fta_total": 0.954,
-    "fta_home": 0.961,
-    "fta_away": 0.947
+    "fouls_away": 0.951,
+    "ftm_total": 0.959,
+    "ftm_home": 0.963,
+    "ftm_away": 0.955,
+    "fta_total": 0.953,
+    "fta_home": 0.959,
+    "fta_away": 0.946
    },
    "player_foul_effect": {
-    "committed": 0.977,
+    "committed": 0.976,
     "drawn": 0.948
    },
    "last_game": "2026-11-24"
   },
   {
-   "referee": "Sasa Pukl",
-   "games": 68,
-   "games_by_season": {
-    "2024/25": 26,
-    "2025/26": 31,
-    "2026/27": 11
-   },
-   "playoff_games": 5,
-   "raw": {
-    "fouls_total": 39.43,
-    "fouls_home": 19.46,
-    "fouls_away": 19.97,
-    "ftm_total": 26.88,
-    "ftm_home": 13.59,
-    "ftm_away": 13.29,
-    "fta_total": 34.37,
-    "fta_home": 17.46,
-    "fta_away": 16.91
-   },
-   "adjusted": {
-    "fouls_total": 40.13,
-    "fouls_home": 19.82,
-    "fouls_away": 20.31,
-    "ftm_total": 27.41,
-    "ftm_home": 13.88,
-    "ftm_away": 13.53,
-    "fta_total": 35.14,
-    "fta_home": 17.78,
-    "fta_away": 17.36
-   },
-   "factor": {
-    "fouls_total": 0.958,
-    "fouls_home": 0.956,
-    "fouls_away": 0.959,
-    "ftm_total": 0.907,
-    "ftm_home": 0.9,
-    "ftm_away": 0.914,
-    "fta_total": 0.906,
-    "fta_home": 0.901,
-    "fta_away": 0.911
-   },
-   "player_foul_effect": {
-    "committed": 0.972,
-    "drawn": 0.95
-   },
-   "last_game": "2026-11-19"
-  },
-  {
    "referee": "Juan Carlos Garcia",
-   "games": 66,
+   "games": 67,
    "games_by_season": {
     "2024/25": 26,
     "2025/26": 30,
-    "2026/27": 10
+    "2026/27": 11
    },
    "playoff_games": 4,
    "raw": {
-    "fouls_total": 43.61,
-    "fouls_home": 21.53,
-    "fouls_away": 22.08,
-    "ftm_total": 31.47,
+    "fouls_total": 43.52,
+    "fouls_home": 21.48,
+    "fouls_away": 22.04,
+    "ftm_total": 31.46,
     "ftm_home": 16.33,
-    "ftm_away": 15.14,
+    "ftm_away": 15.13,
     "fta_total": 40.7,
-    "fta_home": 21.17,
-    "fta_away": 19.53
+    "fta_home": 21.18,
+    "fta_away": 19.52
    },
    "adjusted": {
-    "fouls_total": 43.33,
-    "fouls_home": 21.5,
-    "fouls_away": 21.84,
-    "ftm_total": 30.88,
-    "ftm_home": 15.96,
+    "fouls_total": 43.22,
+    "fouls_home": 21.42,
+    "fouls_away": 21.8,
+    "ftm_total": 30.89,
+    "ftm_home": 15.97,
     "ftm_away": 14.92,
-    "fta_total": 39.99,
-    "fta_home": 20.65,
+    "fta_total": 40.02,
+    "fta_home": 20.68,
     "fta_away": 19.34
    },
    "factor": {
-    "fouls_total": 1.034,
-    "fouls_home": 1.037,
-    "fouls_away": 1.03,
-    "ftm_total": 1.022,
-    "ftm_home": 1.035,
-    "ftm_away": 1.007,
-    "fta_total": 1.031,
-    "fta_home": 1.047,
-    "fta_away": 1.014
+    "fouls_total": 1.031,
+    "fouls_home": 1.034,
+    "fouls_away": 1.027,
+    "ftm_total": 1.02,
+    "ftm_home": 1.034,
+    "ftm_away": 1.006,
+    "fta_total": 1.03,
+    "fta_home": 1.046,
+    "fta_away": 1.013
    },
    "player_foul_effect": {
-    "committed": 1.039,
-    "drawn": 1.032
+    "committed": 1.036,
+    "drawn": 1.028
    },
-   "last_game": "2026-11-19"
+   "last_game": "2026-11-25"
   },
   {
    "referee": "Arturas Sukys",
@@ -677,30 +677,30 @@
     "fta_away": 18.67
    },
    "adjusted": {
-    "fouls_total": 41.67,
+    "fouls_total": 41.68,
     "fouls_home": 20.63,
-    "fouls_away": 21.04,
-    "ftm_total": 30.34,
-    "ftm_home": 15.5,
+    "fouls_away": 21.05,
+    "ftm_total": 30.35,
+    "ftm_home": 15.51,
     "ftm_away": 14.84,
-    "fta_total": 38.86,
-    "fta_home": 19.95,
+    "fta_total": 38.87,
+    "fta_home": 19.96,
     "fta_away": 18.91
    },
    "factor": {
     "fouls_total": 0.994,
-    "fouls_home": 0.995,
-    "fouls_away": 0.993,
-    "ftm_total": 1.004,
-    "ftm_home": 1.006,
-    "ftm_away": 1.002,
-    "fta_total": 1.002,
-    "fta_home": 1.011,
+    "fouls_home": 0.996,
+    "fouls_away": 0.992,
+    "ftm_total": 1.003,
+    "ftm_home": 1.004,
+    "ftm_away": 1.001,
+    "fta_total": 1.0,
+    "fta_home": 1.01,
     "fta_away": 0.991
    },
    "player_foul_effect": {
-    "committed": 1.012,
-    "drawn": 0.989
+    "committed": 1.011,
+    "drawn": 0.988
    },
    "last_game": "2026-11-19"
   },
@@ -727,23 +727,23 @@
     "fouls_total": 42.49,
     "fouls_home": 21.02,
     "fouls_away": 21.47,
-    "ftm_total": 31.4,
+    "ftm_total": 31.41,
     "ftm_home": 15.65,
     "ftm_away": 15.76,
-    "fta_total": 39.78,
-    "fta_home": 19.99,
+    "fta_total": 39.79,
+    "fta_home": 20.0,
     "fta_away": 19.79
    },
    "factor": {
-    "fouls_total": 1.014,
+    "fouls_total": 1.013,
     "fouls_home": 1.014,
-    "fouls_away": 1.013,
-    "ftm_total": 1.039,
-    "ftm_home": 1.015,
-    "ftm_away": 1.064,
-    "fta_total": 1.025,
-    "fta_home": 1.013,
-    "fta_away": 1.038
+    "fouls_away": 1.012,
+    "ftm_total": 1.038,
+    "ftm_home": 1.014,
+    "ftm_away": 1.063,
+    "fta_total": 1.024,
+    "fta_home": 1.011,
+    "fta_away": 1.037
    },
    "player_foul_effect": {
     "committed": 1.038,
@@ -772,30 +772,30 @@
     "fta_away": 18.42
    },
    "adjusted": {
-    "fouls_total": 42.49,
+    "fouls_total": 42.5,
     "fouls_home": 21.03,
-    "fouls_away": 21.46,
+    "fouls_away": 21.47,
     "ftm_total": 30.25,
     "ftm_home": 15.8,
     "ftm_away": 14.45,
-    "fta_total": 38.93,
-    "fta_home": 20.08,
+    "fta_total": 38.94,
+    "fta_home": 20.09,
     "fta_away": 18.84
    },
    "factor": {
-    "fouls_total": 1.014,
+    "fouls_total": 1.013,
     "fouls_home": 1.015,
-    "fouls_away": 1.013,
-    "ftm_total": 1.001,
-    "ftm_home": 1.025,
-    "ftm_away": 0.975,
-    "fta_total": 1.003,
-    "fta_home": 1.018,
+    "fouls_away": 1.012,
+    "ftm_total": 1.0,
+    "ftm_home": 1.024,
+    "ftm_away": 0.974,
+    "fta_total": 1.002,
+    "fta_home": 1.016,
     "fta_away": 0.988
    },
    "player_foul_effect": {
-    "committed": 1.027,
-    "drawn": 1.011
+    "committed": 1.026,
+    "drawn": 1.01
    },
    "last_game": "2026-11-20"
   },
@@ -820,30 +820,30 @@
     "fta_away": 17.71
    },
    "adjusted": {
-    "fouls_total": 41.28,
+    "fouls_total": 41.29,
     "fouls_home": 20.34,
-    "fouls_away": 20.94,
-    "ftm_total": 29.11,
-    "ftm_home": 14.79,
+    "fouls_away": 20.95,
+    "ftm_total": 29.12,
+    "ftm_home": 14.8,
     "ftm_away": 14.32,
-    "fta_total": 37.16,
-    "fta_home": 18.77,
+    "fta_total": 37.17,
+    "fta_home": 18.78,
     "fta_away": 18.39
    },
    "factor": {
-    "fouls_total": 0.985,
-    "fouls_home": 0.981,
-    "fouls_away": 0.988,
-    "ftm_total": 0.963,
-    "ftm_home": 0.96,
-    "ftm_away": 0.967,
-    "fta_total": 0.958,
-    "fta_home": 0.951,
+    "fouls_total": 0.984,
+    "fouls_home": 0.982,
+    "fouls_away": 0.987,
+    "ftm_total": 0.962,
+    "ftm_home": 0.958,
+    "ftm_away": 0.966,
+    "fta_total": 0.957,
+    "fta_home": 0.95,
     "fta_away": 0.964
    },
    "player_foul_effect": {
     "committed": 0.984,
-    "drawn": 0.978
+    "drawn": 0.977
    },
    "last_game": "2026-11-24"
   },
@@ -871,27 +871,27 @@
     "fouls_total": 42.33,
     "fouls_home": 21.33,
     "fouls_away": 21.0,
-    "ftm_total": 30.79,
-    "ftm_home": 15.2,
+    "ftm_total": 30.8,
+    "ftm_home": 15.21,
     "ftm_away": 15.59,
-    "fta_total": 39.72,
+    "fta_total": 39.73,
     "fta_home": 19.41,
     "fta_away": 20.32
    },
    "factor": {
-    "fouls_total": 1.01,
-    "fouls_home": 1.029,
-    "fouls_away": 0.991,
-    "ftm_total": 1.019,
-    "ftm_home": 0.986,
-    "ftm_away": 1.053,
-    "fta_total": 1.024,
-    "fta_home": 0.984,
+    "fouls_total": 1.009,
+    "fouls_home": 1.03,
+    "fouls_away": 0.99,
+    "ftm_total": 1.018,
+    "ftm_home": 0.985,
+    "ftm_away": 1.051,
+    "fta_total": 1.023,
+    "fta_home": 0.982,
     "fta_away": 1.065
    },
    "player_foul_effect": {
     "committed": 1.017,
-    "drawn": 1.001
+    "drawn": 1.002
    },
    "last_game": "2026-11-19"
   },
@@ -918,28 +918,28 @@
    "adjusted": {
     "fouls_total": 42.65,
     "fouls_home": 21.47,
-    "fouls_away": 21.17,
-    "ftm_total": 31.97,
+    "fouls_away": 21.18,
+    "ftm_total": 31.98,
     "ftm_home": 16.3,
     "ftm_away": 15.68,
-    "fta_total": 40.75,
-    "fta_home": 20.66,
+    "fta_total": 40.76,
+    "fta_home": 20.67,
     "fta_away": 20.09
    },
    "factor": {
     "fouls_total": 1.017,
     "fouls_home": 1.036,
-    "fouls_away": 0.999,
-    "ftm_total": 1.058,
-    "ftm_home": 1.057,
-    "ftm_away": 1.059,
-    "fta_total": 1.05,
-    "fta_home": 1.047,
+    "fouls_away": 0.998,
+    "ftm_total": 1.057,
+    "ftm_home": 1.056,
+    "ftm_away": 1.058,
+    "fta_total": 1.049,
+    "fta_home": 1.046,
     "fta_away": 1.053
    },
    "player_foul_effect": {
     "committed": 1.038,
-    "drawn": 1.004
+    "drawn": 1.003
    },
    "last_game": "2026-11-24"
   },
@@ -963,25 +963,25 @@
     "fta_away": 18.48
    },
    "adjusted": {
-    "fouls_total": 41.09,
+    "fouls_total": 41.1,
     "fouls_home": 20.16,
-    "fouls_away": 20.93,
-    "ftm_total": 30.43,
+    "fouls_away": 20.94,
+    "ftm_total": 30.44,
     "ftm_home": 15.55,
     "ftm_away": 14.88,
-    "fta_total": 38.76,
-    "fta_home": 19.89,
+    "fta_total": 38.77,
+    "fta_home": 19.9,
     "fta_away": 18.87
    },
    "factor": {
     "fouls_total": 0.98,
     "fouls_home": 0.973,
-    "fouls_away": 0.988,
-    "ftm_total": 1.007,
-    "ftm_home": 1.009,
-    "ftm_away": 1.005,
-    "fta_total": 0.999,
-    "fta_home": 1.008,
+    "fouls_away": 0.987,
+    "ftm_total": 1.006,
+    "ftm_home": 1.007,
+    "ftm_away": 1.004,
+    "fta_total": 0.998,
+    "fta_home": 1.007,
     "fta_away": 0.989
    },
    "player_foul_effect": {
@@ -1014,27 +1014,27 @@
     "fouls_total": 41.24,
     "fouls_home": 20.02,
     "fouls_away": 21.22,
-    "ftm_total": 29.53,
+    "ftm_total": 29.54,
     "ftm_home": 15.45,
-    "ftm_away": 14.08,
-    "fta_total": 37.99,
-    "fta_home": 19.66,
-    "fta_away": 18.33
+    "ftm_away": 14.09,
+    "fta_total": 38.0,
+    "fta_home": 19.67,
+    "fta_away": 18.34
    },
    "factor": {
-    "fouls_total": 0.984,
+    "fouls_total": 0.983,
     "fouls_home": 0.966,
-    "fouls_away": 1.001,
-    "ftm_total": 0.977,
-    "ftm_home": 1.002,
-    "ftm_away": 0.951,
-    "fta_total": 0.979,
-    "fta_home": 0.997,
+    "fouls_away": 1.0,
+    "ftm_total": 0.976,
+    "ftm_home": 1.001,
+    "ftm_away": 0.95,
+    "fta_total": 0.978,
+    "fta_home": 0.995,
     "fta_away": 0.961
    },
    "player_foul_effect": {
     "committed": 0.999,
-    "drawn": 0.978
+    "drawn": 0.979
    },
    "last_game": "2026-11-19"
   },
@@ -1065,20 +1065,20 @@
     "ftm_total": 30.51,
     "ftm_home": 15.5,
     "ftm_away": 15.01,
-    "fta_total": 38.74,
-    "fta_home": 19.6,
+    "fta_total": 38.75,
+    "fta_home": 19.61,
     "fta_away": 19.14
    },
    "factor": {
-    "fouls_total": 1.007,
+    "fouls_total": 1.006,
     "fouls_home": 1.002,
-    "fouls_away": 1.012,
-    "ftm_total": 1.009,
-    "ftm_home": 1.005,
-    "ftm_away": 1.014,
-    "fta_total": 0.999,
-    "fta_home": 0.994,
-    "fta_away": 1.004
+    "fouls_away": 1.011,
+    "ftm_total": 1.008,
+    "ftm_home": 1.004,
+    "ftm_away": 1.013,
+    "fta_total": 0.997,
+    "fta_home": 0.992,
+    "fta_away": 1.003
    },
    "player_foul_effect": {
     "committed": 1.028,
@@ -1109,28 +1109,28 @@
    "adjusted": {
     "fouls_total": 41.84,
     "fouls_home": 20.63,
-    "fouls_away": 21.2,
-    "ftm_total": 30.57,
+    "fouls_away": 21.21,
+    "ftm_total": 30.58,
     "ftm_home": 15.79,
-    "ftm_away": 14.78,
-    "fta_total": 39.22,
+    "ftm_away": 14.79,
+    "fta_total": 39.24,
     "fta_home": 20.26,
     "fta_away": 18.97
    },
    "factor": {
     "fouls_total": 0.998,
     "fouls_home": 0.996,
-    "fouls_away": 1.001,
-    "ftm_total": 1.011,
-    "ftm_home": 1.024,
-    "ftm_away": 0.998,
-    "fta_total": 1.011,
-    "fta_home": 1.027,
-    "fta_away": 0.995
+    "fouls_away": 1.0,
+    "ftm_total": 1.01,
+    "ftm_home": 1.023,
+    "ftm_away": 0.997,
+    "fta_total": 1.01,
+    "fta_home": 1.025,
+    "fta_away": 0.994
    },
    "player_foul_effect": {
-    "committed": 1.002,
-    "drawn": 0.997
+    "committed": 1.001,
+    "drawn": 0.998
    },
    "last_game": "2026-11-24"
   },
@@ -1157,23 +1157,23 @@
    "adjusted": {
     "fouls_total": 42.09,
     "fouls_home": 21.0,
-    "fouls_away": 21.09,
-    "ftm_total": 30.33,
+    "fouls_away": 21.1,
+    "ftm_total": 30.34,
     "ftm_home": 15.21,
-    "ftm_away": 15.12,
-    "fta_total": 39.01,
-    "fta_home": 19.71,
+    "ftm_away": 15.13,
+    "fta_total": 39.03,
+    "fta_home": 19.72,
     "fta_away": 19.31
    },
    "factor": {
     "fouls_total": 1.004,
-    "fouls_home": 1.013,
-    "fouls_away": 0.995,
-    "ftm_total": 1.004,
-    "ftm_home": 0.987,
-    "ftm_away": 1.021,
-    "fta_total": 1.006,
-    "fta_home": 0.999,
+    "fouls_home": 1.014,
+    "fouls_away": 0.994,
+    "ftm_total": 1.002,
+    "ftm_home": 0.985,
+    "ftm_away": 1.02,
+    "fta_total": 1.004,
+    "fta_home": 0.997,
     "fta_away": 1.012
    },
    "player_foul_effect": {
@@ -1205,23 +1205,23 @@
    "adjusted": {
     "fouls_total": 42.42,
     "fouls_home": 20.89,
-    "fouls_away": 21.52,
-    "ftm_total": 30.57,
+    "fouls_away": 21.53,
+    "ftm_total": 30.58,
     "ftm_home": 15.47,
-    "ftm_away": 15.1,
-    "fta_total": 39.66,
-    "fta_home": 20.09,
+    "ftm_away": 15.11,
+    "fta_total": 39.68,
+    "fta_home": 20.1,
     "fta_away": 19.57
    },
    "factor": {
     "fouls_total": 1.012,
     "fouls_home": 1.008,
-    "fouls_away": 1.016,
-    "ftm_total": 1.011,
-    "ftm_home": 1.003,
-    "ftm_away": 1.02,
-    "fta_total": 1.022,
-    "fta_home": 1.018,
+    "fouls_away": 1.015,
+    "ftm_total": 1.01,
+    "ftm_home": 1.002,
+    "ftm_away": 1.019,
+    "fta_total": 1.021,
+    "fta_home": 1.017,
     "fta_away": 1.026
    },
    "player_foul_effect": {
@@ -1229,6 +1229,102 @@
     "drawn": 1.003
    },
    "last_game": "2026-11-24"
+  },
+  {
+   "referee": "Milivoje Jovcic",
+   "games": 49,
+   "games_by_season": {
+    "2024/25": 19,
+    "2025/26": 21,
+    "2026/27": 9
+   },
+   "playoff_games": 2,
+   "raw": {
+    "fouls_total": 42.59,
+    "fouls_home": 21.06,
+    "fouls_away": 21.53,
+    "ftm_total": 31.8,
+    "ftm_home": 15.67,
+    "ftm_away": 16.12,
+    "fta_total": 40.47,
+    "fta_home": 20.02,
+    "fta_away": 20.45
+   },
+   "adjusted": {
+    "fouls_total": 42.84,
+    "fouls_home": 21.13,
+    "fouls_away": 21.72,
+    "ftm_total": 32.05,
+    "ftm_home": 15.83,
+    "ftm_away": 16.22,
+    "fta_total": 40.95,
+    "fta_home": 20.39,
+    "fta_away": 20.56
+   },
+   "factor": {
+    "fouls_total": 1.022,
+    "fouls_home": 1.02,
+    "fouls_away": 1.024,
+    "ftm_total": 1.059,
+    "ftm_home": 1.025,
+    "ftm_away": 1.094,
+    "fta_total": 1.054,
+    "fta_home": 1.031,
+    "fta_away": 1.077
+   },
+   "player_foul_effect": {
+    "committed": 1.031,
+    "drawn": 1.012
+   },
+   "last_game": "2026-11-25"
+  },
+  {
+   "referee": "Alberto Baena",
+   "games": 48,
+   "games_by_season": {
+    "2024/25": 17,
+    "2025/26": 21,
+    "2026/27": 10
+   },
+   "playoff_games": 0,
+   "raw": {
+    "fouls_total": 41.06,
+    "fouls_home": 19.62,
+    "fouls_away": 21.44,
+    "ftm_total": 30.15,
+    "ftm_home": 15.48,
+    "ftm_away": 14.67,
+    "fta_total": 39.38,
+    "fta_home": 20.12,
+    "fta_away": 19.25
+   },
+   "adjusted": {
+    "fouls_total": 41.32,
+    "fouls_home": 20.03,
+    "fouls_away": 21.29,
+    "ftm_total": 30.12,
+    "ftm_home": 15.23,
+    "ftm_away": 14.89,
+    "fta_total": 39.23,
+    "fta_home": 19.81,
+    "fta_away": 19.42
+   },
+   "factor": {
+    "fouls_total": 0.985,
+    "fouls_home": 0.967,
+    "fouls_away": 1.003,
+    "ftm_total": 0.995,
+    "ftm_home": 0.986,
+    "ftm_away": 1.004,
+    "fta_total": 1.01,
+    "fta_home": 1.002,
+    "fta_away": 1.017
+   },
+   "player_foul_effect": {
+    "committed": 0.99,
+    "drawn": 0.978
+   },
+   "last_game": "2026-11-25"
   },
   {
    "referee": "Kristaps Konstantinovs",
@@ -1254,22 +1350,22 @@
     "fouls_total": 41.14,
     "fouls_home": 20.18,
     "fouls_away": 20.96,
-    "ftm_total": 28.6,
+    "ftm_total": 28.61,
     "ftm_home": 14.64,
-    "ftm_away": 13.96,
-    "fta_total": 36.88,
-    "fta_home": 19.12,
+    "ftm_away": 13.97,
+    "fta_total": 36.89,
+    "fta_home": 19.13,
     "fta_away": 17.76
    },
    "factor": {
     "fouls_total": 0.981,
     "fouls_home": 0.974,
-    "fouls_away": 0.989,
-    "ftm_total": 0.946,
-    "ftm_home": 0.949,
-    "ftm_away": 0.943,
-    "fta_total": 0.95,
-    "fta_home": 0.969,
+    "fouls_away": 0.988,
+    "ftm_total": 0.945,
+    "ftm_home": 0.948,
+    "ftm_away": 0.942,
+    "fta_total": 0.949,
+    "fta_home": 0.968,
     "fta_away": 0.931
    },
    "player_foul_effect": {
@@ -1277,102 +1373,6 @@
     "drawn": 0.967
    },
    "last_game": "2026-11-24"
-  },
-  {
-   "referee": "Milivoje Jovcic",
-   "games": 48,
-   "games_by_season": {
-    "2024/25": 19,
-    "2025/26": 21,
-    "2026/27": 8
-   },
-   "playoff_games": 2,
-   "raw": {
-    "fouls_total": 42.5,
-    "fouls_home": 21.0,
-    "fouls_away": 21.5,
-    "ftm_total": 31.62,
-    "ftm_home": 15.6,
-    "ftm_away": 16.02,
-    "fta_total": 40.21,
-    "fta_home": 19.88,
-    "fta_away": 20.33
-   },
-   "adjusted": {
-    "fouls_total": 42.72,
-    "fouls_home": 21.05,
-    "fouls_away": 21.67,
-    "ftm_total": 31.82,
-    "ftm_home": 15.74,
-    "ftm_away": 16.08,
-    "fta_total": 40.6,
-    "fta_home": 20.19,
-    "fta_away": 20.4
-   },
-   "factor": {
-    "fouls_total": 1.019,
-    "fouls_home": 1.016,
-    "fouls_away": 1.023,
-    "ftm_total": 1.053,
-    "ftm_home": 1.021,
-    "ftm_away": 1.086,
-    "fta_total": 1.046,
-    "fta_home": 1.024,
-    "fta_away": 1.07
-   },
-   "player_foul_effect": {
-    "committed": 1.028,
-    "drawn": 1.009
-   },
-   "last_game": "2026-11-19"
-  },
-  {
-   "referee": "Alberto Baena",
-   "games": 47,
-   "games_by_season": {
-    "2024/25": 17,
-    "2025/26": 21,
-    "2026/27": 9
-   },
-   "playoff_games": 0,
-   "raw": {
-    "fouls_total": 41.13,
-    "fouls_home": 19.66,
-    "fouls_away": 21.47,
-    "ftm_total": 30.13,
-    "ftm_home": 15.47,
-    "ftm_away": 14.66,
-    "fta_total": 39.34,
-    "fta_home": 20.09,
-    "fta_away": 19.26
-   },
-   "adjusted": {
-    "fouls_total": 41.4,
-    "fouls_home": 20.09,
-    "fouls_away": 21.32,
-    "ftm_total": 30.08,
-    "ftm_home": 15.2,
-    "ftm_away": 14.88,
-    "fta_total": 39.17,
-    "fta_home": 19.74,
-    "fta_away": 19.43
-   },
-   "factor": {
-    "fouls_total": 0.988,
-    "fouls_home": 0.969,
-    "fouls_away": 1.006,
-    "ftm_total": 0.995,
-    "ftm_home": 0.986,
-    "ftm_away": 1.005,
-    "fta_total": 1.01,
-    "fta_home": 1.001,
-    "fta_away": 1.019
-   },
-   "player_foul_effect": {
-    "committed": 0.991,
-    "drawn": 0.982
-   },
-   "last_game": "2026-11-17"
   },
   {
    "referee": "Rain Peerandi",
@@ -1397,23 +1397,23 @@
    "adjusted": {
     "fouls_total": 41.85,
     "fouls_home": 20.63,
-    "fouls_away": 21.21,
-    "ftm_total": 30.41,
-    "ftm_home": 15.46,
-    "ftm_away": 14.94,
-    "fta_total": 38.68,
-    "fta_home": 19.47,
+    "fouls_away": 21.22,
+    "ftm_total": 30.42,
+    "ftm_home": 15.47,
+    "ftm_away": 14.95,
+    "fta_total": 38.69,
+    "fta_home": 19.48,
     "fta_away": 19.21
    },
    "factor": {
     "fouls_total": 0.998,
     "fouls_home": 0.996,
-    "fouls_away": 1.001,
-    "ftm_total": 1.006,
-    "ftm_home": 1.003,
-    "ftm_away": 1.009,
-    "fta_total": 0.997,
-    "fta_home": 0.987,
+    "fouls_away": 1.0,
+    "ftm_total": 1.005,
+    "ftm_home": 1.002,
+    "ftm_away": 1.008,
+    "fta_total": 0.996,
+    "fta_home": 0.985,
     "fta_away": 1.007
    },
    "player_foul_effect": {
@@ -1421,6 +1421,102 @@
     "drawn": 0.998
    },
    "last_game": "2026-11-17"
+  },
+  {
+   "referee": "Saso Petek",
+   "games": 41,
+   "games_by_season": {
+    "2024/25": 12,
+    "2025/26": 20,
+    "2026/27": 9
+   },
+   "playoff_games": 2,
+   "raw": {
+    "fouls_total": 42.98,
+    "fouls_home": 20.44,
+    "fouls_away": 22.54,
+    "ftm_total": 30.17,
+    "ftm_home": 16.61,
+    "ftm_away": 13.56,
+    "fta_total": 39.07,
+    "fta_home": 21.32,
+    "fta_away": 17.76
+   },
+   "adjusted": {
+    "fouls_total": 42.52,
+    "fouls_home": 20.47,
+    "fouls_away": 22.05,
+    "ftm_total": 29.87,
+    "ftm_home": 16.06,
+    "ftm_away": 13.81,
+    "fta_total": 38.41,
+    "fta_home": 20.44,
+    "fta_away": 17.97
+   },
+   "factor": {
+    "fouls_total": 1.014,
+    "fouls_home": 0.988,
+    "fouls_away": 1.039,
+    "ftm_total": 0.987,
+    "ftm_home": 1.04,
+    "ftm_away": 0.931,
+    "fta_total": 0.989,
+    "fta_home": 1.034,
+    "fta_away": 0.942
+   },
+   "player_foul_effect": {
+    "committed": 1.025,
+    "drawn": 1.008
+   },
+   "last_game": "2026-11-25"
+  },
+  {
+   "referee": "Ioannis Foufis",
+   "games": 40,
+   "games_by_season": {
+    "2024/25": 18,
+    "2025/26": 16,
+    "2026/27": 6
+   },
+   "playoff_games": 1,
+   "raw": {
+    "fouls_total": 42.25,
+    "fouls_home": 21.05,
+    "fouls_away": 21.2,
+    "ftm_total": 31.32,
+    "ftm_home": 15.15,
+    "ftm_away": 16.18,
+    "fta_total": 39.55,
+    "fta_home": 19.43,
+    "fta_away": 20.12
+   },
+   "adjusted": {
+    "fouls_total": 42.74,
+    "fouls_home": 21.3,
+    "fouls_away": 21.44,
+    "ftm_total": 31.56,
+    "ftm_home": 15.27,
+    "ftm_away": 16.29,
+    "fta_total": 40.02,
+    "fta_home": 19.71,
+    "fta_away": 20.31
+   },
+   "factor": {
+    "fouls_total": 1.019,
+    "fouls_home": 1.028,
+    "fouls_away": 1.01,
+    "ftm_total": 1.043,
+    "ftm_home": 0.989,
+    "ftm_away": 1.099,
+    "fta_total": 1.03,
+    "fta_home": 0.997,
+    "fta_away": 1.064
+   },
+   "player_foul_effect": {
+    "committed": 1.015,
+    "drawn": 1.015
+   },
+   "last_game": "2026-11-25"
   },
   {
    "referee": "Marcin Kowalski",
@@ -1445,23 +1541,23 @@
    "adjusted": {
     "fouls_total": 42.61,
     "fouls_home": 21.03,
-    "fouls_away": 21.58,
-    "ftm_total": 29.76,
+    "fouls_away": 21.59,
+    "ftm_total": 29.77,
     "ftm_home": 14.93,
     "ftm_away": 14.83,
-    "fta_total": 38.16,
-    "fta_home": 19.35,
+    "fta_total": 38.17,
+    "fta_home": 19.36,
     "fta_away": 18.81
    },
    "factor": {
-    "fouls_total": 1.017,
+    "fouls_total": 1.016,
     "fouls_home": 1.015,
-    "fouls_away": 1.018,
-    "ftm_total": 0.984,
-    "ftm_home": 0.968,
-    "ftm_away": 1.001,
-    "fta_total": 0.984,
-    "fta_home": 0.981,
+    "fouls_away": 1.017,
+    "ftm_total": 0.983,
+    "ftm_home": 0.967,
+    "ftm_away": 1.0,
+    "fta_total": 0.983,
+    "fta_home": 0.979,
     "fta_away": 0.986
    },
    "player_foul_effect": {
@@ -1469,102 +1565,6 @@
     "drawn": 0.994
    },
    "last_game": "2026-11-24"
-  },
-  {
-   "referee": "Saso Petek",
-   "games": 40,
-   "games_by_season": {
-    "2024/25": 12,
-    "2025/26": 20,
-    "2026/27": 8
-   },
-   "playoff_games": 2,
-   "raw": {
-    "fouls_total": 42.83,
-    "fouls_home": 20.48,
-    "fouls_away": 22.35,
-    "ftm_total": 29.93,
-    "ftm_home": 16.45,
-    "ftm_away": 13.47,
-    "fta_total": 38.88,
-    "fta_home": 21.12,
-    "fta_away": 17.75
-   },
-   "adjusted": {
-    "fouls_total": 42.31,
-    "fouls_home": 20.51,
-    "fouls_away": 21.8,
-    "ftm_total": 29.54,
-    "ftm_home": 15.84,
-    "ftm_away": 13.7,
-    "fta_total": 38.13,
-    "fta_home": 20.16,
-    "fta_away": 17.97
-   },
-   "factor": {
-    "fouls_total": 1.009,
-    "fouls_home": 0.99,
-    "fouls_away": 1.029,
-    "ftm_total": 0.977,
-    "ftm_home": 1.027,
-    "ftm_away": 0.925,
-    "fta_total": 0.983,
-    "fta_home": 1.022,
-    "fta_away": 0.942
-   },
-   "player_foul_effect": {
-    "committed": 1.019,
-    "drawn": 1.005
-   },
-   "last_game": "2026-11-17"
-  },
-  {
-   "referee": "Ioannis Foufis",
-   "games": 39,
-   "games_by_season": {
-    "2024/25": 18,
-    "2025/26": 16,
-    "2026/27": 5
-   },
-   "playoff_games": 1,
-   "raw": {
-    "fouls_total": 42.21,
-    "fouls_home": 21.13,
-    "fouls_away": 21.08,
-    "ftm_total": 31.33,
-    "ftm_home": 15.13,
-    "ftm_away": 16.21,
-    "fta_total": 39.51,
-    "fta_home": 19.36,
-    "fta_away": 20.15
-   },
-   "adjusted": {
-    "fouls_total": 42.69,
-    "fouls_home": 21.42,
-    "fouls_away": 21.27,
-    "ftm_total": 31.57,
-    "ftm_home": 15.24,
-    "ftm_away": 16.33,
-    "fta_total": 39.97,
-    "fta_home": 19.62,
-    "fta_away": 20.35
-   },
-   "factor": {
-    "fouls_total": 1.019,
-    "fouls_home": 1.033,
-    "fouls_away": 1.004,
-    "ftm_total": 1.045,
-    "ftm_home": 0.989,
-    "ftm_away": 1.103,
-    "fta_total": 1.03,
-    "fta_home": 0.994,
-    "fta_away": 1.067
-   },
-   "player_foul_effect": {
-    "committed": 1.012,
-    "drawn": 1.018
-   },
-   "last_game": "2026-11-20"
   },
   {
    "referee": "Sergio Silva",
@@ -1587,25 +1587,25 @@
     "fta_away": 19.29
    },
    "adjusted": {
-    "fouls_total": 42.78,
+    "fouls_total": 42.79,
     "fouls_home": 20.58,
-    "fouls_away": 22.2,
-    "ftm_total": 31.77,
-    "ftm_home": 16.57,
-    "ftm_away": 15.19,
-    "fta_total": 40.41,
-    "fta_home": 21.0,
+    "fouls_away": 22.21,
+    "ftm_total": 31.78,
+    "ftm_home": 16.58,
+    "ftm_away": 15.2,
+    "fta_total": 40.43,
+    "fta_home": 21.01,
     "fta_away": 19.42
    },
    "factor": {
-    "fouls_total": 1.021,
+    "fouls_total": 1.02,
     "fouls_home": 0.993,
-    "fouls_away": 1.048,
-    "ftm_total": 1.051,
-    "ftm_home": 1.075,
-    "ftm_away": 1.026,
-    "fta_total": 1.042,
-    "fta_home": 1.064,
+    "fouls_away": 1.047,
+    "ftm_total": 1.05,
+    "ftm_home": 1.074,
+    "ftm_away": 1.025,
+    "fta_total": 1.041,
+    "fta_home": 1.063,
     "fta_away": 1.018
    },
    "player_foul_effect": {
@@ -1635,30 +1635,30 @@
     "fta_away": 19.86
    },
    "adjusted": {
-    "fouls_total": 42.35,
-    "fouls_home": 21.15,
+    "fouls_total": 42.36,
+    "fouls_home": 21.14,
     "fouls_away": 21.21,
-    "ftm_total": 30.52,
-    "ftm_home": 15.52,
-    "ftm_away": 15.0,
-    "fta_total": 39.34,
-    "fta_home": 19.8,
+    "ftm_total": 30.53,
+    "ftm_home": 15.53,
+    "ftm_away": 15.01,
+    "fta_total": 39.36,
+    "fta_home": 19.81,
     "fta_away": 19.55
    },
    "factor": {
     "fouls_total": 1.01,
-    "fouls_home": 1.02,
-    "fouls_away": 1.001,
-    "ftm_total": 1.01,
-    "ftm_home": 1.007,
-    "ftm_away": 1.013,
-    "fta_total": 1.014,
-    "fta_home": 1.004,
-    "fta_away": 1.025
+    "fouls_home": 1.021,
+    "fouls_away": 1.0,
+    "ftm_total": 1.009,
+    "ftm_home": 1.006,
+    "ftm_away": 1.012,
+    "fta_total": 1.013,
+    "fta_home": 1.002,
+    "fta_away": 1.024
    },
    "player_foul_effect": {
     "committed": 1.014,
-    "drawn": 1.009
+    "drawn": 1.008
    },
    "last_game": "2026-11-24"
   },
@@ -1683,80 +1683,80 @@
     "fta_away": 17.86
    },
    "adjusted": {
-    "fouls_total": 41.03,
-    "fouls_home": 20.0,
+    "fouls_total": 41.04,
+    "fouls_home": 19.99,
     "fouls_away": 21.04,
-    "ftm_total": 29.5,
-    "ftm_home": 15.3,
+    "ftm_total": 29.51,
+    "ftm_home": 15.31,
     "ftm_away": 14.2,
-    "fta_total": 38.26,
-    "fta_home": 19.72,
-    "fta_away": 18.54
+    "fta_total": 38.28,
+    "fta_home": 19.73,
+    "fta_away": 18.55
    },
    "factor": {
     "fouls_total": 0.979,
     "fouls_home": 0.965,
-    "fouls_away": 0.993,
-    "ftm_total": 0.976,
-    "ftm_home": 0.993,
-    "ftm_away": 0.959,
-    "fta_total": 0.986,
-    "fta_home": 1.0,
+    "fouls_away": 0.992,
+    "ftm_total": 0.975,
+    "ftm_home": 0.991,
+    "ftm_away": 0.958,
+    "fta_total": 0.985,
+    "fta_home": 0.998,
     "fta_away": 0.972
    },
    "player_foul_effect": {
     "committed": 0.988,
-    "drawn": 0.979
+    "drawn": 0.98
    },
    "last_game": "2026-11-20"
   },
   {
    "referee": "Maxime Boubert",
-   "games": 34,
+   "games": 35,
    "games_by_season": {
     "2024/25": 11,
     "2025/26": 17,
-    "2026/27": 6
+    "2026/27": 7
    },
    "playoff_games": 0,
    "raw": {
-    "fouls_total": 40.44,
-    "fouls_home": 19.88,
-    "fouls_away": 20.56,
-    "ftm_total": 28.26,
-    "ftm_home": 14.41,
-    "ftm_away": 13.85,
-    "fta_total": 36.06,
-    "fta_home": 18.15,
-    "fta_away": 17.91
+    "fouls_total": 40.37,
+    "fouls_home": 19.83,
+    "fouls_away": 20.54,
+    "ftm_total": 28.34,
+    "ftm_home": 14.46,
+    "ftm_away": 13.89,
+    "fta_total": 36.2,
+    "fta_home": 18.26,
+    "fta_away": 17.94
    },
    "adjusted": {
-    "fouls_total": 40.6,
-    "fouls_home": 20.08,
-    "fouls_away": 20.52,
-    "ftm_total": 28.41,
-    "ftm_home": 14.35,
-    "ftm_away": 14.06,
-    "fta_total": 36.37,
-    "fta_home": 18.22,
-    "fta_away": 18.15
+    "fouls_total": 40.52,
+    "fouls_home": 20.01,
+    "fouls_away": 20.51,
+    "ftm_total": 28.51,
+    "ftm_home": 14.42,
+    "ftm_away": 14.09,
+    "fta_total": 36.55,
+    "fta_home": 18.36,
+    "fta_away": 18.18
    },
    "factor": {
-    "fouls_total": 0.969,
-    "fouls_home": 0.969,
-    "fouls_away": 0.968,
-    "ftm_total": 0.94,
-    "ftm_home": 0.931,
-    "ftm_away": 0.949,
-    "fta_total": 0.937,
-    "fta_home": 0.924,
-    "fta_away": 0.952
+    "fouls_total": 0.966,
+    "fouls_home": 0.966,
+    "fouls_away": 0.967,
+    "ftm_total": 0.942,
+    "ftm_home": 0.934,
+    "ftm_away": 0.95,
+    "fta_total": 0.941,
+    "fta_home": 0.929,
+    "fta_away": 0.953
    },
    "player_foul_effect": {
-    "committed": 0.988,
-    "drawn": 0.968
+    "committed": 0.986,
+    "drawn": 0.964
    },
-   "last_game": "2026-11-17"
+   "last_game": "2026-11-25"
   },
   {
    "referee": "Tomasz Trawicki",
@@ -1779,32 +1779,80 @@
     "fta_away": 20.35
    },
    "adjusted": {
-    "fouls_total": 42.27,
+    "fouls_total": 42.28,
     "fouls_home": 21.39,
     "fouls_away": 20.88,
-    "ftm_total": 31.3,
-    "ftm_home": 15.08,
-    "ftm_away": 16.22,
-    "fta_total": 40.53,
-    "fta_home": 19.75,
+    "ftm_total": 31.31,
+    "ftm_home": 15.09,
+    "ftm_away": 16.23,
+    "fta_total": 40.55,
+    "fta_home": 19.76,
     "fta_away": 20.78
    },
    "factor": {
     "fouls_total": 1.008,
-    "fouls_home": 1.032,
-    "fouls_away": 0.985,
-    "ftm_total": 1.036,
-    "ftm_home": 0.978,
-    "ftm_away": 1.095,
-    "fta_total": 1.045,
-    "fta_home": 1.001,
+    "fouls_home": 1.033,
+    "fouls_away": 0.984,
+    "ftm_total": 1.035,
+    "ftm_home": 0.977,
+    "ftm_away": 1.094,
+    "fta_total": 1.044,
+    "fta_home": 1.0,
     "fta_away": 1.089
    },
    "player_foul_effect": {
-    "committed": 1.013,
+    "committed": 1.012,
     "drawn": 1.021
    },
    "last_game": "2026-11-24"
+  },
+  {
+   "referee": "Thomas Bissuel",
+   "games": 33,
+   "games_by_season": {
+    "2024/25": 7,
+    "2025/26": 18,
+    "2026/27": 8
+   },
+   "playoff_games": 1,
+   "raw": {
+    "fouls_total": 41.55,
+    "fouls_home": 21.0,
+    "fouls_away": 20.55,
+    "ftm_total": 29.36,
+    "ftm_home": 14.55,
+    "ftm_away": 14.82,
+    "fta_total": 37.7,
+    "fta_home": 17.97,
+    "fta_away": 19.73
+   },
+   "adjusted": {
+    "fouls_total": 41.98,
+    "fouls_home": 21.12,
+    "fouls_away": 20.85,
+    "ftm_total": 30.09,
+    "ftm_home": 15.07,
+    "ftm_away": 15.02,
+    "fta_total": 38.76,
+    "fta_home": 18.98,
+    "fta_away": 19.79
+   },
+   "factor": {
+    "fouls_total": 1.001,
+    "fouls_home": 1.02,
+    "fouls_away": 0.983,
+    "ftm_total": 0.994,
+    "ftm_home": 0.976,
+    "ftm_away": 1.013,
+    "fta_total": 0.998,
+    "fta_home": 0.96,
+    "fta_away": 1.037
+   },
+   "player_foul_effect": {
+    "committed": 1.001,
+    "drawn": 0.986
+   },
+   "last_game": "2026-11-25"
   },
   {
    "referee": "Seffi Shemmesh",
@@ -1829,78 +1877,30 @@
    "adjusted": {
     "fouls_total": 41.45,
     "fouls_home": 20.51,
-    "fouls_away": 20.93,
-    "ftm_total": 29.52,
-    "ftm_home": 15.03,
+    "fouls_away": 20.94,
+    "ftm_total": 29.54,
+    "ftm_home": 15.04,
     "ftm_away": 14.49,
-    "fta_total": 37.42,
-    "fta_home": 19.05,
+    "fta_total": 37.44,
+    "fta_home": 19.06,
     "fta_away": 18.38
    },
    "factor": {
-    "fouls_total": 0.989,
+    "fouls_total": 0.988,
     "fouls_home": 0.99,
-    "fouls_away": 0.988,
-    "ftm_total": 0.977,
-    "ftm_home": 0.975,
+    "fouls_away": 0.987,
+    "ftm_total": 0.976,
+    "ftm_home": 0.974,
     "ftm_away": 0.978,
-    "fta_total": 0.965,
-    "fta_home": 0.966,
-    "fta_away": 0.964
+    "fta_total": 0.964,
+    "fta_home": 0.964,
+    "fta_away": 0.963
    },
    "player_foul_effect": {
-    "committed": 1.003,
+    "committed": 1.002,
     "drawn": 0.993
    },
    "last_game": "2026-11-19"
-  },
-  {
-   "referee": "Thomas Bissuel",
-   "games": 32,
-   "games_by_season": {
-    "2024/25": 7,
-    "2025/26": 18,
-    "2026/27": 7
-   },
-   "playoff_games": 1,
-   "raw": {
-    "fouls_total": 41.38,
-    "fouls_home": 20.91,
-    "fouls_away": 20.47,
-    "ftm_total": 29.03,
-    "ftm_home": 14.41,
-    "ftm_away": 14.62,
-    "fta_total": 37.22,
-    "fta_home": 17.69,
-    "fta_away": 19.53
-   },
-   "adjusted": {
-    "fouls_total": 41.79,
-    "fouls_home": 21.02,
-    "fouls_away": 20.77,
-    "ftm_total": 29.73,
-    "ftm_home": 14.92,
-    "ftm_away": 14.81,
-    "fta_total": 38.24,
-    "fta_home": 18.68,
-    "fta_away": 19.56
-   },
-   "factor": {
-    "fouls_total": 0.997,
-    "fouls_home": 1.014,
-    "fouls_away": 0.98,
-    "ftm_total": 0.984,
-    "ftm_home": 0.968,
-    "ftm_away": 1.0,
-    "fta_total": 0.986,
-    "fta_home": 0.947,
-    "fta_away": 1.026
-   },
-   "player_foul_effect": {
-    "committed": 0.997,
-    "drawn": 0.981
-   },
-   "last_game": "2026-11-17"
   },
   {
    "referee": "Uros Nikolic",
@@ -1923,25 +1923,25 @@
    },
    "adjusted": {
     "fouls_total": 42.25,
-    "fouls_home": 20.4,
-    "fouls_away": 21.85,
-    "ftm_total": 31.91,
-    "ftm_home": 16.97,
+    "fouls_home": 20.39,
+    "fouls_away": 21.86,
+    "ftm_total": 31.93,
+    "ftm_home": 16.98,
     "ftm_away": 14.94,
-    "fta_total": 40.74,
-    "fta_home": 21.54,
-    "fta_away": 19.2
+    "fta_total": 40.76,
+    "fta_home": 21.55,
+    "fta_away": 19.21
    },
    "factor": {
     "fouls_total": 1.008,
     "fouls_home": 0.984,
-    "fouls_away": 1.031,
-    "ftm_total": 1.056,
-    "ftm_home": 1.101,
-    "ftm_away": 1.009,
-    "fta_total": 1.05,
-    "fta_home": 1.092,
-    "fta_away": 1.007
+    "fouls_away": 1.03,
+    "ftm_total": 1.055,
+    "ftm_home": 1.1,
+    "ftm_away": 1.008,
+    "fta_total": 1.049,
+    "fta_home": 1.09,
+    "fta_away": 1.006
    },
    "player_foul_effect": {
     "committed": 1.032,
@@ -1970,30 +1970,30 @@
     "fta_away": 19.73
    },
    "adjusted": {
-    "fouls_total": 42.5,
+    "fouls_total": 42.51,
     "fouls_home": 21.37,
     "fouls_away": 21.14,
-    "ftm_total": 29.81,
-    "ftm_home": 15.01,
+    "ftm_total": 29.82,
+    "ftm_home": 15.02,
     "ftm_away": 14.8,
-    "fta_total": 38.84,
-    "fta_home": 19.38,
-    "fta_away": 19.46
+    "fta_total": 38.86,
+    "fta_home": 19.39,
+    "fta_away": 19.47
    },
    "factor": {
     "fouls_total": 1.014,
     "fouls_home": 1.031,
     "fouls_away": 0.997,
-    "ftm_total": 0.986,
-    "ftm_home": 0.974,
-    "ftm_away": 0.999,
-    "fta_total": 1.001,
-    "fta_home": 0.982,
-    "fta_away": 1.021
+    "ftm_total": 0.985,
+    "ftm_home": 0.973,
+    "ftm_away": 0.998,
+    "fta_total": 1.0,
+    "fta_home": 0.981,
+    "fta_away": 1.02
    },
    "player_foul_effect": {
     "committed": 1.023,
-    "drawn": 1.015
+    "drawn": 1.014
    },
    "last_game": "2026-11-24"
   },
@@ -2018,25 +2018,25 @@
     "fta_away": 19.04
    },
    "adjusted": {
-    "fouls_total": 41.43,
+    "fouls_total": 41.44,
     "fouls_home": 20.28,
-    "fouls_away": 21.14,
-    "ftm_total": 29.74,
+    "fouls_away": 21.15,
+    "ftm_total": 29.76,
     "ftm_home": 15.34,
     "ftm_away": 14.41,
-    "fta_total": 38.12,
-    "fta_home": 19.31,
+    "fta_total": 38.14,
+    "fta_home": 19.33,
     "fta_away": 18.81
    },
    "factor": {
     "fouls_total": 0.988,
     "fouls_home": 0.979,
-    "fouls_away": 0.998,
-    "ftm_total": 0.984,
-    "ftm_home": 0.995,
-    "ftm_away": 0.973,
-    "fta_total": 0.983,
-    "fta_home": 0.979,
+    "fouls_away": 0.997,
+    "ftm_total": 0.983,
+    "ftm_home": 0.994,
+    "ftm_away": 0.972,
+    "fta_total": 0.982,
+    "fta_home": 0.978,
     "fta_away": 0.986
    },
    "player_foul_effect": {
@@ -2044,6 +2044,54 @@
     "drawn": 0.985
    },
    "last_game": "2026-10-15"
+  },
+  {
+   "referee": "Hugues Thepenier",
+   "games": 26,
+   "games_by_season": {
+    "2024/25": 6,
+    "2025/26": 12,
+    "2026/27": 8
+   },
+   "playoff_games": 0,
+   "raw": {
+    "fouls_total": 42.81,
+    "fouls_home": 20.54,
+    "fouls_away": 22.27,
+    "ftm_total": 32.31,
+    "ftm_home": 17.08,
+    "ftm_away": 15.23,
+    "fta_total": 41.58,
+    "fta_home": 22.12,
+    "fta_away": 19.46
+   },
+   "adjusted": {
+    "fouls_total": 42.67,
+    "fouls_home": 20.62,
+    "fouls_away": 22.05,
+    "ftm_total": 31.82,
+    "ftm_home": 16.6,
+    "ftm_away": 15.22,
+    "fta_total": 40.75,
+    "fta_home": 21.46,
+    "fta_away": 19.28
+   },
+   "factor": {
+    "fouls_total": 1.017,
+    "fouls_home": 0.995,
+    "fouls_away": 1.039,
+    "ftm_total": 1.051,
+    "ftm_home": 1.075,
+    "ftm_away": 1.026,
+    "fta_total": 1.049,
+    "fta_home": 1.086,
+    "fta_away": 1.011
+   },
+   "player_foul_effect": {
+    "committed": 1.034,
+    "drawn": 1.011
+   },
+   "last_game": "2026-11-25"
   },
   {
    "referee": "Steve Bittner",
@@ -2066,29 +2114,29 @@
     "fta_away": 15.5
    },
    "adjusted": {
-    "fouls_total": 41.46,
-    "fouls_home": 19.61,
-    "fouls_away": 21.86,
-    "ftm_total": 28.99,
-    "ftm_home": 16.3,
-    "ftm_away": 12.69,
-    "fta_total": 37.57,
-    "fta_home": 21.04,
-    "fta_away": 16.52
+    "fouls_total": 41.47,
+    "fouls_home": 19.6,
+    "fouls_away": 21.87,
+    "ftm_total": 29.01,
+    "ftm_home": 16.31,
+    "ftm_away": 12.7,
+    "fta_total": 37.59,
+    "fta_home": 21.06,
+    "fta_away": 16.53
    },
    "factor": {
     "fouls_total": 0.989,
     "fouls_home": 0.946,
-    "fouls_away": 1.032,
-    "ftm_total": 0.959,
-    "ftm_home": 1.058,
-    "ftm_away": 0.857,
-    "fta_total": 0.968,
-    "fta_home": 1.067,
+    "fouls_away": 1.031,
+    "ftm_total": 0.958,
+    "ftm_home": 1.056,
+    "ftm_away": 0.856,
+    "fta_total": 0.967,
+    "fta_home": 1.065,
     "fta_away": 0.866
    },
    "player_foul_effect": {
-    "committed": 0.999,
+    "committed": 0.997,
     "drawn": 0.986
    },
    "last_game": "2026-11-19"
@@ -2114,25 +2162,25 @@
     "fta_away": 20.56
    },
    "adjusted": {
-    "fouls_total": 42.58,
+    "fouls_total": 42.59,
     "fouls_home": 21.14,
-    "fouls_away": 21.44,
-    "ftm_total": 32.45,
+    "fouls_away": 21.45,
+    "ftm_total": 32.47,
     "ftm_home": 16.59,
     "ftm_away": 15.87,
-    "fta_total": 41.96,
-    "fta_home": 21.58,
+    "fta_total": 41.98,
+    "fta_home": 21.6,
     "fta_away": 20.38
    },
    "factor": {
     "fouls_total": 1.016,
     "fouls_home": 1.02,
-    "fouls_away": 1.012,
-    "ftm_total": 1.074,
-    "ftm_home": 1.076,
+    "fouls_away": 1.011,
+    "ftm_total": 1.073,
+    "ftm_home": 1.075,
     "ftm_away": 1.071,
-    "fta_total": 1.081,
-    "fta_home": 1.094,
+    "fta_total": 1.08,
+    "fta_home": 1.093,
     "fta_away": 1.068
    },
    "player_foul_effect": {
@@ -2140,54 +2188,6 @@
     "drawn": 1.005
    },
    "last_game": "2026-11-19"
-  },
-  {
-   "referee": "Hugues Thepenier",
-   "games": 25,
-   "games_by_season": {
-    "2024/25": 6,
-    "2025/26": 12,
-    "2026/27": 7
-   },
-   "playoff_games": 0,
-   "raw": {
-    "fouls_total": 42.56,
-    "fouls_home": 20.6,
-    "fouls_away": 21.96,
-    "ftm_total": 32.0,
-    "ftm_home": 16.84,
-    "ftm_away": 15.16,
-    "fta_total": 41.36,
-    "fta_home": 21.84,
-    "fta_away": 19.52
-   },
-   "adjusted": {
-    "fouls_total": 42.4,
-    "fouls_home": 20.69,
-    "fouls_away": 21.72,
-    "ftm_total": 31.47,
-    "ftm_home": 16.33,
-    "ftm_away": 15.14,
-    "fta_total": 40.47,
-    "fta_home": 21.14,
-    "fta_away": 19.33
-   },
-   "factor": {
-    "fouls_total": 1.012,
-    "fouls_home": 0.998,
-    "fouls_away": 1.025,
-    "ftm_total": 1.041,
-    "ftm_home": 1.059,
-    "ftm_away": 1.022,
-    "fta_total": 1.043,
-    "fta_home": 1.072,
-    "fta_away": 1.014
-   },
-   "player_foul_effect": {
-    "committed": 1.028,
-    "drawn": 1.006
-   },
-   "last_game": "2026-11-17"
   },
   {
    "referee": "Guido Giovannetti",
@@ -2211,29 +2211,29 @@
    },
    "adjusted": {
     "fouls_total": 42.33,
-    "fouls_home": 20.69,
-    "fouls_away": 21.64,
-    "ftm_total": 31.37,
-    "ftm_home": 15.99,
+    "fouls_home": 20.68,
+    "fouls_away": 21.65,
+    "ftm_total": 31.39,
+    "ftm_home": 16.0,
     "ftm_away": 15.38,
-    "fta_total": 39.75,
-    "fta_home": 20.37,
+    "fta_total": 39.77,
+    "fta_home": 20.39,
     "fta_away": 19.38
    },
    "factor": {
-    "fouls_total": 1.01,
+    "fouls_total": 1.009,
     "fouls_home": 0.998,
-    "fouls_away": 1.021,
-    "ftm_total": 1.038,
-    "ftm_home": 1.037,
+    "fouls_away": 1.02,
+    "ftm_total": 1.037,
+    "ftm_home": 1.036,
     "ftm_away": 1.038,
-    "fta_total": 1.025,
-    "fta_home": 1.033,
+    "fta_total": 1.024,
+    "fta_home": 1.031,
     "fta_away": 1.016
    },
    "player_foul_effect": {
     "committed": 1.014,
-    "drawn": 1.016
+    "drawn": 1.015
    },
    "last_game": "2026-10-27"
   },
@@ -2258,25 +2258,25 @@
     "fta_away": 19.42
    },
    "adjusted": {
-    "fouls_total": 41.81,
-    "fouls_home": 20.79,
-    "fouls_away": 21.02,
-    "ftm_total": 29.69,
-    "ftm_home": 14.93,
+    "fouls_total": 41.82,
+    "fouls_home": 20.78,
+    "fouls_away": 21.03,
+    "ftm_total": 29.7,
+    "ftm_home": 14.94,
     "ftm_away": 14.76,
-    "fta_total": 37.58,
-    "fta_home": 18.56,
-    "fta_away": 19.01
+    "fta_total": 37.6,
+    "fta_home": 18.58,
+    "fta_away": 19.02
    },
    "factor": {
     "fouls_total": 0.997,
     "fouls_home": 1.003,
-    "fouls_away": 0.992,
-    "ftm_total": 0.982,
-    "ftm_home": 0.968,
+    "fouls_away": 0.991,
+    "ftm_total": 0.981,
+    "ftm_home": 0.967,
     "ftm_away": 0.996,
     "fta_total": 0.968,
-    "fta_home": 0.941,
+    "fta_home": 0.94,
     "fta_away": 0.997
    },
    "player_foul_effect": {
@@ -2306,29 +2306,29 @@
     "fta_away": 19.67
    },
    "adjusted": {
-    "fouls_total": 42.88,
+    "fouls_total": 42.89,
     "fouls_home": 21.58,
-    "fouls_away": 21.3,
-    "ftm_total": 30.63,
+    "fouls_away": 21.31,
+    "ftm_total": 30.64,
     "ftm_home": 15.44,
-    "ftm_away": 15.19,
-    "fta_total": 39.68,
-    "fta_home": 19.88,
+    "ftm_away": 15.2,
+    "fta_total": 39.71,
+    "fta_home": 19.9,
     "fta_away": 19.8
    },
    "factor": {
     "fouls_total": 1.023,
     "fouls_home": 1.041,
-    "fouls_away": 1.005,
-    "ftm_total": 1.013,
-    "ftm_home": 1.001,
-    "ftm_away": 1.026,
-    "fta_total": 1.023,
-    "fta_home": 1.008,
+    "fouls_away": 1.004,
+    "ftm_total": 1.012,
+    "ftm_home": 1.0,
+    "ftm_away": 1.025,
+    "fta_total": 1.022,
+    "fta_home": 1.007,
     "fta_away": 1.038
    },
    "player_foul_effect": {
-    "committed": 1.029,
+    "committed": 1.028,
     "drawn": 1.029
    },
    "last_game": "2026-11-19"
@@ -2352,26 +2352,26 @@
     "fta_away": 18.35
    },
    "adjusted": {
-    "fouls_total": 41.14,
-    "fouls_home": 20.49,
-    "fouls_away": 20.65,
-    "ftm_total": 28.74,
-    "ftm_home": 14.41,
-    "ftm_away": 14.33,
-    "fta_total": 37.35,
-    "fta_home": 18.65,
-    "fta_away": 18.7
+    "fouls_total": 41.15,
+    "fouls_home": 20.48,
+    "fouls_away": 20.67,
+    "ftm_total": 28.76,
+    "ftm_home": 14.42,
+    "ftm_away": 14.34,
+    "fta_total": 37.38,
+    "fta_home": 18.67,
+    "fta_away": 18.71
    },
    "factor": {
-    "fouls_total": 0.982,
+    "fouls_total": 0.981,
     "fouls_home": 0.989,
-    "fouls_away": 0.975,
-    "ftm_total": 0.951,
-    "ftm_home": 0.935,
-    "ftm_away": 0.968,
-    "fta_total": 0.963,
-    "fta_home": 0.945,
-    "fta_away": 0.981
+    "fouls_away": 0.974,
+    "ftm_total": 0.95,
+    "ftm_home": 0.934,
+    "ftm_away": 0.967,
+    "fta_total": 0.962,
+    "fta_home": 0.944,
+    "fta_away": 0.98
    },
    "player_foul_effect": {
     "committed": 0.999,
@@ -2400,26 +2400,26 @@
     "fta_away": 19.74
    },
    "adjusted": {
-    "fouls_total": 42.11,
+    "fouls_total": 42.12,
     "fouls_home": 21.16,
-    "fouls_away": 20.95,
-    "ftm_total": 30.46,
-    "ftm_home": 15.26,
+    "fouls_away": 20.96,
+    "ftm_total": 30.47,
+    "ftm_home": 15.27,
     "ftm_away": 15.2,
-    "fta_total": 38.66,
-    "fta_home": 19.14,
-    "fta_away": 19.52
+    "fta_total": 38.68,
+    "fta_home": 19.16,
+    "fta_away": 19.53
    },
    "factor": {
-    "fouls_total": 1.005,
+    "fouls_total": 1.004,
     "fouls_home": 1.021,
-    "fouls_away": 0.989,
-    "ftm_total": 1.008,
-    "ftm_home": 0.99,
-    "ftm_away": 1.026,
-    "fta_total": 0.997,
-    "fta_home": 0.97,
-    "fta_away": 1.024
+    "fouls_away": 0.988,
+    "ftm_total": 1.007,
+    "ftm_home": 0.989,
+    "ftm_away": 1.025,
+    "fta_total": 0.996,
+    "fta_home": 0.969,
+    "fta_away": 1.023
    },
    "player_foul_effect": {
     "committed": 1.007,
@@ -2448,30 +2448,30 @@
     "fta_away": 20.24
    },
    "adjusted": {
-    "fouls_total": 42.34,
+    "fouls_total": 42.35,
     "fouls_home": 21.39,
-    "fouls_away": 20.95,
-    "ftm_total": 30.56,
-    "ftm_home": 15.02,
-    "ftm_away": 15.54,
-    "fta_total": 39.6,
-    "fta_home": 19.41,
-    "fta_away": 20.19
+    "fouls_away": 20.96,
+    "ftm_total": 30.58,
+    "ftm_home": 15.03,
+    "ftm_away": 15.55,
+    "fta_total": 39.63,
+    "fta_home": 19.43,
+    "fta_away": 20.2
    },
    "factor": {
     "fouls_total": 1.01,
     "fouls_home": 1.032,
-    "fouls_away": 0.989,
-    "ftm_total": 1.011,
-    "ftm_home": 0.974,
+    "fouls_away": 0.988,
+    "ftm_total": 1.01,
+    "ftm_home": 0.973,
     "ftm_away": 1.049,
-    "fta_total": 1.021,
-    "fta_home": 0.984,
-    "fta_away": 1.059
+    "fta_total": 1.02,
+    "fta_home": 0.983,
+    "fta_away": 1.058
    },
    "player_foul_effect": {
-    "committed": 1.022,
-    "drawn": 1.011
+    "committed": 1.021,
+    "drawn": 1.012
    },
    "last_game": "2026-10-30"
   },
@@ -2498,30 +2498,78 @@
    "adjusted": {
     "fouls_total": 41.63,
     "fouls_home": 20.67,
-    "fouls_away": 20.96,
-    "ftm_total": 30.25,
-    "ftm_home": 15.83,
-    "ftm_away": 14.42,
-    "fta_total": 38.83,
-    "fta_home": 19.82,
+    "fouls_away": 20.97,
+    "ftm_total": 30.27,
+    "ftm_home": 15.84,
+    "ftm_away": 14.43,
+    "fta_total": 38.85,
+    "fta_home": 19.84,
     "fta_away": 19.0
    },
    "factor": {
     "fouls_total": 0.993,
-    "fouls_home": 0.997,
-    "fouls_away": 0.989,
-    "ftm_total": 1.001,
-    "ftm_home": 1.027,
-    "ftm_away": 0.974,
-    "fta_total": 1.001,
-    "fta_home": 1.005,
+    "fouls_home": 0.998,
+    "fouls_away": 0.988,
+    "ftm_total": 1.0,
+    "ftm_home": 1.026,
+    "ftm_away": 0.973,
+    "fta_total": 1.0,
+    "fta_home": 1.004,
     "fta_away": 0.996
    },
    "player_foul_effect": {
     "committed": 0.995,
-    "drawn": 0.971
+    "drawn": 0.972
    },
    "last_game": "2026-11-12"
+  },
+  {
+   "referee": "Gentian Cici",
+   "games": 17,
+   "games_by_season": {
+    "2024/25": 7,
+    "2025/26": 5,
+    "2026/27": 5
+   },
+   "playoff_games": 0,
+   "raw": {
+    "fouls_total": 40.76,
+    "fouls_home": 19.29,
+    "fouls_away": 21.47,
+    "ftm_total": 30.35,
+    "ftm_home": 16.06,
+    "ftm_away": 14.29,
+    "fta_total": 38.94,
+    "fta_home": 21.0,
+    "fta_away": 17.94
+   },
+   "adjusted": {
+    "fouls_total": 41.31,
+    "fouls_home": 19.89,
+    "fouls_away": 21.42,
+    "ftm_total": 30.07,
+    "ftm_home": 16.0,
+    "ftm_away": 14.07,
+    "fta_total": 38.58,
+    "fta_home": 20.55,
+    "fta_away": 18.03
+   },
+   "factor": {
+    "fouls_total": 0.985,
+    "fouls_home": 0.96,
+    "fouls_away": 1.009,
+    "ftm_total": 0.993,
+    "ftm_home": 1.036,
+    "ftm_away": 0.949,
+    "fta_total": 0.993,
+    "fta_home": 1.04,
+    "fta_away": 0.945
+   },
+   "player_foul_effect": {
+    "committed": 1.0,
+    "drawn": 0.971
+   },
+   "last_game": "2026-11-25"
   },
   {
    "referee": "Huseyin Celik",
@@ -2544,30 +2592,30 @@
     "fta_away": 20.24
    },
    "adjusted": {
-    "fouls_total": 42.38,
+    "fouls_total": 42.39,
     "fouls_home": 20.69,
-    "fouls_away": 21.69,
-    "ftm_total": 29.52,
-    "ftm_home": 14.66,
-    "ftm_away": 14.86,
-    "fta_total": 38.16,
-    "fta_home": 18.99,
-    "fta_away": 19.17
+    "fouls_away": 21.7,
+    "ftm_total": 29.54,
+    "ftm_home": 14.67,
+    "ftm_away": 14.87,
+    "fta_total": 38.18,
+    "fta_home": 19.01,
+    "fta_away": 19.18
    },
    "factor": {
     "fouls_total": 1.011,
-    "fouls_home": 0.998,
+    "fouls_home": 0.999,
     "fouls_away": 1.023,
-    "ftm_total": 0.977,
-    "ftm_home": 0.951,
+    "ftm_total": 0.976,
+    "ftm_home": 0.95,
     "ftm_away": 1.003,
     "fta_total": 0.983,
-    "fta_home": 0.962,
+    "fta_home": 0.961,
     "fta_away": 1.005
    },
    "player_foul_effect": {
     "committed": 1.025,
-    "drawn": 1.024
+    "drawn": 1.025
    },
    "last_game": "2026-10-30"
   },
@@ -2591,80 +2639,32 @@
     "fta_away": 19.94
    },
    "adjusted": {
-    "fouls_total": 41.72,
-    "fouls_home": 20.57,
-    "fouls_away": 21.16,
-    "ftm_total": 31.38,
-    "ftm_home": 15.74,
-    "ftm_away": 15.64,
-    "fta_total": 39.63,
-    "fta_home": 20.11,
+    "fouls_total": 41.73,
+    "fouls_home": 20.56,
+    "fouls_away": 21.17,
+    "ftm_total": 31.4,
+    "ftm_home": 15.75,
+    "ftm_away": 15.65,
+    "fta_total": 39.66,
+    "fta_home": 20.13,
     "fta_away": 19.53
    },
    "factor": {
     "fouls_total": 0.995,
-    "fouls_home": 0.992,
-    "fouls_away": 0.999,
-    "ftm_total": 1.038,
-    "ftm_home": 1.021,
-    "ftm_away": 1.056,
-    "fta_total": 1.022,
-    "fta_home": 1.019,
-    "fta_away": 1.024
+    "fouls_home": 0.993,
+    "fouls_away": 0.998,
+    "ftm_total": 1.037,
+    "ftm_home": 1.02,
+    "ftm_away": 1.055,
+    "fta_total": 1.021,
+    "fta_home": 1.018,
+    "fta_away": 1.023
    },
    "player_foul_effect": {
     "committed": 1.009,
     "drawn": 1.002
    },
    "last_game": "2026-04-16"
-  },
-  {
-   "referee": "Gentian Cici",
-   "games": 16,
-   "games_by_season": {
-    "2024/25": 7,
-    "2025/26": 5,
-    "2026/27": 4
-   },
-   "playoff_games": 0,
-   "raw": {
-    "fouls_total": 40.56,
-    "fouls_home": 19.38,
-    "fouls_away": 21.19,
-    "ftm_total": 30.31,
-    "ftm_home": 16.06,
-    "ftm_away": 14.25,
-    "fta_total": 38.81,
-    "fta_home": 20.94,
-    "fta_away": 17.88
-   },
-   "adjusted": {
-    "fouls_total": 41.15,
-    "fouls_home": 20.01,
-    "fouls_away": 21.14,
-    "ftm_total": 30.0,
-    "ftm_home": 15.99,
-    "ftm_away": 14.01,
-    "fta_total": 38.42,
-    "fta_home": 20.45,
-    "fta_away": 17.96
-   },
-   "factor": {
-    "fouls_total": 0.982,
-    "fouls_home": 0.965,
-    "fouls_away": 0.998,
-    "ftm_total": 0.992,
-    "ftm_home": 1.037,
-    "ftm_away": 0.946,
-    "fta_total": 0.99,
-    "fta_home": 1.037,
-    "fta_away": 0.942
-   },
-   "player_foul_effect": {
-    "committed": 0.993,
-    "drawn": 0.975
-   },
-   "last_game": "2026-10-27"
   },
   {
    "referee": "Stefan Calic",
@@ -2688,28 +2688,28 @@
    },
    "adjusted": {
     "fouls_total": 41.77,
-    "fouls_home": 20.94,
-    "fouls_away": 20.83,
-    "ftm_total": 30.36,
-    "ftm_home": 15.03,
-    "ftm_away": 15.33,
-    "fta_total": 38.73,
-    "fta_home": 19.14,
+    "fouls_home": 20.93,
+    "fouls_away": 20.84,
+    "ftm_total": 30.37,
+    "ftm_home": 15.04,
+    "ftm_away": 15.34,
+    "fta_total": 38.75,
+    "fta_home": 19.15,
     "fta_away": 19.6
    },
    "factor": {
     "fouls_total": 0.996,
     "fouls_home": 1.01,
-    "fouls_away": 0.983,
+    "fouls_away": 0.982,
     "ftm_total": 1.004,
-    "ftm_home": 0.975,
-    "ftm_away": 1.035,
-    "fta_total": 0.998,
-    "fta_home": 0.97,
+    "ftm_home": 0.974,
+    "ftm_away": 1.034,
+    "fta_total": 0.997,
+    "fta_home": 0.969,
     "fta_away": 1.027
    },
    "player_foul_effect": {
-    "committed": 1.006,
+    "committed": 1.005,
     "drawn": 0.997
    },
    "last_game": "2026-11-24"
@@ -2735,30 +2735,30 @@
     "fta_away": 19.42
    },
    "adjusted": {
-    "fouls_total": 42.74,
+    "fouls_total": 42.75,
     "fouls_home": 21.54,
-    "fouls_away": 21.19,
-    "ftm_total": 30.84,
-    "ftm_home": 15.38,
-    "ftm_away": 15.46,
-    "fta_total": 39.12,
-    "fta_home": 19.48,
-    "fta_away": 19.63
+    "fouls_away": 21.21,
+    "ftm_total": 30.86,
+    "ftm_home": 15.39,
+    "ftm_away": 15.47,
+    "fta_total": 39.15,
+    "fta_home": 19.51,
+    "fta_away": 19.64
    },
    "factor": {
-    "fouls_total": 1.02,
-    "fouls_home": 1.039,
+    "fouls_total": 1.019,
+    "fouls_home": 1.04,
     "fouls_away": 1.0,
     "ftm_total": 1.02,
-    "ftm_home": 0.998,
-    "ftm_away": 1.044,
+    "ftm_home": 0.997,
+    "ftm_away": 1.043,
     "fta_total": 1.008,
-    "fta_home": 0.988,
+    "fta_home": 0.987,
     "fta_away": 1.029
    },
    "player_foul_effect": {
     "committed": 1.022,
-    "drawn": 1.012
+    "drawn": 1.011
    },
    "last_game": "2026-11-06"
   },
@@ -2783,30 +2783,30 @@
     "fta_away": 18.67
    },
    "adjusted": {
-    "fouls_total": 43.42,
+    "fouls_total": 43.43,
     "fouls_home": 21.36,
-    "fouls_away": 22.06,
-    "ftm_total": 30.6,
-    "ftm_home": 15.83,
-    "ftm_away": 14.77,
-    "fta_total": 39.08,
-    "fta_home": 20.12,
+    "fouls_away": 22.07,
+    "ftm_total": 30.62,
+    "ftm_home": 15.84,
+    "ftm_away": 14.78,
+    "fta_total": 39.11,
+    "fta_home": 20.15,
     "fta_away": 18.96
    },
    "factor": {
     "fouls_total": 1.036,
     "fouls_home": 1.031,
-    "fouls_away": 1.041,
+    "fouls_away": 1.04,
     "ftm_total": 1.012,
-    "ftm_home": 1.027,
+    "ftm_home": 1.026,
     "ftm_away": 0.997,
     "fta_total": 1.007,
-    "fta_home": 1.02,
+    "fta_home": 1.019,
     "fta_away": 0.994
    },
    "player_foul_effect": {
-    "committed": 1.035,
-    "drawn": 1.036
+    "committed": 1.034,
+    "drawn": 1.035
    },
    "last_game": "2026-11-17"
   },
@@ -2831,30 +2831,30 @@
     "fta_away": 15.5
    },
    "adjusted": {
-    "fouls_total": 41.58,
-    "fouls_home": 20.32,
-    "fouls_away": 21.26,
-    "ftm_total": 29.92,
-    "ftm_home": 16.49,
-    "ftm_away": 13.43,
-    "fta_total": 37.77,
-    "fta_home": 20.95,
-    "fta_away": 16.81
+    "fouls_total": 41.59,
+    "fouls_home": 20.31,
+    "fouls_away": 21.28,
+    "ftm_total": 29.94,
+    "ftm_home": 16.5,
+    "ftm_away": 13.44,
+    "fta_total": 37.8,
+    "fta_home": 20.98,
+    "fta_away": 16.82
    },
    "factor": {
     "fouls_total": 0.992,
     "fouls_home": 0.98,
     "fouls_away": 1.003,
-    "ftm_total": 0.99,
+    "ftm_total": 0.989,
     "ftm_home": 1.069,
-    "ftm_away": 0.907,
+    "ftm_away": 0.906,
     "fta_total": 0.973,
-    "fta_home": 1.062,
-    "fta_away": 0.882
+    "fta_home": 1.061,
+    "fta_away": 0.881
    },
    "player_foul_effect": {
     "committed": 0.995,
-    "drawn": 0.998
+    "drawn": 0.999
    },
    "last_game": "2026-10-30"
   },
@@ -2879,29 +2879,29 @@
     "fta_away": 17.82
    },
    "adjusted": {
-    "fouls_total": 41.99,
+    "fouls_total": 42.01,
     "fouls_home": 20.93,
-    "fouls_away": 21.06,
-    "ftm_total": 30.47,
-    "ftm_home": 15.76,
-    "ftm_away": 14.71,
-    "fta_total": 38.7,
-    "fta_home": 19.92,
-    "fta_away": 18.78
+    "fouls_away": 21.08,
+    "ftm_total": 30.49,
+    "ftm_home": 15.77,
+    "ftm_away": 14.72,
+    "fta_total": 38.73,
+    "fta_home": 19.94,
+    "fta_away": 18.79
    },
    "factor": {
     "fouls_total": 1.002,
     "fouls_home": 1.01,
     "fouls_away": 0.994,
-    "ftm_total": 1.008,
-    "ftm_home": 1.022,
+    "ftm_total": 1.007,
+    "ftm_home": 1.021,
     "ftm_away": 0.993,
     "fta_total": 0.997,
-    "fta_home": 1.01,
+    "fta_home": 1.009,
     "fta_away": 0.985
    },
    "player_foul_effect": {
-    "committed": 0.992,
+    "committed": 0.991,
     "drawn": 0.999
    },
    "last_game": "2026-11-20"
@@ -2927,25 +2927,25 @@
     "fta_away": 20.5
    },
    "adjusted": {
-    "fouls_total": 42.35,
+    "fouls_total": 42.36,
     "fouls_home": 21.23,
-    "fouls_away": 21.11,
-    "ftm_total": 31.04,
-    "ftm_home": 16.0,
-    "ftm_away": 15.04,
-    "fta_total": 40.74,
-    "fta_home": 20.89,
+    "fouls_away": 21.13,
+    "ftm_total": 31.06,
+    "ftm_home": 16.01,
+    "ftm_away": 15.05,
+    "fta_total": 40.78,
+    "fta_home": 20.91,
     "fta_away": 19.86
    },
    "factor": {
     "fouls_total": 1.01,
     "fouls_home": 1.025,
     "fouls_away": 0.996,
-    "ftm_total": 1.027,
-    "ftm_home": 1.038,
+    "ftm_total": 1.026,
+    "ftm_home": 1.037,
     "ftm_away": 1.015,
-    "fta_total": 1.05,
-    "fta_home": 1.059,
+    "fta_total": 1.049,
+    "fta_home": 1.058,
     "fta_away": 1.041
    },
    "player_foul_effect": {
@@ -2975,29 +2975,29 @@
     "fta_away": 21.11
    },
    "adjusted": {
-    "fouls_total": 42.86,
+    "fouls_total": 42.87,
     "fouls_home": 21.45,
-    "fouls_away": 21.41,
-    "ftm_total": 31.31,
-    "ftm_home": 16.08,
-    "ftm_away": 15.23,
-    "fta_total": 40.2,
-    "fta_home": 20.14,
+    "fouls_away": 21.42,
+    "ftm_total": 31.34,
+    "ftm_home": 16.09,
+    "ftm_away": 15.24,
+    "fta_total": 40.23,
+    "fta_home": 20.16,
     "fta_away": 20.06
    },
    "factor": {
     "fouls_total": 1.022,
     "fouls_home": 1.035,
     "fouls_away": 1.01,
-    "ftm_total": 1.036,
-    "ftm_home": 1.043,
-    "ftm_away": 1.029,
-    "fta_total": 1.036,
-    "fta_home": 1.021,
-    "fta_away": 1.052
+    "ftm_total": 1.035,
+    "ftm_home": 1.042,
+    "ftm_away": 1.028,
+    "fta_total": 1.035,
+    "fta_home": 1.02,
+    "fta_away": 1.051
    },
    "player_foul_effect": {
-    "committed": 1.03,
+    "committed": 1.029,
     "drawn": 1.032
    },
    "last_game": "2026-11-19"
@@ -3023,30 +3023,30 @@
     "fta_away": 19.62
    },
    "adjusted": {
-    "fouls_total": 42.52,
-    "fouls_home": 21.2,
-    "fouls_away": 21.32,
-    "ftm_total": 30.29,
-    "ftm_home": 15.06,
-    "ftm_away": 15.23,
-    "fta_total": 39.26,
-    "fta_home": 19.58,
+    "fouls_total": 42.53,
+    "fouls_home": 21.19,
+    "fouls_away": 21.34,
+    "ftm_total": 30.31,
+    "ftm_home": 15.07,
+    "ftm_away": 15.24,
+    "fta_total": 39.29,
+    "fta_home": 19.6,
     "fta_away": 19.68
    },
    "factor": {
     "fouls_total": 1.014,
     "fouls_home": 1.023,
     "fouls_away": 1.006,
-    "ftm_total": 1.002,
-    "ftm_home": 0.977,
-    "ftm_away": 1.029,
-    "fta_total": 1.012,
-    "fta_home": 0.992,
+    "ftm_total": 1.001,
+    "ftm_home": 0.976,
+    "ftm_away": 1.028,
+    "fta_total": 1.011,
+    "fta_home": 0.991,
     "fta_away": 1.032
    },
    "player_foul_effect": {
     "committed": 0.998,
-    "drawn": 1.018
+    "drawn": 1.019
    },
    "last_game": "2026-11-20"
   },
@@ -3070,29 +3070,29 @@
     "fta_away": 21.0
    },
    "adjusted": {
-    "fouls_total": 42.18,
+    "fouls_total": 42.19,
     "fouls_home": 21.31,
-    "fouls_away": 20.87,
-    "ftm_total": 30.49,
-    "ftm_home": 14.53,
-    "ftm_away": 15.96,
-    "fta_total": 38.7,
-    "fta_home": 18.34,
-    "fta_away": 20.36
+    "fouls_away": 20.88,
+    "ftm_total": 30.52,
+    "ftm_home": 14.54,
+    "ftm_away": 15.97,
+    "fta_total": 38.73,
+    "fta_home": 18.36,
+    "fta_away": 20.37
    },
    "factor": {
     "fouls_total": 1.006,
     "fouls_home": 1.028,
-    "fouls_away": 0.985,
-    "ftm_total": 1.009,
-    "ftm_home": 0.943,
-    "ftm_away": 1.078,
-    "fta_total": 0.998,
-    "fta_home": 0.93,
-    "fta_away": 1.068
+    "fouls_away": 0.984,
+    "ftm_total": 1.008,
+    "ftm_home": 0.942,
+    "ftm_away": 1.077,
+    "fta_total": 0.997,
+    "fta_home": 0.929,
+    "fta_away": 1.067
    },
    "player_foul_effect": {
-    "committed": 1.0,
+    "committed": 0.999,
     "drawn": 1.005
    },
    "last_game": "2026-11-24"
@@ -3117,30 +3117,30 @@
     "fta_away": 25.33
    },
    "adjusted": {
-    "fouls_total": 44.34,
+    "fouls_total": 44.35,
     "fouls_home": 22.39,
-    "fouls_away": 21.95,
-    "ftm_total": 32.05,
-    "ftm_home": 15.17,
-    "ftm_away": 16.88,
-    "fta_total": 41.44,
-    "fta_home": 19.83,
+    "fouls_away": 21.96,
+    "ftm_total": 32.07,
+    "ftm_home": 15.18,
+    "ftm_away": 16.89,
+    "fta_total": 41.47,
+    "fta_home": 19.86,
     "fta_away": 21.61
    },
    "factor": {
     "fouls_total": 1.058,
-    "fouls_home": 1.08,
-    "fouls_away": 1.036,
+    "fouls_home": 1.081,
+    "fouls_away": 1.035,
     "ftm_total": 1.06,
-    "ftm_home": 0.984,
-    "ftm_away": 1.14,
-    "fta_total": 1.068,
-    "fta_home": 1.005,
+    "ftm_home": 0.983,
+    "ftm_away": 1.139,
+    "fta_total": 1.067,
+    "fta_home": 1.004,
     "fta_away": 1.133
    },
    "player_foul_effect": {
-    "committed": 1.046,
-    "drawn": 1.044
+    "committed": 1.047,
+    "drawn": 1.043
    },
    "last_game": "2026-11-18"
   },
@@ -3164,20 +3164,20 @@
     "fta_away": 17.33
    },
    "adjusted": {
-    "fouls_total": 41.44,
+    "fouls_total": 41.46,
     "fouls_home": 21.19,
-    "fouls_away": 20.25,
-    "ftm_total": 29.29,
-    "ftm_home": 14.49,
-    "ftm_away": 14.8,
-    "fta_total": 37.21,
-    "fta_home": 18.39,
-    "fta_away": 18.82
+    "fouls_away": 20.27,
+    "ftm_total": 29.32,
+    "ftm_home": 14.51,
+    "ftm_away": 14.81,
+    "fta_total": 37.24,
+    "fta_home": 18.42,
+    "fta_away": 18.83
    },
    "factor": {
     "fouls_total": 0.989,
     "fouls_home": 1.023,
-    "fouls_away": 0.956,
+    "fouls_away": 0.955,
     "ftm_total": 0.969,
     "ftm_home": 0.94,
     "ftm_away": 0.999,
@@ -3211,30 +3211,30 @@
     "fta_away": 20.2
    },
    "adjusted": {
-    "fouls_total": 42.01,
-    "fouls_home": 20.69,
-    "fouls_away": 21.32,
-    "ftm_total": 30.16,
-    "ftm_home": 16.19,
-    "ftm_away": 13.97,
-    "fta_total": 40.21,
-    "fta_home": 20.97,
-    "fta_away": 19.24
+    "fouls_total": 42.02,
+    "fouls_home": 20.68,
+    "fouls_away": 21.34,
+    "ftm_total": 30.19,
+    "ftm_home": 16.21,
+    "ftm_away": 13.99,
+    "fta_total": 40.25,
+    "fta_home": 21.0,
+    "fta_away": 19.25
    },
    "factor": {
     "fouls_total": 1.002,
     "fouls_home": 0.998,
     "fouls_away": 1.006,
-    "ftm_total": 0.998,
+    "ftm_total": 0.997,
     "ftm_home": 1.05,
-    "ftm_away": 0.944,
+    "ftm_away": 0.943,
     "fta_total": 1.036,
-    "fta_home": 1.063,
+    "fta_home": 1.062,
     "fta_away": 1.009
    },
    "player_foul_effect": {
     "committed": 0.996,
-    "drawn": 0.998
+    "drawn": 0.999
    },
    "last_game": "2026-10-30"
   },
@@ -3259,15 +3259,15 @@
     "fta_away": 19.2
    },
    "adjusted": {
-    "fouls_total": 41.8,
+    "fouls_total": 41.81,
     "fouls_home": 20.9,
-    "fouls_away": 20.89,
-    "ftm_total": 30.3,
-    "ftm_home": 15.64,
-    "ftm_away": 14.66,
-    "fta_total": 39.17,
-    "fta_home": 20.21,
-    "fta_away": 18.96
+    "fouls_away": 20.91,
+    "ftm_total": 30.33,
+    "ftm_home": 15.65,
+    "ftm_away": 14.67,
+    "fta_total": 39.21,
+    "fta_home": 20.24,
+    "fta_away": 18.97
    },
    "factor": {
     "fouls_total": 0.997,
@@ -3276,12 +3276,12 @@
     "ftm_total": 1.002,
     "ftm_home": 1.014,
     "ftm_away": 0.99,
-    "fta_total": 1.01,
+    "fta_total": 1.009,
     "fta_home": 1.024,
     "fta_away": 0.994
    },
    "player_foul_effect": {
-    "committed": 1.004,
+    "committed": 1.005,
     "drawn": 0.999
    },
    "last_game": "2026-10-30"
@@ -3306,15 +3306,15 @@
     "fta_away": 18.8
    },
    "adjusted": {
-    "fouls_total": 41.88,
+    "fouls_total": 41.9,
     "fouls_home": 21.03,
-    "fouls_away": 20.85,
-    "ftm_total": 29.34,
-    "ftm_home": 14.24,
-    "ftm_away": 15.1,
-    "fta_total": 37.92,
-    "fta_home": 18.64,
-    "fta_away": 19.28
+    "fouls_away": 20.88,
+    "ftm_total": 29.38,
+    "ftm_home": 14.26,
+    "ftm_away": 15.11,
+    "fta_total": 37.96,
+    "fta_home": 18.67,
+    "fta_away": 19.29
    },
    "factor": {
     "fouls_total": 0.999,
@@ -3322,9 +3322,9 @@
     "fouls_away": 0.984,
     "ftm_total": 0.971,
     "ftm_home": 0.924,
-    "ftm_away": 1.02,
+    "ftm_away": 1.019,
     "fta_total": 0.977,
-    "fta_home": 0.945,
+    "fta_home": 0.944,
     "fta_away": 1.011
    },
    "player_foul_effect": {
@@ -3353,22 +3353,22 @@
     "fta_away": 20.8
    },
    "adjusted": {
-    "fouls_total": 42.46,
+    "fouls_total": 42.47,
     "fouls_home": 21.03,
-    "fouls_away": 21.43,
-    "ftm_total": 30.65,
-    "ftm_home": 15.47,
-    "ftm_away": 15.17,
-    "fta_total": 39.07,
-    "fta_home": 19.5,
-    "fta_away": 19.57
+    "fouls_away": 21.45,
+    "ftm_total": 30.68,
+    "ftm_home": 15.49,
+    "ftm_away": 15.19,
+    "fta_total": 39.11,
+    "fta_home": 19.53,
+    "fta_away": 19.58
    },
    "factor": {
     "fouls_total": 1.013,
     "fouls_home": 1.015,
     "fouls_away": 1.011,
     "ftm_total": 1.014,
-    "ftm_home": 1.004,
+    "ftm_home": 1.003,
     "ftm_away": 1.024,
     "fta_total": 1.007,
     "fta_home": 0.988,
@@ -3400,15 +3400,15 @@
     "fta_away": 27.25
    },
    "adjusted": {
-    "fouls_total": 42.77,
-    "fouls_home": 21.32,
-    "fouls_away": 21.45,
-    "ftm_total": 31.81,
-    "ftm_home": 16.06,
-    "ftm_away": 15.75,
-    "fta_total": 40.69,
-    "fta_home": 20.41,
-    "fta_away": 20.29
+    "fouls_total": 42.79,
+    "fouls_home": 21.31,
+    "fouls_away": 21.48,
+    "ftm_total": 31.85,
+    "ftm_home": 16.08,
+    "ftm_away": 15.76,
+    "fta_total": 40.74,
+    "fta_home": 20.44,
+    "fta_away": 20.3
    },
    "factor": {
     "fouls_total": 1.02,
@@ -3447,23 +3447,23 @@
     "fta_away": 17.33
    },
    "adjusted": {
-    "fouls_total": 41.6,
+    "fouls_total": 41.62,
     "fouls_home": 20.58,
-    "fouls_away": 21.02,
-    "ftm_total": 29.91,
-    "ftm_home": 15.24,
-    "ftm_away": 14.67,
-    "fta_total": 38.36,
-    "fta_home": 19.65,
-    "fta_away": 18.71
+    "fouls_away": 21.05,
+    "ftm_total": 29.95,
+    "ftm_home": 15.26,
+    "ftm_away": 14.68,
+    "fta_total": 38.41,
+    "fta_home": 19.69,
+    "fta_away": 18.72
    },
    "factor": {
     "fouls_total": 0.993,
     "fouls_home": 0.993,
     "fouls_away": 0.992,
-    "ftm_total": 0.99,
-    "ftm_home": 0.989,
-    "ftm_away": 0.991,
+    "ftm_total": 0.989,
+    "ftm_home": 0.988,
+    "ftm_away": 0.99,
     "fta_total": 0.989,
     "fta_home": 0.996,
     "fta_away": 0.981
@@ -3493,15 +3493,15 @@
     "fta_away": 24.5
    },
    "adjusted": {
-    "fouls_total": 42.09,
+    "fouls_total": 42.11,
     "fouls_home": 20.95,
-    "fouls_away": 21.13,
-    "ftm_total": 30.87,
-    "ftm_home": 15.59,
-    "ftm_away": 15.28,
-    "fta_total": 39.39,
-    "fta_home": 19.87,
-    "fta_away": 19.52
+    "fouls_away": 21.16,
+    "ftm_total": 30.91,
+    "ftm_home": 15.61,
+    "ftm_away": 15.3,
+    "fta_total": 39.44,
+    "fta_home": 19.91,
+    "fta_away": 19.53
    },
    "factor": {
     "fouls_total": 1.004,
@@ -3512,7 +3512,7 @@
     "ftm_away": 1.032,
     "fta_total": 1.015,
     "fta_home": 1.007,
-    "fta_away": 1.024
+    "fta_away": 1.023
    },
    "player_foul_effect": {
     "committed": 0.999,
@@ -3539,22 +3539,22 @@
     "fta_away": 21.0
    },
    "adjusted": {
-    "fouls_total": 41.85,
+    "fouls_total": 41.87,
     "fouls_home": 20.74,
-    "fouls_away": 21.11,
-    "ftm_total": 30.0,
-    "ftm_home": 15.18,
-    "ftm_away": 14.82,
-    "fta_total": 38.6,
-    "fta_home": 19.4,
-    "fta_away": 19.21
+    "fouls_away": 21.13,
+    "ftm_total": 30.04,
+    "ftm_home": 15.2,
+    "ftm_away": 14.84,
+    "fta_total": 38.65,
+    "fta_home": 19.44,
+    "fta_away": 19.22
    },
    "factor": {
     "fouls_total": 0.998,
     "fouls_home": 1.001,
     "fouls_away": 0.996,
-    "ftm_total": 0.993,
-    "ftm_home": 0.985,
+    "ftm_total": 0.992,
+    "ftm_home": 0.984,
     "ftm_away": 1.001,
     "fta_total": 0.995,
     "fta_home": 0.983,
@@ -3585,19 +3585,19 @@
     "fta_away": 22.0
    },
    "adjusted": {
-    "fouls_total": 41.66,
+    "fouls_total": 41.68,
     "fouls_home": 20.69,
-    "fouls_away": 20.97,
-    "ftm_total": 29.87,
-    "ftm_home": 15.1,
-    "ftm_away": 14.78,
-    "fta_total": 38.46,
-    "fta_home": 19.27,
-    "fta_away": 19.2
+    "fouls_away": 20.99,
+    "ftm_total": 29.91,
+    "ftm_home": 15.12,
+    "ftm_away": 14.79,
+    "fta_total": 38.51,
+    "fta_home": 19.31,
+    "fta_away": 19.21
    },
    "factor": {
     "fouls_total": 0.994,
-    "fouls_home": 0.998,
+    "fouls_home": 0.999,
     "fouls_away": 0.989,
     "ftm_total": 0.988,
     "ftm_home": 0.979,
@@ -3631,30 +3631,30 @@
     "fta_away": 23.0
    },
    "adjusted": {
-    "fouls_total": 42.15,
-    "fouls_home": 21.2,
-    "fouls_away": 20.95,
-    "ftm_total": 30.09,
-    "ftm_home": 14.81,
-    "ftm_away": 15.28,
-    "fta_total": 38.93,
-    "fta_home": 19.42,
-    "fta_away": 19.51
+    "fouls_total": 42.16,
+    "fouls_home": 21.19,
+    "fouls_away": 20.97,
+    "ftm_total": 30.13,
+    "ftm_home": 14.84,
+    "ftm_away": 15.29,
+    "fta_total": 38.98,
+    "fta_home": 19.46,
+    "fta_away": 19.52
    },
    "factor": {
-    "fouls_total": 1.006,
+    "fouls_total": 1.005,
     "fouls_home": 1.023,
-    "fouls_away": 0.989,
+    "fouls_away": 0.988,
     "ftm_total": 0.995,
     "ftm_home": 0.961,
     "ftm_away": 1.031,
     "fta_total": 1.003,
-    "fta_home": 0.985,
+    "fta_home": 0.984,
     "fta_away": 1.023
    },
    "player_foul_effect": {
     "committed": 1.003,
-    "drawn": 0.995
+    "drawn": 0.996
    },
    "last_game": "2026-11-19"
   }
@@ -11894,39 +11894,39 @@
    "player_id": "P000898",
    "player": "Jonas Valanciunas",
    "team": "ZAL",
-   "games": 13,
-   "minutes_per_game": 21.4,
-   "ftm_per_game": 3.69,
-   "fta_per_game": 4.85,
+   "games": 14,
+   "minutes_per_game": 20.9,
+   "ftm_per_game": 3.43,
+   "fta_per_game": 4.5,
    "ft_pct": 76.2,
-   "fouls_committed_per_game": 1.92,
-   "fouls_drawn_per_game": 4.38
+   "fouls_committed_per_game": 2.07,
+   "fouls_drawn_per_game": 4.07
   },
   {
    "season": "2026/27",
    "player_id": "P001133",
    "player": "Tornike Shengelia",
    "team": "DUB",
-   "games": 12,
-   "minutes_per_game": 15.0,
-   "ftm_per_game": 1.5,
-   "fta_per_game": 1.83,
+   "games": 13,
+   "minutes_per_game": 15.5,
+   "ftm_per_game": 1.38,
+   "fta_per_game": 1.69,
    "ft_pct": 81.8,
-   "fouls_committed_per_game": 2.25,
-   "fouls_drawn_per_game": 2.17
+   "fouls_committed_per_game": 2.23,
+   "fouls_drawn_per_game": 2.08
   },
   {
    "season": "2026/27",
    "player_id": "P001255",
    "player": "Kostas Papanikolaou",
    "team": "OLY",
-   "games": 12,
-   "minutes_per_game": 16.1,
+   "games": 13,
+   "minutes_per_game": 15.4,
    "ftm_per_game": 0.0,
-   "fta_per_game": 0.25,
+   "fta_per_game": 0.23,
    "ft_pct": 0.0,
-   "fouls_committed_per_game": 1.25,
-   "fouls_drawn_per_game": 0.5
+   "fouls_committed_per_game": 1.31,
+   "fouls_drawn_per_game": 0.46
   },
   {
    "season": "2026/27",
@@ -11998,52 +11998,52 @@
    "player_id": "P002328",
    "player": "Marius Grigonis",
    "team": "ZAL",
-   "games": 13,
-   "minutes_per_game": 18.2,
-   "ftm_per_game": 0.92,
-   "fta_per_game": 1.31,
-   "ft_pct": 70.6,
-   "fouls_committed_per_game": 1.69,
-   "fouls_drawn_per_game": 2.31
+   "games": 14,
+   "minutes_per_game": 18.7,
+   "ftm_per_game": 1.07,
+   "fta_per_game": 1.5,
+   "ft_pct": 71.4,
+   "fouls_committed_per_game": 1.79,
+   "fouls_drawn_per_game": 2.57
   },
   {
    "season": "2026/27",
    "player_id": "P002329",
    "player": "Edgaras Ulanovas",
    "team": "ZAL",
-   "games": 13,
-   "minutes_per_game": 15.2,
-   "ftm_per_game": 1.62,
-   "fta_per_game": 2.38,
-   "ft_pct": 67.7,
-   "fouls_committed_per_game": 1.77,
-   "fouls_drawn_per_game": 2.31
+   "games": 14,
+   "minutes_per_game": 15.6,
+   "ftm_per_game": 1.64,
+   "fta_per_game": 2.36,
+   "ft_pct": 69.7,
+   "fouls_committed_per_game": 1.86,
+   "fouls_drawn_per_game": 2.29
   },
   {
    "season": "2026/27",
    "player_id": "P002580",
    "player": "Vasilije Micic",
    "team": "HTA",
-   "games": 12,
-   "minutes_per_game": 26.6,
-   "ftm_per_game": 2.83,
-   "fta_per_game": 3.33,
-   "ft_pct": 85.0,
-   "fouls_committed_per_game": 3.0,
-   "fouls_drawn_per_game": 3.67
+   "games": 13,
+   "minutes_per_game": 26.8,
+   "ftm_per_game": 3.0,
+   "fta_per_game": 3.46,
+   "ft_pct": 86.7,
+   "fouls_committed_per_game": 2.92,
+   "fouls_drawn_per_game": 3.77
   },
   {
    "season": "2026/27",
    "player_id": "P002676",
    "player": "Arnas Butkevicius",
    "team": "ZAL",
-   "games": 13,
-   "minutes_per_game": 20.0,
-   "ftm_per_game": 0.69,
-   "fta_per_game": 0.85,
+   "games": 14,
+   "minutes_per_game": 20.3,
+   "ftm_per_game": 0.64,
+   "fta_per_game": 0.79,
    "ft_pct": 81.8,
-   "fouls_committed_per_game": 2.23,
-   "fouls_drawn_per_game": 0.85
+   "fouls_committed_per_game": 2.36,
+   "fouls_drawn_per_game": 0.79
   },
   {
    "season": "2026/27",
@@ -12063,13 +12063,13 @@
    "player_id": "P002939",
    "player": "Tomas Satoransky",
    "team": "HTA",
-   "games": 12,
-   "minutes_per_game": 21.6,
-   "ftm_per_game": 1.0,
-   "fta_per_game": 1.25,
-   "ft_pct": 80.0,
-   "fouls_committed_per_game": 2.5,
-   "fouls_drawn_per_game": 1.08
+   "games": 13,
+   "minutes_per_game": 21.4,
+   "ftm_per_game": 1.08,
+   "fta_per_game": 1.46,
+   "ft_pct": 73.7,
+   "fouls_committed_per_game": 2.38,
+   "fouls_drawn_per_game": 1.23
   },
   {
    "season": "2026/27",
@@ -12128,13 +12128,13 @@
    "player_id": "P003112",
    "player": "Dario Saric",
    "team": "IST",
-   "games": 13,
-   "minutes_per_game": 25.6,
-   "ftm_per_game": 3.69,
-   "fta_per_game": 4.23,
+   "games": 14,
+   "minutes_per_game": 25.2,
+   "ftm_per_game": 3.43,
+   "fta_per_game": 3.93,
    "ft_pct": 87.3,
-   "fouls_committed_per_game": 2.08,
-   "fouls_drawn_per_game": 3.77
+   "fouls_committed_per_game": 2.07,
+   "fouls_drawn_per_game": 3.57
   },
   {
    "season": "2026/27",
@@ -12154,13 +12154,13 @@
    "player_id": "P003469",
    "player": "Sasha Vezenkov",
    "team": "OLY",
-   "games": 13,
-   "minutes_per_game": 27.7,
-   "ftm_per_game": 4.0,
-   "fta_per_game": 4.54,
-   "ft_pct": 88.1,
-   "fouls_committed_per_game": 0.77,
-   "fouls_drawn_per_game": 3.54
+   "games": 14,
+   "minutes_per_game": 27.9,
+   "ftm_per_game": 3.71,
+   "fta_per_game": 4.36,
+   "ft_pct": 85.2,
+   "fouls_committed_per_game": 0.86,
+   "fouls_drawn_per_game": 3.29
   },
   {
    "season": "2026/27",
@@ -12193,13 +12193,13 @@
    "player_id": "P003733",
    "player": "Alberto Abalde",
    "team": "MAD",
-   "games": 13,
-   "minutes_per_game": 18.6,
-   "ftm_per_game": 0.62,
-   "fta_per_game": 0.77,
-   "ft_pct": 80.0,
-   "fouls_committed_per_game": 1.54,
-   "fouls_drawn_per_game": 0.54
+   "games": 14,
+   "minutes_per_game": 18.9,
+   "ftm_per_game": 0.64,
+   "fta_per_game": 0.79,
+   "ft_pct": 81.8,
+   "fouls_committed_per_game": 1.57,
+   "fouls_drawn_per_game": 0.5
   },
   {
    "season": "2026/27",
@@ -12232,13 +12232,13 @@
    "player_id": "P003941",
    "player": "Nikola Milutinov",
    "team": "OLY",
-   "games": 7,
-   "minutes_per_game": 14.7,
-   "ftm_per_game": 1.43,
-   "fta_per_game": 1.86,
-   "ft_pct": 76.9,
-   "fouls_committed_per_game": 0.57,
-   "fouls_drawn_per_game": 1.86
+   "games": 8,
+   "minutes_per_game": 13.9,
+   "ftm_per_game": 1.5,
+   "fta_per_game": 1.88,
+   "ft_pct": 80.0,
+   "fouls_committed_per_game": 0.62,
+   "fouls_drawn_per_game": 1.75
   },
   {
    "season": "2026/27",
@@ -12336,13 +12336,13 @@
    "player_id": "P004761",
    "player": "Vanja Marinkovic",
    "team": "PAR",
-   "games": 4,
-   "minutes_per_game": 21.3,
-   "ftm_per_game": 1.0,
-   "fta_per_game": 1.0,
+   "games": 5,
+   "minutes_per_game": 19.3,
+   "ftm_per_game": 0.8,
+   "fta_per_game": 0.8,
    "ft_pct": 100.0,
-   "fouls_committed_per_game": 1.75,
-   "fouls_drawn_per_game": 1.75
+   "fouls_committed_per_game": 2.0,
+   "fouls_drawn_per_game": 1.4
   },
   {
    "season": "2026/27",
@@ -12362,26 +12362,26 @@
    "player_id": "P005368",
    "player": "Santi Yusta",
    "team": "IST",
-   "games": 12,
-   "minutes_per_game": 13.1,
-   "ftm_per_game": 1.0,
-   "fta_per_game": 1.17,
+   "games": 13,
+   "minutes_per_game": 12.9,
+   "ftm_per_game": 0.92,
+   "fta_per_game": 1.08,
    "ft_pct": 85.7,
-   "fouls_committed_per_game": 1.75,
-   "fouls_drawn_per_game": 1.5
+   "fouls_committed_per_game": 1.69,
+   "fouls_drawn_per_game": 1.54
   },
   {
    "season": "2026/27",
    "player_id": "P005637",
    "player": "Nikola Tanaskovic",
    "team": "PAR",
-   "games": 13,
-   "minutes_per_game": 19.6,
-   "ftm_per_game": 1.31,
-   "fta_per_game": 2.08,
-   "ft_pct": 63.0,
-   "fouls_committed_per_game": 2.15,
-   "fouls_drawn_per_game": 2.0
+   "games": 14,
+   "minutes_per_game": 19.8,
+   "ftm_per_game": 1.36,
+   "fta_per_game": 2.07,
+   "ft_pct": 65.5,
+   "fouls_committed_per_game": 2.29,
+   "fouls_drawn_per_game": 1.93
   },
   {
    "season": "2026/27",
@@ -12401,12 +12401,12 @@
    "player_id": "P005713",
    "player": "Rodions Kurucs",
    "team": "BAS",
-   "games": 10,
-   "minutes_per_game": 21.3,
-   "ftm_per_game": 1.0,
-   "fta_per_game": 1.5,
-   "ft_pct": 66.7,
-   "fouls_committed_per_game": 3.5,
+   "games": 11,
+   "minutes_per_game": 20.1,
+   "ftm_per_game": 1.09,
+   "fta_per_game": 1.55,
+   "ft_pct": 70.6,
+   "fouls_committed_per_game": 3.27,
    "fouls_drawn_per_game": 2.0
   },
   {
@@ -12427,13 +12427,13 @@
    "player_id": "P005791",
    "player": "Walter Tavares",
    "team": "MAD",
-   "games": 13,
-   "minutes_per_game": 20.7,
-   "ftm_per_game": 1.23,
-   "fta_per_game": 1.85,
-   "ft_pct": 66.7,
-   "fouls_committed_per_game": 2.92,
-   "fouls_drawn_per_game": 2.38
+   "games": 14,
+   "minutes_per_game": 20.8,
+   "ftm_per_game": 1.43,
+   "fta_per_game": 2.0,
+   "ft_pct": 71.4,
+   "fouls_committed_per_game": 2.79,
+   "fouls_drawn_per_game": 2.43
   },
   {
    "season": "2026/27",
@@ -12453,13 +12453,13 @@
    "player_id": "P005844",
    "player": "Georgios Papagiannis",
    "team": "IST",
-   "games": 5,
-   "minutes_per_game": 11.9,
+   "games": 6,
+   "minutes_per_game": 13.2,
    "ftm_per_game": 0.0,
    "fta_per_game": 0.0,
    "ft_pct": null,
-   "fouls_committed_per_game": 1.2,
-   "fouls_drawn_per_game": 0.2
+   "fouls_committed_per_game": 1.33,
+   "fouls_drawn_per_game": 0.17
   },
   {
    "season": "2026/27",
@@ -12479,10 +12479,10 @@
    "player_id": "P005942",
    "player": "Nemanja Dangubic",
    "team": "DUB",
-   "games": 5,
-   "minutes_per_game": 10.2,
-   "ftm_per_game": 0.6,
-   "fta_per_game": 0.8,
+   "games": 6,
+   "minutes_per_game": 9.5,
+   "ftm_per_game": 0.5,
+   "fta_per_game": 0.67,
    "ft_pct": 75.0,
    "fouls_committed_per_game": 2.0,
    "fouls_drawn_per_game": 1.0
@@ -12544,13 +12544,13 @@
    "player_id": "P006540",
    "player": "Dzanan Musa",
    "team": "DUB",
-   "games": 6,
-   "minutes_per_game": 18.4,
-   "ftm_per_game": 2.33,
-   "fta_per_game": 3.0,
-   "ft_pct": 77.8,
-   "fouls_committed_per_game": 0.83,
-   "fouls_drawn_per_game": 2.33
+   "games": 7,
+   "minutes_per_game": 18.9,
+   "ftm_per_game": 3.0,
+   "fta_per_game": 3.71,
+   "ft_pct": 80.8,
+   "fouls_committed_per_game": 1.0,
+   "fouls_drawn_per_game": 2.71
   },
   {
    "season": "2026/27",
@@ -12622,13 +12622,13 @@
    "player_id": "P006739",
    "player": "Alessandro Pajola",
    "team": "PAR",
-   "games": 13,
-   "minutes_per_game": 21.3,
-   "ftm_per_game": 0.31,
-   "fta_per_game": 0.69,
-   "ft_pct": 44.4,
-   "fouls_committed_per_game": 2.54,
-   "fouls_drawn_per_game": 1.77
+   "games": 14,
+   "minutes_per_game": 21.4,
+   "ftm_per_game": 0.5,
+   "fta_per_game": 0.86,
+   "ft_pct": 58.3,
+   "fouls_committed_per_game": 2.57,
+   "fouls_drawn_per_game": 1.86
   },
   {
    "season": "2026/27",
@@ -12713,13 +12713,13 @@
    "player_id": "P007027",
    "player": "Theo Maledon",
    "team": "MAD",
-   "games": 11,
-   "minutes_per_game": 23.4,
-   "ftm_per_game": 7.09,
-   "fta_per_game": 7.82,
-   "ft_pct": 90.7,
-   "fouls_committed_per_game": 1.91,
-   "fouls_drawn_per_game": 5.55
+   "games": 12,
+   "minutes_per_game": 23.0,
+   "ftm_per_game": 6.83,
+   "fta_per_game": 7.5,
+   "ft_pct": 91.1,
+   "fouls_committed_per_game": 1.92,
+   "fouls_drawn_per_game": 5.67
   },
   {
    "season": "2026/27",
@@ -12739,13 +12739,13 @@
    "player_id": "P007032",
    "player": "Maodo LO",
    "team": "ZAL",
-   "games": 7,
-   "minutes_per_game": 13.3,
-   "ftm_per_game": 0.43,
-   "fta_per_game": 0.43,
+   "games": 8,
+   "minutes_per_game": 11.9,
+   "ftm_per_game": 0.38,
+   "fta_per_game": 0.38,
    "ft_pct": 100.0,
-   "fouls_committed_per_game": 1.0,
-   "fouls_drawn_per_game": 0.86
+   "fouls_committed_per_game": 1.12,
+   "fouls_drawn_per_game": 0.88
   },
   {
    "season": "2026/27",
@@ -12765,12 +12765,12 @@
    "player_id": "P007109",
    "player": "Rolands Smits",
    "team": "BAS",
-   "games": 1,
-   "minutes_per_game": 15.8,
+   "games": 2,
+   "minutes_per_game": 22.3,
    "ftm_per_game": 1.0,
-   "fta_per_game": 2.0,
-   "ft_pct": 50.0,
-   "fouls_committed_per_game": 2.0,
+   "fta_per_game": 3.0,
+   "ft_pct": 33.3,
+   "fouls_committed_per_game": 3.0,
    "fouls_drawn_per_game": 2.0
   },
   {
@@ -12895,12 +12895,12 @@
    "player_id": "P007632",
    "player": "Mario Nakic",
    "team": "PAR",
-   "games": 3,
-   "minutes_per_game": 6.7,
+   "games": 4,
+   "minutes_per_game": 6.1,
    "ftm_per_game": 0.0,
    "fta_per_game": 0.0,
    "ft_pct": null,
-   "fouls_committed_per_game": 0.33,
+   "fouls_committed_per_game": 0.5,
    "fouls_drawn_per_game": 0.0
   },
   {
@@ -12908,13 +12908,13 @@
    "player_id": "P007736",
    "player": "Arijan Lakic",
    "team": "PAR",
-   "games": 12,
-   "minutes_per_game": 13.4,
-   "ftm_per_game": 0.25,
-   "fta_per_game": 0.33,
+   "games": 13,
+   "minutes_per_game": 13.2,
+   "ftm_per_game": 0.23,
+   "fta_per_game": 0.31,
    "ft_pct": 75.0,
-   "fouls_committed_per_game": 2.17,
-   "fouls_drawn_per_game": 0.67
+   "fouls_committed_per_game": 2.15,
+   "fouls_drawn_per_game": 0.69
   },
   {
    "season": "2026/27",
@@ -13025,26 +13025,26 @@
    "player_id": "P008099",
    "player": "Matthew Strazel",
    "team": "IST",
-   "games": 13,
-   "minutes_per_game": 22.8,
-   "ftm_per_game": 4.54,
-   "fta_per_game": 5.08,
-   "ft_pct": 89.4,
-   "fouls_committed_per_game": 1.69,
-   "fouls_drawn_per_game": 4.77
+   "games": 14,
+   "minutes_per_game": 23.3,
+   "ftm_per_game": 4.57,
+   "fta_per_game": 5.21,
+   "ft_pct": 87.7,
+   "fouls_committed_per_game": 1.64,
+   "fouls_drawn_per_game": 4.93
   },
   {
    "season": "2026/27",
    "player_id": "P008173",
    "player": "Matteo Spagnolo",
    "team": "BAS",
-   "games": 12,
-   "minutes_per_game": 13.9,
-   "ftm_per_game": 0.75,
-   "fta_per_game": 1.0,
-   "ft_pct": 75.0,
-   "fouls_committed_per_game": 1.67,
-   "fouls_drawn_per_game": 1.0
+   "games": 13,
+   "minutes_per_game": 13.8,
+   "ftm_per_game": 0.85,
+   "fta_per_game": 1.08,
+   "ft_pct": 78.6,
+   "fouls_committed_per_game": 1.69,
+   "fouls_drawn_per_game": 1.08
   },
   {
    "season": "2026/27",
@@ -13064,39 +13064,39 @@
    "player_id": "P008192",
    "player": "Azuolas Tubelis",
    "team": "ZAL",
-   "games": 13,
-   "minutes_per_game": 23.7,
-   "ftm_per_game": 2.15,
-   "fta_per_game": 3.0,
-   "ft_pct": 71.8,
+   "games": 14,
+   "minutes_per_game": 24.1,
+   "ftm_per_game": 2.29,
+   "fta_per_game": 3.07,
+   "ft_pct": 74.4,
    "fouls_committed_per_game": 2.0,
-   "fouls_drawn_per_game": 2.77
+   "fouls_drawn_per_game": 2.71
   },
   {
    "season": "2026/27",
    "player_id": "P008325",
    "player": "Kenan Kamenjas",
    "team": "BAS",
-   "games": 2,
-   "minutes_per_game": 30.5,
-   "ftm_per_game": 1.0,
-   "fta_per_game": 4.0,
-   "ft_pct": 25.0,
-   "fouls_committed_per_game": 3.0,
-   "fouls_drawn_per_game": 4.0
+   "games": 3,
+   "minutes_per_game": 25.4,
+   "ftm_per_game": 1.33,
+   "fta_per_game": 3.67,
+   "ft_pct": 36.4,
+   "fouls_committed_per_game": 2.67,
+   "fouls_drawn_per_game": 3.67
   },
   {
    "season": "2026/27",
    "player_id": "P008384",
    "player": "Gabriele Procida",
    "team": "MAD",
-   "games": 9,
-   "minutes_per_game": 13.0,
+   "games": 10,
+   "minutes_per_game": 13.2,
    "ftm_per_game": 1.0,
-   "fta_per_game": 1.22,
-   "ft_pct": 81.8,
-   "fouls_committed_per_game": 0.33,
-   "fouls_drawn_per_game": 1.22
+   "fta_per_game": 1.2,
+   "ft_pct": 83.3,
+   "fouls_committed_per_game": 0.6,
+   "fouls_drawn_per_game": 1.3
   },
   {
    "season": "2026/27",
@@ -13181,13 +13181,13 @@
    "player_id": "P008987",
    "player": "Zach Leday",
    "team": "HTA",
-   "games": 13,
-   "minutes_per_game": 21.4,
-   "ftm_per_game": 2.54,
-   "fta_per_game": 2.69,
-   "ft_pct": 94.3,
-   "fouls_committed_per_game": 1.54,
-   "fouls_drawn_per_game": 3.69
+   "games": 14,
+   "minutes_per_game": 20.9,
+   "ftm_per_game": 2.57,
+   "fta_per_game": 2.71,
+   "ft_pct": 94.7,
+   "fouls_committed_per_game": 1.57,
+   "fouls_drawn_per_game": 3.57
   },
   {
    "season": "2026/27",
@@ -13311,26 +13311,26 @@
    "player_id": "P009733",
    "player": "Tonye Jekiri",
    "team": "PAR",
-   "games": 9,
-   "minutes_per_game": 18.5,
-   "ftm_per_game": 1.56,
-   "fta_per_game": 2.33,
-   "ft_pct": 66.7,
-   "fouls_committed_per_game": 1.78,
-   "fouls_drawn_per_game": 3.0
+   "games": 10,
+   "minutes_per_game": 18.1,
+   "ftm_per_game": 1.5,
+   "fta_per_game": 2.2,
+   "ft_pct": 68.2,
+   "fouls_committed_per_game": 1.9,
+   "fouls_drawn_per_game": 2.8
   },
   {
    "season": "2026/27",
    "player_id": "P009754",
    "player": "Jordan Loyd",
    "team": "IST",
-   "games": 13,
-   "minutes_per_game": 24.2,
-   "ftm_per_game": 1.23,
-   "fta_per_game": 1.46,
-   "ft_pct": 84.2,
-   "fouls_committed_per_game": 2.62,
-   "fouls_drawn_per_game": 2.46
+   "games": 14,
+   "minutes_per_game": 24.5,
+   "ftm_per_game": 1.86,
+   "fta_per_game": 2.07,
+   "ft_pct": 89.7,
+   "fouls_committed_per_game": 2.71,
+   "fouls_drawn_per_game": 2.86
   },
   {
    "season": "2026/27",
@@ -13350,13 +13350,13 @@
    "player_id": "P009846",
    "player": "Elijah Bryant",
    "team": "HTA",
-   "games": 13,
-   "minutes_per_game": 29.5,
-   "ftm_per_game": 4.85,
-   "fta_per_game": 5.31,
-   "ft_pct": 91.3,
-   "fouls_committed_per_game": 2.23,
-   "fouls_drawn_per_game": 6.23
+   "games": 14,
+   "minutes_per_game": 29.1,
+   "ftm_per_game": 4.64,
+   "fta_per_game": 5.07,
+   "ft_pct": 91.5,
+   "fouls_committed_per_game": 2.36,
+   "fouls_drawn_per_game": 5.93
   },
   {
    "season": "2026/27",
@@ -13493,13 +13493,13 @@
    "player_id": "P010390",
    "player": "Kevarrius Hayes",
    "team": "PAR",
-   "games": 10,
-   "minutes_per_game": 20.5,
-   "ftm_per_game": 1.7,
-   "fta_per_game": 3.3,
-   "ft_pct": 51.5,
-   "fouls_committed_per_game": 2.6,
-   "fouls_drawn_per_game": 3.5
+   "games": 11,
+   "minutes_per_game": 20.8,
+   "ftm_per_game": 1.73,
+   "fta_per_game": 3.18,
+   "ft_pct": 54.3,
+   "fouls_committed_per_game": 2.55,
+   "fouls_drawn_per_game": 3.27
   },
   {
    "season": "2026/27",
@@ -13519,13 +13519,13 @@
    "player_id": "P010393",
    "player": "Jaime Pradilla",
    "team": "MAD",
-   "games": 13,
-   "minutes_per_game": 14.7,
-   "ftm_per_game": 0.77,
-   "fta_per_game": 0.77,
-   "ft_pct": 100.0,
+   "games": 14,
+   "minutes_per_game": 14.9,
+   "ftm_per_game": 0.79,
+   "fta_per_game": 0.86,
+   "ft_pct": 91.7,
    "fouls_committed_per_game": 1.0,
-   "fouls_drawn_per_game": 1.15
+   "fouls_drawn_per_game": 1.14
   },
   {
    "season": "2026/27",
@@ -13675,26 +13675,26 @@
    "player_id": "P011194",
    "player": "Filip Petrusev",
    "team": "DUB",
-   "games": 12,
-   "minutes_per_game": 15.4,
-   "ftm_per_game": 1.67,
-   "fta_per_game": 2.08,
-   "ft_pct": 80.0,
+   "games": 13,
+   "minutes_per_game": 15.5,
+   "ftm_per_game": 1.77,
+   "fta_per_game": 2.15,
+   "ft_pct": 82.1,
    "fouls_committed_per_game": 1.0,
-   "fouls_drawn_per_game": 2.17
+   "fouls_drawn_per_game": 2.38
   },
   {
    "season": "2026/27",
    "player_id": "P011196",
    "player": "Donta Hall",
    "team": "OLY",
-   "games": 12,
-   "minutes_per_game": 13.9,
-   "ftm_per_game": 0.75,
-   "fta_per_game": 1.0,
-   "ft_pct": 75.0,
-   "fouls_committed_per_game": 1.33,
-   "fouls_drawn_per_game": 1.5
+   "games": 13,
+   "minutes_per_game": 14.2,
+   "ftm_per_game": 0.92,
+   "fta_per_game": 1.15,
+   "ft_pct": 80.0,
+   "fouls_committed_per_game": 1.23,
+   "fouls_drawn_per_game": 1.62
   },
   {
    "season": "2026/27",
@@ -13753,13 +13753,13 @@
    "player_id": "P011212",
    "player": "Elie Okobo",
    "team": "DUB",
-   "games": 13,
-   "minutes_per_game": 25.9,
-   "ftm_per_game": 2.0,
-   "fta_per_game": 2.38,
+   "games": 14,
+   "minutes_per_game": 25.8,
+   "ftm_per_game": 1.86,
+   "fta_per_game": 2.21,
    "ft_pct": 83.9,
-   "fouls_committed_per_game": 2.08,
-   "fouls_drawn_per_game": 2.77
+   "fouls_committed_per_game": 2.0,
+   "fouls_drawn_per_game": 2.64
   },
   {
    "season": "2026/27",
@@ -13792,13 +13792,13 @@
    "player_id": "P011218",
    "player": "Keenan Evans",
    "team": "ZAL",
-   "games": 6,
-   "minutes_per_game": 19.4,
-   "ftm_per_game": 1.0,
-   "fta_per_game": 1.33,
-   "ft_pct": 75.0,
-   "fouls_committed_per_game": 2.33,
-   "fouls_drawn_per_game": 2.5
+   "games": 7,
+   "minutes_per_game": 18.6,
+   "ftm_per_game": 1.14,
+   "fta_per_game": 1.43,
+   "ft_pct": 80.0,
+   "fouls_committed_per_game": 2.57,
+   "fouls_drawn_per_game": 2.57
   },
   {
    "season": "2026/27",
@@ -13818,13 +13818,13 @@
    "player_id": "P011231",
    "player": "Jaron Blossomgame",
    "team": "DUB",
-   "games": 13,
+   "games": 14,
    "minutes_per_game": 17.9,
-   "ftm_per_game": 0.54,
-   "fta_per_game": 1.15,
-   "ft_pct": 46.7,
-   "fouls_committed_per_game": 1.15,
-   "fouls_drawn_per_game": 1.23
+   "ftm_per_game": 0.79,
+   "fta_per_game": 1.57,
+   "ft_pct": 50.0,
+   "fouls_committed_per_game": 1.07,
+   "fouls_drawn_per_game": 1.43
   },
   {
    "season": "2026/27",
@@ -13844,13 +13844,13 @@
    "player_id": "P011247",
    "player": "Andres Feliz",
    "team": "MAD",
-   "games": 13,
-   "minutes_per_game": 21.9,
-   "ftm_per_game": 2.54,
-   "fta_per_game": 2.85,
-   "ft_pct": 89.2,
-   "fouls_committed_per_game": 2.54,
-   "fouls_drawn_per_game": 2.85
+   "games": 14,
+   "minutes_per_game": 21.8,
+   "ftm_per_game": 2.86,
+   "fta_per_game": 3.43,
+   "ft_pct": 83.3,
+   "fouls_committed_per_game": 2.5,
+   "fouls_drawn_per_game": 3.14
   },
   {
    "season": "2026/27",
@@ -13870,13 +13870,13 @@
    "player_id": "P011286",
    "player": "Dwayne Bacon",
    "team": "DUB",
-   "games": 13,
-   "minutes_per_game": 27.5,
-   "ftm_per_game": 4.08,
-   "fta_per_game": 5.08,
-   "ft_pct": 80.3,
-   "fouls_committed_per_game": 1.92,
-   "fouls_drawn_per_game": 4.38
+   "games": 14,
+   "minutes_per_game": 27.6,
+   "ftm_per_game": 3.86,
+   "fta_per_game": 4.79,
+   "ft_pct": 80.6,
+   "fouls_committed_per_game": 2.0,
+   "fouls_drawn_per_game": 4.43
   },
   {
    "season": "2026/27",
@@ -13890,6 +13890,19 @@
    "ft_pct": 82.6,
    "fouls_committed_per_game": 1.71,
    "fouls_drawn_per_game": 1.5
+  },
+  {
+   "season": "2026/27",
+   "player_id": "P011579",
+   "player": "Zacharie Perrin",
+   "team": "BAS",
+   "games": 1,
+   "minutes_per_game": 24.2,
+   "ftm_per_game": 3.0,
+   "fta_per_game": 5.0,
+   "ft_pct": 60.0,
+   "fouls_committed_per_game": 2.0,
+   "fouls_drawn_per_game": 4.0
   },
   {
    "season": "2026/27",
@@ -13922,13 +13935,13 @@
    "player_id": "P011823",
    "player": "Tai Odiase",
    "team": "HTA",
-   "games": 12,
-   "minutes_per_game": 14.2,
-   "ftm_per_game": 0.83,
-   "fta_per_game": 1.42,
+   "games": 13,
+   "minutes_per_game": 14.5,
+   "ftm_per_game": 0.77,
+   "fta_per_game": 1.31,
    "ft_pct": 58.8,
-   "fouls_committed_per_game": 1.58,
-   "fouls_drawn_per_game": 1.67
+   "fouls_committed_per_game": 1.46,
+   "fouls_drawn_per_game": 1.62
   },
   {
    "season": "2026/27",
@@ -13948,26 +13961,26 @@
    "player_id": "P011924",
    "player": "Kyle Allman",
    "team": "PAR",
-   "games": 9,
-   "minutes_per_game": 17.8,
-   "ftm_per_game": 1.67,
-   "fta_per_game": 2.22,
-   "ft_pct": 75.0,
-   "fouls_committed_per_game": 1.78,
-   "fouls_drawn_per_game": 2.22
+   "games": 10,
+   "minutes_per_game": 18.7,
+   "ftm_per_game": 1.9,
+   "fta_per_game": 2.6,
+   "ft_pct": 73.1,
+   "fouls_committed_per_game": 1.8,
+   "fouls_drawn_per_game": 2.4
   },
   {
    "season": "2026/27",
    "player_id": "P011927",
    "player": "Dustin Sleva",
    "team": "ZAL",
-   "games": 13,
-   "minutes_per_game": 18.0,
-   "ftm_per_game": 0.31,
-   "fta_per_game": 0.77,
+   "games": 14,
+   "minutes_per_game": 17.8,
+   "ftm_per_game": 0.29,
+   "fta_per_game": 0.71,
    "ft_pct": 40.0,
-   "fouls_committed_per_game": 2.92,
-   "fouls_drawn_per_game": 1.15
+   "fouls_committed_per_game": 3.0,
+   "fouls_drawn_per_game": 1.07
   },
   {
    "season": "2026/27",
@@ -14013,13 +14026,13 @@
    "player_id": "P011981",
    "player": "Tyrique Jones",
    "team": "OLY",
-   "games": 13,
+   "games": 14,
    "minutes_per_game": 14.1,
-   "ftm_per_game": 0.92,
-   "fta_per_game": 1.08,
-   "ft_pct": 85.7,
-   "fouls_committed_per_game": 2.38,
-   "fouls_drawn_per_game": 1.31
+   "ftm_per_game": 1.0,
+   "fta_per_game": 1.29,
+   "ft_pct": 77.8,
+   "fouls_committed_per_game": 2.43,
+   "fouls_drawn_per_game": 1.36
   },
   {
    "season": "2026/27",
@@ -14039,26 +14052,26 @@
    "player_id": "P011987",
    "player": "Carsen Edwards",
    "team": "ZAL",
-   "games": 13,
+   "games": 14,
    "minutes_per_game": 23.0,
-   "ftm_per_game": 2.69,
-   "fta_per_game": 2.85,
-   "ft_pct": 94.6,
-   "fouls_committed_per_game": 1.46,
-   "fouls_drawn_per_game": 3.15
+   "ftm_per_game": 2.64,
+   "fta_per_game": 2.79,
+   "ft_pct": 94.9,
+   "fouls_committed_per_game": 1.57,
+   "fouls_drawn_per_game": 3.07
   },
   {
    "season": "2026/27",
    "player_id": "P012080",
    "player": "Timothe Luwawu-Cabarrot",
    "team": "MAD",
-   "games": 13,
-   "minutes_per_game": 18.8,
-   "ftm_per_game": 1.62,
-   "fta_per_game": 2.0,
-   "ft_pct": 80.8,
-   "fouls_committed_per_game": 2.62,
-   "fouls_drawn_per_game": 1.69
+   "games": 14,
+   "minutes_per_game": 19.2,
+   "ftm_per_game": 1.71,
+   "fta_per_game": 2.07,
+   "ft_pct": 82.8,
+   "fouls_committed_per_game": 2.64,
+   "fouls_drawn_per_game": 1.79
   },
   {
    "season": "2026/27",
@@ -14130,13 +14143,13 @@
    "player_id": "P012606",
    "player": "Mckinley Wright IV",
    "team": "DUB",
-   "games": 13,
-   "minutes_per_game": 24.3,
-   "ftm_per_game": 1.62,
-   "fta_per_game": 1.85,
+   "games": 14,
+   "minutes_per_game": 24.4,
+   "ftm_per_game": 1.5,
+   "fta_per_game": 1.71,
    "ft_pct": 87.5,
-   "fouls_committed_per_game": 1.92,
-   "fouls_drawn_per_game": 1.46
+   "fouls_committed_per_game": 2.14,
+   "fouls_drawn_per_game": 1.43
   },
   {
    "season": "2026/27",
@@ -14156,26 +14169,26 @@
    "player_id": "P012609",
    "player": "Collin Malcolm",
    "team": "IST",
-   "games": 13,
-   "minutes_per_game": 25.2,
-   "ftm_per_game": 1.46,
-   "fta_per_game": 2.0,
-   "ft_pct": 73.1,
-   "fouls_committed_per_game": 1.38,
-   "fouls_drawn_per_game": 1.69
+   "games": 14,
+   "minutes_per_game": 24.9,
+   "ftm_per_game": 1.57,
+   "fta_per_game": 2.14,
+   "ft_pct": 73.3,
+   "fouls_committed_per_game": 1.64,
+   "fouls_drawn_per_game": 1.79
   },
   {
    "season": "2026/27",
    "player_id": "P012610",
    "player": "Tyson Ward",
    "team": "OLY",
-   "games": 13,
+   "games": 14,
    "minutes_per_game": 23.6,
-   "ftm_per_game": 1.46,
-   "fta_per_game": 2.08,
-   "ft_pct": 70.4,
-   "fouls_committed_per_game": 2.62,
-   "fouls_drawn_per_game": 2.15
+   "ftm_per_game": 1.36,
+   "fta_per_game": 2.0,
+   "ft_pct": 67.9,
+   "fouls_committed_per_game": 2.71,
+   "fouls_drawn_per_game": 2.21
   },
   {
    "season": "2026/27",
@@ -14234,13 +14247,13 @@
    "player_id": "P012700",
    "player": "DJ Stewart",
    "team": "BAS",
-   "games": 13,
-   "minutes_per_game": 24.2,
-   "ftm_per_game": 1.85,
-   "fta_per_game": 2.15,
+   "games": 14,
+   "minutes_per_game": 23.5,
+   "ftm_per_game": 1.71,
+   "fta_per_game": 2.0,
    "ft_pct": 85.7,
-   "fouls_committed_per_game": 1.38,
-   "fouls_drawn_per_game": 1.69
+   "fouls_committed_per_game": 1.36,
+   "fouls_drawn_per_game": 1.57
   },
   {
    "season": "2026/27",
@@ -14260,13 +14273,13 @@
    "player_id": "P012710",
    "player": "Ercan Osmani",
    "team": "IST",
-   "games": 13,
-   "minutes_per_game": 15.2,
-   "ftm_per_game": 0.31,
-   "fta_per_game": 0.38,
-   "ft_pct": 80.0,
-   "fouls_committed_per_game": 1.46,
-   "fouls_drawn_per_game": 0.62
+   "games": 14,
+   "minutes_per_game": 15.6,
+   "ftm_per_game": 0.36,
+   "fta_per_game": 0.57,
+   "ft_pct": 62.5,
+   "fouls_committed_per_game": 1.5,
+   "fouls_drawn_per_game": 0.71
   },
   {
    "season": "2026/27",
@@ -14286,26 +14299,26 @@
    "player_id": "P012720",
    "player": "Sterling Brown",
    "team": "ZAL",
-   "games": 13,
-   "minutes_per_game": 18.5,
-   "ftm_per_game": 0.77,
-   "fta_per_game": 0.92,
+   "games": 14,
+   "minutes_per_game": 17.7,
+   "ftm_per_game": 0.71,
+   "fta_per_game": 0.86,
    "ft_pct": 83.3,
-   "fouls_committed_per_game": 1.77,
-   "fouls_drawn_per_game": 0.92
+   "fouls_committed_per_game": 1.64,
+   "fouls_drawn_per_game": 0.86
   },
   {
    "season": "2026/27",
    "player_id": "P012731",
    "player": "Mbaye Ndiaye",
    "team": "OLY",
-   "games": 13,
-   "minutes_per_game": 16.6,
-   "ftm_per_game": 1.15,
-   "fta_per_game": 2.38,
+   "games": 14,
+   "minutes_per_game": 16.2,
+   "ftm_per_game": 1.07,
+   "fta_per_game": 2.21,
    "ft_pct": 48.4,
-   "fouls_committed_per_game": 1.85,
-   "fouls_drawn_per_game": 1.77
+   "fouls_committed_per_game": 1.79,
+   "fouls_drawn_per_game": 1.64
   },
   {
    "season": "2026/27",
@@ -14325,13 +14338,13 @@
    "player_id": "P012742",
    "player": "PJ Dozier",
    "team": "IST",
-   "games": 9,
-   "minutes_per_game": 13.5,
-   "ftm_per_game": 1.11,
-   "fta_per_game": 1.11,
+   "games": 10,
+   "minutes_per_game": 14.0,
+   "ftm_per_game": 1.2,
+   "fta_per_game": 1.2,
    "ft_pct": 100.0,
-   "fouls_committed_per_game": 2.0,
-   "fouls_drawn_per_game": 1.11
+   "fouls_committed_per_game": 1.8,
+   "fouls_drawn_per_game": 1.1
   },
   {
    "season": "2026/27",
@@ -14351,26 +14364,26 @@
    "player_id": "P012788",
    "player": "Dan Oturu",
    "team": "HTA",
-   "games": 13,
-   "minutes_per_game": 21.3,
-   "ftm_per_game": 0.85,
-   "fta_per_game": 2.23,
-   "ft_pct": 37.9,
-   "fouls_committed_per_game": 2.92,
-   "fouls_drawn_per_game": 2.92
+   "games": 14,
+   "minutes_per_game": 20.9,
+   "ftm_per_game": 0.79,
+   "fta_per_game": 2.14,
+   "ft_pct": 36.7,
+   "fouls_committed_per_game": 3.0,
+   "fouls_drawn_per_game": 2.79
   },
   {
    "season": "2026/27",
    "player_id": "P012796",
    "player": "Mfiondu Kabengele",
    "team": "DUB",
-   "games": 13,
-   "minutes_per_game": 24.3,
-   "ftm_per_game": 2.85,
-   "fta_per_game": 3.62,
-   "ft_pct": 78.7,
-   "fouls_committed_per_game": 2.38,
-   "fouls_drawn_per_game": 3.23
+   "games": 14,
+   "minutes_per_game": 24.2,
+   "ftm_per_game": 2.71,
+   "fta_per_game": 3.57,
+   "ft_pct": 76.0,
+   "fouls_committed_per_game": 2.29,
+   "fouls_drawn_per_game": 3.21
   },
   {
    "season": "2026/27",
@@ -14442,12 +14455,12 @@
    "player_id": "P013284",
    "player": "Ish Wainright",
    "team": "HTA",
-   "games": 13,
-   "minutes_per_game": 16.8,
-   "ftm_per_game": 0.15,
-   "fta_per_game": 0.15,
+   "games": 14,
+   "minutes_per_game": 17.4,
+   "ftm_per_game": 0.14,
+   "fta_per_game": 0.14,
    "ft_pct": 100.0,
-   "fouls_committed_per_game": 2.38,
+   "fouls_committed_per_game": 2.36,
    "fouls_drawn_per_game": 1.0
   },
   {
@@ -14520,13 +14533,13 @@
    "player_id": "P013369",
    "player": "Carlik Jones",
    "team": "PAR",
-   "games": 13,
-   "minutes_per_game": 28.1,
-   "ftm_per_game": 3.85,
-   "fta_per_game": 4.54,
-   "ft_pct": 84.7,
-   "fouls_committed_per_game": 2.0,
-   "fouls_drawn_per_game": 4.31
+   "games": 14,
+   "minutes_per_game": 28.3,
+   "ftm_per_game": 3.71,
+   "fta_per_game": 4.43,
+   "ft_pct": 83.9,
+   "fouls_committed_per_game": 1.86,
+   "fouls_drawn_per_game": 4.21
   },
   {
    "season": "2026/27",
@@ -14572,13 +14585,13 @@
    "player_id": "P013380",
    "player": "Evan Fournier",
    "team": "OLY",
-   "games": 10,
-   "minutes_per_game": 26.2,
-   "ftm_per_game": 2.3,
-   "fta_per_game": 3.0,
-   "ft_pct": 76.7,
-   "fouls_committed_per_game": 2.7,
-   "fouls_drawn_per_game": 2.5
+   "games": 11,
+   "minutes_per_game": 26.7,
+   "ftm_per_game": 2.73,
+   "fta_per_game": 3.45,
+   "ft_pct": 78.9,
+   "fouls_committed_per_game": 2.55,
+   "fouls_drawn_per_game": 2.73
   },
   {
    "season": "2026/27",
@@ -14637,26 +14650,26 @@
    "player_id": "P013389",
    "player": "Saben Lee",
    "team": "ZAL",
-   "games": 10,
-   "minutes_per_game": 19.0,
-   "ftm_per_game": 2.0,
-   "fta_per_game": 2.4,
-   "ft_pct": 83.3,
-   "fouls_committed_per_game": 2.1,
-   "fouls_drawn_per_game": 2.3
+   "games": 11,
+   "minutes_per_game": 19.3,
+   "ftm_per_game": 2.18,
+   "fta_per_game": 2.55,
+   "ft_pct": 85.7,
+   "fouls_committed_per_game": 2.0,
+   "fouls_drawn_per_game": 2.36
   },
   {
    "season": "2026/27",
    "player_id": "P013402",
    "player": "Antonio Blakeney",
    "team": "HTA",
-   "games": 13,
-   "minutes_per_game": 21.8,
-   "ftm_per_game": 1.77,
-   "fta_per_game": 2.23,
-   "ft_pct": 79.3,
-   "fouls_committed_per_game": 1.46,
-   "fouls_drawn_per_game": 1.77
+   "games": 14,
+   "minutes_per_game": 22.1,
+   "ftm_per_game": 1.86,
+   "fta_per_game": 2.36,
+   "ft_pct": 78.8,
+   "fouls_committed_per_game": 1.43,
+   "fouls_drawn_per_game": 1.79
   },
   {
    "season": "2026/27",
@@ -14715,13 +14728,13 @@
    "player_id": "P013845",
    "player": "Kaodirichi Akobundu-Ehiogu",
    "team": "ZAL",
-   "games": 3,
-   "minutes_per_game": 6.3,
-   "ftm_per_game": 0.67,
-   "fta_per_game": 0.67,
+   "games": 4,
+   "minutes_per_game": 5.9,
+   "ftm_per_game": 0.5,
+   "fta_per_game": 0.5,
    "ft_pct": 100.0,
-   "fouls_committed_per_game": 1.33,
-   "fouls_drawn_per_game": 0.67
+   "fouls_committed_per_game": 1.0,
+   "fouls_drawn_per_game": 0.5
   },
   {
    "season": "2026/27",
@@ -14793,13 +14806,13 @@
    "player_id": "P014006",
    "player": "Chuma Okeke",
    "team": "MAD",
-   "games": 12,
-   "minutes_per_game": 17.7,
-   "ftm_per_game": 0.33,
-   "fta_per_game": 0.67,
+   "games": 13,
+   "minutes_per_game": 18.1,
+   "ftm_per_game": 0.31,
+   "fta_per_game": 0.62,
    "ft_pct": 50.0,
-   "fouls_committed_per_game": 0.58,
-   "fouls_drawn_per_game": 0.83
+   "fouls_committed_per_game": 0.54,
+   "fouls_drawn_per_game": 0.92
   },
   {
    "season": "2026/27",
@@ -14871,13 +14884,13 @@
    "player_id": "P014026",
    "player": "Clement Frisch",
    "team": "BAS",
-   "games": 10,
-   "minutes_per_game": 16.7,
-   "ftm_per_game": 0.7,
-   "fta_per_game": 1.0,
+   "games": 11,
+   "minutes_per_game": 15.4,
+   "ftm_per_game": 0.64,
+   "fta_per_game": 0.91,
    "ft_pct": 70.0,
-   "fouls_committed_per_game": 1.2,
-   "fouls_drawn_per_game": 0.8
+   "fouls_committed_per_game": 1.09,
+   "fouls_drawn_per_game": 0.73
   },
   {
    "season": "2026/27",
@@ -14936,26 +14949,26 @@
    "player_id": "P014102",
    "player": "Kai Jones",
    "team": "IST",
-   "games": 13,
-   "minutes_per_game": 15.7,
-   "ftm_per_game": 0.23,
-   "fta_per_game": 0.38,
+   "games": 14,
+   "minutes_per_game": 15.8,
+   "ftm_per_game": 0.21,
+   "fta_per_game": 0.36,
    "ft_pct": 60.0,
-   "fouls_committed_per_game": 1.15,
-   "fouls_drawn_per_game": 0.54
+   "fouls_committed_per_game": 1.36,
+   "fouls_drawn_per_game": 0.5
   },
   {
    "season": "2026/27",
    "player_id": "P014107",
    "player": "Stefan Joksimovic",
    "team": "BAS",
-   "games": 11,
-   "minutes_per_game": 13.0,
-   "ftm_per_game": 1.0,
-   "fta_per_game": 1.55,
-   "ft_pct": 64.7,
+   "games": 12,
+   "minutes_per_game": 13.8,
+   "ftm_per_game": 1.5,
+   "fta_per_game": 2.17,
+   "ft_pct": 69.2,
    "fouls_committed_per_game": 2.0,
-   "fouls_drawn_per_game": 1.27
+   "fouls_drawn_per_game": 1.67
   },
   {
    "season": "2026/27",
@@ -15001,13 +15014,13 @@
    "player_id": "P014122",
    "player": "Omiros Netzipoglou",
    "team": "OLY",
-   "games": 5,
-   "minutes_per_game": 7.1,
-   "ftm_per_game": 0.6,
-   "fta_per_game": 0.6,
+   "games": 6,
+   "minutes_per_game": 8.8,
+   "ftm_per_game": 0.5,
+   "fta_per_game": 0.5,
    "ft_pct": 100.0,
-   "fouls_committed_per_game": 1.6,
-   "fouls_drawn_per_game": 0.4
+   "fouls_committed_per_game": 1.67,
+   "fouls_drawn_per_game": 0.33
   },
   {
    "season": "2026/27",
@@ -15053,13 +15066,13 @@
    "player_id": "P014152",
    "player": "Kobi Simmons",
    "team": "BAS",
-   "games": 12,
-   "minutes_per_game": 22.5,
-   "ftm_per_game": 1.67,
+   "games": 13,
+   "minutes_per_game": 22.7,
+   "ftm_per_game": 1.69,
    "fta_per_game": 2.0,
-   "ft_pct": 83.3,
-   "fouls_committed_per_game": 2.58,
-   "fouls_drawn_per_game": 2.42
+   "ft_pct": 84.6,
+   "fouls_committed_per_game": 2.69,
+   "fouls_drawn_per_game": 2.46
   },
   {
    "season": "2026/27",
@@ -15118,13 +15131,13 @@
    "player_id": "P014213",
    "player": "Cameron Payne",
    "team": "IST",
-   "games": 10,
-   "minutes_per_game": 22.0,
-   "ftm_per_game": 1.8,
-   "fta_per_game": 2.4,
+   "games": 11,
+   "minutes_per_game": 21.0,
+   "ftm_per_game": 1.64,
+   "fta_per_game": 2.18,
    "ft_pct": 75.0,
-   "fouls_committed_per_game": 3.5,
-   "fouls_drawn_per_game": 2.6
+   "fouls_committed_per_game": 3.36,
+   "fouls_drawn_per_game": 2.36
   },
   {
    "season": "2026/27",
@@ -15144,13 +15157,13 @@
    "player_id": "P014220",
    "player": "Chris Silva",
    "team": "PAR",
-   "games": 5,
-   "minutes_per_game": 5.4,
-   "ftm_per_game": 0.6,
-   "fta_per_game": 1.2,
+   "games": 6,
+   "minutes_per_game": 4.8,
+   "ftm_per_game": 0.5,
+   "fta_per_game": 1.0,
    "ft_pct": 50.0,
-   "fouls_committed_per_game": 2.0,
-   "fouls_drawn_per_game": 0.8
+   "fouls_committed_per_game": 2.17,
+   "fouls_drawn_per_game": 0.67
   },
   {
    "season": "2026/27",
@@ -15170,13 +15183,13 @@
    "player_id": "P014316",
    "player": "Cory Joseph",
    "team": "OLY",
-   "games": 12,
-   "minutes_per_game": 18.0,
-   "ftm_per_game": 0.67,
-   "fta_per_game": 0.75,
-   "ft_pct": 88.9,
-   "fouls_committed_per_game": 1.83,
-   "fouls_drawn_per_game": 1.75
+   "games": 13,
+   "minutes_per_game": 19.5,
+   "ftm_per_game": 0.77,
+   "fta_per_game": 0.85,
+   "ft_pct": 90.9,
+   "fouls_committed_per_game": 1.85,
+   "fouls_drawn_per_game": 2.0
   },
   {
    "season": "2026/27",
@@ -15261,39 +15274,39 @@
    "player_id": "P014734",
    "player": "A.J. Lawson",
    "team": "BAS",
-   "games": 13,
-   "minutes_per_game": 23.7,
-   "ftm_per_game": 2.15,
-   "fta_per_game": 3.31,
+   "games": 14,
+   "minutes_per_game": 23.4,
+   "ftm_per_game": 2.0,
+   "fta_per_game": 3.07,
    "ft_pct": 65.1,
-   "fouls_committed_per_game": 1.85,
-   "fouls_drawn_per_game": 2.54
+   "fouls_committed_per_game": 1.79,
+   "fouls_drawn_per_game": 2.43
   },
   {
    "season": "2026/27",
    "player_id": "P014735",
    "player": "Chris Duarte",
    "team": "BAS",
-   "games": 10,
+   "games": 11,
    "minutes_per_game": 19.5,
-   "ftm_per_game": 2.6,
-   "fta_per_game": 2.8,
+   "ftm_per_game": 2.36,
+   "fta_per_game": 2.55,
    "ft_pct": 92.9,
-   "fouls_committed_per_game": 2.3,
-   "fouls_drawn_per_game": 3.2
+   "fouls_committed_per_game": 2.45,
+   "fouls_drawn_per_game": 2.91
   },
   {
    "season": "2026/27",
    "player_id": "P014736",
    "player": "Damion Baugh",
    "team": "BAS",
-   "games": 12,
-   "minutes_per_game": 19.0,
-   "ftm_per_game": 0.92,
-   "fta_per_game": 1.33,
+   "games": 13,
+   "minutes_per_game": 18.0,
+   "ftm_per_game": 0.85,
+   "fta_per_game": 1.23,
    "ft_pct": 68.8,
-   "fouls_committed_per_game": 1.75,
-   "fouls_drawn_per_game": 2.0
+   "fouls_committed_per_game": 1.69,
+   "fouls_drawn_per_game": 1.85
   },
   {
    "season": "2026/27",
@@ -15495,13 +15508,13 @@
    "player_id": "P015103",
    "player": "Damian Jones",
    "team": "MAD",
-   "games": 13,
-   "minutes_per_game": 13.3,
-   "ftm_per_game": 0.46,
-   "fta_per_game": 0.69,
+   "games": 14,
+   "minutes_per_game": 13.6,
+   "ftm_per_game": 0.43,
+   "fta_per_game": 0.64,
    "ft_pct": 66.7,
-   "fouls_committed_per_game": 1.92,
-   "fouls_drawn_per_game": 0.77
+   "fouls_committed_per_game": 2.0,
+   "fouls_drawn_per_game": 0.71
   },
   {
    "season": "2026/27",
@@ -15586,39 +15599,39 @@
    "player_id": "P015151",
    "player": "Jacob Toppin",
    "team": "HTA",
-   "games": 6,
-   "minutes_per_game": 12.0,
-   "ftm_per_game": 0.33,
-   "fta_per_game": 0.5,
+   "games": 7,
+   "minutes_per_game": 10.8,
+   "ftm_per_game": 0.29,
+   "fta_per_game": 0.43,
    "ft_pct": 66.7,
-   "fouls_committed_per_game": 1.33,
-   "fouls_drawn_per_game": 0.5
+   "fouls_committed_per_game": 1.14,
+   "fouls_drawn_per_game": 0.43
   },
   {
    "season": "2026/27",
    "player_id": "P015152",
    "player": "Eugene German",
    "team": "HTA",
-   "games": 9,
-   "minutes_per_game": 8.8,
-   "ftm_per_game": 0.22,
-   "fta_per_game": 0.22,
+   "games": 10,
+   "minutes_per_game": 8.4,
+   "ftm_per_game": 0.2,
+   "fta_per_game": 0.2,
    "ft_pct": 100.0,
-   "fouls_committed_per_game": 1.44,
-   "fouls_drawn_per_game": 0.22
+   "fouls_committed_per_game": 1.5,
+   "fouls_drawn_per_game": 0.2
   },
   {
    "season": "2026/27",
    "player_id": "P015153",
    "player": "Amir Coffey",
    "team": "HTA",
-   "games": 9,
-   "minutes_per_game": 20.6,
-   "ftm_per_game": 1.22,
-   "fta_per_game": 1.56,
+   "games": 10,
+   "minutes_per_game": 20.5,
+   "ftm_per_game": 1.1,
+   "fta_per_game": 1.4,
    "ft_pct": 78.6,
-   "fouls_committed_per_game": 1.56,
-   "fouls_drawn_per_game": 1.67
+   "fouls_committed_per_game": 1.6,
+   "fouls_drawn_per_game": 1.5
   },
   {
    "season": "2026/27",
@@ -15729,13 +15742,13 @@
    "player_id": "P015244",
    "player": "Nick Smith JR",
    "team": "MAD",
-   "games": 10,
-   "minutes_per_game": 13.1,
-   "ftm_per_game": 1.1,
-   "fta_per_game": 1.3,
-   "ft_pct": 84.6,
-   "fouls_committed_per_game": 2.4,
-   "fouls_drawn_per_game": 1.1
+   "games": 11,
+   "minutes_per_game": 12.5,
+   "ftm_per_game": 1.18,
+   "fta_per_game": 1.36,
+   "ft_pct": 86.7,
+   "fouls_committed_per_game": 2.27,
+   "fouls_drawn_per_game": 1.18
   },
   {
    "season": "2026/27",
@@ -15755,26 +15768,26 @@
    "player_id": "P015397",
    "player": "Antonio Reeves",
    "team": "PAR",
-   "games": 6,
-   "minutes_per_game": 16.5,
-   "ftm_per_game": 0.5,
-   "fta_per_game": 0.67,
+   "games": 7,
+   "minutes_per_game": 16.0,
+   "ftm_per_game": 0.43,
+   "fta_per_game": 0.57,
    "ft_pct": 75.0,
-   "fouls_committed_per_game": 0.83,
-   "fouls_drawn_per_game": 0.83
+   "fouls_committed_per_game": 0.86,
+   "fouls_drawn_per_game": 0.71
   },
   {
    "season": "2026/27",
    "player_id": "P015400",
    "player": "Robert Franks",
    "team": "PAR",
-   "games": 6,
-   "minutes_per_game": 21.0,
-   "ftm_per_game": 1.33,
-   "fta_per_game": 1.67,
-   "ft_pct": 80.0,
-   "fouls_committed_per_game": 2.5,
-   "fouls_drawn_per_game": 1.5
+   "games": 7,
+   "minutes_per_game": 20.5,
+   "ftm_per_game": 1.29,
+   "fta_per_game": 1.71,
+   "ft_pct": 75.0,
+   "fouls_committed_per_game": 2.43,
+   "fouls_drawn_per_game": 1.43
   },
   {
    "season": "2026/27",
@@ -15807,26 +15820,26 @@
    "player_id": "PJUJ",
    "player": "Marcelinho Huertas",
    "team": "DUB",
-   "games": 2,
-   "minutes_per_game": 4.0,
-   "ftm_per_game": 1.5,
-   "fta_per_game": 1.5,
+   "games": 3,
+   "minutes_per_game": 7.4,
+   "ftm_per_game": 1.0,
+   "fta_per_game": 1.0,
    "ft_pct": 100.0,
-   "fouls_committed_per_game": 0.5,
-   "fouls_drawn_per_game": 0.5
+   "fouls_committed_per_game": 0.67,
+   "fouls_drawn_per_game": 0.33
   },
   {
    "season": "2026/27",
    "player_id": "PTGB",
    "player": "Sergio Llull",
    "team": "MAD",
-   "games": 3,
-   "minutes_per_game": 16.2,
-   "ftm_per_game": 1.67,
-   "fta_per_game": 1.67,
-   "ft_pct": 100.0,
-   "fouls_committed_per_game": 2.33,
-   "fouls_drawn_per_game": 2.0
+   "games": 4,
+   "minutes_per_game": 15.0,
+   "ftm_per_game": 1.25,
+   "fta_per_game": 1.5,
+   "ft_pct": 83.3,
+   "fouls_committed_per_game": 2.0,
+   "fouls_drawn_per_game": 1.75
   }
  ],
  "data_quality": {
